@@ -1,0 +1,20 @@
+# NebuX Core Color Configuration Example
+# This file shows how to configure colors for both light and dark themes
+
+[light]
+primary = "0xFF2563EB"      # Blue 600
+secondary = "0xFF10B981"    # Emerald 500
+scaffold = "0xFFFFFFFF"     # White
+black = "0xFF111111"        # Dark grey
+white = "0xFFFFFFFF"        # White
+error = "0xFFEF4444"        # Red 500
+disabled = "0xFF94A3B8"     # Slate 400
+
+[dark]
+primary = "0xFF60A5FA"      # Blue 400
+secondary = "0xFF34D399"    # Emerald 400
+scaffold = "0xFF0F172A"     # Slate 900
+black = "0xFF111111"        # Dark grey
+white = "0xFFFFFFFF"        # White
+error = "0xFFF87171"        # Red 400
+disabled = "0xFF64748B"     # Slate 500 
