@@ -9,6 +9,8 @@ black = "0xFF111111"        # Dark grey
 white = "0xFFFFFFFF"        # White
 error = "0xFFEF4444"        # Red 500
 disabled = "0xFF94A3B8"     # Slate 400
+textPrimary = "0xFF111111"  # Primary text color
+textSecondary = "0xFF666666" # Secondary text color
 
 [dark]
 primary = "0xFF60A5FA"      # Blue 400
@@ -18,3 +20,5 @@ black = "0xFF111111"        # Dark grey
 white = "0xFFFFFFFF"        # White
 error = "0xFFF87171"        # Red 400
 disabled = "0xFF64748B"     # Slate 500 
+textPrimary = "0xFFFFFFFF"  # Primary text color
+textSecondary = "0xFFAAAAAA" # Secondary text color 

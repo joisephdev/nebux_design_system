@@ -176,13 +176,13 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       // Elevated button theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          elevation: 2,
           backgroundColor: colors.primary,
           foregroundColor: colors.white,
-          elevation: 2,
           shadowColor: colors.black,
+          textStyle: typography.labelLarge,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: typography.labelLarge,
         ),
       ),
 

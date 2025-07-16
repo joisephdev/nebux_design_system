@@ -1,12 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'nebux_font_size.freezed.dart';
-part 'nebux_font_size.g.dart';
 
 /// NebuX Core Font Size System
 ///
 /// Defines font sizes for the NebuX Core design system using Freezed.
-@Freezed(fromJson: true, toJson: true)
+@Freezed(fromJson: false, toJson: false)
 abstract class NebuxFontSize with _$NebuxFontSize {
   /// Creates a [NebuxFontSize] instance.
   const factory NebuxFontSize({

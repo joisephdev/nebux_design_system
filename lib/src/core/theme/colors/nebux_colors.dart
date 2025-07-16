@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nebux_core/src/core/utils/color_converter.dart';
+import 'package:nebux_core/src/core/theme/utils/color_converter.dart';
 
 part 'nebux_colors.freezed.dart';
 part 'nebux_colors.g.dart';
@@ -33,6 +33,12 @@ class NebuxColors with _$NebuxColors {
 
     /// Disabled color
     @ColorConverter() required Color disabled,
+
+    /// Primary text color
+    @ColorConverter() required Color textPrimary,
+
+    /// Secondary text color
+    @ColorConverter() required Color textSecondary,
   }) = _NebuxColors;
 
   factory NebuxColors.fromJson(Map<String, dynamic> json) =>
@@ -52,6 +58,8 @@ class NebuxColors with _$NebuxColors {
       white: Color.lerp(c.white, o.white, t)!,
       error: Color.lerp(c.error, o.error, t)!,
       disabled: Color.lerp(c.disabled, o.disabled, t)!,
+      textPrimary: Color.lerp(c.textPrimary, o.textPrimary, t)!,
+      textSecondary: Color.lerp(c.textSecondary, o.textSecondary, t)!,
     );
   }
 }
