@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:nebux_core/src/core/theme/extensions/nebux_extension.dart';
-import 'colors/nebux_colors.dart';
-import 'typography/nebux_typography.dart';
+import 'package:nebux_core/nebux_core.dart';
 
 /// NebuX Core Theme System
 ///
@@ -10,19 +7,26 @@ import 'typography/nebux_typography.dart';
 /// Provides a comprehensive design system for the NebuX Core application.
 class NebuxTheme extends ThemeExtension<NebuxTheme> {
   final NebuxColors colors;
+  final NebuxFontSize fontSize;
   final NebuxTypography typography;
 
-  const NebuxTheme._({required this.colors, required this.typography});
+  const NebuxTheme._({
+    required this.colors,
+    required this.fontSize,
+    required this.typography,
+  });
 
   /// Create a custom theme with specific colors
   /// This allows users to define their own theme colors
   factory NebuxTheme.custom({
     required NebuxColors colors,
+    NebuxFontSize? fontSize,
     NebuxTypography? typography,
   }) {
     return NebuxTheme._(
       colors: colors,
-      typography: typography ?? NebuxTypography(),
+      fontSize: fontSize ?? NebuxFontSize.standard(),
+      typography: typography ?? NebuxTypography.standard(),
     );
   }
 
@@ -45,9 +49,14 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
   }
 
   @override
-  NebuxTheme copyWith({NebuxColors? colors, NebuxTypography? typography}) {
+  NebuxTheme copyWith({
+    NebuxColors? colors,
+    NebuxFontSize? fontSize,
+    NebuxTypography? typography,
+  }) {
     return NebuxTheme._(
       colors: colors ?? this.colors,
+      fontSize: fontSize ?? this.fontSize,
       typography: typography ?? this.typography,
     );
   }
@@ -57,11 +66,20 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
     if (other == null) return this;
 
     final nebuxColors = NebuxColors.lerp(colors, other.colors, t) ?? colors;
-    return NebuxTheme._(colors: nebuxColors, typography: other.typography);
+    return NebuxTheme._(
+      colors: nebuxColors,
+      fontSize: other.fontSize,
+      typography: other.typography,
+    );
   }
 
   /// Create ThemeData for Flutter's Material App
-  static ThemeData createThemeData(NebuxColors colors, bool isDark) {
+  static ThemeData createThemeData(
+    bool isDark,
+    NebuxColors colors,
+    NebuxFontSize fontSize,
+    NebuxTypography typography,
+  ) {
     return ThemeData(
       useMaterial3: true,
       brightness: isDark ? Brightness.dark : Brightness.light,
@@ -97,11 +115,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         foregroundColor: colors.black,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w600,
-          fontSize: NebuxTypography.f18,
-          color: colors.black,
-        ),
+        titleTextStyle: typography.labelLarge,
         iconTheme: IconThemeData(color: colors.black, size: 24),
         actionsIconTheme: IconThemeData(color: colors.black, size: 24),
       ),
@@ -111,14 +125,8 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         backgroundColor: colors.scaffold,
         selectedItemColor: colors.primary,
         unselectedItemColor: colors.black,
-        selectedLabelStyle: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w600,
-          fontSize: NebuxTypography.f12,
-        ),
-        unselectedLabelStyle: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w400,
-          fontSize: NebuxTypography.f12,
-        ),
+        selectedLabelStyle: typography.labelLarge,
+        unselectedLabelStyle: typography.labelLarge,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
@@ -156,21 +164,9 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: colors.error, width: 2),
         ),
-        labelStyle: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w500,
-          fontSize: NebuxTypography.f14,
-          color: colors.black,
-        ),
-        hintStyle: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w400,
-          fontSize: NebuxTypography.f14,
-          color: colors.black,
-        ),
-        errorStyle: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w400,
-          fontSize: NebuxTypography.f12,
-          color: colors.error,
-        ),
+        labelStyle: typography.labelLarge,
+        hintStyle: typography.labelLarge,
+        errorStyle: typography.labelLarge,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
@@ -180,16 +176,13 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       // Elevated button theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          elevation: 2,
           backgroundColor: colors.primary,
           foregroundColor: colors.white,
-          elevation: 2,
           shadowColor: colors.black,
+          textStyle: typography.labelLarge,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: GoogleFonts.montserrat(
-            fontWeight: FontWeight.w600,
-            fontSize: NebuxTypography.f14,
-          ),
         ),
       ),
 
@@ -200,10 +193,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           side: BorderSide(color: colors.primary),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: GoogleFonts.montserrat(
-            fontWeight: FontWeight.w600,
-            fontSize: NebuxTypography.f14,
-          ),
+          textStyle: typography.labelLarge,
         ),
       ),
 
@@ -213,10 +203,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           foregroundColor: colors.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          textStyle: GoogleFonts.montserrat(
-            fontWeight: FontWeight.w600,
-            fontSize: NebuxTypography.f14,
-          ),
+          textStyle: typography.labelLarge,
         ),
       ),
 
@@ -227,10 +214,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           foregroundColor: colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: GoogleFonts.montserrat(
-            fontWeight: FontWeight.w600,
-            fontSize: NebuxTypography.f14,
-          ),
+          textStyle: typography.labelLarge,
         ),
       ),
 
@@ -246,86 +230,37 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
 
       // Text theme
       textTheme: TextTheme(
-        displayLarge: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w800,
-          fontSize: NebuxTypography.f36,
-          color: colors.black,
-        ),
-        displayMedium: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w700,
-          fontSize: NebuxTypography.f28,
-          color: colors.black,
-        ),
-        displaySmall: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w600,
-          fontSize: NebuxTypography.f24,
-          color: colors.black,
-        ),
-        headlineLarge: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w700,
-          fontSize: NebuxTypography.f32,
-          color: colors.black,
-        ),
-        headlineMedium: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w600,
-          fontSize: NebuxTypography.f24,
-          color: colors.black,
-        ),
-        headlineSmall: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w600,
-          fontSize: NebuxTypography.f20,
-          color: colors.black,
-        ),
-        titleLarge: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w500,
-          fontSize: NebuxTypography.f18,
-          color: colors.black,
-        ),
-        titleMedium: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w500,
-          fontSize: NebuxTypography.f16,
-          color: colors.black,
-        ),
-        titleSmall: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w500,
-          fontSize: NebuxTypography.f14,
-          color: colors.black,
-        ),
-        bodyLarge: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w400,
-          fontSize: NebuxTypography.f16,
-          color: colors.black,
-        ),
-        bodyMedium: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w400,
-          fontSize: NebuxTypography.f14,
-          color: colors.black,
-        ),
-        bodySmall: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w400,
-          fontSize: NebuxTypography.f12,
-          color: colors.black,
-        ),
-        labelLarge: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w600,
-          fontSize: NebuxTypography.f14,
-          color: colors.black,
-        ),
-        labelMedium: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w500,
-          fontSize: NebuxTypography.f12,
-          color: colors.black,
-        ),
-        labelSmall: GoogleFonts.montserrat(
-          fontWeight: FontWeight.w500,
-          fontSize: NebuxTypography.f10,
-          color: colors.black,
-        ),
+        // Display text styles
+        displayLarge: typography.labelLarge,
+        displayMedium: typography.labelMedium,
+        displaySmall: typography.labelSmall,
+
+        // Headline text styles
+        headlineLarge: typography.labelLarge,
+        headlineMedium: typography.labelMedium,
+        headlineSmall: typography.labelSmall,
+        // Title text styles
+        titleLarge: typography.labelLarge,
+        titleMedium: typography.labelMedium,
+        titleSmall: typography.labelSmall,
+
+        // Body text styles
+        bodyLarge: typography.bodyLarge,
+        bodyMedium: typography.bodyMedium,
+        bodySmall: typography.bodySmall,
+        // Label text styles
+        labelLarge: typography.labelLarge,
+        labelMedium: typography.labelMedium,
+        labelSmall: typography.labelSmall,
       ),
 
       // Extensions
       extensions: <ThemeExtension<NebuxTheme>>[
-        NebuxTheme._(colors: colors, typography: NebuxTypography()),
+        NebuxTheme._(
+          colors: colors,
+          fontSize: fontSize,
+          typography: typography,
+        ),
       ],
     );
   }

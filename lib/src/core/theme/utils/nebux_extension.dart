@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../nebux_theme.dart';
-import '../colors/nebux_colors.dart';
-import '../typography/nebux_typography.dart';
+import 'package:nebux_core/nebux_core.dart';
 
 /// Extension on BuildContext to easily access NebuX theme
 extension NebuxBuildContextExtension on BuildContext {

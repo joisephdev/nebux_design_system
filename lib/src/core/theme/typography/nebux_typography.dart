@@ -1,89 +1,160 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../font_size/nebux_font_size.dart';
+
+part 'nebux_typography.freezed.dart';
 
 /// NebuX Core Typography System
 ///
 /// Defines font sizes, styles, and typography hierarchy for the NebuX Core design system.
-class NebuxTypography {
-  // ==================== FONT SIZES ====================
-  /// Font size 8
-  static const double f8 = 8.0;
+@Freezed(fromJson: false, toJson: false)
+abstract class NebuxTypography with _$NebuxTypography {
+  /// Creates a [NebuxTypography] instance.
+  const factory NebuxTypography({
+    required TextStyle bodyLarge,
 
-  /// Font size 10
-  static const double f10 = 10.0;
+    /// Style for medium body text (e.g., default content, paragraphs).
+    required TextStyle bodyMedium,
 
-  /// Font size 12
-  static const double f12 = 12.0;
+    /// Style for small body text (e.g., captions, metadata).
+    required TextStyle bodySmall,
 
-  /// Font size 13
-  static const double f13 = 13.0;
+    /// Style for large labels (e.g., headings, titles).
+    required TextStyle labelLarge,
 
-  /// Font size 14
-  static const double f14 = 14.0;
+    /// Style for medium labels (e.g., section headers).
+    required TextStyle labelMedium,
 
-  /// Font size 16
-  static const double f16 = 16.0;
+    /// Style for small labels (e.g., timestamps, status).
+    required TextStyle labelSmall,
 
-  /// Font size 18
-  static const double f18 = 18.0;
+    /// Style for CTA (Call to Action) buttons.
+    required TextStyle cta,
 
-  /// Font size 20
-  static const double f20 = 20.0;
+    /// Style for alternative buttons.
+    required TextStyle alternative,
 
-  /// Font size 22
-  static const double f22 = 22.0;
+    /// Style for input text fields.
+    required TextStyle input,
 
-  /// Font size 24
-  static const double f24 = 24.0;
+    /// Style for placeholder text.
+    required TextStyle placeholder,
+  }) = _NebuxTypography;
 
-  /// Font size 28
-  static const double f28 = 28.0;
+  const NebuxTypography._();
 
-  /// Font size 32
-  static const double f32 = 32.0;
+  /// Creates a standard set of text styles using Google Fonts Montserrat.
+  factory NebuxTypography.standard() {
+    final fontSizes = NebuxFontSize.standard();
+    return NebuxTypography(
+      bodyLarge: GoogleFonts.montserrat(
+        fontSize: fontSizes.extraLarge,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+      ),
+      bodySmall: GoogleFonts.montserrat(
+        fontSize: fontSizes.medium,
+        fontWeight: FontWeight.w400,
+      ),
+      labelLarge: GoogleFonts.montserrat(
+        fontSize: fontSizes.heading4,
+        fontWeight: FontWeight.w600,
+      ),
+      labelMedium: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w500,
+      ),
+      labelSmall: GoogleFonts.montserrat(
+        fontSize: fontSizes.small,
+        fontWeight: FontWeight.w500,
+      ),
+      cta: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w700,
+      ),
+      alternative: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w600,
+      ),
+      input: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+      ),
+      placeholder: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.italic,
+      ),
+    );
+  }
 
-  /// Font size 36
-  static const double f36 = 36.0;
-
-  // ==================== BASE STYLES ====================
-  /// Regular text style (FontWeight.w400)
-  TextStyle get regular => GoogleFonts.montserrat(fontWeight: FontWeight.w400);
-
-  /// Medium text style (FontWeight.w500)
-  TextStyle get medium => GoogleFonts.montserrat(fontWeight: FontWeight.w500);
-
-  /// Semi-bold text style (FontWeight.w600)
-  TextStyle get semiBold => GoogleFonts.montserrat(fontWeight: FontWeight.w600);
-
-  /// Bold text style (FontWeight.w700)
-  TextStyle get bold => GoogleFonts.montserrat(fontWeight: FontWeight.w700);
-
-  /// Extra bold text style (FontWeight.w800)
-  TextStyle get extraBold =>
-      GoogleFonts.montserrat(fontWeight: FontWeight.w800);
-
-  // ==================== BUTTON STYLES ====================
-  /// CTA (Call to Action) button style
-  TextStyle get cta =>
-      GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: f12);
-
-  /// Alternative button style
-  TextStyle get alternative =>
-      GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: f14);
-
-  // ==================== TEXT FIELD STYLES ====================
-  /// Label style for text fields
-  TextStyle get label =>
-      GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: f14);
-
-  /// Input text style
-  TextStyle get input =>
-      GoogleFonts.montserrat(fontWeight: FontWeight.w400, fontSize: f14);
-
-  /// Placeholder text style
-  TextStyle get placeholder => GoogleFonts.montserrat(
-    fontWeight: FontWeight.w400,
-    fontStyle: FontStyle.italic,
-    fontSize: f14,
+  /// Creates [NebuxTypography] from a Material [ThemeData].
+  factory NebuxTypography.fromThemeData(ThemeData themeData) => NebuxTypography(
+    bodyLarge: themeData.textTheme.bodyLarge!,
+    bodyMedium: themeData.textTheme.bodyMedium!,
+    bodySmall: themeData.textTheme.bodySmall!,
+    labelLarge: themeData.textTheme.labelLarge!,
+    labelMedium: themeData.textTheme.labelMedium!,
+    labelSmall: themeData.textTheme.labelSmall!,
+    cta: themeData.textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w700),
+    alternative: themeData.textTheme.labelMedium!.copyWith(
+      fontWeight: FontWeight.w600,
+    ),
+    input: themeData.textTheme.bodyMedium!,
+    placeholder: themeData.textTheme.bodyMedium!.copyWith(
+      fontStyle: FontStyle.italic,
+    ),
   );
+
+  /// Creates a custom [NebuxTypography] with individual TextStyle parameters.
+  /// All parameters are optional and will use standard values if not provided.
+  factory NebuxTypography.custom({
+    TextStyle? bodyLarge,
+    TextStyle? bodyMedium,
+    TextStyle? bodySmall,
+    TextStyle? labelLarge,
+    TextStyle? labelMedium,
+    TextStyle? labelSmall,
+    TextStyle? cta,
+    TextStyle? alternative,
+    TextStyle? input,
+    TextStyle? placeholder,
+  }) {
+    final standard = NebuxTypography.standard();
+    return NebuxTypography(
+      bodyLarge: bodyLarge ?? standard.bodyLarge,
+      bodyMedium: bodyMedium ?? standard.bodyMedium,
+      bodySmall: bodySmall ?? standard.bodySmall,
+      labelLarge: labelLarge ?? standard.labelLarge,
+      labelMedium: labelMedium ?? standard.labelMedium,
+      labelSmall: labelSmall ?? standard.labelSmall,
+      cta: cta ?? standard.cta,
+      alternative: alternative ?? standard.alternative,
+      input: input ?? standard.input,
+      placeholder: placeholder ?? standard.placeholder,
+    );
+  }
+
+  /// Merges this typography scheme with another [NebuxTypography].
+  ///
+  /// Styles from [other] take precedence.
+  NebuxTypography merge(NebuxTypography? other) {
+    if (other == null) return this;
+    return copyWith(
+      bodyLarge: other.bodyLarge,
+      bodyMedium: other.bodyMedium,
+      bodySmall: other.bodySmall,
+      labelLarge: other.labelLarge,
+      labelMedium: other.labelMedium,
+      labelSmall: other.labelSmall,
+      cta: other.cta,
+      alternative: other.alternative,
+      input: other.input,
+      placeholder: other.placeholder,
+    );
+  }
 }
