@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nebux_core/nebux_core.dart';
+import 'package:nebux_design_system/nebux_design_system.dart';
 
-/// NebuX Core Theme System
-///
 /// Main theme class that integrates colors, typography, and spacing.
 /// Provides a comprehensive design system for the NebuX Core application.
 class NebuxTheme extends ThemeExtension<NebuxTheme> {
@@ -16,7 +14,6 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
     required this.typography,
   });
 
-  /// Create a custom theme with specific colors
   /// This allows users to define their own theme colors
   factory NebuxTheme.custom({
     required NebuxColors colors,
@@ -30,14 +27,12 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
     );
   }
 
-  /// Create theme from JSON
   /// This allows users to load their theme from JSON data
   static NebuxTheme fromJson(Map<String, dynamic> json) {
     final colors = NebuxColors.fromJson(json);
     return NebuxTheme.custom(colors: colors);
   }
 
-  /// Create theme from color themes with specific brightness
   /// This allows users to provide both light and dark themes and select one
   static NebuxTheme fromColorThemes({
     required NebuxColorThemes colorThemes,
@@ -73,7 +68,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
     );
   }
 
-  /// Create ThemeData for Flutter's Material App
+  /// ThemeData for Flutter's Material App
   static ThemeData createThemeData(
     bool isDark,
     NebuxColors colors,
@@ -83,7 +78,14 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
     return ThemeData(
       useMaterial3: true,
       brightness: isDark ? Brightness.dark : Brightness.light,
-
+      // Extensions
+      extensions: <ThemeExtension<NebuxTheme>>[
+        NebuxTheme._(
+          colors: colors,
+          fontSize: fontSize,
+          typography: typography,
+        ),
+      ],
       // Color scheme
       colorScheme: ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
@@ -115,7 +117,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         foregroundColor: colors.black,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle: typography.labelLarge,
+        titleTextStyle: typography.heading,
         iconTheme: IconThemeData(color: colors.black, size: 24),
         actionsIconTheme: IconThemeData(color: colors.black, size: 24),
       ),
@@ -125,8 +127,8 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         backgroundColor: colors.scaffold,
         selectedItemColor: colors.primary,
         unselectedItemColor: colors.black,
-        selectedLabelStyle: typography.labelLarge,
-        unselectedLabelStyle: typography.labelLarge,
+        selectedLabelStyle: typography.label,
+        unselectedLabelStyle: typography.label,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
@@ -164,9 +166,9 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: colors.error, width: 2),
         ),
-        labelStyle: typography.labelLarge,
-        hintStyle: typography.labelLarge,
-        errorStyle: typography.labelLarge,
+        labelStyle: typography.label,
+        hintStyle: typography.label,
+        errorStyle: typography.content,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
@@ -180,7 +182,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           backgroundColor: colors.primary,
           foregroundColor: colors.white,
           shadowColor: colors.black,
-          textStyle: typography.labelLarge,
+          textStyle: typography.primaryAction,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         ),
@@ -193,7 +195,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           side: BorderSide(color: colors.primary),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: typography.labelLarge,
+          textStyle: typography.primaryAction,
         ),
       ),
 
@@ -203,7 +205,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           foregroundColor: colors.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          textStyle: typography.labelLarge,
+          textStyle: typography.primaryAction,
         ),
       ),
 
@@ -214,7 +216,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           foregroundColor: colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: typography.labelLarge,
+          textStyle: typography.primaryAction,
         ),
       ),
 
@@ -231,37 +233,28 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       // Text theme
       textTheme: TextTheme(
         // Display text styles
-        displayLarge: typography.labelLarge,
-        displayMedium: typography.labelMedium,
-        displaySmall: typography.labelSmall,
+        displayLarge: typography.heading,
+        displayMedium: typography.heading,
+        displaySmall: typography.heading,
 
         // Headline text styles
-        headlineLarge: typography.labelLarge,
-        headlineMedium: typography.labelMedium,
-        headlineSmall: typography.labelSmall,
+        headlineLarge: typography.heading,
+        headlineMedium: typography.heading,
+        headlineSmall: typography.heading,
         // Title text styles
-        titleLarge: typography.labelLarge,
-        titleMedium: typography.labelMedium,
-        titleSmall: typography.labelSmall,
+        titleLarge: typography.heading,
+        titleMedium: typography.heading,
+        titleSmall: typography.heading,
 
         // Body text styles
-        bodyLarge: typography.bodyLarge,
-        bodyMedium: typography.bodyMedium,
-        bodySmall: typography.bodySmall,
+        bodyLarge: typography.content,
+        bodyMedium: typography.content,
+        bodySmall: typography.content,
         // Label text styles
-        labelLarge: typography.labelLarge,
-        labelMedium: typography.labelMedium,
-        labelSmall: typography.labelSmall,
+        labelLarge: typography.label,
+        labelMedium: typography.label,
+        labelSmall: typography.label,
       ),
-
-      // Extensions
-      extensions: <ThemeExtension<NebuxTheme>>[
-        NebuxTheme._(
-          colors: colors,
-          fontSize: fontSize,
-          typography: typography,
-        ),
-      ],
     );
   }
 }

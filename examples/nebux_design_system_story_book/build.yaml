@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      widgetbook_generator:
+        enabled: true
+        options:
+          stories_path: lib/stories

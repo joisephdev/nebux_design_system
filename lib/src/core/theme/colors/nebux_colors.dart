@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nebux_core/src/core/theme/utils/color_converter.dart';
+import 'package:nebux_design_system/src/core/utils/nebux_color_converter.dart';
 
 part 'nebux_colors.freezed.dart';
 part 'nebux_colors.g.dart';

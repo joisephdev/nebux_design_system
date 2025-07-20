@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nebux_core/nebux_core.dart';
+import 'package:nebux_design_system/nebux_design_system.dart';
 
 /// Extension on BuildContext to easily access NebuX theme
 extension NebuxBuildContextExtension on BuildContext {

@@ -12,33 +12,34 @@ part 'nebux_typography.freezed.dart';
 abstract class NebuxTypography with _$NebuxTypography {
   /// Creates a [NebuxTypography] instance.
   const factory NebuxTypography({
-    required TextStyle bodyLarge,
+    /// Style for main content text (e.g., articles, descriptions).
+    required TextStyle content,
 
-    /// Style for medium body text (e.g., default content, paragraphs).
-    required TextStyle bodyMedium,
+    /// Style for regular paragraph text (e.g., default content, paragraphs).
+    required TextStyle paragraph,
 
-    /// Style for small body text (e.g., captions, metadata).
-    required TextStyle bodySmall,
+    /// Style for small supporting text (e.g., captions, metadata).
+    required TextStyle caption,
 
-    /// Style for large labels (e.g., headings, titles).
-    required TextStyle labelLarge,
+    /// Style for main headings (e.g., page titles, primary headers).
+    required TextStyle heading,
 
-    /// Style for medium labels (e.g., section headers).
-    required TextStyle labelMedium,
+    /// Style for section headers (e.g., content sections).
+    required TextStyle section,
 
     /// Style for small labels (e.g., timestamps, status).
-    required TextStyle labelSmall,
+    required TextStyle label,
 
-    /// Style for CTA (Call to Action) buttons.
-    required TextStyle cta,
+    /// Style for primary action buttons.
+    required TextStyle primaryAction,
 
-    /// Style for alternative buttons.
-    required TextStyle alternative,
+    /// Style for secondary action buttons.
+    required TextStyle secondaryAction,
 
-    /// Style for input text fields.
-    required TextStyle input,
+    /// Style for form input text fields.
+    required TextStyle formInput,
 
-    /// Style for placeholder text.
+    /// Style for placeholder text in inputs.
     required TextStyle placeholder,
   }) = _NebuxTypography;
 
@@ -48,39 +49,40 @@ abstract class NebuxTypography with _$NebuxTypography {
   factory NebuxTypography.standard() {
     final fontSizes = NebuxFontSize.standard();
     return NebuxTypography(
-      bodyLarge: GoogleFonts.montserrat(
-        fontSize: fontSizes.extraLarge,
-        fontWeight: FontWeight.w400,
-      ),
-      bodyMedium: GoogleFonts.montserrat(
-        fontSize: fontSizes.large,
-        fontWeight: FontWeight.w400,
-      ),
-      bodySmall: GoogleFonts.montserrat(
-        fontSize: fontSizes.medium,
-        fontWeight: FontWeight.w400,
-      ),
-      labelLarge: GoogleFonts.montserrat(
-        fontSize: fontSizes.heading4,
-        fontWeight: FontWeight.w600,
-      ),
-      labelMedium: GoogleFonts.montserrat(
-        fontSize: fontSizes.large,
-        fontWeight: FontWeight.w500,
-      ),
-      labelSmall: GoogleFonts.montserrat(
+      label: GoogleFonts.montserrat(
         fontSize: fontSizes.small,
         fontWeight: FontWeight.w500,
       ),
-      cta: GoogleFonts.montserrat(
+      section: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w500,
+      ),
+      content: GoogleFonts.montserrat(
+        fontSize: fontSizes.extraLarge,
+        fontWeight: FontWeight.w400,
+      ),
+      paragraph: GoogleFonts.montserrat(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+      ),
+      caption: GoogleFonts.montserrat(
+        fontSize: fontSizes.medium,
+        fontWeight: FontWeight.w400,
+      ),
+      heading: GoogleFonts.montserrat(
+        fontSize: fontSizes.heading4,
+        fontWeight: FontWeight.w600,
+      ),
+
+      primaryAction: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w700,
       ),
-      alternative: GoogleFonts.montserrat(
+      secondaryAction: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w600,
       ),
-      input: GoogleFonts.montserrat(
+      formInput: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
       ),
@@ -94,17 +96,19 @@ abstract class NebuxTypography with _$NebuxTypography {
 
   /// Creates [NebuxTypography] from a Material [ThemeData].
   factory NebuxTypography.fromThemeData(ThemeData themeData) => NebuxTypography(
-    bodyLarge: themeData.textTheme.bodyLarge!,
-    bodyMedium: themeData.textTheme.bodyMedium!,
-    bodySmall: themeData.textTheme.bodySmall!,
-    labelLarge: themeData.textTheme.labelLarge!,
-    labelMedium: themeData.textTheme.labelMedium!,
-    labelSmall: themeData.textTheme.labelSmall!,
-    cta: themeData.textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w700),
-    alternative: themeData.textTheme.labelMedium!.copyWith(
+    content: themeData.textTheme.bodyLarge!,
+    paragraph: themeData.textTheme.bodyMedium!,
+    caption: themeData.textTheme.bodySmall!,
+    heading: themeData.textTheme.labelLarge!,
+    section: themeData.textTheme.labelMedium!,
+    label: themeData.textTheme.labelSmall!,
+    primaryAction: themeData.textTheme.labelLarge!.copyWith(
+      fontWeight: FontWeight.w700,
+    ),
+    secondaryAction: themeData.textTheme.labelMedium!.copyWith(
       fontWeight: FontWeight.w600,
     ),
-    input: themeData.textTheme.bodyMedium!,
+    formInput: themeData.textTheme.bodyMedium!,
     placeholder: themeData.textTheme.bodyMedium!.copyWith(
       fontStyle: FontStyle.italic,
     ),
@@ -113,28 +117,28 @@ abstract class NebuxTypography with _$NebuxTypography {
   /// Creates a custom [NebuxTypography] with individual TextStyle parameters.
   /// All parameters are optional and will use standard values if not provided.
   factory NebuxTypography.custom({
-    TextStyle? bodyLarge,
-    TextStyle? bodyMedium,
-    TextStyle? bodySmall,
-    TextStyle? labelLarge,
-    TextStyle? labelMedium,
-    TextStyle? labelSmall,
-    TextStyle? cta,
-    TextStyle? alternative,
-    TextStyle? input,
+    TextStyle? content,
+    TextStyle? paragraph,
+    TextStyle? caption,
+    TextStyle? heading,
+    TextStyle? section,
+    TextStyle? label,
+    TextStyle? primaryAction,
+    TextStyle? secondaryAction,
+    TextStyle? formInput,
     TextStyle? placeholder,
   }) {
     final standard = NebuxTypography.standard();
     return NebuxTypography(
-      bodyLarge: bodyLarge ?? standard.bodyLarge,
-      bodyMedium: bodyMedium ?? standard.bodyMedium,
-      bodySmall: bodySmall ?? standard.bodySmall,
-      labelLarge: labelLarge ?? standard.labelLarge,
-      labelMedium: labelMedium ?? standard.labelMedium,
-      labelSmall: labelSmall ?? standard.labelSmall,
-      cta: cta ?? standard.cta,
-      alternative: alternative ?? standard.alternative,
-      input: input ?? standard.input,
+      content: content ?? standard.content,
+      paragraph: paragraph ?? standard.paragraph,
+      caption: caption ?? standard.caption,
+      heading: heading ?? standard.heading,
+      section: section ?? standard.section,
+      label: label ?? standard.label,
+      primaryAction: primaryAction ?? standard.primaryAction,
+      secondaryAction: secondaryAction ?? standard.secondaryAction,
+      formInput: formInput ?? standard.formInput,
       placeholder: placeholder ?? standard.placeholder,
     );
   }
@@ -145,15 +149,15 @@ abstract class NebuxTypography with _$NebuxTypography {
   NebuxTypography merge(NebuxTypography? other) {
     if (other == null) return this;
     return copyWith(
-      bodyLarge: other.bodyLarge,
-      bodyMedium: other.bodyMedium,
-      bodySmall: other.bodySmall,
-      labelLarge: other.labelLarge,
-      labelMedium: other.labelMedium,
-      labelSmall: other.labelSmall,
-      cta: other.cta,
-      alternative: other.alternative,
-      input: other.input,
+      content: other.content,
+      paragraph: other.paragraph,
+      caption: other.caption,
+      heading: other.heading,
+      section: other.section,
+      label: other.label,
+      primaryAction: other.primaryAction,
+      secondaryAction: other.secondaryAction,
+      formInput: other.formInput,
       placeholder: other.placeholder,
     );
   }
