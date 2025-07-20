@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class UtilsStories extends StatelessWidget {
   const UtilsStories({super.key});
@@ -19,7 +18,7 @@ class UtilsShowcase extends StatelessWidget {
     final theme = context.nebuxTheme;
 
     return Scaffold(
-      backgroundColor: theme.colors.scaffold,
+      backgroundColor: theme.colors.background,
       appBar: AppBar(
         title: Text(
           'Utilities',
@@ -27,7 +26,7 @@ class UtilsShowcase extends StatelessWidget {
             color: theme.colors.textPrimary,
           ),
         ),
-        backgroundColor: theme.colors.scaffold,
+        backgroundColor: theme.colors.background,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: theme.colors.textPrimary),
@@ -281,7 +280,7 @@ SizedBox(width: NebuxSpacing.large),
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: theme.colors.scaffold,
+                color: theme.colors.background,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: theme.colors.textSecondary.withOpacity(0.1),
@@ -312,7 +311,7 @@ class BottomSheetStory extends StatelessWidget {
     final theme = context.nebuxTheme;
 
     return Scaffold(
-      backgroundColor: theme.colors.scaffold,
+      backgroundColor: theme.colors.background,
       body: Center(
         child: ElevatedButton(
           onPressed: () {

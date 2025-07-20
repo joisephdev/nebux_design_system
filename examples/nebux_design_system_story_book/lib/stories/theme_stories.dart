@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class ThemeStories extends StatelessWidget {
   const ThemeStories({super.key});
@@ -19,7 +18,7 @@ class ThemeShowcase extends StatelessWidget {
     final theme = context.nebuxTheme;
 
     return Scaffold(
-      backgroundColor: theme.colors.scaffold,
+      backgroundColor: theme.colors.background,
       appBar: AppBar(
         title: Text(
           'Theme & Colors',
@@ -27,7 +26,7 @@ class ThemeShowcase extends StatelessWidget {
             color: theme.colors.textPrimary,
           ),
         ),
-        backgroundColor: theme.colors.scaffold,
+        backgroundColor: theme.colors.background,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: theme.colors.textPrimary),
@@ -89,9 +88,9 @@ class ThemeShowcase extends StatelessWidget {
       children: [
         _buildColorCard('Primary', colors.primary, 'Main brand color'),
         _buildColorCard('Secondary', colors.secondary, 'Secondary actions'),
-        _buildColorCard('Scaffold', colors.scaffold, 'Background color'),
+        _buildColorCard('Scaffold', colors.background, 'Background color'),
         _buildColorCard('Error', colors.error, 'Error states'),
-        _buildColorCard('Disabled', colors.disabled, 'Disabled states'),
+        // _buildColorCard('Disabled', colors.disabled, 'Disabled states'),
         _buildColorCard('Text Primary', colors.textPrimary, 'Main text color'),
         _buildColorCard(
           'Text Secondary',
@@ -260,7 +259,7 @@ class ColorPaletteStory extends StatelessWidget {
     final colors = theme.colors;
 
     return Scaffold(
-      backgroundColor: theme.colors.scaffold,
+      backgroundColor: theme.colors.background,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -277,7 +276,7 @@ class ColorPaletteStory extends StatelessWidget {
                   _buildColorTile('Primary', colors.primary),
                   _buildColorTile('Secondary', colors.secondary),
                   _buildColorTile('Error', colors.error),
-                  _buildColorTile('Disabled', colors.disabled),
+                  // _buildColorTile('Disabled', colors.disabled),
                 ],
               ),
             ),
@@ -319,7 +318,7 @@ class TypographyStory extends StatelessWidget {
     final theme = context.nebuxTheme;
 
     return Scaffold(
-      backgroundColor: theme.colors.scaffold,
+      backgroundColor: theme.colors.background,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
