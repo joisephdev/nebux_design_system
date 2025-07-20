@@ -69,12 +69,12 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
   }
 
   /// ThemeData for Flutter's Material App
-  static ThemeData createThemeData(
-    bool isDark,
-    NebuxColors colors,
-    NebuxFontSize fontSize,
-    NebuxTypography typography,
-  ) {
+  static ThemeData createThemeData({
+    required bool isDark,
+    required NebuxColors colors,
+    required NebuxFontSize fontSize,
+    required NebuxTypography typography,
+  }) {
     return ThemeData(
       useMaterial3: true,
       brightness: isDark ? Brightness.dark : Brightness.light,
@@ -90,16 +90,20 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       colorScheme: ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
         primary: colors.primary,
-        onPrimary: colors.white,
+        primaryContainer: colors.primaryVariant,
         secondary: colors.secondary,
-        onSecondary: colors.black,
+        secondaryContainer: colors.accent,
+        surface: colors.surface,
+        // background: colors.background,
         error: colors.error,
+        onPrimary: colors.white,
+        onSecondary: colors.white,
+        onSurface: colors.textPrimary,
+        // onBackground: colors.textPrimary,
         onError: colors.white,
-        surface: colors.white,
-        onSurface: colors.black,
-        surfaceContainerHighest: colors.white,
-        onSurfaceVariant: colors.black,
-        outline: colors.black,
+        surfaceContainerHighest: colors.cardColor,
+        onSurfaceVariant: colors.textSecondary,
+        outline: colors.textSecondary,
         shadow: colors.black,
         scrim: colors.black,
         inverseSurface: colors.black,
@@ -109,66 +113,68 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       ),
 
       // Scaffold
-      scaffoldBackgroundColor: colors.scaffold,
+      scaffoldBackgroundColor: colors.background,
 
       // App bar theme
       appBarTheme: AppBarTheme(
-        backgroundColor: colors.scaffold,
-        foregroundColor: colors.black,
+        backgroundColor: colors.background,
+        foregroundColor: colors.textPrimary,
         elevation: 0,
-        centerTitle: false,
-        titleTextStyle: typography.heading,
-        iconTheme: IconThemeData(color: colors.black, size: 24),
-        actionsIconTheme: IconThemeData(color: colors.black, size: 24),
+        centerTitle: true,
+        titleTextStyle: typography.heading.copyWith(color: colors.textPrimary),
+        iconTheme: IconThemeData(color: colors.textPrimary, size: 24),
+        actionsIconTheme: IconThemeData(color: colors.textPrimary, size: 24),
       ),
 
       // Bottom navigation bar theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: colors.scaffold,
+        backgroundColor: colors.surface,
         selectedItemColor: colors.primary,
-        unselectedItemColor: colors.black,
-        selectedLabelStyle: typography.label,
-        unselectedLabelStyle: typography.label,
+        unselectedItemColor: colors.textSecondary,
+        selectedLabelStyle: typography.label.copyWith(color: colors.primary),
+        unselectedLabelStyle: typography.label.copyWith(
+          color: colors.textSecondary,
+        ),
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
 
       // Card theme
       cardTheme: CardThemeData(
-        color: colors.white,
+        color: colors.cardColor,
         elevation: 2,
         shadowColor: colors.black,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsets.all(8),
       ),
 
       // Input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: colors.white,
+        fillColor: colors.surface,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: colors.black),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: colors.black),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: colors.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: colors.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: colors.error, width: 2),
         ),
-        labelStyle: typography.label,
-        hintStyle: typography.label,
-        errorStyle: typography.content,
+        labelStyle: typography.formInput.copyWith(color: colors.textSecondary),
+        hintStyle: typography.placeholder.copyWith(color: colors.textSecondary),
+        errorStyle: typography.caption.copyWith(color: colors.error),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
@@ -182,8 +188,10 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           backgroundColor: colors.primary,
           foregroundColor: colors.white,
           shadowColor: colors.black,
-          textStyle: typography.primaryAction,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          textStyle: typography.primaryAction.copyWith(color: colors.white),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         ),
       ),
@@ -193,9 +201,11 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         style: OutlinedButton.styleFrom(
           foregroundColor: colors.primary,
           side: BorderSide(color: colors.primary),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: typography.primaryAction,
+          textStyle: typography.secondaryAction.copyWith(color: colors.primary),
         ),
       ),
 
@@ -203,9 +213,11 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: colors.primary,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          textStyle: typography.primaryAction,
+          textStyle: typography.secondaryAction.copyWith(color: colors.primary),
         ),
       ),
 
@@ -214,46 +226,57 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         style: FilledButton.styleFrom(
           backgroundColor: colors.primary,
           foregroundColor: colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: typography.primaryAction,
+          textStyle: typography.primaryAction.copyWith(color: colors.white),
         ),
       ),
 
       // Divider theme
       dividerTheme: DividerThemeData(
-        color: colors.black,
+        color: colors.textSecondary,
         thickness: 1,
         space: 1,
       ),
 
       // Icon theme
-      iconTheme: IconThemeData(color: colors.black, size: 24),
+      iconTheme: IconThemeData(color: colors.textPrimary, size: 24),
+
+      // Floating action button theme
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colors.primary,
+        foregroundColor: colors.white,
+        elevation: 8,
+      ),
 
       // Text theme
       textTheme: TextTheme(
         // Display text styles
-        displayLarge: typography.heading,
-        displayMedium: typography.heading,
-        displaySmall: typography.heading,
+        displayLarge: typography.heading.copyWith(color: colors.textPrimary),
+        displayMedium: typography.heading.copyWith(color: colors.textPrimary),
+        displaySmall: typography.heading.copyWith(color: colors.textPrimary),
 
         // Headline text styles
-        headlineLarge: typography.heading,
-        headlineMedium: typography.heading,
-        headlineSmall: typography.heading,
+        headlineLarge: typography.heading.copyWith(color: colors.textPrimary),
+        headlineMedium: typography.heading.copyWith(color: colors.textPrimary),
+        headlineSmall: typography.heading.copyWith(color: colors.textPrimary),
+
         // Title text styles
-        titleLarge: typography.heading,
-        titleMedium: typography.heading,
-        titleSmall: typography.heading,
+        titleLarge: typography.section.copyWith(color: colors.textPrimary),
+        titleMedium: typography.section.copyWith(color: colors.textPrimary),
+        titleSmall: typography.section.copyWith(color: colors.textPrimary),
 
         // Body text styles
-        bodyLarge: typography.content,
-        bodyMedium: typography.content,
-        bodySmall: typography.content,
+        bodyLarge: typography.content.copyWith(color: colors.textPrimary),
+        bodyMedium: typography.paragraph.copyWith(color: colors.textPrimary),
+        bodySmall: typography.caption.copyWith(color: colors.textSecondary),
+
         // Label text styles
-        labelLarge: typography.label,
-        labelMedium: typography.label,
-        labelSmall: typography.label,
+        labelLarge: typography.label.copyWith(color: colors.textPrimary),
+        labelMedium: typography.label.copyWith(color: colors.textSecondary),
+        labelSmall: typography.label.copyWith(color: colors.textSecondary),
       ),
     );
   }

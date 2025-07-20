@@ -7,8 +7,8 @@ part 'nebux_colors.g.dart';
 
 /// NebuX Core Color System
 ///
-/// Simplified color palette for the NebuX Core design system.
-/// Supports both light and dark themes with proper contrast ratios.
+/// Neutral color palette for the NebuX Core design system.
+/// Base colors that can be used to build light and dark themes.
 /// Colors can be configured via JSON or TOML files.
 @freezed
 class NebuxColors with _$NebuxColors {
@@ -16,29 +16,53 @@ class NebuxColors with _$NebuxColors {
     /// Primary brand color - used for main actions and branding
     @ColorConverter() required Color primary,
 
+    /// Primary variant color - darker shade of primary
+    @ColorConverter() required Color primaryVariant,
+
     /// Secondary color - used for secondary actions
     @ColorConverter() required Color secondary,
 
-    /// Scaffold background color
-    @ColorConverter() required Color scaffold,
+    /// Accent color - used for highlights and emphasis
+    @ColorConverter() required Color accent,
 
-    /// Black color
-    @ColorConverter() required Color black,
+    /// Background color
+    @ColorConverter() required Color background,
+
+    /// Surface color
+    @ColorConverter() required Color surface,
+
+    /// Text primary color
+    @ColorConverter() required Color textPrimary,
+
+    /// Text secondary color
+    @ColorConverter() required Color textSecondary,
+
+    /// Card color
+    @ColorConverter() required Color cardColor,
+
+    /// Success color - for positive actions and states
+    @ColorConverter() required Color success,
+
+    /// Warning color - for caution states
+    @ColorConverter() required Color warning,
+
+    /// Error color - for error states
+    @ColorConverter() required Color error,
+
+    /// Info color - for informational states
+    @ColorConverter() required Color info,
 
     /// White color
     @ColorConverter() required Color white,
 
-    /// Error color
-    @ColorConverter() required Color error,
+    /// Black color
+    @ColorConverter() required Color black,
 
-    /// Disabled color
-    @ColorConverter() required Color disabled,
+    /// Primary gradient - from primary to secondary
+    @LinearGradientConverter() required LinearGradient primaryGradient,
 
-    /// Primary text color
-    @ColorConverter() required Color textPrimary,
-
-    /// Secondary text color
-    @ColorConverter() required Color textSecondary,
+    /// Secondary gradient - from secondary to accent
+    @LinearGradientConverter() required LinearGradient secondaryGradient,
   }) = _NebuxColors;
 
   factory NebuxColors.fromJson(Map<String, dynamic> json) =>
@@ -52,14 +76,22 @@ class NebuxColors with _$NebuxColors {
 
     return NebuxColors(
       primary: Color.lerp(c.primary, o.primary, t)!,
+      primaryVariant: Color.lerp(c.primaryVariant, o.primaryVariant, t)!,
       secondary: Color.lerp(c.secondary, o.secondary, t)!,
-      scaffold: Color.lerp(c.scaffold, o.scaffold, t)!,
-      black: Color.lerp(c.black, o.black, t)!,
-      white: Color.lerp(c.white, o.white, t)!,
-      error: Color.lerp(c.error, o.error, t)!,
-      disabled: Color.lerp(c.disabled, o.disabled, t)!,
+      accent: Color.lerp(c.accent, o.accent, t)!,
+      background: Color.lerp(c.background, o.background, t)!,
+      surface: Color.lerp(c.surface, o.surface, t)!,
       textPrimary: Color.lerp(c.textPrimary, o.textPrimary, t)!,
       textSecondary: Color.lerp(c.textSecondary, o.textSecondary, t)!,
+      cardColor: Color.lerp(c.cardColor, o.cardColor, t)!,
+      success: Color.lerp(c.success, o.success, t)!,
+      warning: Color.lerp(c.warning, o.warning, t)!,
+      error: Color.lerp(c.error, o.error, t)!,
+      info: Color.lerp(c.info, o.info, t)!,
+      white: Color.lerp(c.white, o.white, t)!,
+      black: Color.lerp(c.black, o.black, t)!,
+      primaryGradient: c.primaryGradient, // Gradients don't support lerp
+      secondaryGradient: c.secondaryGradient, // Gradients don't support lerp
     );
   }
 }

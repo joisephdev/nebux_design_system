@@ -25,36 +25,60 @@ class MyApp extends StatelessWidget {
       // it will be generated in the next step
       directories: directories,
       lightTheme: NebuxTheme.createThemeData(
-        false, // isDark
-        const NebuxColors(
+        isDark: false, // isDark
+        colors: const NebuxColors(
           primary: Color(0xFF2196F3),
           secondary: Color(0xFF03DAC6),
-          scaffold: Color(0xFFF5F5F5),
+          background: Color(0xFFF5F5F5),
           black: Color(0xFF000000),
           white: Color(0xFFFFFFFF),
           error: Color(0xFFB00020),
-          disabled: Color(0xFF9E9E9E),
           textPrimary: Color(0xFF000000),
           textSecondary: Color(0xFF666666),
+          primaryVariant: Color(0xFF2196F3),
+          accent: Color(0xFF03DAC6),
+          surface: Color(0xFFF5F5F5),
+          cardColor: Color(0xFFF5F5F5),
+          success: Color(0xFF48BB78),
+          warning: Color(0xFFED8936),
+          info: Color(0xFF4299E1),
+          primaryGradient: LinearGradient(
+            colors: [Color(0xFF2196F3), Color(0xFF03DAC6)],
+          ),
+          secondaryGradient: LinearGradient(
+            colors: [Color(0xFF03DAC6), Color(0xFF2196F3)],
+          ),
         ),
-        NebuxFontSize.standard(),
-        NebuxTypography.standard(),
+        fontSize: NebuxFontSize.standard(),
+        typography: NebuxTypography.standard(),
       ),
       darkTheme: NebuxTheme.createThemeData(
-        true, // isDark
-        const NebuxColors(
+        isDark: true, // isDark
+        colors: const NebuxColors(
           primary: Color(0xFF90CAF9),
           secondary: Color(0xFF80DEEA),
-          scaffold: Color(0xFF121212),
           black: Color(0xFF000000),
           white: Color(0xFFFFFFFF),
           error: Color(0xFFCF6679),
-          disabled: Color(0xFF9E9E9E),
           textPrimary: Color(0xFFFFFFFF),
           textSecondary: Color(0xFFB0B0B0),
+          primaryVariant: Color(0xFF90CAF9),
+          accent: Color(0xFF80DEEA),
+          background: Color(0xFF121212),
+          surface: Color(0xFF121212),
+          cardColor: Color(0xFF121212),
+          success: Color(0xFF48BB78),
+          warning: Color(0xFFED8936),
+          info: Color(0xFF4299E1),
+          primaryGradient: LinearGradient(
+            colors: [Color(0xFF90CAF9), Color(0xFF80DEEA)],
+          ),
+          secondaryGradient: LinearGradient(
+            colors: [Color(0xFF80DEEA), Color(0xFF90CAF9)],
+          ),
         ),
-        NebuxFontSize.standard(),
-        NebuxTypography.standard(),
+        fontSize: NebuxFontSize.standard(),
+        typography: NebuxTypography.standard(),
       ),
       // home: const DesignSystemShowcase(),
     );
@@ -62,36 +86,60 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'NebuX Design System Storybook',
       theme: NebuxTheme.createThemeData(
-        false, // isDark
-        const NebuxColors(
+        isDark: false, // isDark
+        colors: const NebuxColors(
           primary: Color(0xFF2196F3),
           secondary: Color(0xFF03DAC6),
-          scaffold: Color(0xFFF5F5F5),
+          background: Color(0xFFF5F5F5),
           black: Color(0xFF000000),
           white: Color(0xFFFFFFFF),
           error: Color(0xFFB00020),
-          disabled: Color(0xFF9E9E9E),
           textPrimary: Color(0xFF000000),
           textSecondary: Color(0xFF666666),
+          primaryVariant: Color(0xFF2196F3),
+          accent: Color(0xFF03DAC6),
+          surface: Color(0xFFF5F5F5),
+          cardColor: Color(0xFFF5F5F5),
+          success: Color(0xFF48BB78),
+          warning: Color(0xFFED8936),
+          info: Color(0xFF4299E1),
+          primaryGradient: LinearGradient(
+            colors: [Color(0xFF2196F3), Color(0xFF03DAC6)],
+          ),
+          secondaryGradient: LinearGradient(
+            colors: [Color(0xFF03DAC6), Color(0xFF2196F3)],
+          ),
         ),
-        NebuxFontSize.standard(),
-        NebuxTypography.standard(),
+        fontSize: NebuxFontSize.standard(),
+        typography: NebuxTypography.standard(),
       ),
       darkTheme: NebuxTheme.createThemeData(
-        true, // isDark
-        const NebuxColors(
+        isDark: true, // isDark
+        colors: const NebuxColors(
           primary: Color(0xFF90CAF9),
           secondary: Color(0xFF80DEEA),
-          scaffold: Color(0xFF121212),
           black: Color(0xFF000000),
           white: Color(0xFFFFFFFF),
           error: Color(0xFFCF6679),
-          disabled: Color(0xFF9E9E9E),
           textPrimary: Color(0xFFFFFFFF),
           textSecondary: Color(0xFFB0B0B0),
+          primaryVariant: Color(0xFF90CAF9),
+          accent: Color(0xFF80DEEA),
+          background: Color(0xFF121212),
+          surface: Color(0xFF121212),
+          cardColor: Color(0xFF121212),
+          success: Color(0xFF48BB78),
+          warning: Color(0xFFED8936),
+          info: Color(0xFF4299E1),
+          primaryGradient: LinearGradient(
+            colors: [Color(0xFF90CAF9), Color(0xFF80DEEA)],
+          ),
+          secondaryGradient: LinearGradient(
+            colors: [Color(0xFF80DEEA), Color(0xFF90CAF9)],
+          ),
         ),
-        NebuxFontSize.standard(),
-        NebuxTypography.standard(),
+        fontSize: NebuxFontSize.standard(),
+        typography: NebuxTypography.standard(),
       ),
       home: const DesignSystemShowcase(),
     );
@@ -106,7 +154,7 @@ class DesignSystemShowcase extends StatelessWidget {
     final theme = context.nebuxTheme;
 
     return Scaffold(
-      backgroundColor: theme.colors.scaffold,
+      backgroundColor: theme.colors.background,
       appBar: AppBar(
         title: Text(
           'NebuX Design System',
@@ -114,7 +162,7 @@ class DesignSystemShowcase extends StatelessWidget {
             color: theme.colors.textPrimary,
           ),
         ),
-        backgroundColor: theme.colors.scaffold,
+        backgroundColor: theme.colors.background,
         elevation: 0,
       ),
       body: SingleChildScrollView(

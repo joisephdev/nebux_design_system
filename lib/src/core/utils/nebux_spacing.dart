@@ -33,3 +33,4 @@ const SizedBox widthSpace18 = SizedBox(width: 18);
 const SizedBox widthSpace20 = SizedBox(width: 20);
 const SizedBox widthSpace24 = SizedBox(width: 24);
 const SizedBox widthSpace25 = SizedBox(width: 25);
+const SizedBox widthSpace48 = SizedBox(width: 48);
