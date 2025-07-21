@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
 class NebuxAppBar extends StatelessWidget {
@@ -7,29 +8,32 @@ class NebuxAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.nebuxTheme;
-    return Stack(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            children: [
-              IconButton(
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back, color: theme.colors.textPrimary),
-              ),
-              Expanded(
-                child: Text(
-                  'Settings',
-                  style: TextStyle(
-                    color: theme.colors.textPrimary,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
+                icon: FaIcon(
+                  FontAwesomeIcons.arrowLeft,
+                  color: theme.colors.textPrimary,
                 ),
               ),
-            ],
-          ),
+            ),
+            Text(
+              'Settings',
+              style: TextStyle(
+                color: theme.colors.textPrimary,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
         // Drag handle
         Container(
