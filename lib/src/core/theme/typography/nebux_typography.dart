@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../font_size/nebux_font_size.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:nebux_design_system/nebux_design_system.dart';
 
 part 'nebux_typography.freezed.dart';
 
