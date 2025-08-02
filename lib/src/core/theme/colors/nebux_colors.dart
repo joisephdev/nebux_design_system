@@ -11,7 +11,7 @@ part 'nebux_colors.g.dart';
 /// Base colors that can be used to build light and dark themes.
 /// Colors can be configured via JSON or TOML files.
 @freezed
-class NebuxColors with _$NebuxColors {
+abstract class NebuxColors with _$NebuxColors {
   const factory NebuxColors({
     /// Primary brand color - used for main actions and branding
     @ColorConverter() required Color primary,
@@ -101,7 +101,7 @@ class NebuxColors with _$NebuxColors {
 /// A collection of light and dark color themes.
 /// Colors can be configured via JSON or TOML files.
 @freezed
-class NebuxColorThemes with _$NebuxColorThemes {
+abstract class NebuxColorThemes with _$NebuxColorThemes {
   const factory NebuxColorThemes({
     required NebuxColors light,
     required NebuxColors dark,
