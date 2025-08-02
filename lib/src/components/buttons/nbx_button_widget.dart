@@ -1,4 +1,20 @@
-part of 'export.dart';
+import 'package:flutter/material.dart';
+import 'package:nebux_design_system/nebux_design_system.dart';
+
+/// Enum defining the different button variants.
+enum ButtonVariant {
+  /// Primary button with filled background.
+  primary,
+
+  /// Secondary button with outlined style.
+  secondary,
+
+  /// Outline button with border.
+  outline,
+
+  /// Danger button with error color.
+  danger,
+}
 
 /// A custom button widget that supports different variants and loading states.
 class NbxButton extends StatelessWidget {
