@@ -55,7 +55,7 @@ class BodyConfig {
   final String? exitMessage;
 
   const BodyConfig({
-    this.wrapInContainer = true,
+    this.wrapInContainer = false,
     this.decoration,
     this.resizeToAvoidBottomInset = false,
     this.exitMessage,

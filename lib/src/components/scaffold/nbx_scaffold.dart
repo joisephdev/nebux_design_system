@@ -2,7 +2,6 @@ import 'package:double_back_to_exit/double_back_to_exit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
-import 'package:nebux_design_system/src/components/scaffold/scaffold_params.dart';
 
 /// A custom scaffold widget that provides a consistent layout structure
 /// with enhanced functionality for Nebux applications.
@@ -48,6 +47,43 @@ class NbxScaffold extends StatelessWidget {
     this.backgroundColor,
     super.key,
   });
+
+  @override
+  Widget build(BuildContext context) {
+    final safeArea = safeAreaConfig ?? const SafeAreaConfig();
+    final appBarConfig = this.appBarConfig;
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: backgroundColor ?? context.nebuxColors.background,
+      appBar: appBar ?? _appBar(context),
+      resizeToAvoidBottomInset: bodyConfig?.resizeToAvoidBottomInset ?? false,
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      body: SafeArea(
+        left: false,
+        right: false,
+        top: safeArea.top,
+        bottom: safeArea.bottom,
+        minimum: safeArea.minimum ?? const EdgeInsets.only(bottom: 20),
+        child: Column(
+          children: [
+            if (appBarConfig != null &&
+                (appBarConfig.title != null ||
+                    appBarConfig.actions != null ||
+                    appBarConfig.leadingButton != null) &&
+                appBarConfig.showDivider)
+              const Padding(
+                padding: EdgeInsets.only(bottom: 0.0),
+                child: Divider(height: 0),
+              ),
+            Expanded(child: _buildScaffoldBody()),
+          ],
+        ),
+      ),
+    );
+  }
 
   /// Builds the app bar widget based on the provided parameters.
   PreferredSizeWidget? _appBar(BuildContext context) {
@@ -100,42 +136,5 @@ class NbxScaffold extends StatelessWidget {
     }
 
     return childWidget;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final safeArea = safeAreaConfig ?? const SafeAreaConfig();
-    final appBarConfig = this.appBarConfig;
-
-    return Scaffold(
-      backgroundColor: backgroundColor ?? context.nebuxColors.background,
-      extendBodyBehindAppBar: true,
-      appBar: appBar ?? _appBar(context),
-      resizeToAvoidBottomInset: bodyConfig?.resizeToAvoidBottomInset ?? false,
-      bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: floatingActionButtonLocation,
-      body: SafeArea(
-        left: false,
-        right: false,
-        top: safeArea.top,
-        bottom: safeArea.bottom,
-        minimum: safeArea.minimum ?? const EdgeInsets.only(bottom: 20),
-        child: Column(
-          children: [
-            if (appBarConfig != null &&
-                (appBarConfig.title != null ||
-                    appBarConfig.actions != null ||
-                    appBarConfig.leadingButton != null) &&
-                appBarConfig.showDivider)
-              const Padding(
-                padding: EdgeInsets.only(bottom: 0.0),
-                child: Divider(height: 0),
-              ),
-            Expanded(child: _buildScaffoldBody()),
-          ],
-        ),
-      ),
-    );
   }
 }
