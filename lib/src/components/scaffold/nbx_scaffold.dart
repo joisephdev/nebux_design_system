@@ -51,17 +51,19 @@ class NbxScaffold extends StatelessWidget {
     super.key,
   });
 
+  bool get _hasAppBar =>
+      appBarConfig != null &&
+      (appBarConfig!.title != null ||
+          appBarConfig!.actions != null ||
+          appBarConfig!.leadingButton != null);
+
   @override
   Widget build(BuildContext context) {
     final safeArea = safeAreaConfig ?? const SafeAreaConfig();
-    // final appBarConfig = this.appBarConfig;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor ?? context.nebuxColors.background,
-      appBar:
-          appBar ??
-          NbxAppBar(appBarConfig: appBarConfig ?? const AppBarConfig()),
+      appBar: _hasAppBar ? NbxAppBar(appBarConfig: appBarConfig!) : appBar,
       resizeToAvoidBottomInset: bodyConfig?.resizeToAvoidBottomInset ?? false,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,
@@ -74,51 +76,14 @@ class NbxScaffold extends StatelessWidget {
         minimum: safeArea.minimum ?? const EdgeInsets.only(bottom: 20),
         child: Column(
           children: [
-            /* if (appBarConfig != null &&
-                (appBarConfig.title != null ||
-                    appBarConfig.actions != null ||
-                    appBarConfig.leadingButton != null) &&
-                appBarConfig.showDivider)
-              Divider(height: 0, color: Colors.grey.shade500, thickness: .2), */
+            if (_hasAppBar && appBarConfig?.showDivider == true)
+              Divider(height: 0, color: Colors.grey.shade500, thickness: .2),
             Expanded(child: _buildScaffoldBody()),
           ],
         ),
       ),
     );
   }
-
-  /// Builds the app bar widget based on the provided parameters.
-  /* PreferredSizeWidget? _appBar(BuildContext context) {
-    final config = appBarConfig;
-    if (config == null) return null;
-
-    if (config.title != null ||
-        config.actions != null ||
-        config.leadingButton != null) {
-      // Print the current dark mode status to the console for debugging purposes.
-      final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-      debugPrint('[NbxScaffold - $widgetName] Current darkMode: $isDarkMode');
-      return AppBar(
-        titleSpacing: 0,
-        title: config.title,
-        actions: config.actions,
-        automaticallyImplyLeading: false,
-        leading: config.leadingButton,
-        centerTitle: config.centerTitle,
-        forceMaterialTransparency: true,
-        backgroundColor: Colors.transparent,
-        /* systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarIconBrightness: isDarkMode
-              ? Brightness.light
-              : Brightness.dark,
-          statusBarBrightness: isDarkMode ? Brightness.light : Brightness.dark,
-          statusBarColor: Colors.transparent,
-        ), */
-      );
-    }
-
-    return null;
-  } */
 
   /// Builds the scaffold body with optional container wrapping and double back functionality.
   Widget _buildScaffoldBody() {

@@ -16,21 +16,17 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: _buildTitle(context),
-      backgroundColor: context.nebuxColors.white,
       elevation: 0,
+      titleSpacing: 0,
       scrolledUnderElevation: 0,
+      automaticallyImplyLeading: true,
+      forceMaterialTransparency: true,
+      backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
       actions: appBarConfig.actions,
       leading: _buildLeading(context),
       centerTitle: appBarConfig.centerTitle,
-      /* titleSpacing: appBarConfig.titleSpacing,
-      forceMaterialTransparency: appBarConfig.forceMaterialTransparency,
-      systemOverlayStyle: appBarConfig.systemOverlayStyle,
-      titleTextStyle: appBarConfig.titleTextStyle,
-      toolbarHeight: appBarConfig.toolbarHeight,
-      toolbarOpacity: appBarConfig.toolbarOpacity,
-      toolbarTextStyle: appBarConfig.toolbarTextStyle, */
     );
   }
 
