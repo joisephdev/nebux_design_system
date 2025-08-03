@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
 /// Generic NbxAppBar widget for reuse across different screens
@@ -14,6 +15,7 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return AppBar(
       title: _buildTitle(context),
       elevation: 0,
@@ -27,6 +29,14 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: appBarConfig.actions,
       leading: _buildLeading(context),
       centerTitle: appBarConfig.centerTitle,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarIconBrightness: isDarkMode
+            ? Brightness.dark
+            : Brightness.light, // For Android (dark icons)
+        statusBarBrightness: isDarkMode
+            ? Brightness.dark
+            : Brightness.light, // For iOS (dark icons)
+      ),
     );
   }
 
