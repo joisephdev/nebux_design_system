@@ -1,7 +1,7 @@
 import 'package:double_back_to_exit/double_back_to_exit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
+import 'package:nebux_design_system/src/components/scaffold/nbx_app_bar.dart';
 
 /// A custom scaffold widget that provides a consistent layout structure
 /// with enhanced functionality for Nebux applications.
@@ -31,8 +31,10 @@ class NbxScaffold extends StatelessWidget {
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
   /// Background color for the scaffold.
-  /// If null, uses the theme's background color.
   final Color? backgroundColor;
+
+  /// Name of the widget to be used for debugging purposes.
+  final String widgetName;
 
   /// Creates a custom scaffold widget with enhanced functionality.
   const NbxScaffold({
@@ -45,18 +47,21 @@ class NbxScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.backgroundColor,
+    required this.widgetName,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final safeArea = safeAreaConfig ?? const SafeAreaConfig();
-    final appBarConfig = this.appBarConfig;
+    // final appBarConfig = this.appBarConfig;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor ?? context.nebuxColors.background,
-      appBar: appBar ?? _appBar(context),
+      appBar:
+          appBar ??
+          NbxAppBar(appBarConfig: appBarConfig ?? const AppBarConfig()),
       resizeToAvoidBottomInset: bodyConfig?.resizeToAvoidBottomInset ?? false,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,
@@ -69,15 +74,12 @@ class NbxScaffold extends StatelessWidget {
         minimum: safeArea.minimum ?? const EdgeInsets.only(bottom: 20),
         child: Column(
           children: [
-            if (appBarConfig != null &&
+            /* if (appBarConfig != null &&
                 (appBarConfig.title != null ||
                     appBarConfig.actions != null ||
                     appBarConfig.leadingButton != null) &&
                 appBarConfig.showDivider)
-              const Padding(
-                padding: EdgeInsets.only(bottom: 0.0),
-                child: Divider(height: 0),
-              ),
+              Divider(height: 0, color: Colors.grey.shade500, thickness: .2), */
             Expanded(child: _buildScaffoldBody()),
           ],
         ),
@@ -86,13 +88,16 @@ class NbxScaffold extends StatelessWidget {
   }
 
   /// Builds the app bar widget based on the provided parameters.
-  PreferredSizeWidget? _appBar(BuildContext context) {
+  /* PreferredSizeWidget? _appBar(BuildContext context) {
     final config = appBarConfig;
     if (config == null) return null;
 
     if (config.title != null ||
         config.actions != null ||
         config.leadingButton != null) {
+      // Print the current dark mode status to the console for debugging purposes.
+      final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+      debugPrint('[NbxScaffold - $widgetName] Current darkMode: $isDarkMode');
       return AppBar(
         titleSpacing: 0,
         title: config.title,
@@ -102,16 +107,18 @@ class NbxScaffold extends StatelessWidget {
         centerTitle: config.centerTitle,
         forceMaterialTransparency: true,
         backgroundColor: Colors.transparent,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.light,
+        /* systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarIconBrightness: isDarkMode
+              ? Brightness.light
+              : Brightness.dark,
+          statusBarBrightness: isDarkMode ? Brightness.light : Brightness.dark,
           statusBarColor: Colors.transparent,
-        ),
+        ), */
       );
     }
 
     return null;
-  }
+  } */
 
   /// Builds the scaffold body with optional container wrapping and double back functionality.
   Widget _buildScaffoldBody() {

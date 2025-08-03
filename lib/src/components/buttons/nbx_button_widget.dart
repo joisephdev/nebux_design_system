@@ -170,7 +170,7 @@ class NbxButton extends StatelessWidget {
         return OutlinedButton.styleFrom(
           shape: shape,
           backgroundColor: Colors.transparent,
-          // foregroundColor: colors.textSecondary,
+          foregroundColor: colors.textPrimary,
           side: BorderSide(color: colors.textSecondary, width: 1),
         );
       case ButtonVariant.danger:

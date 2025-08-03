@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Configuration class for AppBar properties in NbxScaffold.
 class AppBarConfig {
   /// Title widget to display in the app bar.
-  final Widget? title;
+  final String? title;
 
   /// Action widgets to display in the app bar.
   final List<Widget>? actions;
