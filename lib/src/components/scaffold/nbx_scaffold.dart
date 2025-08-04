@@ -87,8 +87,7 @@ class NbxScaffold extends StatelessWidget {
 
   /// Builds the scaffold body with optional container wrapping and double back functionality.
   Widget _buildScaffoldBody() {
-    final config = bodyConfig ?? const BodyConfig();
-
+    final config = bodyConfig ?? const BodyConfig(wrapInContainer: true);
     Widget childWidget = body;
     if (config.wrapInContainer) {
       childWidget = Container(
