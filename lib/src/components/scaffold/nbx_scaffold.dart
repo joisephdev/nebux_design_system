@@ -93,7 +93,7 @@ class NbxScaffold extends StatelessWidget {
       childWidget = Container(
         decoration: config.decoration,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: defaultPaddingSize),
           child: childWidget,
         ),
       );
