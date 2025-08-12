@@ -16,6 +16,7 @@ dependencies:
   json_annotation: ^4.9.0
   font_awesome_flutter: ^10.8.0
   double_back_to_exit: ^1.2.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
