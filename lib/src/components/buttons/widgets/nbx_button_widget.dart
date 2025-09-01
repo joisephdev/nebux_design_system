@@ -27,6 +27,9 @@ class NbxButton extends StatelessWidget {
   /// Whether to show a loading indicator instead of text.
   final bool isLoading;
 
+  /// Whether the button is disabled.
+  final bool isDisabled;
+
   /// The visual variant of the button.
   final ButtonVariant variant;
 
@@ -56,6 +59,7 @@ class NbxButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isLoading = false,
+    this.isDisabled = false,
     this.isExpanded = true,
     this.borderRadius,
     this.textStyle,
@@ -78,28 +82,30 @@ class NbxButton extends StatelessWidget {
   }
 
   Widget _buildButtonWidget(BuildContext context) {
+    final bool shouldDisable = isLoading || isDisabled;
+
     switch (variant) {
       case ButtonVariant.primary:
         return FilledButton(
-          onPressed: isLoading ? null : onPressed,
+          onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
           child: _buildButtonContent(context),
         );
       case ButtonVariant.outline:
         return OutlinedButton(
-          onPressed: isLoading ? null : onPressed,
+          onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
           child: _buildButtonContent(context),
         );
       case ButtonVariant.secondary:
         return TextButton(
-          onPressed: isLoading ? null : onPressed,
+          onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
           child: _buildButtonContent(context),
         );
       case ButtonVariant.danger:
         return FilledButton(
-          onPressed: isLoading ? null : onPressed,
+          onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
           child: _buildButtonContent(context),
         );
@@ -118,23 +124,36 @@ class NbxButton extends StatelessWidget {
       );
     }
 
+    final bool shouldDisable = isLoading || isDisabled;
+    final colors = context.nebuxColors;
+    final Color disabledColor = colors.textSecondary.withOpacity(0.5);
+
     final List<Widget> children = <Widget>[];
 
     if (icon != null) {
-      children.add(Icon(icon, size: 18, color: iconColor));
+      children.add(
+        Icon(icon, size: 18, color: shouldDisable ? disabledColor : iconColor),
+      );
       children.add(widthSpace8);
     }
 
     children.add(
       Text(
         text,
-        style: textStyle ?? context.nebuxTheme.typography.secondaryAction,
+        style: (textStyle ?? context.nebuxTheme.typography.secondaryAction)
+            .copyWith(color: shouldDisable ? disabledColor : null),
       ),
     );
 
     if (trailingIcon != null) {
       children.add(widthSpace8);
-      children.add(Icon(trailingIcon, size: 18, color: trailingIconColor));
+      children.add(
+        Icon(
+          trailingIcon,
+          size: 18,
+          color: shouldDisable ? disabledColor : trailingIconColor,
+        ),
+      );
     }
 
     return Row(
@@ -151,32 +170,47 @@ class NbxButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadiusValue),
     );
 
+    final bool shouldDisable = isLoading || isDisabled;
+
     switch (variant) {
       case ButtonVariant.primary:
         return FilledButton.styleFrom(
           shape: shape,
           elevation: 0,
-          backgroundColor: colors.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: shouldDisable
+              ? colors.textSecondary.withOpacity(0.3)
+              : colors.primary,
+          foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
       case ButtonVariant.secondary:
         return TextButton.styleFrom(
           shape: shape,
-          foregroundColor: colors.primary,
+          foregroundColor: shouldDisable
+              ? colors.textSecondary.withOpacity(0.5)
+              : colors.primary,
         );
       case ButtonVariant.outline:
         return OutlinedButton.styleFrom(
           shape: shape,
           backgroundColor: Colors.transparent,
-          foregroundColor: colors.textPrimary,
-          side: BorderSide(color: colors.textSecondary, width: 1),
+          foregroundColor: shouldDisable
+              ? colors.textSecondary.withOpacity(0.5)
+              : colors.textPrimary,
+          side: BorderSide(
+            color: shouldDisable
+                ? colors.textSecondary.withOpacity(0.3)
+                : colors.textSecondary,
+            width: 1,
+          ),
         );
       case ButtonVariant.danger:
         return FilledButton.styleFrom(
           shape: shape,
           elevation: 0,
-          backgroundColor: colors.error,
-          foregroundColor: Colors.white,
+          backgroundColor: shouldDisable
+              ? colors.textSecondary.withOpacity(0.3)
+              : colors.error,
+          foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
     }
   }

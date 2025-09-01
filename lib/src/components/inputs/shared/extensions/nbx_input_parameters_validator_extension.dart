@@ -21,6 +21,7 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
   }
 
   String? inputValidator(String? data) {
+    print('data: $data');
     final value = data ?? '';
     if (value.isEmpty) {
       if (!isRequired) {

@@ -4,10 +4,13 @@ extension NbxInputDecorationExtension on NbxInputParameters {
   NebuxTheme get _nbxTheme => context.nebuxTheme;
 
   /// Default border
-  OutlineInputBorder _defaultBorder([Color? sideColor]) {
+  OutlineInputBorder _defaultBorder({Color? sideColor, double? width}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(width: .5, color: sideColor ?? Colors.transparent),
+      borderSide: BorderSide(
+        width: width ?? .5,
+        color: sideColor ?? Colors.transparent,
+      ),
     );
   }
 
@@ -38,6 +41,11 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       errorStyle: _nbxTheme.typography.caption.copyWith(
         color: _nbxTheme.colors.error,
       ),
+      errorBorder: _defaultBorder(sideColor: _nbxTheme.colors.error),
+      focusedErrorBorder: _defaultBorder(
+        sideColor: _nbxTheme.colors.error,
+        width: 1,
+      ),
       filled: true,
       fillColor: _nbxTheme.colors.surface,
       // fillColor: Colors.white,
@@ -47,10 +55,8 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       prefixIconConstraints: const BoxConstraints(),
       // counter: const Text(""),
       // disabledBorder: _borderDefault(),
-      enabledBorder: _defaultBorder(_nbxTheme.colors.black),
+      enabledBorder: _defaultBorder(sideColor: _nbxTheme.colors.black),
       focusedBorder: _focusedDefaultBorder(_nbxTheme.colors.black),
-      focusedErrorBorder: _defaultBorder(_nbxTheme.colors.error),
-      errorBorder: _defaultBorder(_nbxTheme.colors.error),
       border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         // borderSide: BorderSide.none,
