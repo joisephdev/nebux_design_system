@@ -56,7 +56,7 @@ class NbxButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isLoading = false,
-    this.isExpanded = false,
+    this.isExpanded = true,
     this.borderRadius,
     this.textStyle,
     this.icon,
@@ -83,30 +83,30 @@ class NbxButton extends StatelessWidget {
         return FilledButton(
           onPressed: isLoading ? null : onPressed,
           style: _getButtonStyle(context),
-          child: _buildButtonContent(),
+          child: _buildButtonContent(context),
         );
       case ButtonVariant.outline:
         return OutlinedButton(
           onPressed: isLoading ? null : onPressed,
           style: _getButtonStyle(context),
-          child: _buildButtonContent(),
+          child: _buildButtonContent(context),
         );
       case ButtonVariant.secondary:
         return TextButton(
           onPressed: isLoading ? null : onPressed,
           style: _getButtonStyle(context),
-          child: _buildButtonContent(),
+          child: _buildButtonContent(context),
         );
       case ButtonVariant.danger:
         return FilledButton(
           onPressed: isLoading ? null : onPressed,
           style: _getButtonStyle(context),
-          child: _buildButtonContent(),
+          child: _buildButtonContent(context),
         );
     }
   }
 
-  Widget _buildButtonContent() {
+  Widget _buildButtonContent(BuildContext context) {
     if (isLoading) {
       return const SizedBox(
         width: 20,
@@ -122,20 +122,18 @@ class NbxButton extends StatelessWidget {
 
     if (icon != null) {
       children.add(Icon(icon, size: 18, color: iconColor));
-      children.add(const SizedBox(width: 8));
+      children.add(widthSpace8);
     }
 
     children.add(
       Text(
         text,
-        style:
-            textStyle ??
-            const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        style: textStyle ?? context.nebuxTheme.typography.secondaryAction,
       ),
     );
 
     if (trailingIcon != null) {
-      children.add(const SizedBox(width: 8));
+      children.add(widthSpace8);
       children.add(Icon(trailingIcon, size: 18, color: trailingIconColor));
     }
 

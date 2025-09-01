@@ -15,9 +15,17 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     'isRequired == true && requiredErrorMessage != null || isRequired == false',
     'The message is necessary for required fields',
   )
+  @Assert(
+    'labelText != null || hintText != null',
+    'Either labelText or hintText must be provided',
+  )
+  @Assert(
+    'formType != NbxFormType.outlined || (labelText != null && hintText != null)',
+    'When formType is outlined, both labelText and hintText must be provided',
+  )
   factory NbxInputParameters({
     String? hintText,
-    required String labelText,
+    String? labelText,
     required bool isRequired,
     required NbxInputType inputType,
     required BuildContext context,
@@ -47,6 +55,7 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     ValueChanged<String>? onSubmitted,
     ValueChanged<String>? onChanged,
     List<TextInputFormatter>? inputFormatters,
+    @Default(NbxFormType.outlined) NbxFormType formType,
     void Function()? onTap,
   }) = _NbxInputParameters;
 }

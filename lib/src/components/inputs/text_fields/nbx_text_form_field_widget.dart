@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
-import 'text_field_with_state_widget.dart';
-
-class AppTextFieldWidget extends StatelessWidget {
+class NbxTextFormFieldWidget extends StatelessWidget {
   final NbxInputParameters inputParameters;
-  const AppTextFieldWidget(this.inputParameters, {super.key});
+  final TextAlign? textFormAlign;
+
+  const NbxTextFormFieldWidget(
+    this.inputParameters, {
+    super.key,
+    this.textFormAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextFieldWithStateWidget(
+    if (inputParameters.formType != NbxFormType.outlined) {
+      return _inputWidget(context);
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          inputParameters.labelText ?? inputParameters.hintText ?? '',
+          style: context.nebuxTheme.typography.section.copyWith(
+            color: context.nebuxColors.textPrimary,
+          ),
+        ),
+        heightSpace10,
+        _inputWidget(context),
+      ],
+    );
+  }
+
+  Widget _inputWidget(BuildContext context) {
+    return NbxTextFieldWithStateWidget(
       parameters: inputParameters,
       childBuilder: (NbxInputParameters parameters) {
-        return TextField(
+        return TextFormField(
+          textAlign: textFormAlign ?? TextAlign.start,
+          onTap: parameters.onTap,
+          enableInteractiveSelection: !parameters.isReadOnly,
           obscureText: parameters.obscureText,
           readOnly: parameters.isReadOnly,
           enabled: parameters.isEnabled,
@@ -20,15 +47,20 @@ class AppTextFieldWidget extends StatelessWidget {
           cursorColor: Colors.black,
           onChanged: parameters.onChanged,
           maxLength: parameters.maxLength,
+          autovalidateMode: parameters.autovalidateMode,
           textInputAction: parameters.textInputAction,
           controller: parameters.controller,
           // decoration: parameters.decoration,
+          decoration: parameters.inputDecoration,
           inputFormatters: parameters.textInputFormatter,
-          // validator: parameters.inputValidator,
+          validator: parameters.inputValidator,
           keyboardType: parameters.keyboardType,
           minLines: parameters.minLines,
           maxLines: parameters.maxLines ?? 1,
-          decoration: parameters.inputDecoration,
+          // textAlign: TextAlign.center,
+          style: context.nebuxTheme.typography.formInput.copyWith(
+            color: context.nebuxColors.black,
+          ),
           onTapOutside: (event) {
             final FocusScopeNode currentFocus = FocusScope.of(context);
             if (!currentFocus.hasPrimaryFocus &&

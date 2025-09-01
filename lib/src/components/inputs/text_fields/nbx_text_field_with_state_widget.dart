@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
-class TextFieldWithStateWidget extends StatefulWidget {
+class NbxTextFieldWithStateWidget extends StatefulWidget {
   final NbxInputParameters parameters;
   final Widget Function(NbxInputParameters) childBuilder;
 
-  const TextFieldWithStateWidget({
+  const NbxTextFieldWithStateWidget({
     required this.parameters,
     required this.childBuilder,
     super.key,
   });
 
   @override
-  State<TextFieldWithStateWidget> createState() =>
-      _TextFieldWithStateWidgetState();
+  State<NbxTextFieldWithStateWidget> createState() =>
+      _NbxTextFieldWithStateWidgetState();
 }
 
-class _TextFieldWithStateWidgetState extends State<TextFieldWithStateWidget> {
+class _NbxTextFieldWithStateWidgetState
+    extends State<NbxTextFieldWithStateWidget> {
   bool _obscureText = false;
   bool _showCancelIcon = false;
 
