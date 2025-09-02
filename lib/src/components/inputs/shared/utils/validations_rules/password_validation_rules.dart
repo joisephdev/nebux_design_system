@@ -4,7 +4,8 @@ part of 'validation_rule.dart';
 class PasswordValidationRules {
   /// Minimum length for password
   static ValidationRule minLength(int minLength, [String? errorMessage]) {
-    final errorMessageText = 'Password must be at least $minLength characters';
+    final errorMessageText =
+        errorMessage ?? 'Password must be at least $minLength characters';
     return ValidationRule(
       validator: (value) => value.length >= minLength ? null : errorMessageText,
       errorMessage: errorMessageText,
