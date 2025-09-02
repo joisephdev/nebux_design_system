@@ -1,5 +1,8 @@
 enum NbxInputType {
   text,
+  onlyText,
+  textAndNumbers,
+  dropdownMenu,
   alphabet,
   number,
   phone,
