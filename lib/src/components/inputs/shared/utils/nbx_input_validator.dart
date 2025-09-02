@@ -1,5 +1,4 @@
 import 'package:nebux_design_system/nebux_design_system.dart';
-import 'package:nebux_design_system/src/components/inputs/shared/utils/validations_rules/validation_rule.dart';
 
 /// Simple input validation utility
 class NbxInputValidator {
@@ -76,11 +75,13 @@ class NbxInputValidator {
     for (final rule in validationRules) {
       final result = rule.validate(trimmedValue);
       if (result != null) {
-        return result; // Return first validation error
+        // Return first validation error
+        return result;
       }
     }
 
-    return null; // All validations passed
+    // All validations passed
+    return null;
   }
 
   /// Validates input value using multiple validation rules with custom error handling
