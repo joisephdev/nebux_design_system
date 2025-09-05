@@ -648,8 +648,7 @@ Found a bug or have a feature request? Please file an issue on our [GitHub repos
 
 ## 📞 Support
 
-- 📧 Email: support@nebux.com
-- 💬 Discord: [Join our community](https://discord.gg/nebux)
+- 📧 Email: roimerj63@gmail.com
 - 📖 Documentation: [Full documentation](https://docs.nebux.com)
 
 ---
