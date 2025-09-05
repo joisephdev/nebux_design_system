@@ -1,7 +1,9 @@
 name: nebux_design_system
-description: "A NebuX Design System"
+description: "A comprehensive Flutter design system package that provides consistent theming, typography, spacing, and UI components for Nebux applications."
 version: 0.0.1
-homepage:
+homepage: https://github.com/nebux-labs/nebux_design_system
+repository: https://github.com/nebux-labs/nebux_design_system
+issue_tracker: https://github.com/nebux-labs/nebux_design_system/issues
 
 environment:
   sdk: ^3.8.1
@@ -11,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1
-  toml:
+  toml: ^0.16.0
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   font_awesome_flutter: ^10.8.0

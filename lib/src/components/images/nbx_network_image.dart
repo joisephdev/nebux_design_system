@@ -195,7 +195,7 @@ class NbxNetworkImage extends StatelessWidget {
   }
 
   /// Builds the default placeholder widget.
-  Widget _buildDefaultPlaceholder() {
+  Widget buildDefaultPlaceholder() {
     return Container(
       width: width,
       height: height,
@@ -207,7 +207,7 @@ class NbxNetworkImage extends StatelessWidget {
   }
 
   /// Builds the default error widget.
-  Widget _buildDefaultErrorWidget() {
+  Widget buildDefaultErrorWidget() {
     return Container(
       width: width,
       height: height,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 mixin NebuxBottomSheet {
-  static showBottomSheet(
+  static Future<T?> showBottomSheet<T>(
     BuildContext context, {
     required Widget body,
     double? height,
@@ -10,7 +10,7 @@ mixin NebuxBottomSheet {
     bool isScrollControlled = false,
   }) {
     const borderRadius = BorderRadius.vertical(top: Radius.circular(24.0));
-    showModalBottomSheet<void>(
+    return showModalBottomSheet<T>(
       context: context,
       useSafeArea: true,
       enableDrag: enableDrag,
