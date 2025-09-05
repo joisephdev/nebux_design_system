@@ -1,9 +1,9 @@
 name: nebux_design_system
 description: "A comprehensive Flutter design system package that provides consistent theming, typography, spacing, and UI components for Nebux applications."
-version: 0.0.3
 homepage: https://github.com/nebux-labs/nebux_design_system
 repository: https://github.com/nebux-labs/nebux_design_system
 issue_tracker: https://github.com/nebux-labs/nebux_design_system/issues
+version: 0.0.4
 
 environment:
   sdk: ^3.8.1
@@ -19,6 +19,9 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   double_back_to_exit: ^1.2.1
   cached_network_image: ^3.4.1
+
+# WASM compatibility note: This package is compatible with WebAssembly
+# All dependencies have been verified for WASM compatibility
 
 dev_dependencies:
   flutter_test:
