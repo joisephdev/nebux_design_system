@@ -55,7 +55,13 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       prefixIconConstraints: const BoxConstraints(),
       // counter: const Text(""),
       // disabledBorder: _borderDefault(),
-      enabledBorder: _defaultBorder(sideColor: _nbxTheme.colors.black),
+      // enabledBorder: _defaultBorder(sideColor: _nbxTheme.colors.black),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(
+          color: (_nbxTheme.colors.textSecondary).withValues(alpha: 0.2),
+        ),
+      ),
       focusedBorder: _focusedDefaultBorder(_nbxTheme.colors.black),
       border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
