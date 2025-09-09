@@ -4,7 +4,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Flutter](https://img.shields.io/badge/Flutter-3.8.1+-blue.svg)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.8.1+-blue.svg)](https://dart.dev)
-[![WASM Compatible](https://img.shields.io/badge/WASM-Compatible-green.svg)](https://dart.dev/web/wasm)
 
 > A comprehensive, production-ready Flutter design system package that provides consistent theming, typography, spacing, and UI components for modern Flutter applications.
 
@@ -18,7 +17,6 @@
 - **🔧 Developer Experience** - Type-safe APIs, extensive documentation, and Flutter extensions
 - **📱 Responsive Design** - Built-in support for different screen sizes and orientations
 - **♿ Accessibility** - WCAG compliant components with proper semantic structure
-- **🌐 WebAssembly Support** - Full WASM compatibility for optimal web performance
 
 ## 📦 Installation
 
@@ -34,25 +32,6 @@ Then run:
 ```bash
 flutter pub get
 ```
-
-## 🌐 WebAssembly (WASM) Support
-
-This package is **fully compatible with WebAssembly (WASM)** and optimized for Flutter web applications. All components and features work seamlessly on WASM with optimal performance.
-
-### WASM Compatibility Features:
-
-- ✅ **Native WASM Support** - All core functionality works on WASM
-- ✅ **Optimized Performance** - Near-native performance on web
-- ✅ **Memory Efficient** - Optimized memory usage for web deployment
-- ✅ **Bundle Size Optimized** - Minimal impact on web bundle size
-
-### Building for WASM:
-
-```bash
-flutter build web --wasm
-```
-
-For more details, see our [WASM Compatibility Guide](wasm_compatibility.md).
 
 ## 🏃‍♂️ Quick Start
 

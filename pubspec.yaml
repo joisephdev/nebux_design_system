@@ -20,8 +20,6 @@ dependencies:
   double_back_to_exit: ^1.2.1
   cached_network_image: ^3.4.1
 
-# WASM compatibility note: This package is compatible with WebAssembly
-# All dependencies have been verified for WASM compatibility
 
 dev_dependencies:
   flutter_test:
