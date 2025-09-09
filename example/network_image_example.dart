@@ -241,7 +241,7 @@ class NetworkImageExamplePage extends StatelessWidget {
               border: Border.all(color: Colors.blue, width: 3),
               shadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withValues(alpha: 0.3),
                   blurRadius: 10,
                   offset: const Offset(0, 5),
                 ),
@@ -264,7 +264,7 @@ class NetworkImageExamplePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               shadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.withValues(alpha: 0.2),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                 ),
@@ -331,7 +331,7 @@ class NetworkImageExamplePage extends StatelessWidget {
               imageUrl: 'https://picsum.photos/200/200?random=10',
               width: 200,
               height: 200,
-              color: Colors.blue.withOpacity(0.3),
+              color: Colors.blue.withValues(alpha: 0.3),
               colorBlendMode: BlendMode.modulate,
             ),
           ],

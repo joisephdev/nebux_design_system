@@ -126,7 +126,7 @@ class NbxButton extends StatelessWidget {
 
     final bool shouldDisable = isLoading || isDisabled;
     final colors = context.nebuxColors;
-    final Color disabledColor = colors.textSecondary.withOpacity(0.5);
+    final Color disabledColor = colors.textSecondary.withValues(alpha: 0.5);
 
     final List<Widget> children = <Widget>[];
 
@@ -178,7 +178,7 @@ class NbxButton extends StatelessWidget {
           shape: shape,
           elevation: 0,
           backgroundColor: shouldDisable
-              ? colors.textSecondary.withOpacity(0.3)
+              ? colors.textSecondary.withValues(alpha: 0.3)
               : colors.primary,
           foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
@@ -186,7 +186,7 @@ class NbxButton extends StatelessWidget {
         return TextButton.styleFrom(
           shape: shape,
           foregroundColor: shouldDisable
-              ? colors.textSecondary.withOpacity(0.5)
+              ? colors.textSecondary.withValues(alpha: 0.5)
               : colors.primary,
         );
       case ButtonVariant.outline:
@@ -194,11 +194,11 @@ class NbxButton extends StatelessWidget {
           shape: shape,
           backgroundColor: Colors.transparent,
           foregroundColor: shouldDisable
-              ? colors.textSecondary.withOpacity(0.5)
+              ? colors.textSecondary.withValues(alpha: 0.5)
               : colors.textPrimary,
           side: BorderSide(
             color: shouldDisable
-                ? colors.textSecondary.withOpacity(0.3)
+                ? colors.textSecondary.withValues(alpha: 0.3)
                 : colors.textSecondary,
             width: 1,
           ),
@@ -208,7 +208,7 @@ class NbxButton extends StatelessWidget {
           shape: shape,
           elevation: 0,
           backgroundColor: shouldDisable
-              ? colors.textSecondary.withOpacity(0.3)
+              ? colors.textSecondary.withValues(alpha: 0.3)
               : colors.error,
           foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
