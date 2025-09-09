@@ -3,7 +3,7 @@ description: "A comprehensive Flutter design system package that provides consis
 homepage: https://github.com/nebux-labs/nebux_design_system
 repository: https://github.com/nebux-labs/nebux_design_system
 issue_tracker: https://github.com/nebux-labs/nebux_design_system/issues
-version: 0.0.4
+version: 0.0.5
 
 environment:
   sdk: ^3.8.1
@@ -16,7 +16,7 @@ dependencies:
   toml: ^0.16.0
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
-  font_awesome_flutter: ^10.8.0
+  # font_awesome_flutter: ^10.8.0
   double_back_to_exit: ^1.2.1
   cached_network_image: ^3.4.1
 

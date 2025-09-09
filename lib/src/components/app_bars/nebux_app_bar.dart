@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
 class NebuxAppBar extends StatelessWidget {
-  const NebuxAppBar({super.key});
+  final Widget? iconBack;
+  const NebuxAppBar({super.key, this.iconBack});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,9 @@ class NebuxAppBar extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: FaIcon(
-                  FontAwesomeIcons.arrowLeft,
-                  color: theme.colors.textPrimary,
-                ),
+                icon:
+                    iconBack ??
+                    Icon(Icons.arrow_back, color: theme.colors.textPrimary),
               ),
             ),
             Text(

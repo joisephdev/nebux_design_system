@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
 /// Social login button widget
 class NbxSocialLoginButton extends StatelessWidget {
   final String text;
-  final IconData icon;
+  final Widget icon;
   final VoidCallback? onPressed;
   final bool isOutlined;
   final Color? backgroundColor;
@@ -45,7 +45,7 @@ class NbxSocialLoginButton extends StatelessWidget {
       height: 56,
       child: ElevatedButton.icon(
         onPressed: onPressed,
-        icon: FaIcon(icon, color: buttonTextColor, size: 20),
+        icon: icon, //FaIcon(icon, color: buttonTextColor, size: 20),
         label: Text(
           text,
           style: theme.textTheme.titleMedium?.copyWith(
