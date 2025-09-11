@@ -36,6 +36,9 @@ class NbxScaffold extends StatelessWidget {
   /// Name of the widget to be used for debugging purposes.
   final String widgetName;
 
+  /// Gradient background for the scaffold.
+  final BoxDecoration? boxDecoration;
+
   /// Creates a custom scaffold widget with enhanced functionality.
   const NbxScaffold({
     required this.body,
@@ -47,6 +50,7 @@ class NbxScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.backgroundColor,
+    this.boxDecoration,
     required this.widgetName,
     super.key,
   });
@@ -60,6 +64,7 @@ class NbxScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safeArea = safeAreaConfig ?? const SafeAreaConfig();
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor ?? context.nebuxColors.background,
@@ -68,18 +73,21 @@ class NbxScaffold extends StatelessWidget {
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
-      body: SafeArea(
-        left: false,
-        right: false,
-        top: safeArea.top,
-        bottom: safeArea.bottom,
-        minimum: safeArea.minimum ?? const EdgeInsets.only(bottom: 20),
-        child: Column(
-          children: [
-            if (_hasAppBar && appBarConfig?.showDivider == true)
-              Divider(height: 0, color: Colors.grey.shade500, thickness: .2),
-            Expanded(child: _buildScaffoldBody()),
-          ],
+      body: Container(
+        decoration: boxDecoration,
+        child: SafeArea(
+          left: false,
+          right: false,
+          top: safeArea.top,
+          bottom: safeArea.bottom,
+          minimum: safeArea.minimum ?? const EdgeInsets.only(bottom: 20),
+          child: Column(
+            children: [
+              if (_hasAppBar && appBarConfig?.showDivider == true)
+                Divider(height: 0, color: Colors.grey.shade500, thickness: .2),
+              Expanded(child: _buildScaffoldBody()),
+            ],
+          ),
         ),
       ),
     );

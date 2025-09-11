@@ -17,25 +17,31 @@ abstract class NebuxColors with _$NebuxColors {
     @ColorConverter() required Color primary,
 
     /// Primary variant color - darker shade of primary
-    @ColorConverter() required Color primaryVariant,
+    // @ColorConverter() required Color primaryVariant,
 
     /// Secondary color - used for secondary actions
     @ColorConverter() required Color secondary,
 
     /// Accent color - used for highlights and emphasis
-    @ColorConverter() required Color accent,
+    // @ColorConverter() required Color accent,
 
     /// Background color
     @ColorConverter() required Color background,
 
     /// Surface color
-    @ColorConverter() required Color surface,
+    // @ColorConverter() required Color surface,
 
     /// Text primary color
     @ColorConverter() required Color textPrimary,
 
     /// Text secondary color
     @ColorConverter() required Color textSecondary,
+
+    /// Action primary color
+    @ColorConverter() required Color actionPrimary,
+
+    /// Action secondary color
+    @ColorConverter() required Color actionSecondary,
 
     /// Card color
     @ColorConverter() required Color cardColor,
@@ -76,13 +82,15 @@ abstract class NebuxColors with _$NebuxColors {
 
     return NebuxColors(
       primary: Color.lerp(c.primary, o.primary, t)!,
-      primaryVariant: Color.lerp(c.primaryVariant, o.primaryVariant, t)!,
+      // primaryVariant: Color.lerp(c.primaryVariant, o.primaryVariant, t)!,
       secondary: Color.lerp(c.secondary, o.secondary, t)!,
-      accent: Color.lerp(c.accent, o.accent, t)!,
+      // accent: Color.lerp(c.accent, o.accent, t)!,
       background: Color.lerp(c.background, o.background, t)!,
-      surface: Color.lerp(c.surface, o.surface, t)!,
+      // surface: Color.lerp(c.surface, o.surface, t)!,
       textPrimary: Color.lerp(c.textPrimary, o.textPrimary, t)!,
       textSecondary: Color.lerp(c.textSecondary, o.textSecondary, t)!,
+      actionPrimary: Color.lerp(c.actionPrimary, o.actionPrimary, t)!,
+      actionSecondary: Color.lerp(c.actionSecondary, o.actionSecondary, t)!,
       cardColor: Color.lerp(c.cardColor, o.cardColor, t)!,
       success: Color.lerp(c.success, o.success, t)!,
       warning: Color.lerp(c.warning, o.warning, t)!,

@@ -86,14 +86,27 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           typography: typography,
         ),
       ],
+    );
+
+    /*  return ThemeData(
+      useMaterial3: true,
+      brightness: isDark ? Brightness.dark : Brightness.light,
+      // Extensions
+      extensions: <ThemeExtension<NebuxTheme>>[
+        NebuxTheme._(
+          colors: colors,
+          fontSize: fontSize,
+          typography: typography,
+        ),
+      ],
       // Color scheme
       colorScheme: ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
         primary: colors.primary,
-        primaryContainer: colors.primaryVariant,
+        primaryContainer: colors.primary,
         secondary: colors.secondary,
-        secondaryContainer: colors.accent,
-        surface: colors.surface,
+        secondaryContainer: colors.secondary,
+        surface: colors.background,
         // background: colors.background,
         error: colors.error,
         onPrimary: colors.white,
@@ -128,7 +141,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
 
       // Bottom navigation bar theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: colors.surface,
+        backgroundColor: colors.background,
         selectedItemColor: colors.primary,
         unselectedItemColor: colors.textSecondary,
         selectedLabelStyle: typography.label.copyWith(color: colors.primary),
@@ -151,7 +164,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       // Input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: colors.surface,
+        fillColor: colors.background,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -278,6 +291,6 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
         labelMedium: typography.label.copyWith(color: colors.textSecondary),
         labelSmall: typography.label.copyWith(color: colors.textSecondary),
       ),
-    );
+    ); */
   }
 }

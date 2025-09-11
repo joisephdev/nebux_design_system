@@ -12,3 +12,6 @@ export 'inputs/export.dart';
 
 // SCAFFOLD
 export 'scaffold/export.dart';
+
+// SHARED
+export 'shared/export.dart';

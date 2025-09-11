@@ -47,7 +47,7 @@ extension NbxInputDecorationExtension on NbxInputParameters {
         width: 1,
       ),
       filled: true,
-      fillColor: _nbxTheme.colors.surface,
+      fillColor: _nbxTheme.colors.background,
       // fillColor: Colors.white,
       suffixIcon: suffixIcon,
       // suffixIcon: Icon(Icons.ac_unit_rounded),
