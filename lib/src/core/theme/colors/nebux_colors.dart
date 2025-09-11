@@ -58,6 +58,9 @@ abstract class NebuxColors with _$NebuxColors {
     /// Info color - for informational states
     @ColorConverter() required Color info,
 
+    /// Disabled color - for disabled states
+    @ColorConverter() required Color disabled,
+
     /// White color
     @ColorConverter() required Color white,
 
@@ -97,6 +100,7 @@ abstract class NebuxColors with _$NebuxColors {
       error: Color.lerp(c.error, o.error, t)!,
       info: Color.lerp(c.info, o.info, t)!,
       white: Color.lerp(c.white, o.white, t)!,
+      disabled: Color.lerp(c.disabled, o.disabled, t)!,
       black: Color.lerp(c.black, o.black, t)!,
       primaryGradient: c.primaryGradient, // Gradients don't support lerp
       secondaryGradient: c.secondaryGradient, // Gradients don't support lerp

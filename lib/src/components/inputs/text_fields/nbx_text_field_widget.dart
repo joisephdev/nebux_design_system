@@ -10,6 +10,16 @@ class NbxTextFieldWidget extends StatelessWidget {
     return NbxTextFieldWithStateWidget(
       parameters: inputParameters,
       childBuilder: (NbxInputParameters parameters) {
+        final InputDecoration decorationWithReducedPadding = parameters
+            .inputDecoration
+            .copyWith(
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 12,
+              ),
+            );
+
         return TextField(
           obscureText: parameters.obscureText,
           readOnly: parameters.isReadOnly,
@@ -20,13 +30,12 @@ class NbxTextFieldWidget extends StatelessWidget {
           maxLength: parameters.maxLength,
           textInputAction: parameters.textInputAction,
           controller: parameters.controller,
-          // decoration: parameters.decoration,
           inputFormatters: parameters.textInputFormatter,
           // validator: parameters.inputValidator,
           keyboardType: parameters.keyboardType,
           minLines: parameters.minLines,
           maxLines: parameters.maxLines ?? 1,
-          decoration: parameters.inputDecoration,
+          decoration: decorationWithReducedPadding,
           onTapOutside: (event) {
             final FocusScopeNode currentFocus = FocusScope.of(context);
             if (!currentFocus.hasPrimaryFocus &&

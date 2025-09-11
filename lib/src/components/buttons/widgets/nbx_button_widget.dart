@@ -126,7 +126,7 @@ class NbxButton extends StatelessWidget {
 
     final bool shouldDisable = isLoading || isDisabled;
     final NebuxColors colors = context.nebuxColors;
-    final Color disabledColor = colors.textSecondary.withValues(alpha: 0.5);
+    final Color disabledColor = colors.disabled;
 
     final List<Widget> children = <Widget>[];
 
@@ -179,7 +179,7 @@ class NbxButton extends StatelessWidget {
           shape: shape,
           elevation: 0,
           backgroundColor: shouldDisable
-              ? colors.secondary.withValues(alpha: 0.3)
+              ? colors.disabled
               : colors.actionPrimary,
           foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
