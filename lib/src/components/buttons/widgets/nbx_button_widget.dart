@@ -54,6 +54,9 @@ class NbxButton extends StatelessWidget {
   /// The color of the trailing icon.
   final Color? trailingIconColor;
 
+  /// The color of the button.
+  final Color? customBackgroundColor;
+
   const NbxButton({
     super.key,
     required this.text,
@@ -68,6 +71,7 @@ class NbxButton extends StatelessWidget {
     this.variant = ButtonVariant.primary,
     this.iconColor,
     this.trailingIconColor,
+    this.customBackgroundColor,
   });
 
   @override
@@ -180,7 +184,7 @@ class NbxButton extends StatelessWidget {
           elevation: 0,
           backgroundColor: shouldDisable
               ? colors.disabled
-              : colors.actionPrimary,
+              : customBackgroundColor ?? colors.actionPrimary,
           foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
       case ButtonVariant.secondary:

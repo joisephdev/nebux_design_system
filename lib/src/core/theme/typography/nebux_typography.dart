@@ -13,33 +13,43 @@ abstract class NebuxTypography with _$NebuxTypography {
   /// Creates a [NebuxTypography] instance.
   const factory NebuxTypography({
     /// Style for main content text (e.g., articles, descriptions).
+    /// Font size: 16px and font weight: 400
     required TextStyle content,
 
     /// Style for regular paragraph text (e.g., default content, paragraphs).
+    /// Font size: 14px and font weight: 400
     required TextStyle paragraph,
 
     /// Style for small supporting text (e.g., captions, metadata).
+    /// Font size: 12px and font weight: 400
     required TextStyle caption,
 
     /// Style for main headings (e.g., page titles, primary headers).
+    /// Font size: 24px and font weight: 600
     required TextStyle heading,
 
-    /// Style for section headers (e.g., content sections).
+    /// Style for section headers (e.g., content sections)
+    /// Font size: 22px and font weight: 500
     required TextStyle section,
 
     /// Style for small labels (e.g., timestamps, status).
+    /// Font size: 10px and font weight: 500
     required TextStyle label,
 
     /// Style for primary action buttons.
+    /// Font size: 14px and font weight: 700
     required TextStyle primaryAction,
 
     /// Style for secondary action buttons.
+    /// Font size: 14px and font weight: 600
     required TextStyle secondaryAction,
 
     /// Style for form input text fields.
+    /// Font size: 14px and font weight: 400
     required TextStyle formInput,
 
     /// Style for placeholder text in inputs.
+    /// Font size: 14px and font weight: 400 and font style: italic
     required TextStyle placeholder,
   }) = _NebuxTypography;
 
@@ -58,7 +68,7 @@ abstract class NebuxTypography with _$NebuxTypography {
         fontWeight: FontWeight.w500,
       ),
       content: GoogleFonts.montserrat(
-        fontSize: fontSizes.extraLarge,
+        fontSize: fontSizes.medium,
         fontWeight: FontWeight.w400,
       ),
       paragraph: GoogleFonts.montserrat(
@@ -66,7 +76,7 @@ abstract class NebuxTypography with _$NebuxTypography {
         fontWeight: FontWeight.w400,
       ),
       caption: GoogleFonts.montserrat(
-        fontSize: fontSizes.medium,
+        fontSize: fontSizes.small,
         fontWeight: FontWeight.w400,
       ),
       heading: GoogleFonts.montserrat(

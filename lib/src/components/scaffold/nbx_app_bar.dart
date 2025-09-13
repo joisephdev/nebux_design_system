@@ -57,9 +57,13 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget? _buildLeading(BuildContext context) {
     if (appBarConfig.leadingButton == null) return null;
 
-    return IconButton(
-      onPressed: Navigator.of(context).pop,
-      icon: Icon(Icons.arrow_back_ios, color: context.nebuxColors.textPrimary),
-    );
+    return appBarConfig.leadingButton ??
+        IconButton(
+          onPressed: Navigator.of(context).pop,
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: context.nebuxColors.textPrimary,
+          ),
+        );
   }
 }

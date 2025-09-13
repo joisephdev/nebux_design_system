@@ -16,11 +16,11 @@ abstract class NebuxColors with _$NebuxColors {
     /// Primary brand color - used for main actions and branding
     @ColorConverter() required Color primary,
 
-    /// Primary variant color - darker shade of primary
-    // @ColorConverter() required Color primaryVariant,
-
     /// Secondary color - used for secondary actions
     @ColorConverter() required Color secondary,
+
+    /// Secondary variant color - darker shade of secondary
+    @ColorConverter() required Color secondaryVariant,
 
     /// Accent color - used for highlights and emphasis
     // @ColorConverter() required Color accent,
@@ -87,6 +87,7 @@ abstract class NebuxColors with _$NebuxColors {
       primary: Color.lerp(c.primary, o.primary, t)!,
       // primaryVariant: Color.lerp(c.primaryVariant, o.primaryVariant, t)!,
       secondary: Color.lerp(c.secondary, o.secondary, t)!,
+      secondaryVariant: Color.lerp(c.secondaryVariant, o.secondaryVariant, t)!,
       // accent: Color.lerp(c.accent, o.accent, t)!,
       background: Color.lerp(c.background, o.background, t)!,
       // surface: Color.lerp(c.surface, o.surface, t)!,
