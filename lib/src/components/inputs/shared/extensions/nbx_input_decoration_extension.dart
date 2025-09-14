@@ -33,10 +33,14 @@ extension NbxInputDecorationExtension on NbxInputParameters {
           ? (floatingLabelBehavior ?? FloatingLabelBehavior.auto)
           : null,
       labelStyle: _nbxTheme.typography.label.copyWith(
+        // color: _nbxTheme.colors.textSecondary,
+        color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
+      ),
+      floatingLabelStyle: _nbxTheme.typography.label.copyWith(
         color: _nbxTheme.colors.textSecondary,
       ),
       hintStyle: _nbxTheme.typography.label.copyWith(
-        color: _nbxTheme.colors.textSecondary,
+        color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
       ),
       errorStyle: _nbxTheme.typography.caption.copyWith(
         color: _nbxTheme.colors.error,
