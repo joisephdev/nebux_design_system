@@ -3,11 +3,11 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 
 /// Enum defining the different button variants.
 enum ButtonVariant {
-  /// Primary button with filled background.
-  primary,
+  /// Filled button with filled background.
+  filled,
 
-  /// Secondary button with outlined style.
-  secondary,
+  /// Text button with outlined style.
+  text,
 
   /// Outline button with border.
   outline,
@@ -68,7 +68,7 @@ class NbxButton extends StatelessWidget {
     this.textStyle,
     this.icon,
     this.trailingIcon,
-    this.variant = ButtonVariant.primary,
+    this.variant = ButtonVariant.filled,
     this.iconColor,
     this.trailingIconColor,
     this.customBackgroundColor,
@@ -89,7 +89,7 @@ class NbxButton extends StatelessWidget {
     final bool shouldDisable = isLoading || isDisabled;
 
     switch (variant) {
-      case ButtonVariant.primary:
+      case ButtonVariant.filled:
         return FilledButton(
           onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
@@ -101,7 +101,17 @@ class NbxButton extends StatelessWidget {
           style: _getButtonStyle(context),
           child: _buildButtonContent(context),
         );
-      case ButtonVariant.secondary:
+      case ButtonVariant.text:
+        /* return InkWell(
+          onTap: shouldDisable ? null : onPressed,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: context.nebuxTheme.typography.caption.copyWith(
+              decoration: TextDecoration.underline,
+            ),
+          ),
+        ); */
         return TextButton(
           onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
@@ -142,13 +152,24 @@ class NbxButton extends StatelessWidget {
       children.add(widthSpace8);
     }
 
-    children.add(
-      Text(
-        text,
-        style: (textStyle ?? context.nebuxTheme.typography.secondaryAction)
-            .copyWith(color: shouldDisable ? disabledColor : null),
-      ),
-    );
+    if (variant == ButtonVariant.text) {
+      children.add(
+        Text(
+          text,
+          style: (textStyle ?? context.nebuxTheme.typography.content).copyWith(
+            color: shouldDisable ? disabledColor : null,
+          ),
+        ),
+      );
+    } else {
+      children.add(
+        Text(
+          text,
+          style: (textStyle ?? context.nebuxTheme.typography.secondaryAction)
+              .copyWith(color: shouldDisable ? disabledColor : null),
+        ),
+      );
+    }
 
     if (trailingIcon != null) {
       children.add(widthSpace8);
@@ -178,7 +199,7 @@ class NbxButton extends StatelessWidget {
     final bool shouldDisable = isLoading || isDisabled;
 
     switch (variant) {
-      case ButtonVariant.primary:
+      case ButtonVariant.filled:
         return FilledButton.styleFrom(
           shape: shape,
           elevation: 0,
@@ -187,12 +208,15 @@ class NbxButton extends StatelessWidget {
               : customBackgroundColor ?? colors.actionPrimary,
           foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
-      case ButtonVariant.secondary:
+      case ButtonVariant.text:
         return TextButton.styleFrom(
           shape: shape,
           foregroundColor: shouldDisable
               ? colors.textSecondary.withValues(alpha: 0.5)
               : colors.actionPrimary,
+          textStyle: context.nebuxTheme.typography.caption.copyWith(
+            decoration: TextDecoration.underline,
+          ),
         );
       case ButtonVariant.outline:
         return OutlinedButton.styleFrom(
