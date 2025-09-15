@@ -9,14 +9,14 @@
 
 ## 🚀 Features
 
-- **🎨 Complete Theme System** - Light and dark mode support with customizable color schemes
-- **📝 Advanced Typography** - Google Fonts integration with consistent text styles and scales
-- **🎯 Smart Components** - 15+ production-ready UI components with multiple variants
-- **📐 Spacing System** - Standardized spacing utilities and responsive design support
-- **🌈 Color Management** - Comprehensive color system with gradients and semantic naming
-- **🔧 Developer Experience** - Type-safe APIs, extensive documentation, and Flutter extensions
-- **📱 Responsive Design** - Built-in support for different screen sizes and orientations
-- **♿ Accessibility** - WCAG compliant components with proper semantic structure
+- **Complete Theme System** - Light and dark mode support with customizable color schemes
+- **Advanced Typography** - Google Fonts integration with consistent text styles and scales
+- **Smart Components** - 15+ production-ready UI components with multiple variants
+- **Spacing System** - Standardized spacing utilities and responsive design support
+- **Color Management** - Comprehensive color system with gradients and semantic naming
+- **Developer Experience** - Type-safe APIs, extensive documentation, and Flutter extensions
+- **Accessibility** - WCAG compliant components with proper semantic structure
+- **Enhanced Customization** - Custom background colors, flexible typography overrides, and improved input styling
 
 ## 📦 Installation
 
@@ -24,13 +24,44 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  nebux_design_system: ^0.0.2
+  nebux_design_system: ^0.0.8
 ```
 
 Then run:
 
 ```bash
 flutter pub get
+```
+
+## ⚠️ Breaking Changes in v0.0.8
+
+### Button Variant Changes
+
+The button variants have been renamed for better clarity:
+
+| Old Variant               | New Variant            | Description             |
+| ------------------------- | ---------------------- | ----------------------- |
+| `ButtonVariant.primary`   | `ButtonVariant.filled` | Solid background button |
+| `ButtonVariant.secondary` | `ButtonVariant.text`   | Text-only button        |
+
+### Migration Guide
+
+Update your existing code:
+
+```dart
+// Before (v0.0.7 and earlier)
+NbxButton(
+  text: 'Save',
+  onPressed: () {},
+  variant: ButtonVariant.primary,  // ❌ Old
+)
+
+// After (v0.0.8+)
+NbxButton(
+  text: 'Save',
+  onPressed: () {},
+  variant: ButtonVariant.filled,   // ✅ New
+)
 ```
 
 ## 🏃‍♂️ Quick Start
@@ -90,7 +121,7 @@ class MyHomePage extends StatelessWidget {
           NbxButton(
             text: 'Get Started',
             onPressed: () => print('Button pressed'),
-            variant: ButtonVariant.primary,
+            variant: ButtonVariant.filled,
           ),
           heightSpace12,
           NbxTextFieldWidget(
@@ -122,6 +153,7 @@ final colors = context.nebuxColors;
 // Primary colors
 colors.primary        // Main brand color
 colors.secondary      // Secondary actions
+colors.secondaryVariant // Secondary variant for enhanced theming
 colors.accent         // Highlights and emphasis
 
 // Semantic colors
@@ -181,13 +213,30 @@ final customColors = NebuxColors(
   // ... other colors
 );
 
-// Custom typography
+// Custom typography with factory method
 final customTypography = NebuxTypography.custom(
   heading: GoogleFonts.roboto(
     fontSize: 24,
     fontWeight: FontWeight.bold,
   ),
   // ... other styles
+);
+
+// Enhanced typography with custom factory method for flexible overrides
+final enhancedTypography = NebuxTypography.customFactory(
+  baseTypography: NebuxTypography.standard(),
+  overrides: {
+    'heading': GoogleFonts.inter(
+      fontSize: 28,
+      fontWeight: FontWeight.w600,
+      letterSpacing: -0.5,
+    ),
+    'content': GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      height: 1.5,
+    ),
+  },
 );
 
 // Apply custom theme
@@ -206,18 +255,18 @@ final theme = NebuxTheme.custom(
 A versatile button component with multiple variants and states:
 
 ```dart
-// Primary button
+// Filled button (formerly primary)
 NbxButton(
-  text: 'Primary Action',
+  text: 'Filled Action',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.primary,
+  variant: ButtonVariant.filled,
 )
 
-// Secondary button
+// Text button (formerly secondary)
 NbxButton(
-  text: 'Secondary Action',
+  text: 'Text Action',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.secondary,
+  variant: ButtonVariant.text,
 )
 
 // Outline button
@@ -239,7 +288,7 @@ NbxButton(
   text: 'Save',
   icon: Icons.save,
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.primary,
+  variant: ButtonVariant.filled,
 )
 
 // Loading state
@@ -247,7 +296,23 @@ NbxButton(
   text: 'Loading...',
   onPressed: () => print('Pressed'),
   isLoading: true,
-  variant: ButtonVariant.primary,
+  variant: ButtonVariant.filled,
+)
+
+// Button with custom background color
+NbxButton(
+  text: 'Custom Color',
+  onPressed: () => print('Pressed'),
+  variant: ButtonVariant.filled,
+  customBackgroundColor: Colors.purple,
+)
+
+// Button with custom background color and text variant
+NbxButton(
+  text: 'Custom Text Color',
+  onPressed: () => print('Pressed'),
+  variant: ButtonVariant.text,
+  customBackgroundColor: Colors.blue.withOpacity(0.1),
 )
 ```
 
@@ -325,6 +390,25 @@ NbxTextFieldWidget(
     context: context,
   ),
 )
+
+// Enhanced input field with improved styling
+NbxTextFieldWidget(
+  NbxInputParameters(
+    hintText: 'Enter your name',
+    labelText: 'Full Name',
+    inputType: NbxInputType.text,
+    isRequired: true,
+    requiredErrorMessage: 'Name is required',
+    context: context,
+    // Enhanced styling with improved label and hint colors
+    decoration: InputDecoration(
+      floatingLabelStyle: TextStyle(
+        color: context.nebuxColors.primary,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
+  ),
+)
 ```
 
 ### Layout Components
@@ -339,6 +423,11 @@ NbxScaffold(
   appBarConfig: AppBarConfig(
     title: 'My Screen',
     showDivider: true,
+    // Enhanced AppBar with customizable leading button
+    leading: IconButton(
+      icon: Icon(Icons.menu),
+      onPressed: () => print('Menu pressed'),
+    ),
     actions: [
       IconButton(
         icon: Icon(Icons.settings),
@@ -538,7 +627,11 @@ Use the provided components instead of building custom ones:
 
 ```dart
 // ✅ Good
-NbxButton(text: 'Save', onPressed: () {})
+NbxButton(
+  text: 'Save',
+  onPressed: () {},
+  variant: ButtonVariant.filled,
+)
 
 // ❌ Avoid
 ElevatedButton(child: Text('Save'), onPressed: () {})
