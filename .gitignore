@@ -75,8 +75,8 @@ linux/
 **/linux/
 
 # Generated files
-*.g.dart
-*.freezed.dart
+# *.g.dart
+# *.freezed.dart
 *.mocks.dart
 
 # Coverage
