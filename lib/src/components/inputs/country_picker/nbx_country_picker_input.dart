@@ -1,4 +1,3 @@
-import 'package:country_picker_pro/country_picker_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
@@ -13,6 +12,7 @@ class NbxCountryPickerInput extends StatelessWidget {
   final String requiredErrorMessage;
   final TextEditingController controller;
   final void Function(Country) onSelect;
+  final bool showPhoneCode;
 
   /// Constructor for the [NbxCountryPickerInput] widget.
   ///
@@ -38,6 +38,7 @@ class NbxCountryPickerInput extends StatelessWidget {
     required this.hintText,
     required this.requiredErrorMessage,
     required this.onSelect,
+    this.showPhoneCode = true,
   });
 
   /// Builds the country picker input widget.
@@ -77,11 +78,11 @@ class NbxCountryPickerInput extends StatelessWidget {
     CountrySelector(
       context: context,
       countryPreferred: <String>['US'],
-      showPhoneCode: true,
-      appBarTitle: 'Select Country',
+      showPhoneCode: showPhoneCode,
+      appBarTitle: labelText,
       onSelect: onSelect,
       listType: ListType.list,
-      appBarBackgroundColour: Colors.black,
+      appBarBackgroundColour: context.nebuxTheme.colors.primary,
       appBarFontSize: 20,
       appBarFontStyle: FontStyle.normal,
       appBarFontWeight: FontWeight.bold,
@@ -92,17 +93,17 @@ class NbxCountryPickerInput extends StatelessWidget {
       backIconColour: Colors.white,
       countryFontStyle: FontStyle.normal,
       countryFontWeight: FontWeight.bold,
-      countryTextColour: Colors.black,
+      countryTextColour: context.nebuxTheme.colors.secondary,
       countryTitleSize: 16,
       dividerColour: Colors.black12,
-      searchBarAutofocus: true,
+      searchBarAutofocus: false,
       searchBarIcon: Icons.search,
       searchBarBackgroundColor: Colors.white,
-      searchBarBorderColor: Colors.black,
-      searchBarBorderWidth: 2,
+      searchBarBorderColor: context.nebuxTheme.colors.secondary,
+      searchBarBorderWidth: .5,
       searchBarOuterBackgroundColor: Colors.white,
-      searchBarTextColor: Colors.black,
-      searchBarHintColor: Colors.black,
+      searchBarTextColor: context.nebuxTheme.colors.secondary,
+      searchBarHintColor: context.nebuxTheme.colors.secondary,
       countryTheme: const CountryThemeData(appBarBorderRadius: 10),
       showSearchBox: true,
     );
