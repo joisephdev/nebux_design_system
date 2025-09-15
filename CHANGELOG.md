@@ -1,3 +1,17 @@
+## 0.0.8
+
+- **BREAKING CHANGE**: Refactored button variants for better clarity - renamed 'primary' to 'filled' and 'secondary' to 'text'
+- Enhanced typography system with custom factory method for flexible text style overrides
+- Improved text validation rules with named parameters for better clarity and maintainability
+- Enhanced input field styling with improved label and hint styles using textSecondary color with reduced opacity
+- Added floatingLabelStyle to input decoration for consistent theming across input fields
+- Introduced customBackgroundColor property to NbxButton for flexible background color customization
+- Enhanced NbxAppBar with customizable leading button for improved component flexibility
+- Added secondaryVariant color to NebuxColors for better theming support
+- Refined typography styles with updated font sizes for improved consistency
+- Generated new model files for enhanced component structure and theming consistency
+- Updated .gitignore configuration for better generated file management
+
 ## 0.0.5
 
 - **BREAKING CHANGE**: Removed `font_awesome_flutter` dependency for better performance and smaller bundle size
