@@ -104,6 +104,55 @@ abstract class NebuxTypography with _$NebuxTypography {
     );
   }
 
+  /// Creates a [NebuxTypography] instance with custom overrides for each text style.
+  factory NebuxTypography.custom(String fontFamily, String? package) {
+    final fontSizes = NebuxFontSize.standard();
+    final defaultStyle = TextStyle(fontFamily: fontFamily, package: package);
+    return NebuxTypography(
+      label: defaultStyle.copyWith(
+        fontSize: fontSizes.small,
+        fontWeight: FontWeight.w500,
+      ),
+      section: defaultStyle.copyWith(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w500,
+      ),
+      content: defaultStyle.copyWith(
+        fontSize: fontSizes.medium,
+        fontWeight: FontWeight.w400,
+      ),
+      paragraph: defaultStyle.copyWith(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+      ),
+      caption: defaultStyle.copyWith(
+        fontSize: fontSizes.small,
+        fontWeight: FontWeight.w400,
+      ),
+      heading: defaultStyle.copyWith(
+        fontSize: fontSizes.heading4,
+        fontWeight: FontWeight.w600,
+      ),
+      primaryAction: defaultStyle.copyWith(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w700,
+      ),
+      secondaryAction: defaultStyle.copyWith(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w600,
+      ),
+      formInput: defaultStyle.copyWith(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+      ),
+      placeholder: defaultStyle.copyWith(
+        fontSize: fontSizes.large,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.italic,
+      ),
+    );
+  }
+
   /// Creates [NebuxTypography] from a Material [ThemeData].
   factory NebuxTypography.fromThemeData(ThemeData themeData) => NebuxTypography(
     content: themeData.textTheme.bodyLarge!,
@@ -126,7 +175,7 @@ abstract class NebuxTypography with _$NebuxTypography {
 
   /// Creates a custom [NebuxTypography] with individual TextStyle parameters.
   /// All parameters are optional and will use standard values if not provided.
-  factory NebuxTypography.custom({
+  factory NebuxTypography.withOverrides({
     TextStyle? content,
     TextStyle? paragraph,
     TextStyle? caption,

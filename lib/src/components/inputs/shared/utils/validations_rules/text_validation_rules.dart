@@ -3,22 +3,22 @@ part of 'validation_rule.dart';
 /// Text validation rules
 class TextValidationRules {
   /// Minimum length for text
-  static ValidationRule minLength(int minLength, [String? errorMessage]) {
-    final errorMessageText =
-        errorMessage ?? 'Text must be at least $minLength characters';
+  static ValidationRule minLength({required int minLength, String? errorText}) {
+    final errorMessage =
+        errorText ?? 'Text must be at least $minLength characters';
     return ValidationRule(
-      validator: (value) => value.length >= minLength ? null : errorMessageText,
-      errorMessage: errorMessageText,
+      validator: (value) => value.length >= minLength ? null : errorMessage,
+      errorMessage: errorMessage,
     );
   }
 
   /// Maximum length for text
-  static ValidationRule maxLength(int maxLength, [String? errorMessage]) {
-    final errorMessageText =
-        errorMessage ?? 'Text must be at most $maxLength characters';
+  static ValidationRule maxLength({required int maxLength, String? errorText}) {
+    final errorMessage =
+        errorText ?? 'Text must be at most $maxLength characters';
     return ValidationRule(
-      validator: (value) => value.length <= maxLength ? null : errorMessageText,
-      errorMessage: errorMessageText,
+      validator: (value) => value.length <= maxLength ? null : errorMessage,
+      errorMessage: errorMessage,
     );
   }
 

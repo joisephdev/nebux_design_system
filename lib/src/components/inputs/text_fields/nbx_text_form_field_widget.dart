@@ -26,7 +26,7 @@ class NbxTextFormFieldWidget extends StatelessWidget {
             color: context.nebuxColors.textPrimary,
           ),
         ),
-        heightSpace10,
+        heightSpace4,
         _inputWidget(context),
       ],
     );
