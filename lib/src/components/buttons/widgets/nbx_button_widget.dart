@@ -27,8 +27,8 @@ class NbxButton extends StatelessWidget {
   /// Whether to show a loading indicator instead of text.
   final bool isLoading;
 
-  /// Whether the button is disabled.
-  final bool isDisabled;
+  /// Whether the button is enabled.
+  final bool enabled;
 
   /// The visual variant of the button.
   final ButtonVariant variant;
@@ -62,7 +62,7 @@ class NbxButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isLoading = false,
-    this.isDisabled = false,
+    this.enabled = true,
     this.isExpanded = true,
     this.borderRadius,
     this.textStyle,
@@ -86,7 +86,7 @@ class NbxButton extends StatelessWidget {
   }
 
   Widget _buildButtonWidget(BuildContext context) {
-    final bool shouldDisable = isLoading || isDisabled;
+    final bool shouldDisable = isLoading || !enabled;
 
     switch (variant) {
       case ButtonVariant.filled:
@@ -138,7 +138,7 @@ class NbxButton extends StatelessWidget {
       );
     }
 
-    final bool shouldDisable = isLoading || isDisabled;
+    final bool shouldDisable = isLoading || !enabled;
     final NebuxColors colors = context.nebuxColors;
     final Color disabledColor = colors.disabled;
 
@@ -196,7 +196,7 @@ class NbxButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadiusValue),
     );
 
-    final bool shouldDisable = isLoading || isDisabled;
+    final bool shouldDisable = isLoading || !enabled;
 
     switch (variant) {
       case ButtonVariant.filled:
