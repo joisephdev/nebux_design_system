@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const double defaultPaddingSize = 16;
 
+const SizedBox heightSpaceDefault = SizedBox(height: defaultPaddingSize);
 const SizedBox heightSpace2 = SizedBox(height: 2);
 const SizedBox heightSpace4 = SizedBox(height: 4);
 const SizedBox heightSpace6 = SizedBox(height: 6);
@@ -23,6 +24,7 @@ const SizedBox heightSpace80 = SizedBox(height: 80);
 const SizedBox heightSpace100 = SizedBox(height: 100);
 const SizedBox heightSpace200 = SizedBox(height: 200);
 
+const SizedBox widthSpaceDefault = SizedBox(width: defaultPaddingSize);
 const SizedBox widthSpace2 = SizedBox(width: 2);
 const SizedBox widthSpace4 = SizedBox(width: 4);
 const SizedBox widthSpace6 = SizedBox(width: 6);

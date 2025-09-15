@@ -68,7 +68,9 @@ class NbxScaffold extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor ?? context.nebuxColors.background,
-      appBar: _hasAppBar ? NbxAppBar(appBarConfig: appBarConfig!) : appBar,
+      appBar:
+          appBar ??
+          (_hasAppBar ? NbxAppBar(appBarConfig: appBarConfig!) : null),
       resizeToAvoidBottomInset: bodyConfig?.resizeToAvoidBottomInset ?? false,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,

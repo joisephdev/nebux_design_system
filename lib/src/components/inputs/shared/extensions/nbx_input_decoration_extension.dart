@@ -39,7 +39,7 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       floatingLabelStyle: _nbxTheme.typography.label.copyWith(
         color: _nbxTheme.colors.textSecondary,
       ),
-      hintStyle: _nbxTheme.typography.label.copyWith(
+      hintStyle: _nbxTheme.typography.content.copyWith(
         color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
       ),
       errorStyle: _nbxTheme.typography.caption.copyWith(
