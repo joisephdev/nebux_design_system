@@ -1,3 +1,9 @@
+## 0.0.10
+
+- **ENHANCEMENT**: Added `isSelected` property to `NbxButton` to indicate selection state with corresponding background/foreground style updates
+- **REFACTOR**: Simplified `NbxButton` variant rendering by replacing if-else with switch-case and consolidating text style application
+- **CHORE**: Commented out `repository` and `issue_tracker` fields in `pubspec.yaml` for cleaner configuration
+
 ## 0.0.9
 
 - **NEW FEATURE**: Added comprehensive country picker functionality with `NbxCountryPickerInput` component
