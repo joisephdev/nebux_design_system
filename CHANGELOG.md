@@ -1,3 +1,16 @@
+## 0.0.9
+
+- **NEW FEATURE**: Added comprehensive country picker functionality with `NbxCountryPickerInput` component
+- **NEW FEATURE**: Integrated country_picker_pro2 with full internationalization support (25+ languages)
+- **ENHANCEMENT**: Added customizable phone code display option in country picker input
+- **ENHANCEMENT**: Improved button component with renamed `isDisabled` to `enabled` for better clarity
+- **ENHANCEMENT**: Enhanced input styling with improved hint text consistency
+- **ENHANCEMENT**: Added flexible appBar support in NbxScaffold (now supports null appBar)
+- **ENHANCEMENT**: Added default SizedBox constants for standardized spacing
+- **IMPROVEMENT**: Refactored country selection logic with context-based theming
+- **IMPROVEMENT**: Updated export structure to include new country picker components
+- **DEPENDENCY**: Replaced country_picker_pro with collection dependency for better performance
+
 ## 0.0.8
 
 - **BREAKING CHANGE**: Refactored button variants for better clarity - renamed 'primary' to 'filled' and 'secondary' to 'text'
