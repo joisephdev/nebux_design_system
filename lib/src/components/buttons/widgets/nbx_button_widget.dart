@@ -57,6 +57,9 @@ class NbxButton extends StatelessWidget {
   /// The color of the button.
   final Color? customBackgroundColor;
 
+  /// Whether the button is selected.
+  final bool isSelected;
+
   const NbxButton({
     super.key,
     required this.text,
@@ -72,6 +75,7 @@ class NbxButton extends StatelessWidget {
     this.iconColor,
     this.trailingIconColor,
     this.customBackgroundColor,
+    this.isSelected = false,
   });
 
   @override
@@ -102,16 +106,6 @@ class NbxButton extends StatelessWidget {
           child: _buildButtonContent(context),
         );
       case ButtonVariant.text:
-        /* return InkWell(
-          onTap: shouldDisable ? null : onPressed,
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: context.nebuxTheme.typography.caption.copyWith(
-              decoration: TextDecoration.underline,
-            ),
-          ),
-        ); */
         return TextButton(
           onPressed: shouldDisable ? null : onPressed,
           style: _getButtonStyle(context),
@@ -190,7 +184,7 @@ class NbxButton extends StatelessWidget {
   }
 
   ButtonStyle _getButtonStyle(BuildContext context) {
-    final colors = context.nebuxColors;
+    final NebuxColors colors = context.nebuxColors;
     final double borderRadiusValue = borderRadius ?? 8;
     final RoundedRectangleBorder shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(borderRadiusValue),
@@ -221,15 +215,17 @@ class NbxButton extends StatelessWidget {
       case ButtonVariant.outline:
         return OutlinedButton.styleFrom(
           shape: shape,
-          backgroundColor: Colors.transparent,
+          backgroundColor: isSelected ? colors.primary : Colors.white,
           foregroundColor: shouldDisable
               ? colors.textSecondary.withValues(alpha: 0.5)
-              : colors.textPrimary,
+              : isSelected
+              ? Colors.white
+              : colors.actionPrimary,
           side: BorderSide(
             color: shouldDisable
                 ? colors.textSecondary.withValues(alpha: 0.3)
                 : colors.textSecondary,
-            width: 1,
+            width: .2,
           ),
         );
       case ButtonVariant.danger:
