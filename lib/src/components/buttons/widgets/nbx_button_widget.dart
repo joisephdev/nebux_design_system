@@ -146,23 +146,35 @@ class NbxButton extends StatelessWidget {
       children.add(widthSpace8);
     }
 
-    if (variant == ButtonVariant.text) {
-      children.add(
-        Text(
-          text,
-          style: (textStyle ?? context.nebuxTheme.typography.content).copyWith(
-            color: shouldDisable ? disabledColor : null,
+    switch (variant) {
+      case ButtonVariant.text:
+        children.add(
+          Text(
+            text,
+            style: (textStyle ?? context.nebuxTheme.typography.content)
+                .copyWith(color: shouldDisable ? disabledColor : null),
           ),
-        ),
-      );
-    } else {
-      children.add(
-        Text(
-          text,
-          style: (textStyle ?? context.nebuxTheme.typography.secondaryAction)
-              .copyWith(color: shouldDisable ? disabledColor : null),
-        ),
-      );
+        );
+        break;
+      case ButtonVariant.outline:
+        children.add(
+          Text(
+            text,
+            style: (textStyle ?? context.nebuxTheme.typography.content)
+                .copyWith(color: shouldDisable ? disabledColor : null),
+          ),
+        );
+        break;
+      case ButtonVariant.filled:
+      case ButtonVariant.danger:
+        children.add(
+          Text(
+            text,
+            style: (textStyle ?? context.nebuxTheme.typography.secondaryAction)
+                .copyWith(color: shouldDisable ? disabledColor : null),
+          ),
+        );
+        break;
     }
 
     if (trailingIcon != null) {
