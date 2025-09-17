@@ -12,6 +12,7 @@
 - **Complete Theme System** - Light and dark mode support with customizable color schemes
 - **Advanced Typography** - Google Fonts integration with consistent text styles and scales
 - **Smart Components** - 15+ production-ready UI components with multiple variants
+- **Country Picker Integration** - Built-in country selection with internationalization support (25+ languages)
 - **Spacing System** - Standardized spacing utilities and responsive design support
 - **Color Management** - Comprehensive color system with gradients and semantic naming
 - **Developer Experience** - Type-safe APIs, extensive documentation, and Flutter extensions
@@ -464,6 +465,24 @@ NbxNetworkImage(
 )
 ```
 
+### Country Picker
+
+The Nebux Design System includes a custom implementation of country picker functionality based on the [country_picker_pro](https://pub.dev/packages/country_picker_pro) package. This integration provides:
+
+- **Internationalization Support** - 25+ languages supported
+- **Customizable UI** - Fully themed to match your app's design system
+- **Phone Code Display** - Optional phone code display for each country
+- **Search Functionality** - Built-in search with alphabetical navigation
+- **Preferred Countries** - Display frequently used countries at the top
+- **Responsive Design** - Works seamlessly across all screen sizes
+
+The country picker is implemented as a fork of the original `country_picker_pro` package, enhanced with:
+
+- Better integration with the Nebux theme system
+- Improved accessibility features
+- Enhanced customization options
+- Consistent styling with other Nebux components
+
 ## 🔧 Extensions
 
 ### Widget Extensions
@@ -676,6 +695,7 @@ Column(children: [Text('First'), SizedBox(height: 16), Text('Second')])
 - **NbxButton** - Versatile button component with multiple variants
 - **NbxSocialLoginButton** - Social login buttons
 - **NbxTextFieldWidget** - Advanced text field component
+- **NbxCountryPickerInput** - Country selection input with integrated picker
 - **NbxScaffold** - Enhanced scaffold with built-in functionality
 - **NbxNetworkImage** - Network image with loading states
 

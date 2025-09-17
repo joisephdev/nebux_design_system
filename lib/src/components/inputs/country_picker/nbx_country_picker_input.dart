@@ -75,7 +75,7 @@ class NbxCountryPickerInput extends StatelessWidget {
   }
 
   void _openCountryPicker(BuildContext context) {
-    CountrySelector(
+    countrySelector(
       context: context,
       countryPreferred: <String>['US'],
       showPhoneCode: showPhoneCode,

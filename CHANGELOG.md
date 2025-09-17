@@ -4,10 +4,23 @@
 - **REFACTOR**: Simplified `NbxButton` variant rendering by replacing if-else with switch-case and consolidating text style application
 - **CHORE**: Commented out `repository` and `issue_tracker` fields in `pubspec.yaml` for cleaner configuration
 
+## Country Picker Integration
+
+The Nebux Design System includes a custom implementation of country picker functionality based on the [country_picker_pro](https://pub.dev/packages/country_picker_pro) package. This integration provides:
+
+- **Custom Implementation**: Fork of the original `country_picker_pro` package with enhanced Nebux theming
+- **Internationalization**: Full support for 25+ languages
+- **Theme Integration**: Seamless integration with Nebux color and typography systems
+- **Enhanced Customization**: Improved accessibility and styling options
+- **Consistent UX**: Matches the design patterns of other Nebux components
+
+The country picker functionality is available through the `NbxCountryPickerInput` component and can be used for country selection in forms, user registration, and profile management.
+
 ## 0.0.9
 
 - **NEW FEATURE**: Added comprehensive country picker functionality with `NbxCountryPickerInput` component
-- **NEW FEATURE**: Integrated country_picker_pro2 with full internationalization support (25+ languages)
+- **NEW FEATURE**: Integrated custom country picker implementation based on [country_picker_pro](https://pub.dev/packages/country_picker_pro) package
+- **NEW FEATURE**: Full internationalization support (25+ languages) for country selection
 - **ENHANCEMENT**: Added customizable phone code display option in country picker input
 - **ENHANCEMENT**: Improved button component with renamed `isDisabled` to `enabled` for better clarity
 - **ENHANCEMENT**: Enhanced input styling with improved hint text consistency
@@ -15,7 +28,7 @@
 - **ENHANCEMENT**: Added default SizedBox constants for standardized spacing
 - **IMPROVEMENT**: Refactored country selection logic with context-based theming
 - **IMPROVEMENT**: Updated export structure to include new country picker components
-- **DEPENDENCY**: Replaced country_picker_pro with collection dependency for better performance
+- **DEPENDENCY**: Replaced external country_picker_pro dependency with custom implementation for better integration
 
 ## 0.0.8
 

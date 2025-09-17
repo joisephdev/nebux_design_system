@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../country.dart';
-import '../view/country_view.dart';
 import '../view/country_list_view.dart';
+import '../view/country_view.dart';
+
 export '../country.dart';
-export '../view/country_list_view.dart' show CustomFlagBuilder;
-export '../country_localizations.dart';
 export '../country_decoder.dart';
+export '../country_localizations.dart';
+export '../view/country_list_view.dart' show CustomFlagBuilder;
 export 'country_provider.dart';
 
 /// Enum representing the type of list to display.
@@ -37,7 +38,7 @@ extension StringExtensions on String {
 }
 
 /// Function to display a country selector widget.
-void CountrySelector({
+void countrySelector({
   required BuildContext context,
   required ValueChanged<Country> onSelect,
   ViewType? viewType = ViewType.screen,

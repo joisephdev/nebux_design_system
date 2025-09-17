@@ -73,7 +73,7 @@ class MainPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            CountrySelector(
+            countrySelector(
                 context: context,
                 viewType: ViewType.screen,
                 countryPreferred: <String>['US'],
