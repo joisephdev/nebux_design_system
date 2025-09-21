@@ -1,3 +1,13 @@
+## 0.0.11
+
+- **REFACTOR**: Enhanced `NbxButton` rendering logic with improved clarity and modularity
+  - Introduced dedicated `_buildTextWidget` method to handle text rendering based on button variant
+  - Simplified button child widget construction by consolidating text and icon handling
+  - Enhanced readability and maintainability of the `NbxButton` component
+  - Added proper text overflow handling with `TextOverflow.fade` and `maxLines: 2`
+  - Improved text alignment and spacing with `CrossAxisAlignment.center` and `TextAlign.center`
+  - Added `Flexible` wrapper for better text layout flexibility
+
 ## 0.0.10
 
 - **ENHANCEMENT**: Added `isSelected` property to `NbxButton` to indicate selection state with corresponding background/foreground style updates
