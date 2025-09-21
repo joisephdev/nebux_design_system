@@ -138,6 +138,7 @@ class NbxButton extends StatelessWidget {
 
     final List<Widget> children = <Widget>[];
 
+    // Build the leading icon widget
     if (icon != null) {
       children.add(
         Icon(icon, size: 18, color: shouldDisable ? disabledColor : iconColor),
@@ -146,37 +147,10 @@ class NbxButton extends StatelessWidget {
       children.add(widthSpace8);
     }
 
-    switch (variant) {
-      case ButtonVariant.text:
-        children.add(
-          Text(
-            text,
-            style: (textStyle ?? context.nebuxTheme.typography.content)
-                .copyWith(color: shouldDisable ? disabledColor : null),
-          ),
-        );
-        break;
-      case ButtonVariant.outline:
-        children.add(
-          Text(
-            text,
-            style: (textStyle ?? context.nebuxTheme.typography.content)
-                .copyWith(color: shouldDisable ? disabledColor : null),
-          ),
-        );
-        break;
-      case ButtonVariant.filled:
-      case ButtonVariant.danger:
-        children.add(
-          Text(
-            text,
-            style: (textStyle ?? context.nebuxTheme.typography.secondaryAction)
-                .copyWith(color: shouldDisable ? disabledColor : null),
-          ),
-        );
-        break;
-    }
+    // Build the text widget
+    children.add(_buildTextWidget(context, shouldDisable, disabledColor));
 
+    // Build the trailing icon widget
     if (trailingIcon != null) {
       children.add(widthSpace8);
       children.add(
@@ -190,9 +164,55 @@ class NbxButton extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: children,
     );
+  }
+
+  /// Builds the text widget for the button.
+  ///
+  /// @param context: The build context [BuildContext]
+  /// @param shouldDisable: Whether the button is disabled [bool]
+  /// @param disabledColor: The color of the disabled text [Color]
+  /// @returns: [Widget]
+  Widget _buildTextWidget(
+    BuildContext context,
+    bool shouldDisable,
+    Color disabledColor,
+  ) {
+    Widget baseTextWidget(TextStyle style) => Flexible(
+      child: Text(
+        text,
+        maxLines: 2,
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.fade,
+        softWrap: true,
+        style: style,
+      ).nbxPaddingOnly(top: 3),
+    );
+
+    switch (variant) {
+      case ButtonVariant.text:
+        return baseTextWidget(
+          (textStyle ?? context.nebuxTheme.typography.content).copyWith(
+            color: shouldDisable ? disabledColor : null,
+          ),
+        );
+      case ButtonVariant.outline:
+        return baseTextWidget(
+          (textStyle ?? context.nebuxTheme.typography.content).copyWith(
+            color: shouldDisable ? disabledColor : null,
+          ),
+        );
+      case ButtonVariant.filled:
+      case ButtonVariant.danger:
+        return baseTextWidget(
+          (textStyle ?? context.nebuxTheme.typography.secondaryAction).copyWith(
+            color: shouldDisable ? disabledColor : null,
+          ),
+        );
+    }
   }
 
   ButtonStyle _getButtonStyle(BuildContext context) {
