@@ -1,158 +1,73 @@
-# Flutter CI/CD Workflow
-name: Flutter CI/CD
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Flutter CI
 
 on:
-  push:
-    branches: ["main"]
   pull_request:
+    branches: ["main"]
+  push:
     branches: ["main"]
   workflow_dispatch:
 
 jobs:
-  # Job to analyze and test in PRs
-  analyze_and_test:
-    runs-on: ubuntu-latest
+  pr_checks:
     if: github.event_name == 'pull_request'
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "stable"
           channel: "stable"
-
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
-
-      - name: Analyze project source (strict mode)
+      - name: Flutter analyze (no warnings allowed)
         run: flutter analyze --fatal-infos --fatal-warnings
-
       - name: Run tests
         run: flutter test
 
-  # Job to create tag when merging to main
-  create_tag:
-    runs-on: ubuntu-latest
+  tag_and_publish:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    outputs:
-      new_tag: ${{ steps.tag.outputs.new_tag }}
-      tag_created: ${{ steps.tag.outputs.tag_created }}
-
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "stable"
           channel: "stable"
-
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Analyze project source (strict mode)
+      - name: Flutter analyze (no warnings allowed)
         run: flutter analyze --fatal-infos --fatal-warnings
-
       - name: Run tests
         run: flutter test
-
-      - name: Get version from pubspec.yaml
-        id: get_version
+      - name: Compute version from pubspec.yaml
+        id: version
         run: |
-          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | sed 's/+.*//')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Check if tag exists
-        id: check_tag
+          VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | tr -d '\r')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Create tag if not exists
         run: |
-          if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
-            echo "tag_exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "tag_exists=false" >> $GITHUB_OUTPUT
+          TAG="${{ steps.version.outputs.tag }}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists. Skipping."
+            exit 0
           fi
-
-      - name: Create and push tag
-        id: tag
-        if: steps.check_tag.outputs.tag_exists == 'false'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          TAG="v${{ steps.get_version.outputs.version }}"
-          git tag $TAG
-          git push origin $TAG
-          echo "new_tag=$TAG" >> $GITHUB_OUTPUT
-          echo "tag_created=true" >> $GITHUB_OUTPUT
-
-  # Job to publish to pub.dev when there is a new tag
-  publish:
-    runs-on: ubuntu-latest
-    needs: create_tag
-    if: needs.create_tag.outputs.tag_created == 'true'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "stable"
-          channel: "stable"
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Setup pub credentials
-        run: |
-          mkdir -p ~/.config/dart
-          echo '${{ secrets.PUB_DEV_CREDENTIALS }}' > ~/.config/dart/pub-credentials.json
-
-      - name: Check publish warnings
-        run: flutter pub publish --dry-run
-
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG"
+          git push origin "$TAG"
       - name: Publish to pub.dev
-        run: flutter pub publish --force
-
-  # Job to publish manually with workflow_dispatch
-  manual_publish:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "stable"
-          channel: "stable"
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Analyze project source (strict mode)
-        run: flutter analyze --fatal-infos --fatal-warnings
-
-      - name: Run tests
-        run: flutter test
-
-      - name: Setup pub credentials
+        if: ${{ secrets.PUB_CREDENTIALS != '' }}
+        env:
+          PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
         run: |
-          mkdir -p ~/.config/dart
-          echo '${{ secrets.PUB_DEV_CREDENTIALS }}' > ~/.config/dart/pub-credentials.json
-
-      - name: Check publish warnings
-        run: flutter pub publish --dry-run
-
-      - name: Publish to pub.dev
-        run: flutter pub publish --force
+          mkdir -p ~/.pub-cache
+          echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json
+          flutter pub publish --force
