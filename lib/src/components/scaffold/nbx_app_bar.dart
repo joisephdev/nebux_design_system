@@ -19,7 +19,9 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: _buildTitle(context),
       elevation: 0,
-      titleSpacing: 0,
+      titleSpacing: appBarConfig.leadingButton == null
+          ? NavigationToolbar.kMiddleSpacing
+          : 0,
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: true,
       forceMaterialTransparency: true,
@@ -32,10 +34,8 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarIconBrightness: isDarkMode
             ? Brightness.dark
-            : Brightness.light, // For Android (dark icons)
-        statusBarBrightness: isDarkMode
-            ? Brightness.dark
-            : Brightness.light, // For iOS (dark icons)
+            : Brightness.light,
+        statusBarBrightness: isDarkMode ? Brightness.dark : Brightness.light,
       ),
     );
   }
