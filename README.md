@@ -25,7 +25,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  nebux_design_system: ^0.0.8
+  nebux_design_system: ^0.0.12
 ```
 
 Then run:
@@ -34,36 +34,71 @@ Then run:
 flutter pub get
 ```
 
-## ⚠️ Breaking Changes in v0.0.8
+## ⚠️ Breaking Changes in v0.0.12
 
-### Button Variant Changes
+### NbxButton Architecture Refactor
 
-The button variants have been renamed for better clarity:
+The `NbxButton` component has been completely refactored with a new configuration-based architecture for improved modularity and maintainability:
 
-| Old Variant               | New Variant            | Description             |
-| ------------------------- | ---------------------- | ----------------------- |
-| `ButtonVariant.primary`   | `ButtonVariant.filled` | Solid background button |
-| `ButtonVariant.secondary` | `ButtonVariant.text`   | Text-only button        |
+#### New Configuration Classes
 
-### Migration Guide
+- **`ButtonIconConfig`**: Manages icon properties (leading/trailing icons and colors)
+- **`ButtonStyleConfig`**: Handles visual styling (variant, colors, border radius, text style)
+- **`ButtonStateConfig`**: Controls state management (loading, enabled, selected)
+- **`ButtonLayoutConfig`**: Manages layout properties (expansion behavior)
 
-Update your existing code:
+#### Migration Guide
+
+**Option 1: Use Legacy Constructor (Recommended for existing code)**
 
 ```dart
-// Before (v0.0.7 and earlier)
-NbxButton(
+// Existing code continues to work with .legacy() constructor
+NbxButton.legacy(
   text: 'Save',
   onPressed: () {},
-  variant: ButtonVariant.primary,  // ❌ Old
-)
-
-// After (v0.0.8+)
-NbxButton(
-  text: 'Save',
-  onPressed: () {},
-  variant: ButtonVariant.filled,   // ✅ New
+  isLoading: true,
+  enabled: false,
+  variant: ButtonVariant.filled,
+  icon: Icons.save,
+  iconColor: Colors.white,
 )
 ```
+
+**Option 2: Migrate to New Configuration Architecture**
+
+```dart
+// New configuration-based approach (recommended for new code)
+NbxButton(
+  text: 'Save',
+  onPressed: () {},
+  iconConfig: ButtonIconConfig(
+    icon: Icons.save,
+    iconColor: Colors.white,
+  ),
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+    customBackgroundColor: Colors.blue,
+    borderRadius: 12.0,
+  ),
+  stateConfig: ButtonStateConfig(
+    isLoading: true,
+    enabled: false,
+    isSelected: false,
+  ),
+  layoutConfig: ButtonLayoutConfig(
+    isExpanded: true,
+  ),
+)
+```
+
+### Benefits of New Architecture
+
+- **📦 Modularity**: Each configuration has a specific responsibility
+- **🔄 Reusability**: Configurations can be reused across different buttons
+- **🧪 Testability**: Each configuration can be tested independently
+- **🛠️ Maintainability**: Changes in one group don't affect others
+- **📐 Consistency**: Cleaner API with better organization
+- **🔙 Compatibility**: Legacy constructor maintains backward compatibility
 
 ## 🏃‍♂️ Quick Start
 
@@ -122,7 +157,9 @@ class MyHomePage extends StatelessWidget {
           NbxButton(
             text: 'Get Started',
             onPressed: () => print('Button pressed'),
-            variant: ButtonVariant.filled,
+            styleConfig: ButtonStyleConfig(
+              variant: ButtonVariant.filled,
+            ),
           ),
           heightSpace12,
           NbxTextFieldWidget(
@@ -247,73 +284,223 @@ final theme = NebuxTheme.custom(
 );
 ```
 
+## 🏗️ NbxButton Architecture
+
+The new `NbxButton` component follows a configuration-based architecture that separates concerns for better maintainability:
+
+```
+NbxButton
+├── Core Properties
+│   ├── text: String
+│   └── onPressed: VoidCallback?
+├── ButtonIconConfig
+│   ├── icon: IconData?
+│   ├── iconColor: Color?
+│   ├── trailingIcon: IconData?
+│   └── trailingIconColor: Color?
+├── ButtonStyleConfig
+│   ├── variant: ButtonVariant
+│   ├── customBackgroundColor: Color?
+│   ├── borderRadius: double?
+│   └── textStyle: TextStyle?
+├── ButtonStateConfig
+│   ├── isLoading: bool
+│   ├── enabled: bool
+│   └── isSelected: bool
+└── ButtonLayoutConfig
+    └── isExpanded: bool
+```
+
+### Benefits
+
+- **Separation of Concerns**: Each configuration handles a specific aspect
+- **Reusability**: Configurations can be reused across different buttons
+- **Testability**: Each configuration can be tested independently
+- **Maintainability**: Changes in one area don't affect others
+- **Type Safety**: Strong typing prevents configuration errors
+- **Backward Compatibility**: Legacy constructor maintains existing code
+
 ## 🧩 Components
 
 ### Buttons
 
 #### NbxButton
 
-A versatile button component with multiple variants and states:
+A versatile button component with a new configuration-based architecture for improved modularity and maintainability:
 
 ```dart
-// Filled button (formerly primary)
+// Basic filled button
 NbxButton(
   text: 'Filled Action',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.filled,
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+  ),
 )
 
-// Text button (formerly secondary)
+// Text button
 NbxButton(
   text: 'Text Action',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.text,
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.text,
+  ),
 )
 
 // Outline button
 NbxButton(
   text: 'Outline Action',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.outline,
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.outline,
+  ),
 )
 
 // Danger button
 NbxButton(
   text: 'Delete',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.danger,
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.danger,
+  ),
 )
 
-// Button with icon
+// Button with icon configuration
 NbxButton(
   text: 'Save',
-  icon: Icons.save,
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.filled,
+  iconConfig: ButtonIconConfig(
+    icon: Icons.save,
+    iconColor: Colors.white,
+  ),
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+  ),
 )
 
-// Loading state
+// Button with loading state
 NbxButton(
   text: 'Loading...',
   onPressed: () => print('Pressed'),
-  isLoading: true,
-  variant: ButtonVariant.filled,
+  stateConfig: ButtonStateConfig(
+    isLoading: true,
+  ),
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+  ),
 )
 
-// Button with custom background color
+// Button with custom styling
 NbxButton(
-  text: 'Custom Color',
+  text: 'Custom Style',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.filled,
-  customBackgroundColor: Colors.purple,
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+    customBackgroundColor: Colors.purple,
+    borderRadius: 16.0,
+    textStyle: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
 )
 
-// Button with custom background color and text variant
+// Button with trailing icon
 NbxButton(
-  text: 'Custom Text Color',
+  text: 'Next',
   onPressed: () => print('Pressed'),
-  variant: ButtonVariant.text,
-  customBackgroundColor: Colors.blue.withOpacity(0.1),
+  iconConfig: ButtonIconConfig(
+    trailingIcon: Icons.arrow_forward,
+    trailingIconColor: Colors.white,
+  ),
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+  ),
+)
+
+// Complex button with all configurations
+NbxButton(
+  text: 'Complete Example',
+  onPressed: () => print('Pressed'),
+  iconConfig: ButtonIconConfig(
+    icon: Icons.star,
+    iconColor: Colors.yellow,
+    trailingIcon: Icons.arrow_forward,
+    trailingIconColor: Colors.white,
+  ),
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+    customBackgroundColor: Colors.blue,
+    borderRadius: 20.0,
+    textStyle: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+    ),
+  ),
+  stateConfig: ButtonStateConfig(
+    isLoading: false,
+    enabled: true,
+    isSelected: false,
+  ),
+  layoutConfig: ButtonLayoutConfig(
+    isExpanded: true,
+  ),
+)
+
+// Legacy constructor for backward compatibility
+NbxButton.legacy(
+  text: 'Legacy Button',
+  onPressed: () => print('Pressed'),
+  isLoading: false,
+  enabled: true,
+  variant: ButtonVariant.filled,
+  icon: Icons.home,
+  iconColor: Colors.white,
+  customBackgroundColor: Colors.green,
+  borderRadius: 8.0,
+  isExpanded: true,
+)
+```
+
+#### Configuration Classes
+
+**ButtonIconConfig**
+
+```dart
+ButtonIconConfig(
+  icon: Icons.save,                    // Leading icon
+  iconColor: Colors.white,            // Leading icon color
+  trailingIcon: Icons.arrow_forward,   // Trailing icon
+  trailingIconColor: Colors.white,    // Trailing icon color
+)
+```
+
+**ButtonStyleConfig**
+
+```dart
+ButtonStyleConfig(
+  variant: ButtonVariant.filled,      // Button variant
+  customBackgroundColor: Colors.blue, // Custom background color
+  borderRadius: 12.0,                // Custom border radius
+  textStyle: TextStyle(fontSize: 16), // Custom text style
+)
+```
+
+**ButtonStateConfig**
+
+```dart
+ButtonStateConfig(
+  isLoading: false,    // Show loading indicator
+  enabled: true,       // Button enabled state
+  isSelected: false,   // Button selected state
+)
+```
+
+**ButtonLayoutConfig**
+
+```dart
+ButtonLayoutConfig(
+  isExpanded: true,    // Expand to fill available width
 )
 ```
 
@@ -649,6 +836,15 @@ Use the provided components instead of building custom ones:
 NbxButton(
   text: 'Save',
   onPressed: () {},
+  styleConfig: ButtonStyleConfig(
+    variant: ButtonVariant.filled,
+  ),
+)
+
+// ✅ Good - Legacy constructor
+NbxButton.legacy(
+  text: 'Save',
+  onPressed: () {},
   variant: ButtonVariant.filled,
 )
 
@@ -692,7 +888,7 @@ Column(children: [Text('First'), SizedBox(height: 16), Text('Second')])
 
 ### Components
 
-- **NbxButton** - Versatile button component with multiple variants
+- **NbxButton** - Versatile button component with configuration-based architecture
 - **NbxSocialLoginButton** - Social login buttons
 - **NbxTextFieldWidget** - Advanced text field component
 - **NbxCountryPickerInput** - Country selection input with integrated picker
@@ -717,11 +913,25 @@ testWidgets('NbxButton should display correctly', (tester) async {
       home: NbxButton(
         text: 'Test Button',
         onPressed: () {},
+        styleConfig: ButtonStyleConfig(
+          variant: ButtonVariant.filled,
+        ),
       ),
     ),
   );
 
   expect(find.text('Test Button'), findsOneWidget);
+});
+
+// Configuration testing
+testWidgets('ButtonIconConfig should work correctly', (tester) async {
+  final iconConfig = ButtonIconConfig(
+    icon: Icons.save,
+    iconColor: Colors.white,
+  );
+
+  expect(iconConfig.icon, Icons.save);
+  expect(iconConfig.iconColor, Colors.white);
 });
 
 // Theme testing

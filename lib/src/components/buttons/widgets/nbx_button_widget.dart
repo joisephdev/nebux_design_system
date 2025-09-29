@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
+import '../config/export.dart';
+
 /// Enum defining the different button variants.
 enum ButtonVariant {
   /// Filled button with filled background.
@@ -24,65 +26,95 @@ class NbxButton extends StatelessWidget {
   /// Callback function called when the button is pressed.
   final VoidCallback? onPressed;
 
-  /// Whether to show a loading indicator instead of text.
-  final bool isLoading;
+  /// Configuration for button icons.
+  final ButtonIconConfig iconConfig;
 
-  /// Whether the button is enabled.
-  final bool enabled;
+  /// Configuration for button styling.
+  final ButtonStyleConfig styleConfig;
 
-  /// The visual variant of the button.
-  final ButtonVariant variant;
+  /// Configuration for button state.
+  final ButtonStateConfig stateConfig;
 
-  /// Whether the button should expand to fill available width.
-  final bool isExpanded;
+  /// Configuration for button layout.
+  final ButtonLayoutConfig layoutConfig;
 
-  /// Custom border radius for the button.
-  final double? borderRadius;
-
-  /// Custom text style for the button.
-  final TextStyle? textStyle;
-
-  /// Icon to display before the text.
-  final IconData? icon;
-
-  /// The color of the button.
-  final Color? iconColor;
-
-  /// Icon to display after the text.
-  final IconData? trailingIcon;
-
-  /// The color of the trailing icon.
-  final Color? trailingIconColor;
-
-  /// The color of the button.
-  final Color? customBackgroundColor;
-
-  /// Whether the button is selected.
-  final bool isSelected;
-
+  /// Creates a [NbxButton] with the specified properties.
+  ///
+  /// @param text: The text to display on the button [String]
+  /// @param onPressed: Callback function called when the button is pressed [VoidCallback?]
+  /// @param iconConfig: Configuration for button icons [ButtonIconConfig]
+  /// @param styleConfig: Configuration for button styling [ButtonStyleConfig]
+  /// @param stateConfig: Configuration for button state [ButtonStateConfig]
+  /// @param layoutConfig: Configuration for button layout [ButtonLayoutConfig]
   const NbxButton({
     super.key,
     required this.text,
     required this.onPressed,
-    this.isLoading = false,
-    this.enabled = true,
-    this.isExpanded = true,
-    this.borderRadius,
-    this.textStyle,
-    this.icon,
-    this.trailingIcon,
-    this.variant = ButtonVariant.filled,
-    this.iconColor,
-    this.trailingIconColor,
-    this.customBackgroundColor,
-    this.isSelected = false,
+    this.iconConfig = const ButtonIconConfig(),
+    this.styleConfig = const ButtonStyleConfig(),
+    this.stateConfig = const ButtonStateConfig(),
+    this.layoutConfig = const ButtonLayoutConfig(),
   });
+
+  /// Creates a [NbxButton] with backward compatibility for individual properties.
+  ///
+  /// This constructor maintains compatibility with the previous API while
+  /// internally using the new configuration classes.
+  ///
+  /// @param text: The text to display on the button [String]
+  /// @param onPressed: Callback function called when the button is pressed [VoidCallback?]
+  /// @param isLoading: Whether to show a loading indicator instead of text [bool]
+  /// @param enabled: Whether the button is enabled [bool]
+  /// @param isExpanded: Whether the button should expand to fill available width [bool]
+  /// @param borderRadius: Custom border radius for the button [double?]
+  /// @param textStyle: Custom text style for the button [TextStyle?]
+  /// @param icon: Icon to display before the text [IconData?]
+  /// @param trailingIcon: Icon to display after the text [IconData?]
+  /// @param variant: The visual variant of the button [ButtonVariant]
+  /// @param iconColor: The color of the leading icon [Color?]
+  /// @param trailingIconColor: The color of the trailing icon [Color?]
+  /// @param customBackgroundColor: Custom background color for the button [Color?]
+  /// @param isSelected: Whether the button is selected [bool]
+  NbxButton.legacy({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    bool isLoading = false,
+    bool enabled = true,
+    bool isExpanded = true,
+    double? borderRadius,
+    TextStyle? textStyle,
+    IconData? icon,
+    IconData? trailingIcon,
+    ButtonVariant variant = ButtonVariant.filled,
+    Color? iconColor,
+    Color? trailingIconColor,
+    Color? customBackgroundColor,
+    bool isSelected = false,
+  }) : iconConfig = ButtonIconConfig(
+         icon: icon,
+         iconColor: iconColor,
+         trailingIcon: trailingIcon,
+         trailingIconColor: trailingIconColor,
+       ),
+       styleConfig = ButtonStyleConfig(
+         variant: variant,
+         customBackgroundColor: customBackgroundColor,
+         borderRadius: borderRadius,
+         textStyle: textStyle,
+       ),
+       stateConfig = ButtonStateConfig(
+         isLoading: isLoading,
+         enabled: enabled,
+         isSelected: isSelected,
+       ),
+       layoutConfig = ButtonLayoutConfig(isExpanded: isExpanded);
 
   @override
   Widget build(BuildContext context) {
     final Widget buttonWidget = _buildButtonWidget(context);
 
-    if (isExpanded) {
+    if (layoutConfig.isExpanded) {
       return SizedBox(width: double.infinity, child: buttonWidget);
     }
 
@@ -90,9 +122,9 @@ class NbxButton extends StatelessWidget {
   }
 
   Widget _buildButtonWidget(BuildContext context) {
-    final bool shouldDisable = isLoading || !enabled;
+    final bool shouldDisable = stateConfig.isLoading || !stateConfig.enabled;
 
-    switch (variant) {
+    switch (styleConfig.variant) {
       case ButtonVariant.filled:
         return FilledButton(
           onPressed: shouldDisable ? null : onPressed,
@@ -121,7 +153,7 @@ class NbxButton extends StatelessWidget {
   }
 
   Widget _buildButtonContent(BuildContext context) {
-    if (isLoading) {
+    if (stateConfig.isLoading) {
       return const SizedBox(
         width: 20,
         height: 20,
@@ -132,16 +164,20 @@ class NbxButton extends StatelessWidget {
       );
     }
 
-    final bool shouldDisable = isLoading || !enabled;
+    final bool shouldDisable = stateConfig.isLoading || !stateConfig.enabled;
     final NebuxColors colors = context.nebuxColors;
     final Color disabledColor = colors.disabled;
 
     final List<Widget> children = <Widget>[];
 
     // Build the leading icon widget
-    if (icon != null) {
+    if (iconConfig.icon != null) {
       children.add(
-        Icon(icon, size: 18, color: shouldDisable ? disabledColor : iconColor),
+        Icon(
+          iconConfig.icon,
+          size: 18,
+          color: shouldDisable ? disabledColor : iconConfig.iconColor,
+        ),
       );
 
       children.add(widthSpace8);
@@ -151,13 +187,13 @@ class NbxButton extends StatelessWidget {
     children.add(_buildTextWidget(context, shouldDisable, disabledColor));
 
     // Build the trailing icon widget
-    if (trailingIcon != null) {
+    if (iconConfig.trailingIcon != null) {
       children.add(widthSpace8);
       children.add(
         Icon(
-          trailingIcon,
+          iconConfig.trailingIcon,
           size: 18,
-          color: shouldDisable ? disabledColor : trailingIconColor,
+          color: shouldDisable ? disabledColor : iconConfig.trailingIconColor,
         ),
       );
     }
@@ -192,46 +228,44 @@ class NbxButton extends StatelessWidget {
       ).nbxPaddingOnly(top: 3),
     );
 
-    switch (variant) {
+    switch (styleConfig.variant) {
       case ButtonVariant.text:
         return baseTextWidget(
-          (textStyle ?? context.nebuxTheme.typography.content).copyWith(
-            color: shouldDisable ? disabledColor : null,
-          ),
+          (styleConfig.textStyle ?? context.nebuxTheme.typography.content)
+              .copyWith(color: shouldDisable ? disabledColor : null),
         );
       case ButtonVariant.outline:
         return baseTextWidget(
-          (textStyle ?? context.nebuxTheme.typography.content).copyWith(
-            color: shouldDisable ? disabledColor : null,
-          ),
+          (styleConfig.textStyle ?? context.nebuxTheme.typography.content)
+              .copyWith(color: shouldDisable ? disabledColor : null),
         );
       case ButtonVariant.filled:
       case ButtonVariant.danger:
         return baseTextWidget(
-          (textStyle ?? context.nebuxTheme.typography.secondaryAction).copyWith(
-            color: shouldDisable ? disabledColor : null,
-          ),
+          (styleConfig.textStyle ??
+                  context.nebuxTheme.typography.secondaryAction)
+              .copyWith(color: shouldDisable ? disabledColor : null),
         );
     }
   }
 
   ButtonStyle _getButtonStyle(BuildContext context) {
     final NebuxColors colors = context.nebuxColors;
-    final double borderRadiusValue = borderRadius ?? 8;
+    final double borderRadiusValue = styleConfig.borderRadius ?? 8;
     final RoundedRectangleBorder shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(borderRadiusValue),
     );
 
-    final bool shouldDisable = isLoading || !enabled;
+    final bool shouldDisable = stateConfig.isLoading || !stateConfig.enabled;
 
-    switch (variant) {
+    switch (styleConfig.variant) {
       case ButtonVariant.filled:
         return FilledButton.styleFrom(
           shape: shape,
           elevation: 0,
           backgroundColor: shouldDisable
               ? colors.disabled
-              : customBackgroundColor ?? colors.actionPrimary,
+              : styleConfig.customBackgroundColor ?? colors.actionPrimary,
           foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
         );
       case ButtonVariant.text:
@@ -247,10 +281,12 @@ class NbxButton extends StatelessWidget {
       case ButtonVariant.outline:
         return OutlinedButton.styleFrom(
           shape: shape,
-          backgroundColor: isSelected ? colors.primary : Colors.white,
+          backgroundColor: stateConfig.isSelected
+              ? colors.primary
+              : Colors.white,
           foregroundColor: shouldDisable
               ? colors.textSecondary.withValues(alpha: 0.5)
-              : isSelected
+              : stateConfig.isSelected
               ? Colors.white
               : colors.actionPrimary,
           side: BorderSide(
