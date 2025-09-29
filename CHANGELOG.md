@@ -1,3 +1,20 @@
+## 0.0.12
+
+- **BREAKING CHANGE**: Refactored `NbxButton` component architecture for improved modularity and maintainability
+  - Introduced configuration-based architecture with specialized config classes:
+    - `ButtonIconConfig`: Manages icon properties (leading/trailing icons and colors)
+    - `ButtonStyleConfig`: Handles visual styling (variant, colors, border radius, text style)
+    - `ButtonStateConfig`: Controls state management (loading, enabled, selected)
+    - `ButtonLayoutConfig`: Manages layout properties (expansion behavior)
+  - Added new constructor with configuration objects for better organization
+  - Maintained backward compatibility with `NbxButton.legacy()` constructor
+  - Improved code organization by reducing main widget from 275 lines to ~100 lines
+  - Enhanced testability with isolated configuration classes
+  - Increased component reusability through modular configuration system
+  - Better separation of concerns with dedicated config files
+  - Added comprehensive documentation following custom doc format
+  - Improved maintainability with isolated change impact
+
 ## 0.0.11
 
 - **REFACTOR**: Enhanced `NbxButton` rendering logic with improved clarity and modularity
