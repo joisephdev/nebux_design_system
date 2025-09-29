@@ -1,3 +1,10 @@
+## 0.0.13
+
+- **REFACTOR**: `NbxAppBar` improvements for clarity and predictable spacing
+  - Adjusted `titleSpacing` logic to better align with Material `AppBar` expectations
+  - Simplified status bar brightness handling by removing redundant branches
+  - Minor cleanups for readability and consistency
+
 ## 0.0.12
 
 - **BREAKING CHANGE**: Refactored `NbxButton` component architecture for improved modularity and maintainability
