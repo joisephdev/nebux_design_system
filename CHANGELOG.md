@@ -1,3 +1,12 @@
+## 0.1.0 (2025-09-30)
+
+- **NEW FEATURE**: Enhanced Country model with `minLength` and `maxLength` properties for improved phone number validation
+  - Added `minLength` property to Country model for minimum phone number length validation
+  - Added `maxLength` property to Country model for maximum phone number length validation
+  - Updated country JSON data to include length validation information
+  - Improved country picker functionality with better phone number validation support
+  - Enhanced user experience with more accurate phone number input validation
+
 ## 0.0.13
 
 - **REFACTOR**: `NbxAppBar` improvements for clarity and predictable spacing
