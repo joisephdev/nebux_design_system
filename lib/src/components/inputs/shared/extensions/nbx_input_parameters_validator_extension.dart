@@ -31,7 +31,7 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
     }
 
     if (customValidator != null) {
-      final result = customValidator?.call(data, inputType);
+      final result = customValidator?.call(data);
       if (result != null && result.isNotEmpty) {
         return result;
       }

@@ -2,43 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
 class NbxCountryPickerInput extends StatelessWidget {
-  final bool isRequired;
-  final Widget prefixIcon;
-  final Widget suffixIcon;
-  final NbxInputType inputType;
-  final NbxFormType formType;
-  final String labelText;
-  final String hintText;
-  final String requiredErrorMessage;
-  final TextEditingController controller;
-  final void Function(Country) onSelect;
-  final bool showPhoneCode;
+  /// @param inputParameters: The input parameters [NbxCountryPickerParameters].
+  final NbxCountryPickerParameters inputParameters;
+
+  /// @param modal: The modal/list configuration parameters [NbxCountryPickerModalParameters].
+  final NbxCountryPickerModalParameters modal;
 
   /// Constructor for the [NbxCountryPickerInput] widget.
-  ///
-  /// @param formType: The form type for the input field [NbxFormType].
-  /// @param isRequired: Whether the input field is required [bool].
-  /// @param prefixIcon: The prefix icon for the input field [Widget].
-  /// @param suffixIcon: The suffix icon for the input field [Widget].
-  /// @param inputType: The type of input field from Nebux design system [NbxInputType].
-  /// @param controller: The text editing controller for the input field [TextEditingController].
-  /// @param labelText: The label text for the input field [String].
-  /// @param hintText: The hint text for the input field [String].
-  /// @param requiredErrorMessage: The required error message for the input field [String].
-  /// @param onSelect: The on select callback for the input field [void Function(Country)].
   const NbxCountryPickerInput({
     super.key,
-    required this.formType,
-    required this.isRequired,
-    required this.prefixIcon,
-    required this.suffixIcon,
-    required this.inputType,
-    required this.controller,
-    required this.labelText,
-    required this.hintText,
-    required this.requiredErrorMessage,
-    required this.onSelect,
-    this.showPhoneCode = true,
+    required this.inputParameters,
+    required this.modal,
   });
 
   /// Builds the country picker input widget.
@@ -52,22 +26,27 @@ class NbxCountryPickerInput extends StatelessWidget {
       NbxInputParameters(
         context: context,
         isReadOnly: true,
-        isRequired: isRequired,
-        inputType: inputType,
-        controller: controller,
         autoDisposeController: false,
-        formType: formType,
         forceShowSuffixIcon: true,
-        labelText: labelText,
-        hintText: hintText,
-        requiredErrorMessage: requiredErrorMessage,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.only(right: 8.0, left: 12),
-          child: prefixIcon,
-        ),
+        isRequired: inputParameters.isRequired,
+        inputType: inputParameters.inputType,
+        controller: inputParameters.controller,
+        formType: inputParameters.formType,
+        labelText: inputParameters.labelText,
+        hintText: inputParameters.hintText,
+        requiredErrorMessage: inputParameters.requiredErrorMessage,
+        prefixIcon: inputParameters.prefixIcon != null
+            ? Padding(
+                padding: const EdgeInsets.only(right: 8.0, left: 12),
+                child: inputParameters.prefixIcon,
+              )
+            : null,
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 8.0, left: 12),
-          child: suffixIcon,
+          child: Icon(
+            Icons.keyboard_arrow_down,
+            color: context.nebuxTheme.colors.primary,
+          ),
         ),
         onTap: () => _openCountryPicker(context),
       ),
@@ -75,37 +54,38 @@ class NbxCountryPickerInput extends StatelessWidget {
   }
 
   void _openCountryPicker(BuildContext context) {
+    final colors = context.nebuxTheme.colors;
     countrySelector(
       context: context,
-      countryPreferred: <String>['US'],
-      showPhoneCode: showPhoneCode,
-      appBarTitle: labelText,
-      onSelect: onSelect,
-      listType: ListType.list,
-      appBarBackgroundColour: context.nebuxTheme.colors.primary,
-      appBarFontSize: 20,
-      appBarFontStyle: FontStyle.normal,
-      appBarFontWeight: FontWeight.bold,
-      appBarTextColour: Colors.white,
-      appBarTextCenterAlign: true,
-      backgroundColour: Colors.white,
-      backIcon: Icons.arrow_back,
-      backIconColour: Colors.white,
-      countryFontStyle: FontStyle.normal,
-      countryFontWeight: FontWeight.bold,
-      countryTextColour: context.nebuxTheme.colors.secondary,
-      countryTitleSize: 16,
-      dividerColour: Colors.black12,
-      searchBarAutofocus: false,
-      searchBarIcon: Icons.search,
-      searchBarBackgroundColor: Colors.white,
-      searchBarBorderColor: context.nebuxTheme.colors.secondary,
-      searchBarBorderWidth: .5,
-      searchBarOuterBackgroundColor: Colors.white,
-      searchBarTextColor: context.nebuxTheme.colors.secondary,
-      searchBarHintColor: context.nebuxTheme.colors.secondary,
-      countryTheme: const CountryThemeData(appBarBorderRadius: 10),
-      showSearchBox: true,
+      countryPreferred: modal.preferredCountries,
+      showPhoneCode: modal.showPhoneCode,
+      appBarTitle: modal.appBarTitle,
+      onSelect: modal.onSelect,
+      listType: modal.listType,
+      appBarBackgroundColour: modal.appBarBackgroundColour ?? colors.primary,
+      appBarFontSize: modal.appBarFontSize,
+      appBarFontStyle: modal.appBarFontStyle,
+      appBarFontWeight: modal.appBarFontWeight,
+      appBarTextColour: modal.appBarTextColour,
+      appBarTextCenterAlign: modal.appBarTextCenterAlign,
+      backgroundColour: modal.backgroundColour,
+      backIcon: modal.backIcon,
+      backIconColour: modal.backIconColour,
+      countryFontStyle: modal.countryFontStyle,
+      countryFontWeight: modal.countryFontWeight,
+      countryTextColour: modal.countryTextColour ?? colors.secondary,
+      countryTitleSize: modal.countryTitleSize,
+      dividerColour: modal.dividerColour,
+      searchBarAutofocus: modal.searchBarAutofocus,
+      searchBarIcon: modal.searchBarIcon,
+      searchBarBackgroundColor: modal.searchBarBackgroundColor,
+      searchBarBorderColor: modal.searchBarBorderColor ?? colors.secondary,
+      searchBarBorderWidth: modal.searchBarBorderWidth,
+      searchBarOuterBackgroundColor: modal.searchBarOuterBackgroundColor,
+      searchBarTextColor: modal.searchBarTextColor ?? colors.secondary,
+      searchBarHintColor: modal.searchBarHintColor ?? colors.secondary,
+      countryTheme: modal.countryTheme,
+      showSearchBox: modal.showSearchBox,
     );
   }
 }

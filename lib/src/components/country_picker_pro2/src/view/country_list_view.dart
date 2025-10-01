@@ -446,7 +446,7 @@ class _CountryListViewState extends State<CountryListView> {
                       ),
                       const SizedBox(width: 5),
                     ] else
-                      const SizedBox(width: 15),
+                      const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         CountryLocalizations.of(context)

@@ -22,8 +22,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Afghan',
     'internet_tld': '.af',
     'flag_emoji': '🇦🇫',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '358',
@@ -48,8 +46,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ålandic',
     'internet_tld': '.ax',
     'flag_emoji': '🇦🇽',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '355',
@@ -74,8 +70,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Albanian',
     'internet_tld': '.al',
     'flag_emoji': '🇦🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '213',
@@ -100,8 +94,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Algerian',
     'internet_tld': '.dz',
     'flag_emoji': '🇩🇿',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '1',
@@ -126,8 +118,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'American Samoan',
     'internet_tld': '.as',
     'flag_emoji': '🇦🇸',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '376',
@@ -152,8 +142,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Andorran',
     'internet_tld': '.ad',
     'flag_emoji': '🇦🇩',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '244',
@@ -178,8 +166,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Angolan',
     'internet_tld': '.ao',
     'flag_emoji': '🇦🇴',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '1',
@@ -208,8 +194,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Anguillian',
     'internet_tld': '.ai',
     'flag_emoji': '🇦🇮',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '1',
@@ -238,8 +222,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Antiguan, Barbudan',
     'internet_tld': '.ag',
     'flag_emoji': '🇦🇬',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '54',
@@ -264,8 +246,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Argentine',
     'internet_tld': '.ar',
     'flag_emoji': '🇦🇷',
-    'min_length': 11,
-    'max_length': 11,
   },
   {
     'e164_cc': '374',
@@ -290,8 +270,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Armenian',
     'internet_tld': '.am',
     'flag_emoji': '🇦🇲',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '297',
@@ -316,8 +294,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Aruban',
     'internet_tld': '.aw',
     'flag_emoji': '🇦🇼',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '247',
@@ -342,8 +318,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ascension Islander',
     'internet_tld': '.ac',
     'flag_emoji': '🇦🇨',
-    'min_length': 0,
-    'max_length': 0,
   },
   {
     'e164_cc': '61',
@@ -368,8 +342,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Australian',
     'internet_tld': '.au',
     'flag_emoji': '🇦🇺',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '43',
@@ -394,8 +366,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Austrian',
     'internet_tld': '.at',
     'flag_emoji': '🇦🇹',
-    'min_length': 9,
-    'max_length': 13,
   },
   {
     'e164_cc': '994',
@@ -420,8 +390,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Azerbaijani',
     'internet_tld': '.az',
     'flag_emoji': '🇦🇿',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '1',
@@ -446,8 +414,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bahamian',
     'internet_tld': '.bs',
     'flag_emoji': '🇧🇸',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '973',
@@ -472,8 +438,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bahraini',
     'internet_tld': '.bh',
     'flag_emoji': '🇧🇭',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '880',
@@ -498,8 +462,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bangladeshi',
     'internet_tld': '.bd',
     'flag_emoji': '🇧🇩',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '1',
@@ -524,8 +486,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Barbadian',
     'internet_tld': '.bb',
     'flag_emoji': '🇧🇧',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '375',
@@ -550,8 +510,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Belarusian',
     'internet_tld': '.by',
     'flag_emoji': '🇧🇾',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '32',
@@ -576,8 +534,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Belgian',
     'internet_tld': '.be',
     'flag_emoji': '🇧🇪',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '501',
@@ -602,8 +558,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Belizean',
     'internet_tld': '.bz',
     'flag_emoji': '🇧🇿',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '229',
@@ -632,8 +586,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Beninese',
     'internet_tld': '.bj',
     'flag_emoji': '🇧🇯',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '1',
@@ -658,8 +610,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bermudian',
     'internet_tld': '.bm',
     'flag_emoji': '🇧🇲',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '975',
@@ -684,8 +634,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bhutanese',
     'internet_tld': '.bt',
     'flag_emoji': '🇧🇹',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '591',
@@ -710,8 +658,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bolivian',
     'internet_tld': '.bo',
     'flag_emoji': '🇧🇴',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '387',
@@ -740,8 +686,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bosnian, Herzegovinian',
     'internet_tld': '.ba',
     'flag_emoji': '🇧🇦',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '267',
@@ -766,8 +710,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Motswana (singular), Batswana (plural)',
     'internet_tld': '.bw',
     'flag_emoji': '🇧🇼',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '55',
@@ -792,8 +734,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Brazilian',
     'internet_tld': '.br',
     'flag_emoji': '🇧🇷',
-    'min_length': 11,
-    'max_length': 11,
   },
   {
     'e164_cc': '673',
@@ -818,8 +758,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bruneian',
     'internet_tld': '.bn',
     'flag_emoji': '🇧🇳',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '359',
@@ -844,8 +782,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Bulgarian',
     'internet_tld': '.bg',
     'flag_emoji': '🇧🇬',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '226',
@@ -874,8 +810,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Burkinabe',
     'internet_tld': '.bf',
     'flag_emoji': '🇧🇫',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '257',
@@ -900,8 +834,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Burundian',
     'internet_tld': '.bi',
     'flag_emoji': '🇧🇮',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '855',
@@ -926,8 +858,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cambodian',
     'internet_tld': '.kh',
     'flag_emoji': '🇰🇭',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '237',
@@ -956,8 +886,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cameroonian',
     'internet_tld': '.cm',
     'flag_emoji': '🇨🇲',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '1',
@@ -982,8 +910,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Canadian',
     'internet_tld': '.ca',
     'flag_emoji': '🇨🇦',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '238',
@@ -1008,8 +934,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cape Verdean',
     'internet_tld': '.cv',
     'flag_emoji': '🇨🇻',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '1',
@@ -1038,8 +962,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Caymanian',
     'internet_tld': '.ky',
     'flag_emoji': '🇰🇾',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '236',
@@ -1068,8 +990,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Central African',
     'internet_tld': '.cf',
     'flag_emoji': '🇨🇫',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '235',
@@ -1098,8 +1018,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Chadian',
     'internet_tld': '.td',
     'flag_emoji': '🇹🇩',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '56',
@@ -1124,8 +1042,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Chilean',
     'internet_tld': '.cl',
     'flag_emoji': '🇨🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '61',
@@ -1150,8 +1066,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Christmas Islander',
     'internet_tld': '.cx',
     'flag_emoji': '🇨🇽',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '86',
@@ -1176,8 +1090,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Chinese',
     'internet_tld': '.cn',
     'flag_emoji': '🇨🇳',
-    'min_length': 11,
-    'max_length': 12,
   },
   {
     'e164_cc': '57',
@@ -1202,8 +1114,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Colombian',
     'internet_tld': '.co',
     'flag_emoji': '🇨🇴',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '269',
@@ -1228,8 +1138,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Comoran',
     'internet_tld': '.km',
     'flag_emoji': '🇰🇲',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '61',
@@ -1254,8 +1162,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'N/A (uninhabited)',
     'internet_tld': '.cx',
     'flag_emoji': '🇨🇽',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '243',
@@ -1280,8 +1186,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Congolese',
     'internet_tld': '.cd',
     'flag_emoji': '🇨🇩',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '262',
@@ -1306,8 +1210,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Réunionese',
     'internet_tld': '.re',
     'flag_emoji': '🇷🇪',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '242',
@@ -1336,8 +1238,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Congolese',
     'internet_tld': '.cg',
     'flag_emoji': '🇨🇬',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '682',
@@ -1362,8 +1262,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cook Islander',
     'internet_tld': '.ck',
     'flag_emoji': '🇨🇰',
-    'min_length': 5,
-    'max_length': 5,
   },
   {
     'e164_cc': '506',
@@ -1388,8 +1286,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Costa Rican',
     'internet_tld': '.cr',
     'flag_emoji': '🇨🇷',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '61',
@@ -1414,8 +1310,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cocos Islander',
     'internet_tld': '.cc',
     'flag_emoji': '🇨🇨',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '225',
@@ -1444,8 +1338,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ivorian',
     'internet_tld': '.ci',
     'flag_emoji': '🇨🇮',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '385',
@@ -1470,8 +1362,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Croatian',
     'internet_tld': '.hr',
     'flag_emoji': '🇭🇷',
-    'min_length': 12,
-    'max_length': 12,
   },
   {
     'e164_cc': '53',
@@ -1496,8 +1386,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cuban',
     'internet_tld': '.cu',
     'flag_emoji': '🇨🇺',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '599',
@@ -1526,8 +1414,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Curaçaoan',
     'internet_tld': '.cw',
     'flag_emoji': '🇨🇼',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '357',
@@ -1552,8 +1438,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Cypriot',
     'internet_tld': '.cy',
     'flag_emoji': '🇨🇾',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '420',
@@ -1578,8 +1462,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Czech',
     'internet_tld': '.cz',
     'flag_emoji': '🇨🇿',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '45',
@@ -1604,8 +1486,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Danish',
     'internet_tld': '.dk',
     'flag_emoji': '🇩🇰',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '253',
@@ -1630,8 +1510,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Djiboutian',
     'internet_tld': '.dj',
     'flag_emoji': '🇩🇯',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '1',
@@ -1660,8 +1538,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Dominican',
     'internet_tld': '.dm',
     'flag_emoji': '🇩🇲',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '1',
@@ -1686,8 +1562,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Dominican',
     'internet_tld': '.do',
     'flag_emoji': '🇩🇴',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '670',
@@ -1712,8 +1586,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Timorese',
     'internet_tld': '.tl',
     'flag_emoji': '🇹🇱',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '593',
@@ -1738,8 +1610,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ecuadorian',
     'internet_tld': '.ec',
     'flag_emoji': '🇪🇨',
-    'min_length': 8,
-    'max_length': 9,
   },
   {
     'e164_cc': '20',
@@ -1764,8 +1634,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Egyptian',
     'internet_tld': '.eg',
     'flag_emoji': '🇪🇬',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '503',
@@ -1790,8 +1658,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Salvadoran',
     'internet_tld': '.sv',
     'flag_emoji': '🇸🇻',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '240',
@@ -1820,8 +1686,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Equatorial Guinean',
     'internet_tld': '.gq',
     'flag_emoji': '🇬🇶',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '291',
@@ -1846,8 +1710,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Eritrean',
     'internet_tld': '.er',
     'flag_emoji': '🇪🇷',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '372',
@@ -1872,8 +1734,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Estonian',
     'internet_tld': '.ee',
     'flag_emoji': '🇪🇪',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '268',
@@ -1898,8 +1758,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Swazi',
     'internet_tld': '.sz',
     'flag_emoji': '🇸🇿',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '251',
@@ -1924,8 +1782,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ethiopian',
     'internet_tld': '.et',
     'flag_emoji': '🇪🇹',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '500',
@@ -1954,8 +1810,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Falkland Islander',
     'internet_tld': '.fk',
     'flag_emoji': '🇫🇰',
-    'min_length': 5,
-    'max_length': 5,
   },
   {
     'e164_cc': '298',
@@ -1980,8 +1834,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Faroese',
     'internet_tld': '.fo',
     'flag_emoji': '🇫🇴',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '679',
@@ -2006,8 +1858,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Fijian',
     'internet_tld': '.fj',
     'flag_emoji': '🇫🇯',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '358',
@@ -2032,8 +1882,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Finnish',
     'internet_tld': '.fi',
     'flag_emoji': '🇫🇮',
-    'min_length': 12,
-    'max_length': 12,
   },
   {
     'e164_cc': '33',
@@ -2058,8 +1906,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'French',
     'internet_tld': '.fr',
     'flag_emoji': '🇫🇷',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '594',
@@ -2084,8 +1930,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'French Guianese',
     'internet_tld': '.gf',
     'flag_emoji': '🇬🇫',
-    'min_length': 5,
-    'max_length': 15,
   },
   {
     'e164_cc': '689',
@@ -2110,8 +1954,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'French Polynesian',
     'internet_tld': '.pf',
     'flag_emoji': '🇵🇫',
-    'min_length': 5,
-    'max_length': 15,
   },
   {
     'e164_cc': '262',
@@ -2136,8 +1978,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'French',
     'internet_tld': '.tf',
     'flag_emoji': '🇹🇫',
-    'min_length': 5,
-    'max_length': 15,
   },
   {
     'e164_cc': '241',
@@ -2166,8 +2006,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Gabonese',
     'internet_tld': '.ga',
     'flag_emoji': '🇬🇦',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '220',
@@ -2192,8 +2030,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Gambian',
     'internet_tld': '.gm',
     'flag_emoji': '🇬🇲',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '995',
@@ -2218,8 +2054,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Georgian',
     'internet_tld': '.ge',
     'flag_emoji': '🇬🇪',
-    'min_length': 8,
-    'max_length': 9,
   },
   {
     'e164_cc': '49',
@@ -2244,8 +2078,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'German',
     'internet_tld': '.de',
     'flag_emoji': '🇩🇪',
-    'min_length': 9,
-    'max_length': 13,
   },
   {
     'e164_cc': '233',
@@ -2270,8 +2102,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ghanaian',
     'internet_tld': '.gh',
     'flag_emoji': '🇬🇭',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '350',
@@ -2296,8 +2126,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Gibraltar',
     'internet_tld': '.gi',
     'flag_emoji': '🇬🇮',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '30',
@@ -2322,8 +2150,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Greek',
     'internet_tld': '.gr',
     'flag_emoji': '🇬🇷',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '299',
@@ -2348,8 +2174,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Greenlandic',
     'internet_tld': '.gl',
     'flag_emoji': '🇬🇱',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '1',
@@ -2378,8 +2202,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Grenadian',
     'internet_tld': '.gd',
     'flag_emoji': '🇬🇩',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '590',
@@ -2404,8 +2226,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Guadeloupean',
     'internet_tld': '.gp',
     'flag_emoji': '🇬🇵',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '1',
@@ -2430,8 +2250,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Guamanian',
     'internet_tld': '.gu',
     'flag_emoji': '🇬🇺',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '502',
@@ -2456,8 +2274,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Guatemalan',
     'internet_tld': '.gt',
     'flag_emoji': '🇬🇹',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '44',
@@ -2488,8 +2304,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Channel Islander',
     'internet_tld': '.gg',
     'flag_emoji': '🇬🇬',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '224',
@@ -2514,8 +2328,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Guinean',
     'internet_tld': '.gn',
     'flag_emoji': '🇬🇳',
-    'min_length': 8,
-    'max_length': 9,
   },
   {
     'e164_cc': '245',
@@ -2544,8 +2356,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Guinea-Bissauan',
     'internet_tld': '.gw',
     'flag_emoji': '🇬🇼',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '592',
@@ -2570,8 +2380,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Guyanese',
     'internet_tld': '.gy',
     'flag_emoji': '🇬🇾',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '509',
@@ -2596,8 +2404,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Haitian',
     'internet_tld': '.ht',
     'flag_emoji': '🇭🇹',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '672',
@@ -2622,8 +2428,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': '',
     'internet_tld': '.hm',
     'flag_emoji': '🇭🇲',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '504',
@@ -2648,8 +2452,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Honduran',
     'internet_tld': '.hn',
     'flag_emoji': '🇭🇳',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '852',
@@ -2674,8 +2476,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Hong Konger',
     'internet_tld': '.hk',
     'flag_emoji': '🇭🇰',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '36',
@@ -2700,8 +2500,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Hungarian',
     'internet_tld': '.hu',
     'flag_emoji': '🇭🇺',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '354',
@@ -2726,8 +2524,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Icelander',
     'internet_tld': '.is',
     'flag_emoji': '🇮🇸',
-    'min_length': 7,
-    'max_length': 9,
   },
   {
     'e164_cc': '91',
@@ -2758,8 +2554,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Indian',
     'internet_tld': '.in',
     'flag_emoji': '🇮🇳',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '62',
@@ -2784,8 +2578,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Indonesian',
     'internet_tld': '.id',
     'flag_emoji': '🇮🇩',
-    'min_length': 10,
-    'max_length': 13,
   },
   {
     'e164_cc': '98',
@@ -2810,8 +2602,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Iranian',
     'internet_tld': '.ir',
     'flag_emoji': '🇮🇷',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '964',
@@ -2836,8 +2626,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Iraqi',
     'internet_tld': '.iq',
     'flag_emoji': '🇮🇶',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '353',
@@ -2862,8 +2650,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Irish',
     'internet_tld': '.ie',
     'flag_emoji': '🇮🇪',
-    'min_length': 7,
-    'max_length': 9,
   },
   {
     'e164_cc': '44',
@@ -2888,8 +2674,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Manx',
     'internet_tld': '.im',
     'flag_emoji': '🇮🇲',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '972',
@@ -2914,8 +2698,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Israeli',
     'internet_tld': '.il',
     'flag_emoji': '🇮🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '39',
@@ -2940,8 +2722,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Italian',
     'internet_tld': '.it',
     'flag_emoji': '🇮🇹',
-    'min_length': 9,
-    'max_length': 10,
   },
   {
     'e164_cc': '1',
@@ -2966,8 +2746,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Jamaican',
     'internet_tld': '.jm',
     'flag_emoji': '🇯🇲',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '81',
@@ -2992,8 +2770,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Japanese',
     'internet_tld': '.jp',
     'flag_emoji': '🇯🇵',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '44',
@@ -3018,8 +2794,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Channel Islander',
     'internet_tld': '.je',
     'flag_emoji': '🇯🇪',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '962',
@@ -3044,8 +2818,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Jordanian',
     'internet_tld': '.jo',
     'flag_emoji': '🇯🇴',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '7',
@@ -3070,8 +2842,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Kazakhstani',
     'internet_tld': '.kz',
     'flag_emoji': '🇰🇿',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '254',
@@ -3096,8 +2866,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Kenyan',
     'internet_tld': '.ke',
     'flag_emoji': '🇰🇪',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '686',
@@ -3122,8 +2890,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'I-Kiribati',
     'internet_tld': '.ki',
     'flag_emoji': '🇰🇮',
-    'min_length': 5,
-    'max_length': 5,
   },
   {
     'e164_cc': '383',
@@ -3148,8 +2914,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Kosovar',
     'internet_tld': '.XK',
     'flag_emoji': '🇽🇰',
-    'min_length': 0,
-    'max_length': 0,
   },
   {
     'e164_cc': '965',
@@ -3174,8 +2938,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Kuwaiti',
     'internet_tld': '.kw',
     'flag_emoji': '🇰🇼',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '996',
@@ -3200,8 +2962,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Kyrgyzstani',
     'internet_tld': '.kg',
     'flag_emoji': '🇰🇬',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '856',
@@ -3226,8 +2986,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Laotian',
     'internet_tld': '.la',
     'flag_emoji': '🇱🇦',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '371',
@@ -3252,8 +3010,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Latvian',
     'internet_tld': '.lv',
     'flag_emoji': '🇱🇻',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '961',
@@ -3278,8 +3034,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Lebanese',
     'internet_tld': '.lb',
     'flag_emoji': '🇱🇧',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '266',
@@ -3304,8 +3058,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mosotho',
     'internet_tld': '.ls',
     'flag_emoji': '🇱🇸',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '231',
@@ -3330,8 +3082,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Liberian',
     'internet_tld': '.lr',
     'flag_emoji': '🇱🇷',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '218',
@@ -3356,8 +3106,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Libyan',
     'internet_tld': '.ly',
     'flag_emoji': '🇱🇾',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '423',
@@ -3382,8 +3130,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Liechtensteiner',
     'internet_tld': '.li',
     'flag_emoji': '🇱🇮',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '370',
@@ -3408,8 +3154,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Lithuanian',
     'internet_tld': '.lt',
     'flag_emoji': '🇱🇹',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '352',
@@ -3434,8 +3178,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Luxembourger',
     'internet_tld': '.lu',
     'flag_emoji': '🇱🇺',
-    'min_length': 11,
-    'max_length': 11,
   },
   {
     'e164_cc': '853',
@@ -3460,8 +3202,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Macanese',
     'internet_tld': '.mo',
     'flag_emoji': '🇲🇴',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '389',
@@ -3486,8 +3226,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Macedonian',
     'internet_tld': '.mk',
     'flag_emoji': '🇲🇰',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '261',
@@ -3512,8 +3250,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Malagasy',
     'internet_tld': '.mg',
     'flag_emoji': '🇲🇬',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '265',
@@ -3538,8 +3274,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Malawian',
     'internet_tld': '.mw',
     'flag_emoji': '🇲🇼',
-    'min_length': 7,
-    'max_length': 9,
   },
   {
     'e164_cc': '60',
@@ -3564,8 +3298,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Malaysian',
     'internet_tld': '.my',
     'flag_emoji': '🇲🇾',
-    'min_length': 9,
-    'max_length': 10,
   },
   {
     'e164_cc': '960',
@@ -3590,8 +3322,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Maldivian',
     'internet_tld': '.mv',
     'flag_emoji': '🇲🇻',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '223',
@@ -3620,8 +3350,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Malian',
     'internet_tld': '.ml',
     'flag_emoji': '🇲🇱',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '356',
@@ -3646,8 +3374,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Maltese',
     'internet_tld': '.mt',
     'flag_emoji': '🇲🇹',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '692',
@@ -3672,8 +3398,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Marshallese',
     'internet_tld': '.mh',
     'flag_emoji': '🇲🇭',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '596',
@@ -3698,8 +3422,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Martinican',
     'internet_tld': '.mq',
     'flag_emoji': '🇲🇶',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '222',
@@ -3724,8 +3446,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mauritanian',
     'internet_tld': '.mr',
     'flag_emoji': '🇲🇷',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '230',
@@ -3750,8 +3470,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mauritian',
     'internet_tld': '.mu',
     'flag_emoji': '🇲🇺',
-    'min_length': 7,
-    'max_length': 8,
   },
   {
     'e164_cc': '262',
@@ -3776,8 +3494,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mahoran',
     'internet_tld': '.yt',
     'flag_emoji': '🇾🇹',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '52',
@@ -3802,8 +3518,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mexican',
     'internet_tld': '.mx',
     'flag_emoji': '🇲🇽',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '691',
@@ -3828,8 +3542,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Micronesian',
     'internet_tld': '.fm',
     'flag_emoji': '🇫🇲',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '373',
@@ -3854,8 +3566,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Moldovan',
     'internet_tld': '.md',
     'flag_emoji': '🇲🇩',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '377',
@@ -3880,8 +3590,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Monegasque',
     'internet_tld': '.mc',
     'flag_emoji': '🇲🇨',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '976',
@@ -3906,8 +3614,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mongolian',
     'internet_tld': '.mn',
     'flag_emoji': '🇲🇳',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '382',
@@ -3932,8 +3638,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Montenegrin',
     'internet_tld': '.me',
     'flag_emoji': '🇲🇪',
-    'min_length': 12,
-    'max_length': 12,
   },
   {
     'e164_cc': '1',
@@ -3962,8 +3666,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Montserratian',
     'internet_tld': '.ms',
     'flag_emoji': '🇲🇸',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '212',
@@ -3988,8 +3690,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Moroccan',
     'internet_tld': '.ma',
     'flag_emoji': '🇲🇦',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '258',
@@ -4014,8 +3714,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Mozambican',
     'internet_tld': '.mz',
     'flag_emoji': '🇲🇿',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '95',
@@ -4040,8 +3738,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Burmese',
     'internet_tld': '.mm',
     'flag_emoji': '🇲🇲',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '683',
@@ -4066,8 +3762,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Niuean',
     'internet_tld': '.nu',
     'flag_emoji': '🇳🇺',
-    'min_length': 4,
-    'max_length': 4,
   },
   {
     'e164_cc': '234',
@@ -4092,8 +3786,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Nigerian',
     'internet_tld': '.ng',
     'flag_emoji': '🇳🇬',
-    'min_length': 10,
-    'max_length': 11,
   },
   {
     'e164_cc': '264',
@@ -4118,8 +3810,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Namibian',
     'internet_tld': '.na',
     'flag_emoji': '🇳🇦',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '1',
@@ -4144,8 +3834,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'N/A (uninhabited)',
     'internet_tld': '.um',
     'flag_emoji': '🇺🇲',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '674',
@@ -4170,8 +3858,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Nauruan',
     'internet_tld': '.nr',
     'flag_emoji': '🇳🇷',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '977',
@@ -4196,8 +3882,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Nepali',
     'internet_tld': '.np',
     'flag_emoji': '🇳🇵',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '31',
@@ -4222,8 +3906,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Dutch',
     'internet_tld': '.nl',
     'flag_emoji': '🇳🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '687',
@@ -4248,8 +3930,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'New Caledonian',
     'internet_tld': '.nc',
     'flag_emoji': '🇳🇨',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '64',
@@ -4274,8 +3954,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'New Zealander',
     'internet_tld': '.nz',
     'flag_emoji': '🇳🇿',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '505',
@@ -4300,8 +3978,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Nicaraguan',
     'internet_tld': '.ni',
     'flag_emoji': '🇳🇮',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '850',
@@ -4326,8 +4002,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'North Korean',
     'internet_tld': '.kp',
     'flag_emoji': '🇰🇵',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '1',
@@ -4352,8 +4026,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Northern Mariana Islander',
     'internet_tld': '.mp',
     'flag_emoji': '🇲🇵',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '47',
@@ -4378,8 +4050,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Norwegian',
     'internet_tld': '.no',
     'flag_emoji': '🇳🇴',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '672',
@@ -4404,8 +4074,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Norfolk Islander',
     'internet_tld': '.nf',
     'flag_emoji': '🇳🇫',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '968',
@@ -4430,8 +4098,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Omani',
     'internet_tld': '.om',
     'flag_emoji': '🇴🇲',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '92',
@@ -4456,8 +4122,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Pakistani',
     'internet_tld': '.pk',
     'flag_emoji': '🇵🇰',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '680',
@@ -4482,8 +4146,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Palauan',
     'internet_tld': '.pw',
     'flag_emoji': '🇵🇼',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '970',
@@ -4508,8 +4170,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Palestinian',
     'internet_tld': '.ps',
     'flag_emoji': '🇵🇸',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '507',
@@ -4534,8 +4194,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Panamanian',
     'internet_tld': '.pa',
     'flag_emoji': '🇵🇦',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '675',
@@ -4564,8 +4222,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Papua New Guinean',
     'internet_tld': '.pg',
     'flag_emoji': '🇵🇬',
-    'min_length': 11,
-    'max_length': 11,
   },
   {
     'e164_cc': '595',
@@ -4590,8 +4246,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Paraguayan',
     'internet_tld': '.py',
     'flag_emoji': '🇵🇾',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '51',
@@ -4616,8 +4270,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Peruvian',
     'internet_tld': '.pe',
     'flag_emoji': '🇵🇪',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '63',
@@ -4642,8 +4294,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Filipino',
     'internet_tld': '.ph',
     'flag_emoji': '🇵🇭',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '48',
@@ -4668,8 +4318,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Polish',
     'internet_tld': '.pl',
     'flag_emoji': '🇵🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '351',
@@ -4694,8 +4342,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Portuguese',
     'internet_tld': '.pt',
     'flag_emoji': '🇵🇹',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '1',
@@ -4720,8 +4366,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Puerto Rican',
     'internet_tld': '.pr',
     'flag_emoji': '🇵🇷',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '64',
@@ -4746,8 +4390,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Pitcairn Islander',
     'internet_tld': '.pn',
     'flag_emoji': '🇵🇳',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '974',
@@ -4772,8 +4414,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Qatari',
     'internet_tld': '.qa',
     'flag_emoji': '🇶🇦',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '262',
@@ -4798,8 +4438,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Réunionese',
     'internet_tld': '.re',
     'flag_emoji': '🇷🇪',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '40',
@@ -4824,8 +4462,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Romanian',
     'internet_tld': '.ro',
     'flag_emoji': '🇷🇴',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '7',
@@ -4850,8 +4486,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Russian',
     'internet_tld': '.ru',
     'flag_emoji': '🇷🇺',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '250',
@@ -4876,8 +4510,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Rwandan',
     'internet_tld': '.rw',
     'flag_emoji': '🇷🇼',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '590',
@@ -4902,8 +4534,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saint Barthélemois',
     'internet_tld': '.bl',
     'flag_emoji': '🇧🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '599',
@@ -4928,8 +4558,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sabans',
     'internet_tld': '.bq',
     'flag_emoji': '🇧🇶',
-    'min_length': 0,
-    'max_length': 0,
   },
   {
     'e164_cc': '599',
@@ -4954,8 +4582,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Statian',
     'internet_tld': '.bq',
     'flag_emoji': '🇧🇶',
-    'min_length': 0,
-    'max_length': 0,
   },
   {
     'e164_cc': '590',
@@ -4980,8 +4606,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Barthélemois',
     'internet_tld': '.bl',
     'flag_emoji': '🇧🇱',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '290',
@@ -5006,8 +4630,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saint Helenian',
     'internet_tld': '.sh',
     'flag_emoji': '🇸🇭',
-    'min_length': 4,
-    'max_length': 4,
   },
   {
     'e164_cc': '1',
@@ -5036,8 +4658,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Kittitian',
     'internet_tld': '.kn',
     'flag_emoji': '🇰🇳',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '1',
@@ -5066,8 +4686,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saint Lucian',
     'internet_tld': '.lc',
     'flag_emoji': '🇱🇨',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '590',
@@ -5092,8 +4710,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saint-Martinoise',
     'internet_tld': '.mf',
     'flag_emoji': '🇲🇫',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '508',
@@ -5118,8 +4734,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saint-Pierrais or Miquelonnais',
     'internet_tld': '.pm',
     'flag_emoji': '🇵🇲',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '1',
@@ -5148,8 +4762,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saint Vincentian',
     'internet_tld': '.vc',
     'flag_emoji': '🇻🇨',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '685',
@@ -5174,8 +4786,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Samoan',
     'internet_tld': '.ws',
     'flag_emoji': '🇼🇸',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '378',
@@ -5200,8 +4810,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sammarinese',
     'internet_tld': '.sm',
     'flag_emoji': '🇸🇲',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '239',
@@ -5230,8 +4838,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'São Toméan, Príncipian',
     'internet_tld': '.st',
     'flag_emoji': '🇸🇹',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '966',
@@ -5256,8 +4862,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Saudi Arabian',
     'internet_tld': '.sa',
     'flag_emoji': '🇸🇦',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '221',
@@ -5286,8 +4890,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Senegalese',
     'internet_tld': '.sn',
     'flag_emoji': '🇸🇳',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '381',
@@ -5312,8 +4914,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Serbian',
     'internet_tld': '.rs',
     'flag_emoji': '🇷🇸',
-    'min_length': 12,
-    'max_length': 12,
   },
   {
     'e164_cc': '248',
@@ -5338,8 +4938,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Seychellois',
     'internet_tld': '.sc',
     'flag_emoji': '🇸🇨',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '232',
@@ -5364,8 +4962,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sierra Leonean',
     'internet_tld': '.sl',
     'flag_emoji': '🇸🇱',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '65',
@@ -5390,8 +4986,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Singaporean',
     'internet_tld': '.sg',
     'flag_emoji': '🇸🇬',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '1',
@@ -5420,8 +5014,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sint Maartener',
     'internet_tld': '.sx',
     'flag_emoji': '🇸🇽',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '421',
@@ -5446,8 +5038,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Slovak',
     'internet_tld': '.sk',
     'flag_emoji': '🇸🇰',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '386',
@@ -5472,8 +5062,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Slovenian',
     'internet_tld': '.si',
     'flag_emoji': '🇸🇮',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '677',
@@ -5502,8 +5090,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Solomon Islander',
     'internet_tld': '.sb',
     'flag_emoji': '🇸🇧',
-    'min_length': 5,
-    'max_length': 5,
   },
   {
     'e164_cc': '252',
@@ -5528,8 +5114,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Somali',
     'internet_tld': '.so',
     'flag_emoji': '🇸🇴',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '27',
@@ -5555,8 +5139,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'South African',
     'internet_tld': '.za',
     'flag_emoji': '🇿🇦',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '500',
@@ -5582,8 +5164,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': '',
     'internet_tld': '.gs',
     'flag_emoji': '🇬🇸',
-    'min_length': 15,
-    'max_length': 15,
   },
   {
     'e164_cc': '82',
@@ -5608,8 +5188,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'South Korean',
     'internet_tld': '.kr',
     'flag_emoji': '🇰🇷',
-    'min_length': 11,
-    'max_length': 11,
   },
   {
     'e164_cc': '211',
@@ -5634,8 +5212,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'South Sudanese',
     'internet_tld': '.ss',
     'flag_emoji': '🇸🇸',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '34',
@@ -5660,8 +5236,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Spanish',
     'internet_tld': '.es',
     'flag_emoji': '🇪🇸',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '94',
@@ -5686,8 +5260,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sri Lankan',
     'internet_tld': '.lk',
     'flag_emoji': '🇱🇰',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '249',
@@ -5712,8 +5284,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sudanese',
     'internet_tld': '.sd',
     'flag_emoji': '🇸🇩',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '597',
@@ -5738,8 +5308,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Surinamese',
     'internet_tld': '.sr',
     'flag_emoji': '🇸🇷',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '47',
@@ -5764,8 +5332,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Svalbardian, Jan Mayenite',
     'internet_tld': '.sj',
     'flag_emoji': '🇸🇯',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '46',
@@ -5790,8 +5356,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Swedish',
     'internet_tld': '.se',
     'flag_emoji': '🇸🇪',
-    'min_length': 7,
-    'max_length': 13,
   },
   {
     'e164_cc': '41',
@@ -5816,8 +5380,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Swiss',
     'internet_tld': '.ch',
     'flag_emoji': '🇨🇭',
-    'min_length': 9,
-    'max_length': 12,
   },
   {
     'e164_cc': '963',
@@ -5842,8 +5404,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Syrian',
     'internet_tld': '.sy',
     'flag_emoji': '🇸🇾',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '886',
@@ -5868,8 +5428,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Taiwanese',
     'internet_tld': '.tw',
     'flag_emoji': '🇹🇼',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '992',
@@ -5894,8 +5452,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Tajik',
     'internet_tld': '.tj',
     'flag_emoji': '🇹🇯',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '255',
@@ -5920,8 +5476,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Tanzanian',
     'internet_tld': '.tz',
     'flag_emoji': '🇹🇿',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '66',
@@ -5946,8 +5500,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Thai',
     'internet_tld': '.th',
     'flag_emoji': '🇹🇭',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '228',
@@ -5976,8 +5528,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Togolese',
     'internet_tld': '.tg',
     'flag_emoji': '🇹🇬',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '690',
@@ -6002,8 +5552,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Tokelauan',
     'internet_tld': '.tk',
     'flag_emoji': '🇹🇰',
-    'min_length': 4,
-    'max_length': 4,
   },
   {
     'e164_cc': '676',
@@ -6028,8 +5576,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Tongan',
     'internet_tld': '.to',
     'flag_emoji': '🇹🇴',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '1',
@@ -6058,8 +5604,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Trinidadian, Tobagonian',
     'internet_tld': '.tt',
     'flag_emoji': '🇹🇹',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '216',
@@ -6084,8 +5628,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Tunisian',
     'internet_tld': '.tn',
     'flag_emoji': '🇹🇳',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '90',
@@ -6110,8 +5652,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Turkish',
     'internet_tld': '.tr',
     'flag_emoji': '🇹🇷',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '993',
@@ -6136,8 +5676,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Turkmen',
     'internet_tld': '.tm',
     'flag_emoji': '🇹🇲',
-    'min_length': 8,
-    'max_length': 8,
   },
   {
     'e164_cc': '1',
@@ -6162,8 +5700,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Turks and Caicos Islander',
     'internet_tld': '.tc',
     'flag_emoji': '🇹🇨',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '688',
@@ -6188,8 +5724,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Tuvaluan',
     'internet_tld': '.tv',
     'flag_emoji': '🇹🇻',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '1',
@@ -6214,8 +5748,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'American',
     'internet_tld': '.um',
     'flag_emoji': '🇺🇲',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '1',
@@ -6240,8 +5772,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Virgin Islander',
     'internet_tld': '.vi',
     'flag_emoji': '🇻🇮',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '256',
@@ -6266,8 +5796,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ugandan',
     'internet_tld': '.ug',
     'flag_emoji': '🇺🇬',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '380',
@@ -6292,8 +5820,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ukrainian',
     'internet_tld': '.ua',
     'flag_emoji': '🇺🇦',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '971',
@@ -6322,8 +5848,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Emirati',
     'internet_tld': '.ae',
     'flag_emoji': '🇦🇪',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '44',
@@ -6348,8 +5872,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'British',
     'internet_tld': '.uk',
     'flag_emoji': '🇬🇧',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '1',
@@ -6374,8 +5896,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'American',
     'internet_tld': '.us',
     'flag_emoji': '🇺🇸',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '598',
@@ -6400,8 +5920,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Uruguayan',
     'internet_tld': '.uy',
     'flag_emoji': '🇺🇾',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '998',
@@ -6426,8 +5944,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Uzbekistani',
     'internet_tld': '.uz',
     'flag_emoji': '🇺🇿',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '678',
@@ -6452,8 +5968,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Ni-Vanuatu',
     'internet_tld': '.vu',
     'flag_emoji': '🇻🇺',
-    'min_length': 7,
-    'max_length': 7,
   },
   {
     'e164_cc': '379',
@@ -6478,8 +5992,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Vatican',
     'internet_tld': '.va',
     'flag_emoji': '🇻🇦',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '58',
@@ -6508,8 +6020,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Venezuelan',
     'internet_tld': '.ve',
     'flag_emoji': '🇻🇪',
-    'min_length': 10,
-    'max_length': 10,
   },
   {
     'e164_cc': '84',
@@ -6534,8 +6044,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Vietnamese',
     'internet_tld': '.vn',
     'flag_emoji': '🇻🇳',
-    'min_length': 11,
-    'max_length': 11,
   },
   {
     'e164_cc': '681',
@@ -6560,8 +6068,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Wallisian, Futunan',
     'internet_tld': '.wf',
     'flag_emoji': '🇼🇫',
-    'min_length': 6,
-    'max_length': 6,
   },
   {
     'e164_cc': '212',
@@ -6586,8 +6092,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Sahrawi',
     'internet_tld': '.eh',
     'flag_emoji': '🇪🇭',
-    'min_length': 0,
-    'max_length': 0,
   },
   {
     'e164_cc': '967',
@@ -6612,8 +6116,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Yemeni',
     'internet_tld': '.ye',
     'flag_emoji': '🇾🇪',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '260',
@@ -6638,8 +6140,6 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Zambian',
     'internet_tld': '.zm',
     'flag_emoji': '🇿🇲',
-    'min_length': 9,
-    'max_length': 9,
   },
   {
     'e164_cc': '263',
@@ -6664,7 +6164,5 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Zimbabwean',
     'internet_tld': '.zw',
     'flag_emoji': '🇿🇼',
-    'min_length': 9,
-    'max_length': 9,
   },
 ];

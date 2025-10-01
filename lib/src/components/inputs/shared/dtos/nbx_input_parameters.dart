@@ -42,7 +42,7 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     AutovalidateMode autovalidateMode,
     String? requiredErrorMessage,
     String? Function(String?)? validator,
-    String? Function(String? value, NbxInputType type)? customValidator,
+    String? Function(String? value)? customValidator,
     int? minLines,
     int? maxLines,
     int? maxLength,
