@@ -20,6 +20,7 @@ const SizedBox heightSpace40 = SizedBox(height: 40);
 const SizedBox heightSpace48 = SizedBox(height: 48);
 const SizedBox heightSpace50 = SizedBox(height: 50);
 const SizedBox heightSpace60 = SizedBox(height: 60);
+const SizedBox heightSpace64 = SizedBox(height: 64);
 const SizedBox heightSpace80 = SizedBox(height: 80);
 const SizedBox heightSpace100 = SizedBox(height: 100);
 const SizedBox heightSpace200 = SizedBox(height: 200);

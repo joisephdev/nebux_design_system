@@ -37,7 +37,7 @@ class NbxScaffold extends StatelessWidget {
   final String widgetName;
 
   /// Gradient background for the scaffold.
-  final BoxDecoration? boxDecoration;
+  final Decoration? decoration;
 
   /// Creates a custom scaffold widget with enhanced functionality.
   const NbxScaffold({
@@ -50,7 +50,7 @@ class NbxScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.backgroundColor,
-    this.boxDecoration,
+    this.decoration,
     required this.widgetName,
     super.key,
   });
@@ -76,7 +76,7 @@ class NbxScaffold extends StatelessWidget {
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
       body: Container(
-        decoration: boxDecoration,
+        decoration: decoration,
         child: SafeArea(
           left: false,
           right: false,
