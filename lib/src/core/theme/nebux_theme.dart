@@ -86,6 +86,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
           typography: typography,
         ),
       ],
+      scaffoldBackgroundColor: colors.background,
     );
 
     /*  return ThemeData(
@@ -126,7 +127,6 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
       ),
 
       // Scaffold
-      scaffoldBackgroundColor: colors.background,
 
       // App bar theme
       appBarTheme: AppBarTheme(
