@@ -25,7 +25,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  nebux_design_system: ^0.0.12
+  nebux_design_system: ^0.1.0
 ```
 
 Then run:
@@ -33,6 +33,14 @@ Then run:
 ```bash
 flutter pub get
 ```
+
+## 🆕 What's New in v0.1.0
+
+### Enhanced Country Model
+- **NEW FEATURE**: Added `minLength` and `maxLength` properties to Country model for improved phone number validation
+- **IMPROVEMENT**: Enhanced country picker functionality with better phone number validation support
+- **ENHANCEMENT**: Updated country JSON data to include length validation information
+- **UX IMPROVEMENT**: More accurate phone number input validation for better user experience
 
 ## ⚠️ Breaking Changes in v0.0.12
 

@@ -16,26 +16,27 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final leadingButton = _buildLeading(context);
     return AppBar(
       title: _buildTitle(context),
       elevation: 0,
-      titleSpacing: 0,
+      titleSpacing: leadingButton == null
+          ? NavigationToolbar.kMiddleSpacing
+          : 0,
       scrolledUnderElevation: 0,
-      automaticallyImplyLeading: true,
+      automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
       actions: appBarConfig.actions,
-      leading: _buildLeading(context),
+      leading: leadingButton,
       centerTitle: appBarConfig.centerTitle,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarIconBrightness: isDarkMode
             ? Brightness.dark
-            : Brightness.light, // For Android (dark icons)
-        statusBarBrightness: isDarkMode
-            ? Brightness.dark
-            : Brightness.light, // For iOS (dark icons)
+            : Brightness.light,
+        statusBarBrightness: isDarkMode ? Brightness.dark : Brightness.light,
       ),
     );
   }

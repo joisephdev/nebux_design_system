@@ -4,21 +4,21 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 class PlatformInfo {
   static String get platformName {
     if (kIsWeb) {
-      return "Web";
+      return 'Web';
     } else if (Platform.isAndroid) {
-      return "Android";
+      return 'Android';
     } else if (Platform.isIOS) {
-      return "IOS";
+      return 'IOS';
     } else if (Platform.isFuchsia) {
-      return "Fuchsia";
+      return 'Fuchsia';
     } else if (Platform.isLinux) {
-      return "Linux";
+      return 'Linux';
     } else if (Platform.isMacOS) {
-      return "MacOS";
+      return 'MacOS';
     } else if (Platform.isWindows) {
-      return "Windows";
+      return 'Windows';
     } else {
-      return "Unknown";
+      return 'Unknown';
     }
   }
 }

@@ -17,12 +17,16 @@ class AppBarConfig {
   /// Whether to show a divider below the app bar.
   final bool showDivider;
 
+  /// Background color for the app bar.
+  final Color? backgroundColor;
+
   const AppBarConfig({
     this.title,
     this.actions,
     this.leadingButton,
-    this.centerTitle = true,
+    this.centerTitle = false,
     this.showDivider = false,
+    this.backgroundColor,
   });
 }
 

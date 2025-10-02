@@ -16,6 +16,8 @@ class Country {
     e164Key: '',
     capital: 'Global',
     language: 'gl',
+    maxLength: 10,
+    minLength: 10,
   );
 
   final String? capital;
@@ -44,6 +46,8 @@ class Country {
 
   final String displayNameNoCountryCode;
   final String e164Key;
+  final int maxLength;
+  final int minLength;
 
   /// Constructs a [Country] object.
   Country({
@@ -70,6 +74,8 @@ class Country {
     this.resident,
     this.internetTld,
     this.flagEmojiText,
+    required this.maxLength,
+    required this.minLength,
   });
 
   /// Constructs a [Country] object from JSON data.
@@ -95,7 +101,9 @@ class Country {
       subregion = json['subregion'],
       resident = json['demonym'],
       internetTld = json['internet_tld'],
-      flagEmojiText = json['flag_emoji'];
+      flagEmojiText = json['flag_emoji'],
+      maxLength = json['max_length'],
+      minLength = json['min_length'];
 
   /// Parses a country code and returns a [Country] object.
   static Country parse(String country) {
@@ -140,14 +148,16 @@ class Country {
     data['capital'] = capital;
     data['display_name_no_e164_cc'] = displayNameNoCountryCode;
     data['e164_key'] = e164Key;
+    data['max_length'] = maxLength;
+    data['min_length'] = minLength;
     return data;
   }
 
   /// Checks if a string query matches the country's information.
   bool startsWith(String query, CountryLocalizations? localizations) {
     String query0 = query;
-    if (query.startsWith("+")) {
-      query0 = query.replaceAll("+", "").trim();
+    if (query.startsWith('+')) {
+      query0 = query.replaceAll('+', '').trim();
     }
     return phoneCode.startsWith(query0.toLowerCase()) ||
         name.toLowerCase().startsWith(query0.toLowerCase()) ||

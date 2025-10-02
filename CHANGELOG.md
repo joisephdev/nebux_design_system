@@ -1,3 +1,28 @@
+## 0.1.1 (2025-01-27)
+
+- **REFACTOR**: Enhanced `NbxAppBar` component with improved leading button handling
+  - Refactored leading button logic for better clarity and maintainability
+  - Changed default `centerTitle` behavior from `true` to `false` in `AppBarConfig` for better alignment with Material Design guidelines
+  - Improved `titleSpacing` logic to properly handle cases when no leading button is present
+  - Set `automaticallyImplyLeading` to `false` for more predictable behavior
+  - Enhanced code organization by extracting leading button building logic
+
+## 0.1.0 (2025-09-30)
+
+- **NEW FEATURE**: Enhanced Country model with `minLength` and `maxLength` properties for improved phone number validation
+  - Added `minLength` property to Country model for minimum phone number length validation
+  - Added `maxLength` property to Country model for maximum phone number length validation
+  - Updated country JSON data to include length validation information
+  - Improved country picker functionality with better phone number validation support
+  - Enhanced user experience with more accurate phone number input validation
+
+## 0.0.13
+
+- **REFACTOR**: `NbxAppBar` improvements for clarity and predictable spacing
+  - Adjusted `titleSpacing` logic to better align with Material `AppBar` expectations
+  - Simplified status bar brightness handling by removing redundant branches
+  - Minor cleanups for readability and consistency
+
 ## 0.0.12
 
 - **BREAKING CHANGE**: Refactored `NbxButton` component architecture for improved modularity and maintainability
