@@ -1,4 +1,4 @@
-## 0.1.1 (2025-01-27)
+## 0.1.2 (2025-01-27)
 
 - **REFACTOR**: Enhanced `NbxAppBar` component with improved leading button handling
   - Refactored leading button logic for better clarity and maintainability
