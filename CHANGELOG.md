@@ -1,3 +1,10 @@
+## 0.1.3 (2025-01-27)
+
+- **FIX**: Updated `NbxAppBar` to automatically imply leading button for better Material Design compliance
+  - Fixed `automaticallyImplyLeading` behavior to properly handle leading button display
+  - Refactored `NbxScaffold` decoration property for improved customization options
+  - Enhanced component consistency with Material Design guidelines
+
 ## 0.1.2 (2025-01-27)
 
 - **REFACTOR**: Enhanced `NbxAppBar` component with improved leading button handling
