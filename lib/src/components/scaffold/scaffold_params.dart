@@ -24,7 +24,7 @@ class AppBarConfig {
     this.title,
     this.actions,
     this.leadingButton,
-    this.centerTitle = true,
+    this.centerTitle = false,
     this.showDivider = false,
     this.backgroundColor,
   });
