@@ -20,6 +20,7 @@ dependencies:
   double_back_to_exit: ^1.2.1
   cached_network_image: ^3.4.1
   collection: ^1.18.0
+  flutter_skeleton_ui: ^0.0.6
 
 dev_dependencies:
   flutter_test:

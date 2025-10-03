@@ -18,3 +18,6 @@ export 'scaffold/export.dart';
 
 // SHARED
 export 'shared/export.dart';
+
+// SHIMMERS
+// export 'shimmers/nbx_shimmers.dart';
