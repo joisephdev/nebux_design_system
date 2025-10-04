@@ -24,7 +24,7 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? NavigationToolbar.kMiddleSpacing
           : 0,
       scrolledUnderElevation: 0,
-      automaticallyImplyLeading: true,
+      automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
