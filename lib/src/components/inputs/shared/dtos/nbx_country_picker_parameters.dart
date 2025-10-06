@@ -13,7 +13,7 @@ abstract class NbxCountryPickerParameters with _$NbxCountryPickerParameters {
   factory NbxCountryPickerParameters({
     required bool isRequired,
     required NbxInputType inputType,
-    required NbxFormType formType,
+    required NbxInputDecorationStyle decorationStyle,
     required TextEditingController controller,
     String? labelText,
     String? hintText,

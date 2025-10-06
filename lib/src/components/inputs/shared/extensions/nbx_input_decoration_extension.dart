@@ -27,11 +27,12 @@ extension NbxInputDecorationExtension on NbxInputParameters {
     return const InputDecoration().copyWith(
       hintText: hintText,
       counterText: '',
-      labelText: formType.isOutlined ? null : labelText,
+      labelText: decorationStyle.isOutlined ? null : labelText,
       errorMaxLines: 3,
-      floatingLabelBehavior: formType.isOutlined
-          ? (floatingLabelBehavior ?? FloatingLabelBehavior.auto)
-          : null,
+      floatingLabelBehavior: decorationStyle.isFilled
+          ? FloatingLabelBehavior.never
+          : (floatingLabelBehavior ?? FloatingLabelBehavior.auto),
+
       labelStyle: _nbxTheme.typography.label.copyWith(
         // color: _nbxTheme.colors.textSecondary,
         color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),

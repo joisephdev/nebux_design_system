@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
-import '../config/export.dart';
-
 /// Enum defining the different button variants.
 enum ButtonVariant {
   /// Filled button with filled background.

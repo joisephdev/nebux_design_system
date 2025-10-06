@@ -31,7 +31,7 @@ class NbxCountryPickerInput extends StatelessWidget {
         isRequired: inputParameters.isRequired,
         inputType: inputParameters.inputType,
         controller: inputParameters.controller,
-        formType: inputParameters.formType,
+        decorationStyle: inputParameters.decorationStyle,
         labelText: inputParameters.labelText,
         hintText: inputParameters.hintText,
         requiredErrorMessage: inputParameters.requiredErrorMessage,
