@@ -1,3 +1,12 @@
+## 0.1.4 (2025-10-06)
+
+- REFACTOR: Chip configuration and list tile integration
+  - Added `ChipConfig` utility to centralize chip parameters (label, labelStyle, colors, density, onTap)
+  - Updated internal components to consume `ChipConfig` for improved reusability and maintainability
+  - Refactored `AppListTileWithChip` to remove chip-specific parameters and accept a `ChipConfig`
+  - Improved documentation consistency using the custom doc template
+  - No breaking API changes; backwards-compatible migration path provided via config object
+
 ## 0.1.3 (2025-01-27)
 
 - **FIX**: Updated `NbxAppBar` to automatically imply leading button for better Material Design compliance
