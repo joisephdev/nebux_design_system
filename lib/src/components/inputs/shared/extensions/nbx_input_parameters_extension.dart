@@ -57,6 +57,6 @@ extension NbxInputParametersExtension on NbxInputParameters {
       );
     }
 
-    return decoration?.suffixIcon;
+    return suffixIcon;
   }
 }
