@@ -1,3 +1,10 @@
+## 0.1.6 (2025-01-27)
+
+- **FIX**: Updated package dependencies and version constraints
+  - Fixed `app_shimmer` dependency to use proper version constraint (^1.0.0)
+  - Bumped package version to 0.1.6 for proper publishing sequence
+  - Improved package stability and dependency management
+
 ## 0.1.4 (2025-10-06)
 
 - REFACTOR: Chip configuration and list tile integration
