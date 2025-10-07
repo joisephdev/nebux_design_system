@@ -13,7 +13,7 @@ abstract class NebuxTypography with _$NebuxTypography {
   /// Creates a [NebuxTypography] instance.
   const factory NebuxTypography({
     /// Style for main content text (e.g., articles, descriptions).
-    /// Font size: 16px and font weight: 400
+    /// Font size: 12px and font weight: 400
     required TextStyle content,
 
     /// Style for regular paragraph text (e.g., default content, paragraphs).
@@ -21,15 +21,15 @@ abstract class NebuxTypography with _$NebuxTypography {
     required TextStyle paragraph,
 
     /// Style for small supporting text (e.g., captions, metadata).
-    /// Font size: 12px and font weight: 400
+    /// Font size: 10px and font weight: 400
     required TextStyle caption,
 
     /// Style for main headings (e.g., page titles, primary headers).
-    /// Font size: 24px and font weight: 600
+    /// Font size: 18px and font weight: 600
     required TextStyle heading,
 
     /// Style for section headers (e.g., content sections)
-    /// Font size: 22px and font weight: 500
+    /// Font size: 14px and font weight: 500
     required TextStyle section,
 
     /// Style for small labels (e.g., timestamps, status).
@@ -83,7 +83,6 @@ abstract class NebuxTypography with _$NebuxTypography {
         fontSize: fontSizes.heading4,
         fontWeight: FontWeight.w600,
       ),
-
       primaryAction: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w700,
