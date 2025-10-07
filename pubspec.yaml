@@ -3,7 +3,7 @@ description: "A comprehensive Flutter design system package that provides consis
 homepage: https://github.com/nebux-labs/nebux_design_system
 # repository: https://github.com/nebux-labs/nebux_design_system
 # issue_tracker: https://github.com/nebux-labs/nebux_design_system/issues
-version: 0.1.5
+version: 0.1.6
 
 environment:
   sdk: ^3.8.1
@@ -21,7 +21,7 @@ dependencies:
   cached_network_image: ^3.4.1
   collection: ^1.18.0
   flutter_skeleton_ui: ^0.0.6
-  app_shimmer:
+  app_shimmer: ^1.0.0
 
 dev_dependencies:
   flutter_test:
