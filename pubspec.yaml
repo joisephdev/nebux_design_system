@@ -21,6 +21,7 @@ dependencies:
   cached_network_image: ^3.4.1
   collection: ^1.18.0
   flutter_skeleton_ui: ^0.0.6
+  app_shimmer:
 
 dev_dependencies:
   flutter_test:

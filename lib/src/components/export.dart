@@ -1,4 +1,6 @@
 // APP BAR
+// ignore_for_file: directives_ordering
+
 export 'app_bars/nebux_app_bar.dart';
 
 // BUTTONS
@@ -20,4 +22,4 @@ export 'scaffold/export.dart';
 export 'shared/export.dart';
 
 // SHIMMERS
-// export 'shimmers/nbx_shimmers.dart';
+export 'package:app_shimmer/app_shimmer.dart';
