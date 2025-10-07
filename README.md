@@ -25,7 +25,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  nebux_design_system: ^0.1.0
+  nebux_design_system: ^0.1.5
 ```
 
 Then run:

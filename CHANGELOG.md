@@ -1,3 +1,13 @@
+## 0.1.5 (2025-10-07)
+
+- REFACTOR: Input decoration style unification across input components
+  - Replaced `NbxFormType` with `NbxInputDecorationStyle` in `NbxInputParameters` for clearer styling semantics
+  - Updated `NbxCountryPickerParameters` and related inputs to use the new decoration style
+  - Adjusted `NbxInputDecorationExtension` to generate decorations from `NbxInputDecorationStyle`
+  - Enhanced `NbxInputValidator` with a new `free` input type for flexible validation
+  - Refactored `NbxTextFormFieldWidget` to align with the updated decoration style logic
+  - Documentation improved where needed, no breaking API expected for common use-cases
+
 ## 0.1.4 (2025-10-06)
 
 - REFACTOR: Chip configuration and list tile integration
