@@ -50,4 +50,13 @@ class CountryProvider {
     }
     return countries;
   }
+
+  /// Finds a country by its phone code.
+  ///
+  /// Returns `null` if no country is found with the given phone code.
+  Country? findByPhoneCode(String phoneCode) {
+    return _countries.firstWhereOrNull(
+      (country) => country.phoneCode == phoneCode,
+    );
+  }
 }
