@@ -16,13 +16,17 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final leadingButton = _buildLeading(context);
+    // final leadingButton = _buildLeading(context);
     return AppBar(
       title: _buildTitle(context),
       elevation: 0,
-      titleSpacing: leadingButton == null
+      titleSpacing: appBarConfig.leadingButton == null
           ? NavigationToolbar.kMiddleSpacing
           : 0,
+      /* titleSpacing: leadingButton == null
+          ? NavigationToolbar.kMiddleSpacing
+          : 0, 
+      leading: leadingButton,*/
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
@@ -30,7 +34,6 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
       actions: appBarConfig.actions,
-      leading: leadingButton,
       centerTitle: appBarConfig.centerTitle,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarIconBrightness: isDarkMode
@@ -44,18 +47,23 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Builds the title widget for the app bar.
   Widget? _buildTitle(BuildContext context) {
     if (appBarConfig.title == null) return null;
-
-    return Text(
-      appBarConfig.title!,
-      style: TextStyle(
-        color: context.nebuxColors.textPrimary,
-        fontWeight: FontWeight.bold,
-      ),
+    return Row(
+      children: [
+        if (appBarConfig.leadingButton != null) appBarConfig.leadingButton!,
+        Text(
+          appBarConfig.title!,
+          style: context.nebuxTypography.heading,
+          /* style: TextStyle(
+            color: context.nebuxColors.textPrimary,
+            fontWeight: FontWeight.w600,
+          ), */
+        ),
+      ],
     );
   }
 
   /// Builds the leading widget for the app bar.
-  Widget? _buildLeading(BuildContext context) {
+  /* Widget? _buildLeading(BuildContext context) {
     if (appBarConfig.leadingButton == null) return null;
 
     return appBarConfig.leadingButton ??
@@ -66,5 +74,5 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: context.nebuxColors.textPrimary,
           ),
         );
-  }
+  } */
 }
