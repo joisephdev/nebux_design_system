@@ -15,15 +15,15 @@ T _$identity<T>(T value) => value;
 mixin _$NebuxTypography {
 
 /// Style for main content text (e.g., articles, descriptions).
-/// Font size: 16px and font weight: 400
+/// Font size: 12px and font weight: 400
  TextStyle get content;/// Style for regular paragraph text (e.g., default content, paragraphs).
 /// Font size: 14px and font weight: 400
  TextStyle get paragraph;/// Style for small supporting text (e.g., captions, metadata).
-/// Font size: 12px and font weight: 400
+/// Font size: 10px and font weight: 400
  TextStyle get caption;/// Style for main headings (e.g., page titles, primary headers).
-/// Font size: 24px and font weight: 600
+/// Font size: 18px and font weight: 600
  TextStyle get heading;/// Style for section headers (e.g., content sections)
-/// Font size: 22px and font weight: 500
+/// Font size: 14px and font weight: 500
  TextStyle get section;/// Style for small labels (e.g., timestamps, status).
 /// Font size: 10px and font weight: 500
  TextStyle get label;/// Style for primary action buttons.
@@ -239,19 +239,19 @@ class _NebuxTypography extends NebuxTypography {
   
 
 /// Style for main content text (e.g., articles, descriptions).
-/// Font size: 16px and font weight: 400
+/// Font size: 12px and font weight: 400
 @override final  TextStyle content;
 /// Style for regular paragraph text (e.g., default content, paragraphs).
 /// Font size: 14px and font weight: 400
 @override final  TextStyle paragraph;
 /// Style for small supporting text (e.g., captions, metadata).
-/// Font size: 12px and font weight: 400
+/// Font size: 10px and font weight: 400
 @override final  TextStyle caption;
 /// Style for main headings (e.g., page titles, primary headers).
-/// Font size: 24px and font weight: 600
+/// Font size: 18px and font weight: 600
 @override final  TextStyle heading;
 /// Style for section headers (e.g., content sections)
-/// Font size: 22px and font weight: 500
+/// Font size: 14px and font weight: 500
 @override final  TextStyle section;
 /// Style for small labels (e.g., timestamps, status).
 /// Font size: 10px and font weight: 500
