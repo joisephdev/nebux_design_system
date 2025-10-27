@@ -1,8 +1,8 @@
 name: nebux_design_system
 description: "A comprehensive Flutter design system package that provides consistent theming, typography, spacing, and UI components for Nebux applications."
-homepage: https://github.com/nebux-labs/nebux_design_system
-# repository: https://github.com/nebux-labs/nebux_design_system
-# issue_tracker: https://github.com/nebux-labs/nebux_design_system/issues
+homepage: https://github.com/joisephdev/nebux_design_system.git
+repository: https://github.com/joisephdev/nebux_design_system.git
+issue_tracker: https://github.com/joisephdev/nebux_design_system.git/issues
 version: 0.1.7
 
 environment:
