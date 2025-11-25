@@ -90,7 +90,7 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
   Widget build(BuildContext context) {
     return Row(
       spacing: 10,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [_buildCountryPicker(), _buildPhoneNumberInput()],
     );
   }
