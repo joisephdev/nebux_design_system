@@ -1,3 +1,46 @@
+## 0.1.9 (2025-11-24)
+
+- **NEW FEATURE**: Added `findByPhoneCode` method to `CountryProvider` for enhanced country selection
+
+  - Implemented method to retrieve a country based on its phone code
+  - Returns `null` if no matching country is found, improving error handling
+  - Enhanced country picker functionality with better phone code lookup capabilities
+
+- **REFACTOR**: Enhanced `NbxButton` widget structure and documentation
+
+  - Improved widget properties and methods organization for better clarity and maintainability
+  - Updated documentation comments following custom doc template for clearer parameter descriptions
+  - Introduced helper methods to streamline button style and content building
+  - Removed legacy constructor to simplify API and encourage use of configuration classes
+  - Enhanced code readability and maintainability
+
+- **REFACTOR**: Simplified `NbxAppBar` layout and improved title rendering
+
+  - Removed leading button logic from app bar for cleaner architecture
+  - Adjusted title spacing based on presence of leading button in `appBarConfig`
+  - Updated title widget to conditionally include leading button within a Row for better layout management
+  - Improved component structure and predictability
+
+- **FIX**: Updated font sizes and weights in `NebuxTypography` for consistency
+
+  - Adjusted font sizes for content, caption, heading, and section styles to align with design specifications
+  - Updated documentation comments to reflect new font sizes and weights
+  - Improved typography consistency across the design system
+
+- **ENHANCEMENT**: Improved `NbxPhoneFieldWidget` layout
+
+  - Adjusted `crossAxisAlignment` from `start` to `end` for improved visual alignment
+  - Enhanced layout consistency in phone input fields
+
+- **CHORE**: Updated repository links in `pubspec.yaml` to reflect new ownership
+
+  - Changed homepage, repository, and issue tracker URLs to point to new GitHub account
+  - Updated package metadata for better maintainability
+
+- **CHORE**: Updated package dependencies
+  - Added `app_shimmer` package as transitive dependency in `pubspec.lock`
+  - Updated local package version references
+
 ## 0.1.7 (2025-01-27)
 
 - **FIX**: Updated package dependencies and version constraints
