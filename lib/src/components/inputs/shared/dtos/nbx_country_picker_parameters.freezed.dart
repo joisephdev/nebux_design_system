@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$NbxCountryPickerParameters {
 
- bool get isRequired; NbxInputType get inputType; NbxInputDecorationStyle get decorationStyle; TextEditingController get controller; String? get labelText; String? get hintText; String? get requiredErrorMessage; Widget? get prefixIcon;
+ bool get isRequired; NbxInputType get inputType; NbxInputDecorationStyle get decorationStyle; TextEditingController get controller; String? get labelText; String? get hintText; String? get requiredErrorMessage; Widget? get prefixIcon; int? get maxLines;
 /// Create a copy of NbxCountryPickerParameters
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $NbxCountryPickerParametersCopyWith<NbxCountryPickerParameters> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NbxCountryPickerParameters&&(identical(other.isRequired, isRequired) || other.isRequired == isRequired)&&(identical(other.inputType, inputType) || other.inputType == inputType)&&(identical(other.decorationStyle, decorationStyle) || other.decorationStyle == decorationStyle)&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.labelText, labelText) || other.labelText == labelText)&&(identical(other.hintText, hintText) || other.hintText == hintText)&&(identical(other.requiredErrorMessage, requiredErrorMessage) || other.requiredErrorMessage == requiredErrorMessage)&&(identical(other.prefixIcon, prefixIcon) || other.prefixIcon == prefixIcon));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NbxCountryPickerParameters&&(identical(other.isRequired, isRequired) || other.isRequired == isRequired)&&(identical(other.inputType, inputType) || other.inputType == inputType)&&(identical(other.decorationStyle, decorationStyle) || other.decorationStyle == decorationStyle)&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.labelText, labelText) || other.labelText == labelText)&&(identical(other.hintText, hintText) || other.hintText == hintText)&&(identical(other.requiredErrorMessage, requiredErrorMessage) || other.requiredErrorMessage == requiredErrorMessage)&&(identical(other.prefixIcon, prefixIcon) || other.prefixIcon == prefixIcon)&&(identical(other.maxLines, maxLines) || other.maxLines == maxLines));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isRequired,inputType,decorationStyle,controller,labelText,hintText,requiredErrorMessage,prefixIcon);
+int get hashCode => Object.hash(runtimeType,isRequired,inputType,decorationStyle,controller,labelText,hintText,requiredErrorMessage,prefixIcon,maxLines);
 
 @override
 String toString() {
-  return 'NbxCountryPickerParameters(isRequired: $isRequired, inputType: $inputType, decorationStyle: $decorationStyle, controller: $controller, labelText: $labelText, hintText: $hintText, requiredErrorMessage: $requiredErrorMessage, prefixIcon: $prefixIcon)';
+  return 'NbxCountryPickerParameters(isRequired: $isRequired, inputType: $inputType, decorationStyle: $decorationStyle, controller: $controller, labelText: $labelText, hintText: $hintText, requiredErrorMessage: $requiredErrorMessage, prefixIcon: $prefixIcon, maxLines: $maxLines)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $NbxCountryPickerParametersCopyWith<$Res>  {
   factory $NbxCountryPickerParametersCopyWith(NbxCountryPickerParameters value, $Res Function(NbxCountryPickerParameters) _then) = _$NbxCountryPickerParametersCopyWithImpl;
 @useResult
 $Res call({
- bool isRequired, NbxInputType inputType, NbxInputDecorationStyle decorationStyle, TextEditingController controller, String? labelText, String? hintText, String? requiredErrorMessage, Widget? prefixIcon
+ bool isRequired, NbxInputType inputType, NbxInputDecorationStyle decorationStyle, TextEditingController controller, String? labelText, String? hintText, String? requiredErrorMessage, Widget? prefixIcon, int? maxLines
 });
 
 
@@ -62,7 +62,7 @@ class _$NbxCountryPickerParametersCopyWithImpl<$Res>
 
 /// Create a copy of NbxCountryPickerParameters
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isRequired = null,Object? inputType = null,Object? decorationStyle = null,Object? controller = null,Object? labelText = freezed,Object? hintText = freezed,Object? requiredErrorMessage = freezed,Object? prefixIcon = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isRequired = null,Object? inputType = null,Object? decorationStyle = null,Object? controller = null,Object? labelText = freezed,Object? hintText = freezed,Object? requiredErrorMessage = freezed,Object? prefixIcon = freezed,Object? maxLines = freezed,}) {
   return _then(_self.copyWith(
 isRequired: null == isRequired ? _self.isRequired : isRequired // ignore: cast_nullable_to_non_nullable
 as bool,inputType: null == inputType ? _self.inputType : inputType // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,8 @@ as TextEditingController,labelText: freezed == labelText ? _self.labelText : lab
 as String?,hintText: freezed == hintText ? _self.hintText : hintText // ignore: cast_nullable_to_non_nullable
 as String?,requiredErrorMessage: freezed == requiredErrorMessage ? _self.requiredErrorMessage : requiredErrorMessage // ignore: cast_nullable_to_non_nullable
 as String?,prefixIcon: freezed == prefixIcon ? _self.prefixIcon : prefixIcon // ignore: cast_nullable_to_non_nullable
-as Widget?,
+as Widget?,maxLines: freezed == maxLines ? _self.maxLines : maxLines // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isRequired,  NbxInputType inputType,  NbxInputDecorationStyle decorationStyle,  TextEditingController controller,  String? labelText,  String? hintText,  String? requiredErrorMessage,  Widget? prefixIcon)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isRequired,  NbxInputType inputType,  NbxInputDecorationStyle decorationStyle,  TextEditingController controller,  String? labelText,  String? hintText,  String? requiredErrorMessage,  Widget? prefixIcon,  int? maxLines)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NbxCountryPickerParameters() when $default != null:
-return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.controller,_that.labelText,_that.hintText,_that.requiredErrorMessage,_that.prefixIcon);case _:
+return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.controller,_that.labelText,_that.hintText,_that.requiredErrorMessage,_that.prefixIcon,_that.maxLines);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.con
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isRequired,  NbxInputType inputType,  NbxInputDecorationStyle decorationStyle,  TextEditingController controller,  String? labelText,  String? hintText,  String? requiredErrorMessage,  Widget? prefixIcon)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isRequired,  NbxInputType inputType,  NbxInputDecorationStyle decorationStyle,  TextEditingController controller,  String? labelText,  String? hintText,  String? requiredErrorMessage,  Widget? prefixIcon,  int? maxLines)  $default,) {final _that = this;
 switch (_that) {
 case _NbxCountryPickerParameters():
-return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.controller,_that.labelText,_that.hintText,_that.requiredErrorMessage,_that.prefixIcon);case _:
+return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.controller,_that.labelText,_that.hintText,_that.requiredErrorMessage,_that.prefixIcon,_that.maxLines);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.con
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isRequired,  NbxInputType inputType,  NbxInputDecorationStyle decorationStyle,  TextEditingController controller,  String? labelText,  String? hintText,  String? requiredErrorMessage,  Widget? prefixIcon)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isRequired,  NbxInputType inputType,  NbxInputDecorationStyle decorationStyle,  TextEditingController controller,  String? labelText,  String? hintText,  String? requiredErrorMessage,  Widget? prefixIcon,  int? maxLines)?  $default,) {final _that = this;
 switch (_that) {
 case _NbxCountryPickerParameters() when $default != null:
-return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.controller,_that.labelText,_that.hintText,_that.requiredErrorMessage,_that.prefixIcon);case _:
+return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.controller,_that.labelText,_that.hintText,_that.requiredErrorMessage,_that.prefixIcon,_that.maxLines);case _:
   return null;
 
 }
@@ -213,7 +214,7 @@ return $default(_that.isRequired,_that.inputType,_that.decorationStyle,_that.con
 
 
 class _NbxCountryPickerParameters implements NbxCountryPickerParameters {
-   _NbxCountryPickerParameters({required this.isRequired, required this.inputType, required this.decorationStyle, required this.controller, this.labelText, this.hintText, this.requiredErrorMessage, this.prefixIcon}): assert(isRequired == true && requiredErrorMessage != null || isRequired == false, 'The message is necessary for required fields');
+   _NbxCountryPickerParameters({required this.isRequired, required this.inputType, required this.decorationStyle, required this.controller, this.labelText, this.hintText, this.requiredErrorMessage, this.prefixIcon, this.maxLines}): assert(isRequired == true && requiredErrorMessage != null || isRequired == false, 'The message is necessary for required fields');
   
 
 @override final  bool isRequired;
@@ -224,6 +225,7 @@ class _NbxCountryPickerParameters implements NbxCountryPickerParameters {
 @override final  String? hintText;
 @override final  String? requiredErrorMessage;
 @override final  Widget? prefixIcon;
+@override final  int? maxLines;
 
 /// Create a copy of NbxCountryPickerParameters
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +237,16 @@ _$NbxCountryPickerParametersCopyWith<_NbxCountryPickerParameters> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NbxCountryPickerParameters&&(identical(other.isRequired, isRequired) || other.isRequired == isRequired)&&(identical(other.inputType, inputType) || other.inputType == inputType)&&(identical(other.decorationStyle, decorationStyle) || other.decorationStyle == decorationStyle)&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.labelText, labelText) || other.labelText == labelText)&&(identical(other.hintText, hintText) || other.hintText == hintText)&&(identical(other.requiredErrorMessage, requiredErrorMessage) || other.requiredErrorMessage == requiredErrorMessage)&&(identical(other.prefixIcon, prefixIcon) || other.prefixIcon == prefixIcon));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NbxCountryPickerParameters&&(identical(other.isRequired, isRequired) || other.isRequired == isRequired)&&(identical(other.inputType, inputType) || other.inputType == inputType)&&(identical(other.decorationStyle, decorationStyle) || other.decorationStyle == decorationStyle)&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.labelText, labelText) || other.labelText == labelText)&&(identical(other.hintText, hintText) || other.hintText == hintText)&&(identical(other.requiredErrorMessage, requiredErrorMessage) || other.requiredErrorMessage == requiredErrorMessage)&&(identical(other.prefixIcon, prefixIcon) || other.prefixIcon == prefixIcon)&&(identical(other.maxLines, maxLines) || other.maxLines == maxLines));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isRequired,inputType,decorationStyle,controller,labelText,hintText,requiredErrorMessage,prefixIcon);
+int get hashCode => Object.hash(runtimeType,isRequired,inputType,decorationStyle,controller,labelText,hintText,requiredErrorMessage,prefixIcon,maxLines);
 
 @override
 String toString() {
-  return 'NbxCountryPickerParameters(isRequired: $isRequired, inputType: $inputType, decorationStyle: $decorationStyle, controller: $controller, labelText: $labelText, hintText: $hintText, requiredErrorMessage: $requiredErrorMessage, prefixIcon: $prefixIcon)';
+  return 'NbxCountryPickerParameters(isRequired: $isRequired, inputType: $inputType, decorationStyle: $decorationStyle, controller: $controller, labelText: $labelText, hintText: $hintText, requiredErrorMessage: $requiredErrorMessage, prefixIcon: $prefixIcon, maxLines: $maxLines)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$NbxCountryPickerParametersCopyWith<$Res> implements $NbxC
   factory _$NbxCountryPickerParametersCopyWith(_NbxCountryPickerParameters value, $Res Function(_NbxCountryPickerParameters) _then) = __$NbxCountryPickerParametersCopyWithImpl;
 @override @useResult
 $Res call({
- bool isRequired, NbxInputType inputType, NbxInputDecorationStyle decorationStyle, TextEditingController controller, String? labelText, String? hintText, String? requiredErrorMessage, Widget? prefixIcon
+ bool isRequired, NbxInputType inputType, NbxInputDecorationStyle decorationStyle, TextEditingController controller, String? labelText, String? hintText, String? requiredErrorMessage, Widget? prefixIcon, int? maxLines
 });
 
 
@@ -272,7 +274,7 @@ class __$NbxCountryPickerParametersCopyWithImpl<$Res>
 
 /// Create a copy of NbxCountryPickerParameters
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isRequired = null,Object? inputType = null,Object? decorationStyle = null,Object? controller = null,Object? labelText = freezed,Object? hintText = freezed,Object? requiredErrorMessage = freezed,Object? prefixIcon = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isRequired = null,Object? inputType = null,Object? decorationStyle = null,Object? controller = null,Object? labelText = freezed,Object? hintText = freezed,Object? requiredErrorMessage = freezed,Object? prefixIcon = freezed,Object? maxLines = freezed,}) {
   return _then(_NbxCountryPickerParameters(
 isRequired: null == isRequired ? _self.isRequired : isRequired // ignore: cast_nullable_to_non_nullable
 as bool,inputType: null == inputType ? _self.inputType : inputType // ignore: cast_nullable_to_non_nullable
@@ -282,7 +284,8 @@ as TextEditingController,labelText: freezed == labelText ? _self.labelText : lab
 as String?,hintText: freezed == hintText ? _self.hintText : hintText // ignore: cast_nullable_to_non_nullable
 as String?,requiredErrorMessage: freezed == requiredErrorMessage ? _self.requiredErrorMessage : requiredErrorMessage // ignore: cast_nullable_to_non_nullable
 as String?,prefixIcon: freezed == prefixIcon ? _self.prefixIcon : prefixIcon // ignore: cast_nullable_to_non_nullable
-as Widget?,
+as Widget?,maxLines: freezed == maxLines ? _self.maxLines : maxLines // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

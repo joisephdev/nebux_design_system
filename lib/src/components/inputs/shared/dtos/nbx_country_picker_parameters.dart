@@ -19,6 +19,7 @@ abstract class NbxCountryPickerParameters with _$NbxCountryPickerParameters {
     String? hintText,
     String? requiredErrorMessage,
     Widget? prefixIcon,
+    int? maxLines,
   }) = _NbxCountryPickerParameters;
 }
 

@@ -28,6 +28,7 @@ class NbxCountryPickerInput extends StatelessWidget {
         isReadOnly: true,
         autoDisposeController: false,
         forceShowSuffixIcon: true,
+        maxLines: inputParameters.maxLines,
         isRequired: inputParameters.isRequired,
         inputType: inputParameters.inputType,
         controller: inputParameters.controller,

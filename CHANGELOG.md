@@ -1,3 +1,12 @@
+## 0.1.11 (2025-11-29)
+
+- **NEW FEATURE**: Added `maxLines` parameter to `NbxCountryPickerInput` and `NbxCountryPickerParameters`
+
+  - Introduced optional `maxLines` parameter in `NbxCountryPickerParameters` to control the maximum number of lines for the input field
+  - Updated `NbxCountryPickerInput` to utilize the `maxLines` parameter, enhancing input flexibility
+  - Adjusted `NbxTextFormFieldWidget` to reflect the new `maxLines` property in its text display
+  - Improved country picker input customization options
+
 ## 0.1.9 (2025-11-24)
 
 - **NEW FEATURE**: Added `findByPhoneCode` method to `CountryProvider` for enhanced country selection

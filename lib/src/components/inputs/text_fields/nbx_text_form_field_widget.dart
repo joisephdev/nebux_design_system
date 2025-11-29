@@ -19,7 +19,8 @@ class NbxTextFormFieldWidget extends StatelessWidget {
         children: [
           Text(
             inputParameters.labelText ?? inputParameters.hintText ?? '',
-            style: context.nebuxTheme.typography.section.copyWith(
+            maxLines: inputParameters.maxLines,
+            style: context.nebuxTheme.typography.content.copyWith(
               color: context.nebuxColors.textPrimary,
             ),
           ),
