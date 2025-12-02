@@ -59,6 +59,7 @@ class NbxCountryPickerInput extends StatelessWidget {
     countrySelector(
       context: context,
       countryPreferred: modal.preferredCountries,
+      countries: modal.countries,
       showPhoneCode: modal.showPhoneCode,
       appBarTitle: modal.appBarTitle,
       onSelect: modal.onSelect,

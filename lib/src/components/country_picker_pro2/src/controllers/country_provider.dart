@@ -17,6 +17,13 @@ class CountryProvider {
     return _countries;
   }
 
+  /// Returns a list of countries by their country codes.
+  List<Country> getCountriesByCodes(List<String> countryCodes) {
+    return _countries
+        .where((country) => countryCodes.contains(country.countryCode))
+        .toList();
+  }
+
   /// Finds a country by its country code.
   ///
   /// Returns `null` if no country is found with the given code.

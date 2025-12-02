@@ -22,6 +22,9 @@ class CountryListView extends StatefulWidget {
   /// The list of countries to prefer.
   final List<String>? countryPreferred;
 
+  /// Custom list of countries to display.
+  final List<Country>? countries;
+
   /// The theme data for the country list.
   final CountryThemeData? countryTheme;
 
@@ -100,6 +103,7 @@ class CountryListView extends StatefulWidget {
     this.remove,
     this.countryPreferred,
     this.countrySorter,
+    this.countries,
     this.showPhoneCode = false,
     this.countryTheme,
     this.searchBarAutofocus = false,
@@ -128,6 +132,10 @@ class CountryListView extends StatefulWidget {
   }) : assert(
          remove == null || countrySorter == null,
          'Cannot provide both remove and countrySorter',
+       ),
+       assert(
+         countries == null || (remove == null && countrySorter == null),
+         'Cannot provide countries with remove or countrySorter',
        );
 
   @override
@@ -148,21 +156,21 @@ class _CountryListViewState extends State<CountryListView> {
     super.initState();
     _searchController = TextEditingController();
 
-    _countryList = _countryProvider.getAll();
+    // If custom countries list is provided, use it directly
+    if (widget.countries != null) {
+      _countryList = List<Country>.from(widget.countries!);
+    } else {
+      // Otherwise, use the default logic
+      _countryList = _countryProvider.getAll();
 
-    _countryList = countryCodes
-        .map((country) => Country.from(json: country))
-        .toList();
+      _countryList = countryCodes
+          .map((country) => Country.from(json: country))
+          .toList();
+    }
 
     if (!widget.showPhoneCode) {
       final ids = _countryList.map((e) => e.countryCode).toSet();
       _countryList.retainWhere((country) => ids.remove(country.countryCode));
-    }
-
-    if (widget.countryPreferred != null) {
-      _countryPreferredList = _countryProvider.findCountriesByCode(
-        widget.countryPreferred!,
-      );
     }
 
     if (widget.remove != null) {
@@ -174,6 +182,12 @@ class _CountryListViewState extends State<CountryListView> {
     if (widget.countrySorter != null) {
       _countryList.removeWhere(
         (element) => !widget.countrySorter!.contains(element.countryCode),
+      );
+    }
+
+    if (widget.countryPreferred != null) {
+      _countryPreferredList = _countryProvider.findCountriesByCode(
+        widget.countryPreferred!,
       );
     }
 

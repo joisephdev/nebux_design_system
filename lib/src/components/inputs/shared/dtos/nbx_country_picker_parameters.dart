@@ -53,10 +53,12 @@ abstract class NbxCountryPickerModalParameters
     @Default(FontWeight.bold) FontWeight? countryFontWeight,
     @Default(Icons.arrow_back) IconData backIcon,
     @Default(Icons.search) IconData searchBarIcon,
-    @Default(<String>['US']) List<String> preferredCountries,
+    // @Default(<String>['US']) List<String> preferredCountries,
+    @Default(<String>[]) List<String> preferredCountries,
     @Default(ListType.list) ListType listType,
     @Default(CountryThemeData(appBarBorderRadius: 10))
     CountryThemeData countryTheme,
+    List<Country>? countries,
     required void Function(Country) onSelect,
   }) = _NbxCountryPickerModalParameters;
 }
