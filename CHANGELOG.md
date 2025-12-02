@@ -1,3 +1,20 @@
+## 0.1.12 (2025-12-01)
+
+- **NEW FEATURE**: Enhanced country selection functionality with custom country list support
+
+  - Added `getCountriesByCodes` method in `CountryProvider` to retrieve countries based on a list of country codes
+  - Updated `countrySelector`, `CountryListView`, and `showCountryListView` to accept a custom list of countries for improved flexibility
+  - Modified `NbxCountryPickerModalParameters` to include a `countries` parameter, allowing for custom country lists in the picker
+  - Adjusted validation logic to ensure compatibility between custom countries and other parameters
+  - Enhanced country picker functionality with better customization options
+
+- **REFACTOR**: Removed `countryPreferred` parameter and updated documentation for country selection
+
+  - Removed the `countryPreferred` parameter from `countrySelector`, `CountryListView`, and related components to streamline the country selection process
+  - Updated documentation to reflect the new `countries` parameter, allowing for custom country lists instead of preferred countries
+  - Adjusted related code to ensure compatibility with the updated country selection logic
+  - Improved API consistency by consolidating country selection parameters
+
 ## 0.1.11 (2025-11-29)
 
 - **NEW FEATURE**: Added `maxLines` parameter to `NbxCountryPickerInput` and `NbxCountryPickerParameters`
