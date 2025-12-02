@@ -19,9 +19,6 @@ class CountryListView extends StatefulWidget {
   /// The list of countries to sort.
   final List<String>? countrySorter;
 
-  /// The list of countries to prefer.
-  final List<String>? countryPreferred;
-
   /// Custom list of countries to display.
   final List<Country>? countries;
 
@@ -101,7 +98,6 @@ class CountryListView extends StatefulWidget {
     super.key,
     required this.onSelect,
     this.remove,
-    this.countryPreferred,
     this.countrySorter,
     this.countries,
     this.showPhoneCode = false,
@@ -143,10 +139,8 @@ class CountryListView extends StatefulWidget {
 }
 
 class _CountryListViewState extends State<CountryListView> {
-  final CountryProvider _countryProvider = CountryProvider();
   late List<Country> _countryList;
   late List<Country> _filteredList;
-  List<Country>? _countryPreferredList;
   late TextEditingController _searchController;
   late bool _searchBarAutofocus;
   final ScrollController _controller = ScrollController();
@@ -161,8 +155,6 @@ class _CountryListViewState extends State<CountryListView> {
       _countryList = List<Country>.from(widget.countries!);
     } else {
       // Otherwise, use the default logic
-      _countryList = _countryProvider.getAll();
-
       _countryList = countryCodes
           .map((country) => Country.from(json: country))
           .toList();
@@ -182,12 +174,6 @@ class _CountryListViewState extends State<CountryListView> {
     if (widget.countrySorter != null) {
       _countryList.removeWhere(
         (element) => !widget.countrySorter!.contains(element.countryCode),
-      );
-    }
-
-    if (widget.countryPreferred != null) {
-      _countryPreferredList = _countryProvider.findCountriesByCode(
-        widget.countryPreferred!,
       );
     }
 
@@ -288,20 +274,6 @@ class _CountryListViewState extends State<CountryListView> {
                       ? ListView(
                           controller: _controller,
                           children: [
-                            if (_countryPreferredList != null) ...[
-                              ..._countryPreferredList!.map<Widget>(
-                                (currency) => _listItem(
-                                  currency,
-                                  widget.countryTextColour,
-                                  widget.countryTitleSize,
-                                  widget.countryFontWeight,
-                                  widget.countryFontStyle,
-                                  widget.dividerColour,
-                                  widget.listType,
-                                  widget.backgroundColour,
-                                ),
-                              ),
-                            ],
                             ..._filteredList.map<Widget>(
                               (country) => _listItem(
                                 country,
@@ -323,20 +295,6 @@ class _CountryListViewState extends State<CountryListView> {
                           mainAxisSpacing: 10,
                           maxCrossAxisExtent: 200.0,
                           children: <Widget>[
-                            if (_countryPreferredList != null) ...[
-                              ..._countryPreferredList!.map<Widget>(
-                                (currency) => _listItem(
-                                  currency,
-                                  widget.countryTextColour,
-                                  widget.countryTitleSize,
-                                  widget.countryFontWeight,
-                                  widget.countryFontStyle,
-                                  widget.dividerColour,
-                                  widget.listType,
-                                  widget.backgroundColour,
-                                ),
-                              ),
-                            ],
                             ..._filteredList.map<Widget>(
                               (country) => _listItem(
                                 country,

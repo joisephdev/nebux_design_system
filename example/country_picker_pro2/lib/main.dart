@@ -76,7 +76,6 @@ class MainPage extends StatelessWidget {
             countrySelector(
                 context: context,
                 viewType: ViewType.screen,
-                countryPreferred: <String>['US'],
                 appBarTitle: "Select Country",
                 onSelect: (Country country) {
                   debugPrint(

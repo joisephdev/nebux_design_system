@@ -58,7 +58,6 @@ class NbxCountryPickerInput extends StatelessWidget {
     final colors = context.nebuxTheme.colors;
     countrySelector(
       context: context,
-      countryPreferred: modal.preferredCountries,
       countries: modal.countries,
       showPhoneCode: modal.showPhoneCode,
       appBarTitle: modal.appBarTitle,

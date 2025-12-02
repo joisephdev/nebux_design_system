@@ -23,7 +23,6 @@ void showCountryListView({
   required ValueChanged<Country> onSelect,
   ViewType? viewType = ViewType.screen,
   VoidCallback? onClosed,
-  List<String>? countryPreferred,
   List<String>? remove,
   List<String>? countrySorter,
   List<Country>? countries,
@@ -104,7 +103,6 @@ void showCountryListView({
                     child: _viewData(
                       context,
                       onSelect,
-                      countryPreferred,
                       remove,
                       countrySorter,
                       countries,
@@ -174,7 +172,6 @@ void showCountryListView({
               body: _viewData(
                 context,
                 onSelect,
-                countryPreferred,
                 remove,
                 countrySorter,
                 countries,
@@ -214,7 +211,6 @@ void showCountryListView({
 Widget _viewData(
   BuildContext context,
   ValueChanged<Country> onSelect,
-  List<String>? countryPreferred,
   List<String>? remove,
   List<String>? countrySorter,
   List<Country>? countries,
@@ -254,7 +250,6 @@ Widget _viewData(
     child: CountryListView(
       onSelect: onSelect,
       remove: remove,
-      countryPreferred: countryPreferred,
       countrySorter: countrySorter,
       countries: countries,
       showPhoneCode: showPhoneCode,
