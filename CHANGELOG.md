@@ -1,3 +1,9 @@
+## 0.1.13 (2025-12-03)
+
+- **NEW FEATURE**: Added `onBeforeOpen` callback to `NbxCountryPickerInput`
+  - Introduced `onBeforeOpen` async callback to validation before opening the country picker
+  - Updated `_openCountryPicker` to await the callback result
+
 ## 0.1.12 (2025-12-01)
 
 - **NEW FEATURE**: Enhanced country selection functionality with custom country list support
