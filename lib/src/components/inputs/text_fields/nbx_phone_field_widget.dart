@@ -122,22 +122,21 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
           maxLength: _currentCountrySelected?.maxLength,
           isReadOnly: _isPhoneInputReadOnly,
           controller: _numberPhoneController,
-          customValidator: (value) {
-            final result = NbxInputValidator.validateWithRules(value, [
-              TextValidationRules.minLength(
-                minLength: _currentCountrySelected?.minLength ?? 0,
-              ),
-              TextValidationRules.maxLength(
-                maxLength: _currentCountrySelected?.maxLength ?? 0,
-              ),
-            ]);
 
-            Future.delayed(const Duration(milliseconds: 100), () {
-              widget.phoneNumberInputParameters.customValidator?.call(result);
-            });
+          customValidator:
+              widget.phoneNumberInputParameters.customValidator ??
+              (value) {
+                final result = NbxInputValidator.validateWithRules(value, [
+                  TextValidationRules.minLength(
+                    minLength: _currentCountrySelected?.minLength ?? 0,
+                  ),
+                  TextValidationRules.maxLength(
+                    maxLength: _currentCountrySelected?.maxLength ?? 0,
+                  ),
+                ]);
 
-            return result;
-          },
+                return result;
+              },
         ),
       ),
     );
