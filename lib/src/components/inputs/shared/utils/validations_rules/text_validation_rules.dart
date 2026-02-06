@@ -27,7 +27,9 @@ class TextValidationRules {
     final errorMessageText = errorMessage ?? 'Only letters are allowed';
     return ValidationRule(
       validator: (value) =>
-          RegExp(r'^[a-zA-Z\s]+$').hasMatch(value) ? null : errorMessageText,
+          RegExp(r'^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$').hasMatch(value)
+          ? null
+          : errorMessageText,
       errorMessage: errorMessageText,
     );
   }

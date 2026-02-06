@@ -45,6 +45,9 @@ class NbxInputValidator {
       case NbxInputType.decimalNumber:
         isValid = isValidDecimalNumber(trimmedValue);
         break;
+      case NbxInputType.free:
+        isValid = true;
+        break;
     }
 
     return isValid ? null : errorMessage;

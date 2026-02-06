@@ -13,23 +13,24 @@ class NbxTextFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (inputParameters.formType != NbxFormType.outlined) {
-      return _inputWidget(context);
+    if (inputParameters.decorationStyle.isOutlined) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            inputParameters.labelText ?? inputParameters.hintText ?? '',
+            maxLines: inputParameters.maxLines,
+            style: context.nebuxTheme.typography.content.copyWith(
+              color: context.nebuxColors.textPrimary,
+            ),
+          ),
+          heightSpace4,
+          _inputWidget(context),
+        ],
+      );
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          inputParameters.labelText ?? inputParameters.hintText ?? '',
-          style: context.nebuxTheme.typography.section.copyWith(
-            color: context.nebuxColors.textPrimary,
-          ),
-        ),
-        heightSpace4,
-        _inputWidget(context),
-      ],
-    );
+    return _inputWidget(context);
   }
 
   Widget _inputWidget(BuildContext context) {

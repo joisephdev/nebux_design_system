@@ -1,11 +1,11 @@
 /// This widget is part of the `country_picker_pro` package, which provides a customizable Country Selector widget.
 ///
 /// The `CountrySelector` widget allows users to select a country from a list of countries with various customization options.
-/// It includes options for displaying preferred countries at the top of the list, showing phone codes, and customizing the appearance of the widget.
+/// It includes options for displaying custom country lists, showing phone codes, and customizing the appearance of the widget.
 ///
 /// The `CountrySelector` widget requires several parameters for customization, including:
 /// - `context`: The BuildContext of the widget, required for navigation.
-/// - `countryPreferred`: A list of country codes (ISO 3166-1 alpha-2) for countries that should be displayed at the top of the list.
+/// - `countries`: An optional custom list of countries to display. If provided, it replaces the default country list.
 /// - `showPhoneCode`: A boolean value indicating whether to display the phone code of each country in the list.
 /// - `appBarTitle`: The title to be displayed in the app bar when the country selector is opened.
 /// - `onSelect`: A callback function that is called when a country is selected. It receives a `Country` object representing the selected country.
@@ -31,7 +31,7 @@
 /// ```dart
 /// CountrySelector(
 ///   context: context,
-///   countryPreferred: <String>['US'],
+///   countries: customCountryList, // Optional: provide a custom list of countries
 ///   showPhoneCode: true,
 ///   appBarTitle: "Select Country",
 ///   onSelect: (Country country) {

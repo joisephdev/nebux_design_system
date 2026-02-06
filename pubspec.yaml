@@ -1,9 +1,9 @@
 name: nebux_design_system
 description: "A comprehensive Flutter design system package that provides consistent theming, typography, spacing, and UI components for Nebux applications."
-homepage: https://github.com/nebux-labs/nebux_design_system
-# repository: https://github.com/nebux-labs/nebux_design_system
-# issue_tracker: https://github.com/nebux-labs/nebux_design_system/issues
-version: 0.1.3
+homepage: https://github.com/joisephdev/nebux_design_system.git
+repository: https://github.com/joisephdev/nebux_design_system.git
+issue_tracker: https://github.com/joisephdev/nebux_design_system.git/issues
+version: 0.1.13
 
 environment:
   sdk: ^3.8.1
@@ -20,6 +20,8 @@ dependencies:
   double_back_to_exit: ^1.2.1
   cached_network_image: ^3.4.1
   collection: ^1.18.0
+  flutter_skeleton_ui: ^0.0.6
+  app_shimmer: ^1.0.0
 
 dev_dependencies:
   flutter_test:
