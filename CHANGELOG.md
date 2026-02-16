@@ -17,6 +17,13 @@
 
 - **DOCS**: Rewrote README with concise documentation and all current components
 
+- **CHORE**: Improved pub.dev score (130 → 160)
+  - Added `example/example.dart` with a complete usage sample
+  - Updated `google_fonts` from `^6.2.1` to `^8.0.1`
+  - Updated `toml` from `^0.16.0` to `^0.18.0`
+  - Bumped minimum Dart SDK to `^3.9.0` and Flutter to `>=3.29.0`
+  - Removed orphan file `country_json copy.dart` with invalid naming
+
 ## 0.1.13 (2025-12-03)
 
 - **NEW FEATURE**: Added `onBeforeOpen` callback to `NbxCountryPickerInput`
