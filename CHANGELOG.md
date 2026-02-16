@@ -1,3 +1,112 @@
+## 0.1.14 (2026-02-15)
+
+- **NEW FEATURE**: Added `showErrorText` parameter to `NbxInputParameters` to control error message visibility
+  - Introduced `showErrorText` boolean parameter (defaults to `true`) in `NbxInputParameters`
+  - When set to `false`, hides the error text below input fields while preserving validation behavior
+  - Updated `NbxInputDecorationExtension` to conditionally apply error text style based on the parameter
+
+- **ENHANCEMENT**: Enhanced letter validation to include accented characters
+  - Updated `TextValidationRules.onlyLetters` regex to support accented characters (ñ, á, é, í, ó, ú, ü and their uppercase variants)
+  - Improved input validation for Spanish and other Latin-based language inputs
+
+## 0.1.13 (2025-12-03)
+
+- **NEW FEATURE**: Added `onBeforeOpen` callback to `NbxCountryPickerInput`
+  - Introduced `onBeforeOpen` async callback to validation before opening the country picker
+  - Updated `_openCountryPicker` to await the callback result
+
+## 0.1.12 (2025-12-01)
+
+- **NEW FEATURE**: Enhanced country selection functionality with custom country list support
+
+  - Added `getCountriesByCodes` method in `CountryProvider` to retrieve countries based on a list of country codes
+  - Updated `countrySelector`, `CountryListView`, and `showCountryListView` to accept a custom list of countries for improved flexibility
+  - Modified `NbxCountryPickerModalParameters` to include a `countries` parameter, allowing for custom country lists in the picker
+  - Adjusted validation logic to ensure compatibility between custom countries and other parameters
+  - Enhanced country picker functionality with better customization options
+
+- **REFACTOR**: Removed `countryPreferred` parameter and updated documentation for country selection
+
+  - Removed the `countryPreferred` parameter from `countrySelector`, `CountryListView`, and related components to streamline the country selection process
+  - Updated documentation to reflect the new `countries` parameter, allowing for custom country lists instead of preferred countries
+  - Adjusted related code to ensure compatibility with the updated country selection logic
+  - Improved API consistency by consolidating country selection parameters
+
+## 0.1.11 (2025-11-29)
+
+- **NEW FEATURE**: Added `maxLines` parameter to `NbxCountryPickerInput` and `NbxCountryPickerParameters`
+
+  - Introduced optional `maxLines` parameter in `NbxCountryPickerParameters` to control the maximum number of lines for the input field
+  - Updated `NbxCountryPickerInput` to utilize the `maxLines` parameter, enhancing input flexibility
+  - Adjusted `NbxTextFormFieldWidget` to reflect the new `maxLines` property in its text display
+  - Improved country picker input customization options
+
+## 0.1.9 (2025-11-24)
+
+- **NEW FEATURE**: Added `findByPhoneCode` method to `CountryProvider` for enhanced country selection
+
+  - Implemented method to retrieve a country based on its phone code
+  - Returns `null` if no matching country is found, improving error handling
+  - Enhanced country picker functionality with better phone code lookup capabilities
+
+- **REFACTOR**: Enhanced `NbxButton` widget structure and documentation
+
+  - Improved widget properties and methods organization for better clarity and maintainability
+  - Updated documentation comments following custom doc template for clearer parameter descriptions
+  - Introduced helper methods to streamline button style and content building
+  - Removed legacy constructor to simplify API and encourage use of configuration classes
+  - Enhanced code readability and maintainability
+
+- **REFACTOR**: Simplified `NbxAppBar` layout and improved title rendering
+
+  - Removed leading button logic from app bar for cleaner architecture
+  - Adjusted title spacing based on presence of leading button in `appBarConfig`
+  - Updated title widget to conditionally include leading button within a Row for better layout management
+  - Improved component structure and predictability
+
+- **FIX**: Updated font sizes and weights in `NebuxTypography` for consistency
+
+  - Adjusted font sizes for content, caption, heading, and section styles to align with design specifications
+  - Updated documentation comments to reflect new font sizes and weights
+  - Improved typography consistency across the design system
+
+- **ENHANCEMENT**: Improved `NbxPhoneFieldWidget` layout
+
+  - Adjusted `crossAxisAlignment` from `start` to `end` for improved visual alignment
+  - Enhanced layout consistency in phone input fields
+
+- **CHORE**: Updated repository links in `pubspec.yaml` to reflect new ownership
+
+  - Changed homepage, repository, and issue tracker URLs to point to new GitHub account
+  - Updated package metadata for better maintainability
+
+- **CHORE**: Updated package dependencies
+  - Added `app_shimmer` package as transitive dependency in `pubspec.lock`
+  - Updated local package version references
+
+## 0.1.7 (2025-01-27)
+
+- **FIX**: Updated package dependencies and version constraints
+  - Fixed `app_shimmer` dependency to use proper version constraint (^1.0.0)
+  - Bumped package version to 0.1.7 for proper publishing sequence
+  - Improved package stability and dependency management
+
+## 0.1.6 (2025-01-27)
+
+- **FIX**: Updated package dependencies and version constraints
+  - Fixed `app_shimmer` dependency to use proper version constraint (^1.0.0)
+  - Bumped package version to 0.1.6 for proper publishing sequence
+  - Improved package stability and dependency management
+
+## 0.1.4 (2025-10-06)
+
+- REFACTOR: Chip configuration and list tile integration
+  - Added `ChipConfig` utility to centralize chip parameters (label, labelStyle, colors, density, onTap)
+  - Updated internal components to consume `ChipConfig` for improved reusability and maintainability
+  - Refactored `AppListTileWithChip` to remove chip-specific parameters and accept a `ChipConfig`
+  - Improved documentation consistency using the custom doc template
+  - No breaking API changes; backwards-compatible migration path provided via config object
+
 ## 0.1.3 (2025-01-27)
 
 - **FIX**: Updated `NbxAppBar` to automatically imply leading button for better Material Design compliance

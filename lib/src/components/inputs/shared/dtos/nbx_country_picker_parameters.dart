@@ -13,12 +13,13 @@ abstract class NbxCountryPickerParameters with _$NbxCountryPickerParameters {
   factory NbxCountryPickerParameters({
     required bool isRequired,
     required NbxInputType inputType,
-    required NbxFormType formType,
+    required NbxInputDecorationStyle decorationStyle,
     required TextEditingController controller,
     String? labelText,
     String? hintText,
     String? requiredErrorMessage,
     Widget? prefixIcon,
+    int? maxLines,
   }) = _NbxCountryPickerParameters;
 }
 
@@ -52,10 +53,10 @@ abstract class NbxCountryPickerModalParameters
     @Default(FontWeight.bold) FontWeight? countryFontWeight,
     @Default(Icons.arrow_back) IconData backIcon,
     @Default(Icons.search) IconData searchBarIcon,
-    @Default(<String>['US']) List<String> preferredCountries,
     @Default(ListType.list) ListType listType,
     @Default(CountryThemeData(appBarBorderRadius: 10))
     CountryThemeData countryTheme,
+    List<Country>? countries,
     required void Function(Country) onSelect,
   }) = _NbxCountryPickerModalParameters;
 }

@@ -20,7 +20,7 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     'Either labelText or hintText must be provided',
   )
   @Assert(
-    'formType != NbxFormType.outlined || (labelText != null && hintText != null)',
+    'decorationStyle != NbxInputDecorationStyle.outlined || (labelText != null && hintText != null)',
     'When formType is outlined, both labelText and hintText must be provided',
   )
   factory NbxInputParameters({
@@ -38,6 +38,7 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     @Default(false) bool showCancelIcon,
     @Default(true) bool autoDisposeController,
     @Default(false) bool forceShowSuffixIcon,
+    @Default(true) bool showErrorText,
     @Default(AutovalidateMode.onUserInteraction)
     AutovalidateMode autovalidateMode,
     String? requiredErrorMessage,
@@ -48,14 +49,22 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     int? maxLength,
     Widget? suffixIcon,
     Widget? prefixIcon,
+    Color? fillColor,
     TextInputAction? textInputAction,
     TextEditingController? controller,
     VoidCallback? suffixOnPressed,
-    InputDecoration? decoration,
+    // InputDecoration? decoration,
     ValueChanged<String>? onSubmitted,
     ValueChanged<String>? onChanged,
     List<TextInputFormatter>? inputFormatters,
-    @Default(NbxFormType.outlined) NbxFormType formType,
+    @Default(NbxInputDecorationStyle.outlined)
+    NbxInputDecorationStyle decorationStyle,
+    InputBorder? border,
+    InputBorder? enabledBorder,
+    InputBorder? focusedBorder,
+    InputBorder? errorBorder,
+    InputBorder? focusedErrorBorder,
+    InputBorder? disabledBorder,
     void Function()? onTap,
   }) = _NbxInputParameters;
 }

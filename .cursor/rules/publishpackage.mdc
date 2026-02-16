@@ -1,0 +1,32 @@
+---
+alwaysApply: false
+---
+
+Instrucciones:
+Quiero que ejecutes los siguientes pasos de forma ordenada y precisa:
+
+Incrementa la versión en pubspec.yaml
+
+Asegúrate de aplicar un incremento de versión semántica adecuado (major.minor.patch) según los cambios realizados.
+
+Actualiza el archivo CHANGELOG.md
+
+Agrega una nueva sección al inicio con la versión recién incrementada.
+
+Incluye una lista de cambios basada en los commits más recientes o en los cambios locales detectados.
+
+Revisa el archivo README.md
+
+Solo si lo consideras realmente necesario, agrega ejemplos, documentación adicional o información importante que complemente los cambios realizados.
+
+No hagas cambios triviales.
+
+Sube los cambios a Git
+
+Crea un commit con un mensaje claro (ejemplo: chore(release): vX.Y.Z).
+
+Haz push a la rama principal o correspondiente.
+
+Publica en pub.dev
+
+Ejecuta el proceso de publicación asegurándote de que todo esté validado (dart pub publish).

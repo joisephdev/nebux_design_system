@@ -8,11 +8,16 @@ class NbxCountryPickerInput extends StatelessWidget {
   /// @param modal: The modal/list configuration parameters [NbxCountryPickerModalParameters].
   final NbxCountryPickerModalParameters modal;
 
+  /// @param onBeforeOpen: Callback to validate if the picker should open.
+  /// Returns true to open, false to prevent opening. If null, it opens by default.
+  final Future<bool> Function()? onBeforeOpen;
+
   /// Constructor for the [NbxCountryPickerInput] widget.
   const NbxCountryPickerInput({
     super.key,
     required this.inputParameters,
     required this.modal,
+    this.onBeforeOpen,
   });
 
   /// Builds the country picker input widget.
@@ -28,10 +33,11 @@ class NbxCountryPickerInput extends StatelessWidget {
         isReadOnly: true,
         autoDisposeController: false,
         forceShowSuffixIcon: true,
+        maxLines: inputParameters.maxLines,
         isRequired: inputParameters.isRequired,
         inputType: inputParameters.inputType,
         controller: inputParameters.controller,
-        formType: inputParameters.formType,
+        decorationStyle: inputParameters.decorationStyle,
         labelText: inputParameters.labelText,
         hintText: inputParameters.hintText,
         requiredErrorMessage: inputParameters.requiredErrorMessage,
@@ -53,11 +59,17 @@ class NbxCountryPickerInput extends StatelessWidget {
     );
   }
 
-  void _openCountryPicker(BuildContext context) {
+  Future<void> _openCountryPicker(BuildContext context) async {
+    if (onBeforeOpen != null && !await onBeforeOpen!()) {
+      return;
+    }
+
+    if (!context.mounted) return;
+
     final colors = context.nebuxTheme.colors;
     countrySelector(
       context: context,
-      countryPreferred: modal.preferredCountries,
+      countries: modal.countries,
       showPhoneCode: modal.showPhoneCode,
       appBarTitle: modal.appBarTitle,
       onSelect: modal.onSelect,

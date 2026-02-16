@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
-import '../config/export.dart';
-
 /// Enum defining the different button variants.
 enum ButtonVariant {
   /// Filled button with filled background.
@@ -24,28 +22,33 @@ class NbxButton extends StatelessWidget {
   final String text;
 
   /// Callback function called when the button is pressed.
+  /// Will be null when button is disabled or loading.
   final VoidCallback? onPressed;
 
-  /// Configuration for button icons.
+  /// Configuration for button icons (leading and trailing).
   final ButtonIconConfig iconConfig;
 
-  /// Configuration for button styling.
+  /// Configuration for button styling (variant, colors, text style).
   final ButtonStyleConfig styleConfig;
 
-  /// Configuration for button state.
+  /// Configuration for button state (loading, enabled, selected).
   final ButtonStateConfig stateConfig;
 
-  /// Configuration for button layout.
+  /// Configuration for button layout (expanded width).
   final ButtonLayoutConfig layoutConfig;
 
   /// Creates a [NbxButton] with the specified properties.
   ///
-  /// @param text: The text to display on the button [String]
-  /// @param onPressed: Callback function called when the button is pressed [VoidCallback?]
-  /// @param iconConfig: Configuration for button icons [ButtonIconConfig]
-  /// @param styleConfig: Configuration for button styling [ButtonStyleConfig]
-  /// @param stateConfig: Configuration for button state [ButtonStateConfig]
-  /// @param layoutConfig: Configuration for button layout [ButtonLayoutConfig]
+  /// The [text] and [onPressed] parameters are required.
+  /// All configuration objects default to their respective default constructors.
+  ///
+  /// Parameters:
+  /// * [text] - The text to display on the button
+  /// * [onPressed] - Callback function when button is pressed
+  /// * [iconConfig] - Icon configuration (optional)
+  /// * [styleConfig] - Style configuration (optional)
+  /// * [stateConfig] - State configuration (optional)
+  /// * [layoutConfig] - Layout configuration (optional)
   const NbxButton({
     super.key,
     required this.text,
@@ -55,60 +58,6 @@ class NbxButton extends StatelessWidget {
     this.stateConfig = const ButtonStateConfig(),
     this.layoutConfig = const ButtonLayoutConfig(),
   });
-
-  /// Creates a [NbxButton] with backward compatibility for individual properties.
-  ///
-  /// This constructor maintains compatibility with the previous API while
-  /// internally using the new configuration classes.
-  ///
-  /// @param text: The text to display on the button [String]
-  /// @param onPressed: Callback function called when the button is pressed [VoidCallback?]
-  /// @param isLoading: Whether to show a loading indicator instead of text [bool]
-  /// @param enabled: Whether the button is enabled [bool]
-  /// @param isExpanded: Whether the button should expand to fill available width [bool]
-  /// @param borderRadius: Custom border radius for the button [double?]
-  /// @param textStyle: Custom text style for the button [TextStyle?]
-  /// @param icon: Icon to display before the text [IconData?]
-  /// @param trailingIcon: Icon to display after the text [IconData?]
-  /// @param variant: The visual variant of the button [ButtonVariant]
-  /// @param iconColor: The color of the leading icon [Color?]
-  /// @param trailingIconColor: The color of the trailing icon [Color?]
-  /// @param customBackgroundColor: Custom background color for the button [Color?]
-  /// @param isSelected: Whether the button is selected [bool]
-  NbxButton.legacy({
-    super.key,
-    required this.text,
-    required this.onPressed,
-    bool isLoading = false,
-    bool enabled = true,
-    bool isExpanded = true,
-    double? borderRadius,
-    TextStyle? textStyle,
-    IconData? icon,
-    IconData? trailingIcon,
-    ButtonVariant variant = ButtonVariant.filled,
-    Color? iconColor,
-    Color? trailingIconColor,
-    Color? customBackgroundColor,
-    bool isSelected = false,
-  }) : iconConfig = ButtonIconConfig(
-         icon: icon,
-         iconColor: iconColor,
-         trailingIcon: trailingIcon,
-         trailingIconColor: trailingIconColor,
-       ),
-       styleConfig = ButtonStyleConfig(
-         variant: variant,
-         customBackgroundColor: customBackgroundColor,
-         borderRadius: borderRadius,
-         textStyle: textStyle,
-       ),
-       stateConfig = ButtonStateConfig(
-         isLoading: isLoading,
-         enabled: enabled,
-         isSelected: isSelected,
-       ),
-       layoutConfig = ButtonLayoutConfig(isExpanded: isExpanded);
 
   @override
   Widget build(BuildContext context) {
@@ -121,190 +70,283 @@ class NbxButton extends StatelessWidget {
     return buttonWidget;
   }
 
+  /// Builds the appropriate button widget based on the configured variant.
+  ///
+  /// Creates a FilledButton, OutlinedButton, TextButton, or danger-styled
+  /// FilledButton depending on the [ButtonVariant] specified in styleConfig.
   Widget _buildButtonWidget(BuildContext context) {
-    final bool shouldDisable = stateConfig.isLoading || !stateConfig.enabled;
+    final bool isButtonDisabled = _shouldDisableButton();
 
     switch (styleConfig.variant) {
       case ButtonVariant.filled:
         return FilledButton(
-          onPressed: shouldDisable ? null : onPressed,
-          style: _getButtonStyle(context),
+          onPressed: isButtonDisabled ? null : onPressed,
+          style: _buildButtonStyle(context),
           child: _buildButtonContent(context),
         );
+
       case ButtonVariant.outline:
         return OutlinedButton(
-          onPressed: shouldDisable ? null : onPressed,
-          style: _getButtonStyle(context),
+          onPressed: isButtonDisabled ? null : onPressed,
+          style: _buildButtonStyle(context),
           child: _buildButtonContent(context),
         );
+
       case ButtonVariant.text:
         return TextButton(
-          onPressed: shouldDisable ? null : onPressed,
-          style: _getButtonStyle(context),
+          onPressed: isButtonDisabled ? null : onPressed,
+          style: _buildButtonStyle(context),
           child: _buildButtonContent(context),
         );
+
       case ButtonVariant.danger:
         return FilledButton(
-          onPressed: shouldDisable ? null : onPressed,
-          style: _getButtonStyle(context),
+          onPressed: isButtonDisabled ? null : onPressed,
+          style: _buildButtonStyle(context),
           child: _buildButtonContent(context),
         );
     }
   }
 
+  /// Builds the button content including loading indicator, icons, and text.
+  ///
+  /// When loading, displays a circular progress indicator.
+  /// Otherwise, arranges leading icon, text, and trailing icon horizontally.
   Widget _buildButtonContent(BuildContext context) {
     if (stateConfig.isLoading) {
       return const SizedBox(
         width: 20,
         height: 20,
         child: CircularProgressIndicator(
-          strokeWidth: 2,
+          strokeWidth: 2.0,
           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
       );
     }
 
-    final bool shouldDisable = stateConfig.isLoading || !stateConfig.enabled;
-    final NebuxColors colors = context.nebuxColors;
-    final Color disabledColor = colors.disabled;
+    return _buildButtonContentRow(context);
+  }
 
-    final List<Widget> children = <Widget>[];
+  /// Builds the row containing icon(s) and text content.
+  ///
+  /// Arranges elements in the following order:
+  /// 1. Leading icon (if configured)
+  /// 2. Text
+  /// 3. Trailing icon (if configured)
+  Widget _buildButtonContentRow(BuildContext context) {
+    final bool isButtonDisabled = _shouldDisableButton();
+    final Color disabledColor = context.nebuxColors.disabled;
 
-    // Build the leading icon widget
-    if (iconConfig.icon != null) {
-      children.add(
-        Icon(
-          iconConfig.icon,
-          size: 18,
-          color: shouldDisable ? disabledColor : iconConfig.iconColor,
-        ),
-      );
-
-      children.add(widthSpace8);
-    }
-
-    // Build the text widget
-    children.add(_buildTextWidget(context, shouldDisable, disabledColor));
-
-    // Build the trailing icon widget
-    if (iconConfig.trailingIcon != null) {
-      children.add(widthSpace8);
-      children.add(
-        Icon(
-          iconConfig.trailingIcon,
-          size: 18,
-          color: shouldDisable ? disabledColor : iconConfig.trailingIconColor,
-        ),
-      );
-    }
+    final List<Widget> contentChildren = <Widget>[
+      if (iconConfig.icon != null) ...[
+        _buildLeadingIcon(isButtonDisabled, disabledColor),
+        widthSpace8,
+      ],
+      _buildTextWidget(context, isButtonDisabled, disabledColor),
+      if (iconConfig.trailingIcon != null) ...[
+        widthSpace8,
+        _buildTrailingIcon(isButtonDisabled, disabledColor),
+      ],
+    ];
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
+      children: contentChildren,
     );
   }
 
-  /// Builds the text widget for the button.
+  /// Builds the leading icon widget.
+  Widget _buildLeadingIcon(bool isDisabled, Color disabledColor) {
+    return Icon(
+      iconConfig.icon,
+      size: 18.0,
+      color: isDisabled ? disabledColor : iconConfig.iconColor,
+    );
+  }
+
+  /// Builds the trailing icon widget.
+  Widget _buildTrailingIcon(bool isDisabled, Color disabledColor) {
+    return Icon(
+      iconConfig.trailingIcon,
+      size: 18.0,
+      color: isDisabled ? disabledColor : iconConfig.trailingIconColor,
+    );
+  }
+
+  /// Builds the text widget for the button with appropriate styling.
   ///
-  /// @param context: The build context [BuildContext]
-  /// @param shouldDisable: Whether the button is disabled [bool]
-  /// @param disabledColor: The color of the disabled text [Color]
-  /// @returns: [Widget]
+  /// Applies variant-specific text styles and handles disabled state coloring.
+  /// The text is wrapped in a Flexible widget to handle overflow properly.
+  ///
+  /// Parameters:
+  /// * [context] - Build context for accessing theme
+  /// * [isDisabled] - Whether the button is in disabled state
+  /// * [disabledColor] - Color to use when disabled
   Widget _buildTextWidget(
     BuildContext context,
-    bool shouldDisable,
+    bool isDisabled,
     Color disabledColor,
   ) {
-    Widget baseTextWidget(TextStyle style) => Flexible(
+    final TextStyle textStyle = _getTextStyleForVariant(
+      context,
+      isDisabled,
+      disabledColor,
+    );
+
+    return Flexible(
       child: Text(
         text,
-        maxLines: 2,
+        maxLines: 3,
         textAlign: TextAlign.center,
         overflow: TextOverflow.fade,
         softWrap: true,
-        style: style,
-      ).nbxPaddingOnly(top: 3),
+        style: textStyle,
+      ).nbxPaddingOnly(top: 0),
     );
+  }
+
+  /// Builds the ButtonStyle based on the current variant and state.
+  ///
+  /// Configures shape, colors, elevation, and borders according to:
+  /// * Button variant (filled, outline, text, danger)
+  /// * Disabled state
+  /// * Selected state (for outline variant)
+  /// * Custom colors from styleConfig
+  ButtonStyle _buildButtonStyle(BuildContext context) {
+    final NebuxColors colors = context.nebuxColors;
+    final bool isButtonDisabled = _shouldDisableButton();
 
     switch (styleConfig.variant) {
-      case ButtonVariant.text:
-        return baseTextWidget(
-          (styleConfig.textStyle ?? context.nebuxTheme.typography.content)
-              .copyWith(color: shouldDisable ? disabledColor : null),
-        );
-      case ButtonVariant.outline:
-        return baseTextWidget(
-          (styleConfig.textStyle ?? context.nebuxTheme.typography.content)
-              .copyWith(color: shouldDisable ? disabledColor : null),
-        );
       case ButtonVariant.filled:
+        return _buildFilledButtonStyle(colors, isButtonDisabled);
+
+      case ButtonVariant.text:
+        return _buildTextButtonStyle(context, colors, isButtonDisabled);
+
+      case ButtonVariant.outline:
+        return _buildOutlineButtonStyle(colors, isButtonDisabled);
+
       case ButtonVariant.danger:
-        return baseTextWidget(
-          (styleConfig.textStyle ??
-                  context.nebuxTheme.typography.secondaryAction)
-              .copyWith(color: shouldDisable ? disabledColor : null),
-        );
+        return _buildDangerButtonStyle(colors, isButtonDisabled);
     }
   }
 
-  ButtonStyle _getButtonStyle(BuildContext context) {
-    final NebuxColors colors = context.nebuxColors;
-    final double borderRadiusValue = styleConfig.borderRadius ?? 8;
-    final RoundedRectangleBorder shape = RoundedRectangleBorder(
+  /// Builds the style for filled button variant.
+  ButtonStyle _buildFilledButtonStyle(NebuxColors colors, bool isDisabled) {
+    return FilledButton.styleFrom(
+      shape: _getButtonShape(),
+      elevation: 0,
+      backgroundColor: isDisabled
+          ? colors.disabled
+          : styleConfig.customBackgroundColor ?? colors.actionPrimary,
+      foregroundColor: isDisabled ? colors.textSecondary : Colors.white,
+    );
+  }
+
+  /// Builds the style for text button variant.
+  ButtonStyle _buildTextButtonStyle(
+    BuildContext context,
+    NebuxColors colors,
+    bool isDisabled,
+  ) {
+    return TextButton.styleFrom(
+      shape: _getButtonShape(),
+      foregroundColor: isDisabled
+          ? colors.textSecondary.withValues(alpha: .5)
+          : colors.actionPrimary,
+      textStyle: context.nebuxTheme.typography.caption.copyWith(
+        decoration: TextDecoration.underline,
+      ),
+    );
+  }
+
+  /// Builds the style for outline button variant.
+  ButtonStyle _buildOutlineButtonStyle(NebuxColors colors, bool isDisabled) {
+    /// Gets the border side configuration for outline button variant.
+    final Color borderColor = isDisabled
+        ? colors.textSecondary.withValues(alpha: .3)
+        : colors.textSecondary;
+
+    return OutlinedButton.styleFrom(
+      shape: _getButtonShape(),
+      backgroundColor: stateConfig.isSelected ? colors.primary : Colors.white,
+      foregroundColor: _getOutlineForegroundColor(colors, isDisabled),
+      side: BorderSide(color: borderColor, width: 0.1),
+    );
+  }
+
+  /// Builds the style for danger button variant.
+  ButtonStyle _buildDangerButtonStyle(NebuxColors colors, bool isDisabled) {
+    return FilledButton.styleFrom(
+      shape: _getButtonShape(),
+      elevation: 0,
+      backgroundColor: isDisabled
+          ? colors.textSecondary.withValues(alpha: .3)
+          : colors.error,
+      foregroundColor: isDisabled ? colors.textSecondary : Colors.white,
+    );
+  }
+
+  // ============================================================================
+  // HELPER METHODS
+  // ============================================================================
+
+  /// Determines if the button should be disabled.
+  ///
+  /// A button is disabled when it's in loading state or explicitly disabled.
+  bool _shouldDisableButton() {
+    return stateConfig.isLoading || !stateConfig.enabled;
+  }
+
+  /// Gets the appropriate text style for the current button variant.
+  ///
+  /// Uses custom text style if provided, otherwise falls back to theme defaults.
+  /// Applies disabled color when button is disabled.
+  TextStyle _getTextStyleForVariant(
+    BuildContext context,
+    bool isDisabled,
+    Color disabledColor,
+  ) {
+    final TextStyle baseStyle = _getBaseTextStyleForVariant(context);
+
+    return baseStyle.copyWith(
+      color: isDisabled ? disabledColor : baseStyle.color,
+    );
+  }
+
+  /// Gets the base text style from theme for the current variant.
+  TextStyle _getBaseTextStyleForVariant(BuildContext context) {
+    final bool isFilledOrDanger =
+        styleConfig.variant == ButtonVariant.filled ||
+        styleConfig.variant == ButtonVariant.danger;
+
+    if (isFilledOrDanger) {
+      return styleConfig.textStyle ??
+          context.nebuxTheme.typography.secondaryAction;
+    }
+
+    return styleConfig.textStyle ?? context.nebuxTheme.typography.content;
+  }
+
+  /// Gets the button shape with configured or default border radius.
+  RoundedRectangleBorder _getButtonShape() {
+    final double borderRadiusValue = styleConfig.borderRadius ?? 8.0;
+
+    return RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(borderRadiusValue),
     );
+  }
 
-    final bool shouldDisable = stateConfig.isLoading || !stateConfig.enabled;
-
-    switch (styleConfig.variant) {
-      case ButtonVariant.filled:
-        return FilledButton.styleFrom(
-          shape: shape,
-          elevation: 0,
-          backgroundColor: shouldDisable
-              ? colors.disabled
-              : styleConfig.customBackgroundColor ?? colors.actionPrimary,
-          foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
-        );
-      case ButtonVariant.text:
-        return TextButton.styleFrom(
-          shape: shape,
-          foregroundColor: shouldDisable
-              ? colors.textSecondary.withValues(alpha: 0.5)
-              : colors.actionPrimary,
-          textStyle: context.nebuxTheme.typography.caption.copyWith(
-            decoration: TextDecoration.underline,
-          ),
-        );
-      case ButtonVariant.outline:
-        return OutlinedButton.styleFrom(
-          shape: shape,
-          backgroundColor: stateConfig.isSelected
-              ? colors.primary
-              : Colors.white,
-          foregroundColor: shouldDisable
-              ? colors.textSecondary.withValues(alpha: 0.5)
-              : stateConfig.isSelected
-              ? Colors.white
-              : colors.actionPrimary,
-          side: BorderSide(
-            color: shouldDisable
-                ? colors.textSecondary.withValues(alpha: 0.3)
-                : colors.textSecondary,
-            width: .2,
-          ),
-        );
-      case ButtonVariant.danger:
-        return FilledButton.styleFrom(
-          shape: shape,
-          elevation: 0,
-          backgroundColor: shouldDisable
-              ? colors.textSecondary.withValues(alpha: 0.3)
-              : colors.error,
-          foregroundColor: shouldDisable ? colors.textSecondary : Colors.white,
-        );
+  /// Gets the foreground color for outline button variant.
+  ///
+  /// Considers disabled state and selected state.
+  Color _getOutlineForegroundColor(NebuxColors colors, bool isDisabled) {
+    if (isDisabled) {
+      return colors.textSecondary.withValues(alpha: .5);
     }
+
+    return stateConfig.isSelected ? Colors.white : colors.actionPrimary;
   }
 }

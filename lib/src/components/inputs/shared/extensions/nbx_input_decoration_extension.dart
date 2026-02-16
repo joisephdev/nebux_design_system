@@ -23,15 +23,16 @@ extension NbxInputDecorationExtension on NbxInputParameters {
   }
 
   InputDecoration get inputDecoration {
-    final decoration = this.decoration ?? const InputDecoration();
-    return decoration.copyWith(
+    // final decoration = this.decoration ?? const InputDecoration();
+    return const InputDecoration().copyWith(
       hintText: hintText,
       counterText: '',
-      labelText: formType.isOutlined ? null : labelText,
+      labelText: decorationStyle.isOutlined ? null : labelText,
       errorMaxLines: 3,
-      floatingLabelBehavior: formType.isOutlined
-          ? (floatingLabelBehavior ?? FloatingLabelBehavior.auto)
-          : null,
+      floatingLabelBehavior: decorationStyle.isFilled
+          ? FloatingLabelBehavior.never
+          : (floatingLabelBehavior ?? FloatingLabelBehavior.auto),
+
       labelStyle: _nbxTheme.typography.label.copyWith(
         // color: _nbxTheme.colors.textSecondary,
         color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
@@ -42,35 +43,34 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       hintStyle: _nbxTheme.typography.content.copyWith(
         color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
       ),
-      errorStyle: _nbxTheme.typography.caption.copyWith(
-        color: _nbxTheme.colors.error,
-      ),
-      errorBorder: _defaultBorder(sideColor: _nbxTheme.colors.error),
-      focusedErrorBorder: _defaultBorder(
-        sideColor: _nbxTheme.colors.error,
-        width: 1,
-      ),
+      errorStyle: showErrorText
+          ? _nbxTheme.typography.caption.copyWith(color: _nbxTheme.colors.error)
+          : const TextStyle(fontSize: 0.01, height: 0),
       filled: true,
-      fillColor: _nbxTheme.colors.background,
-      // fillColor: Colors.white,
+      fillColor: fillColor ?? _nbxTheme.colors.background,
       suffixIcon: suffixIcon,
-      // suffixIcon: Icon(Icons.ac_unit_rounded),
       prefixIcon: prefixIcon,
       prefixIconConstraints: const BoxConstraints(),
-      // counter: const Text(""),
-      // disabledBorder: _borderDefault(),
-      // enabledBorder: _defaultBorder(sideColor: _nbxTheme.colors.black),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: (_nbxTheme.colors.textSecondary).withValues(alpha: 0.2),
-        ),
-      ),
-      focusedBorder: _focusedDefaultBorder(_nbxTheme.colors.black),
-      border: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        // borderSide: BorderSide.none,
-      ),
+      enabledBorder:
+          enabledBorder ??
+          OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: (_nbxTheme.colors.textSecondary).withValues(alpha: 0.2),
+            ),
+          ),
+      border:
+          border ??
+          const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+      errorBorder:
+          errorBorder ?? _defaultBorder(sideColor: _nbxTheme.colors.error),
+      focusedBorder:
+          focusedBorder ?? _focusedDefaultBorder(_nbxTheme.colors.black),
+      focusedErrorBorder:
+          focusedErrorBorder ??
+          _defaultBorder(sideColor: _nbxTheme.colors.error, width: 1),
     );
   }
 }
