@@ -1,3 +1,9 @@
+## 0.1.17 (2026-02-16)
+
+- **FIX**: Forward `requiredErrorMessage` to `customValidator` when field is empty and required
+  - Previously, `inputValidator` returned `requiredErrorMessage` early without calling `customValidator`, preventing external error notifiers from capturing required-field errors
+  - Now calls `customValidator(requiredErrorMessage)` before returning, allowing consumers to handle the required error externally (e.g., shadow-style inputs with `InputExternalErrorWidget`)
+
 ## 0.1.16 (2026-02-16)
 
 - **NEW FEATURE**: Added `showErrorText`, `customValidator`, and border customization options to `NbxCountryPickerInput`
