@@ -4,6 +4,9 @@
   - Previously, `inputValidator` returned `requiredErrorMessage` early without calling `customValidator`, preventing external error notifiers from capturing required-field errors
   - Now calls `customValidator(requiredErrorMessage)` before returning, allowing consumers to handle the required error externally (e.g., shadow-style inputs with `InputExternalErrorWidget`)
 
+- **CI**: Removed `develop` branch from CI trigger
+  - CI now only runs on PRs targeting `main` to avoid noise during frequent develop updates
+
 ## 0.1.16 (2026-02-16)
 
 - **NEW FEATURE**: Added `showErrorText`, `customValidator`, and border customization options to `NbxCountryPickerInput`
