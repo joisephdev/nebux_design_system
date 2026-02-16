@@ -1,4 +1,4 @@
-name: Release & Tag
+name: Release & Publish
 
 on:
   pull_request:
@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
 
     steps:
       - name: Checkout
@@ -63,7 +64,7 @@ jobs:
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Push tag
+      - name: Create tag
         if: steps.check_tag.outputs.exists == 'false'
         run: |
           git tag ${{ steps.version.outputs.tag }}
@@ -77,3 +78,7 @@ jobs:
           name: ${{ steps.version.outputs.tag }}
           body: ${{ steps.changelog.outputs.notes }}
           generate_release_notes: false
+
+      - name: Publish to pub.dev
+        if: steps.check_tag.outputs.exists == 'false'
+        run: dart pub publish --force
