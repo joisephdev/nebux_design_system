@@ -1,3 +1,14 @@
+## 0.1.14 (2026-02-15)
+
+- **NEW FEATURE**: Added `showErrorText` parameter to `NbxInputParameters` to control error message visibility
+  - Introduced `showErrorText` boolean parameter (defaults to `true`) in `NbxInputParameters`
+  - When set to `false`, hides the error text below input fields while preserving validation behavior
+  - Updated `NbxInputDecorationExtension` to conditionally apply error text style based on the parameter
+
+- **ENHANCEMENT**: Enhanced letter validation to include accented characters
+  - Updated `TextValidationRules.onlyLetters` regex to support accented characters (ñ, á, é, í, ó, ú, ü and their uppercase variants)
+  - Improved input validation for Spanish and other Latin-based language inputs
+
 ## 0.1.13 (2025-12-03)
 
 - **NEW FEATURE**: Added `onBeforeOpen` callback to `NbxCountryPickerInput`
