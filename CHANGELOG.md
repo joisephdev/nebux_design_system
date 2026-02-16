@@ -1,4 +1,4 @@
-## 0.1.14 (2026-02-15)
+## 0.1.15 (2026-02-15)
 
 - **NEW FEATURE**: Added `showErrorText` parameter to `NbxInputParameters` to control error message visibility
   - Introduced `showErrorText` boolean parameter (defaults to `true`) in `NbxInputParameters`
@@ -8,6 +8,21 @@
 - **ENHANCEMENT**: Enhanced letter validation to include accented characters
   - Updated `TextValidationRules.onlyLetters` regex to support accented characters (ñ, á, é, í, ó, ú, ü and their uppercase variants)
   - Improved input validation for Spanish and other Latin-based language inputs
+
+- **CI/CD**: Added GitHub Actions for automated CI, release and publishing
+  - `ci.yml`: runs `flutter analyze` and `flutter test` on PRs to main/develop
+  - `release.yml`: creates git tag and GitHub Release on PR merge to main
+  - `publish.yml`: publishes to pub.dev via OIDC (workflow_dispatch)
+  - Excluded `country_picker_pro2` and `example` from static analysis
+
+- **DOCS**: Rewrote README with concise documentation and all current components
+
+- **CHORE**: Improved pub.dev score (130 → 160)
+  - Added `example/example.dart` with a complete usage sample
+  - Updated `google_fonts` from `^6.2.1` to `^8.0.1`
+  - Updated `toml` from `^0.16.0` to `^0.18.0`
+  - Bumped minimum Dart SDK to `^3.9.0` and Flutter to `>=3.29.0`
+  - Removed orphan file `country_json copy.dart` with invalid naming
 
 ## 0.1.13 (2025-12-03)
 
