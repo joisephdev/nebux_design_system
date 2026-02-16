@@ -27,6 +27,7 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
         return null;
       }
 
+      customValidator?.call(requiredErrorMessage);
       return requiredErrorMessage;
     }
 
