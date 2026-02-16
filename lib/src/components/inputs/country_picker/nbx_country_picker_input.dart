@@ -12,12 +12,28 @@ class NbxCountryPickerInput extends StatelessWidget {
   /// Returns true to open, false to prevent opening. If null, it opens by default.
   final Future<bool> Function()? onBeforeOpen;
 
+  /// Whether to show the error text inside the input field.
+  final bool showErrorText;
+
+  /// Custom validator for the input field.
+  final String? Function(String?)? customValidator;
+
+  /// Custom border overrides for the input field.
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final InputBorder? border;
+
   /// Constructor for the [NbxCountryPickerInput] widget.
   const NbxCountryPickerInput({
     super.key,
     required this.inputParameters,
     required this.modal,
     this.onBeforeOpen,
+    this.showErrorText = true,
+    this.customValidator,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.border,
   });
 
   /// Builds the country picker input widget.
@@ -55,6 +71,11 @@ class NbxCountryPickerInput extends StatelessWidget {
           ),
         ),
         onTap: () => _openCountryPicker(context),
+        showErrorText: showErrorText,
+        customValidator: customValidator,
+        enabledBorder: enabledBorder,
+        focusedBorder: focusedBorder,
+        border: border,
       ),
     );
   }
