@@ -1,3 +1,10 @@
+## 0.1.16 (2026-02-16)
+
+- **NEW FEATURE**: Added `showErrorText`, `customValidator`, and border customization options to `NbxCountryPickerInput`
+  - Introduced `showErrorText` parameter to control error message visibility in country picker input
+  - Added `customValidator` callback for custom validation logic
+  - Added border customization support for greater styling flexibility
+
 ## 0.1.15 (2026-02-15)
 
 - **NEW FEATURE**: Added `showErrorText` parameter to `NbxInputParameters` to control error message visibility
