@@ -38,6 +38,7 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     @Default(false) bool showCancelIcon,
     @Default(true) bool autoDisposeController,
     @Default(false) bool forceShowSuffixIcon,
+    @Default(true) bool showErrorText,
     @Default(AutovalidateMode.onUserInteraction)
     AutovalidateMode autovalidateMode,
     String? requiredErrorMessage,

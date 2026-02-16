@@ -43,17 +43,14 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       hintStyle: _nbxTheme.typography.content.copyWith(
         color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
       ),
-      errorStyle: _nbxTheme.typography.caption.copyWith(
-        color: _nbxTheme.colors.error,
-      ),
+      errorStyle: showErrorText
+          ? _nbxTheme.typography.caption.copyWith(color: _nbxTheme.colors.error)
+          : const TextStyle(fontSize: 0.01, height: 0),
       filled: true,
       fillColor: fillColor ?? _nbxTheme.colors.background,
       suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       prefixIconConstraints: const BoxConstraints(),
-      // counter: const Text(""),
-      // disabledBorder: _borderDefault(),
-      // enabledBorder: _defaultBorder(sideColor: _nbxTheme.colors.black),
       enabledBorder:
           enabledBorder ??
           OutlineInputBorder(
