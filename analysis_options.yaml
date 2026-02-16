@@ -9,6 +9,9 @@
 # packages, and plugins designed to encourage good coding practices.
 
 analyzer:
+  exclude:
+    - lib/src/components/country_picker_pro2/**
+    - example/**
   errors:
     implementation_imports: error
     library_prefixes: error
