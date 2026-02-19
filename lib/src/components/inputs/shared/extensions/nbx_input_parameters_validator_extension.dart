@@ -22,26 +22,17 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
 
   String? inputValidator(String? data) {
     final value = data ?? '';
+    String? error;
+
     if (value.isEmpty) {
-      if (!isRequired) {
-        return null;
-      }
-
-      customValidator?.call(requiredErrorMessage);
-      return requiredErrorMessage;
+      error = isRequired ? requiredErrorMessage : null;
+    } else {
+      error = validator?.call(data);
     }
 
-    if (customValidator != null) {
-      final result = customValidator?.call(data);
-      if (result != null && result.isNotEmpty) {
-        return result;
-      }
-    }
-
-    if (validator != null) {
-      return validator?.call(data);
-    }
-
-    return null;
+    // Always notify the final validation state so consumers (e.g. ShadowInputWrapper,
+    // onValidationChanged) can react without needing Future.delayed workarounds.
+    onValidationResult?.call(error);
+    return error;
   }
 }

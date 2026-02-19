@@ -15,8 +15,11 @@ class NbxCountryPickerInput extends StatelessWidget {
   /// Whether to show the error text inside the input field.
   final bool showErrorText;
 
-  /// Custom validator for the input field.
-  final String? Function(String?)? customValidator;
+  /// Pure validator for the input field (native Flutter contract).
+  final String? Function(String?)? validator;
+
+  /// Notification callback: called with the final error after validation (null = valid).
+  final void Function(String?)? onValidationResult;
 
   /// Custom border overrides for the input field.
   final InputBorder? enabledBorder;
@@ -30,7 +33,8 @@ class NbxCountryPickerInput extends StatelessWidget {
     required this.modal,
     this.onBeforeOpen,
     this.showErrorText = true,
-    this.customValidator,
+    this.validator,
+    this.onValidationResult,
     this.enabledBorder,
     this.focusedBorder,
     this.border,
@@ -48,7 +52,6 @@ class NbxCountryPickerInput extends StatelessWidget {
         context: context,
         isReadOnly: true,
         autoDisposeController: false,
-        forceShowSuffixIcon: true,
         maxLines: inputParameters.maxLines,
         isRequired: inputParameters.isRequired,
         inputType: inputParameters.inputType,
@@ -72,7 +75,8 @@ class NbxCountryPickerInput extends StatelessWidget {
         ),
         onTap: () => _openCountryPicker(context),
         showErrorText: showErrorText,
-        customValidator: customValidator,
+        validator: validator,
+        onValidationResult: onValidationResult,
         enabledBorder: enabledBorder,
         focusedBorder: focusedBorder,
         border: border,

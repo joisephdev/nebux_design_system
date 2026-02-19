@@ -8,10 +8,6 @@ part 'nbx_input_parameters.freezed.dart';
 @Freezed()
 abstract class NbxInputParameters with _$NbxInputParameters {
   @Assert(
-    '!(showEyeIcon == showCancelIcon) || (!showEyeIcon || !showCancelIcon)',
-    'only one of them',
-  )
-  @Assert(
     'isRequired == true && requiredErrorMessage != null || isRequired == false',
     'The message is necessary for required fields',
   )
@@ -30,35 +26,36 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     required NbxInputType inputType,
     required BuildContext context,
     FloatingLabelBehavior? floatingLabelBehavior,
-    @Default(true) bool showSuffixIcon,
     @Default(false) bool obscureText,
     @Default(false) bool isReadOnly,
     @Default(true) bool isEnabled,
-    @Default(false) bool showEyeIcon,
-    @Default(false) bool showCancelIcon,
     @Default(true) bool autoDisposeController,
-    @Default(false) bool forceShowSuffixIcon,
     @Default(true) bool showErrorText,
     @Default(AutovalidateMode.onUserInteraction)
     AutovalidateMode autovalidateMode,
     String? requiredErrorMessage,
-    String? Function(String?)? validator,
-    String? Function(String? value)? customValidator,
+    // Pure validator: receives input value, returns error message or null (native Flutter contract).
+    String? Function(String? value)? validator,
+    // Notification callback: called with the FINAL error post-validation (null = valid).
+    // Use for ShadowInputWrapper, onValidationChanged, etc. — no Future.delayed needed.
+    void Function(String? errorMessage)? onValidationResult,
     int? minLines,
     int? maxLines,
     int? maxLength,
+    // Custom suffix widget — takes priority over suffixIconType.
     Widget? suffixIcon,
     Widget? prefixIcon,
     Color? fillColor,
     TextInputAction? textInputAction,
     TextEditingController? controller,
     VoidCallback? suffixOnPressed,
-    // InputDecoration? decoration,
     ValueChanged<String>? onSubmitted,
     ValueChanged<String>? onChanged,
     List<TextInputFormatter>? inputFormatters,
     @Default(NbxInputDecorationStyle.outlined)
     NbxInputDecorationStyle decorationStyle,
+    // Automatic suffix icon type. Ignored when suffixIcon is provided.
+    @Default(NbxSuffixIconType.none) NbxSuffixIconType suffixIconType,
     InputBorder? border,
     InputBorder? enabledBorder,
     InputBorder? focusedBorder,

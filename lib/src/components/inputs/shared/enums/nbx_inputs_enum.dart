@@ -50,3 +50,10 @@ enum NbxInputDecorationStyle {
     return this == NbxInputDecorationStyle.floating;
   }
 }
+
+/// Defines the type of suffix icon to show automatically in the input field.
+///
+/// - [none]: No automatic suffix icon.
+/// - [eye]: Toggles password visibility (use with obscureText inputs).
+/// - [cancel]: Clears the input field content.
+enum NbxSuffixIconType { none, eye, cancel }

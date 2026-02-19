@@ -45,6 +45,8 @@ extension NbxInputDecorationExtension on NbxInputParameters {
       ),
       errorStyle: showErrorText
           ? _nbxTheme.typography.caption.copyWith(color: _nbxTheme.colors.error)
+          // fontSize: 0.01 is a standard Flutter pattern to hide the error text visually
+          // while preserving the reserved space below the field (avoids layout jumps).
           : const TextStyle(fontSize: 0.01, height: 0),
       filled: true,
       fillColor: fillColor ?? _nbxTheme.colors.background,
