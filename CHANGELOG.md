@@ -1,3 +1,17 @@
+## 0.1.18 (2026-02-18)
+
+- **BREAKING CHANGE**: Refactored `NbxInputParameters` validation API for a clean separation of concerns
+
+  - **Removed** `customValidator` — replaced by `validator` + `onValidationResult`
+  - **Removed** `showEyeIcon`, `showCancelIcon`, `showSuffixIcon`, `forceShowSuffixIcon` — replaced by `suffixIconType`
+  - **Added** `validator: String? Function(String? value)?` — pure validator following the native Flutter `FormField.validator` contract (returns error string or null)
+  - **Added** `onValidationResult: void Function(String? errorMessage)?` — notification callback invoked synchronously with the final validation result after every validation cycle (null = valid). Eliminates the need for `Future.delayed` workarounds in consumers
+  - **Added** `suffixIconType: NbxSuffixIconType` — enum (`none`, `eye`, `cancel`) to declare the automatic suffix icon; ignored when a custom `suffixIcon` widget is provided
+  - **Added** `NbxSuffixIconType` enum to `nbx_inputs_enum.dart`
+  - Updated `NbxCountryPickerInput` to expose `validator` and `onValidationResult` (replacing `customValidator`)
+  - Updated `NbxPhoneFieldWidget` internal validator to use the new contract (removed `Future.delayed`)
+  - Fixed `buildSuffixIcon` to always respect a custom `suffixIcon` widget before applying the read-only guard
+
 ## 0.1.17 (2026-02-16)
 
 - **FIX**: Forward `requiredErrorMessage` to `customValidator` when field is empty and required
