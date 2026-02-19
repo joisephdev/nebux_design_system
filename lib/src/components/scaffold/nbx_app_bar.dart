@@ -49,7 +49,7 @@ class NbxAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (appBarConfig.title == null) return null;
     return Row(
       children: [
-        if (appBarConfig.leadingButton != null) appBarConfig.leadingButton!,
+        if (appBarConfig.leadingButton != null) appBarConfig.leawdingButton!,
         Text(
           appBarConfig.title!,
           style: context.nebuxTypography.heading,
