@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
         isDark: false,
         colors: NebuxColors.standardLight(),
         fontSize: NebuxFontSize.standard(),
-        typography: NebuxTypography.standard(),
+        typography: NebuxTypography.custom('Roboto', null),
       ),
       darkTheme: NebuxTheme.createThemeData(
         isDark: true,
         colors: NebuxColors.standardDark(),
         fontSize: NebuxFontSize.standard(),
-        typography: NebuxTypography.standard(),
+        typography: NebuxTypography.custom('Roboto', null),
       ),
       home: const ExampleScreen(),
     );
@@ -55,24 +55,30 @@ class ExampleScreen extends StatelessWidget {
               styleConfig: ButtonStyleConfig(variant: ButtonVariant.outline),
             ),
             heightSpace16,
-            NbxTextFieldWidget(
-              NbxInputParameters(
-                hintText: 'Enter your email',
-                labelText: 'Email',
-                inputType: NbxInputType.email,
-                isRequired: true,
-                context: context,
+            Builder(
+              builder: (ctx) => NbxTextFieldWidget(
+                NbxInputParameters(
+                  context: ctx,
+                  hintText: 'Enter your email',
+                  labelText: 'Email',
+                  inputType: NbxInputType.email,
+                  isRequired: true,
+                  requiredErrorMessage: 'Email is required',
+                ),
               ),
             ),
             heightSpace12,
-            NbxTextFieldWidget(
-              NbxInputParameters(
-                hintText: 'Enter your password',
-                labelText: 'Password',
-                inputType: NbxInputType.password,
-                showEyeIcon: true,
-                isRequired: true,
-                context: context,
+            Builder(
+              builder: (ctx) => NbxTextFieldWidget(
+                NbxInputParameters(
+                  context: ctx,
+                  hintText: 'Enter your password',
+                  labelText: 'Password',
+                  inputType: NbxInputType.password,
+                  suffixIconType: NbxSuffixIconType.eye,
+                  isRequired: true,
+                  requiredErrorMessage: 'Password is required',
+                ),
               ),
             ),
           ],

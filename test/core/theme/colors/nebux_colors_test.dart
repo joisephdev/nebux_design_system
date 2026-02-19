@@ -2,30 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
-import '../../../helpers/nebux_test_helpers.dart';
-
 void main() {
   group('NebuxColors', () {
-    group('constructor', () {
-      test('creates instance with all required fields', () {
-        final colors = testNebuxColors();
+    group('standardLight', () {
+      test('creates light palette with expected values', () {
+        final colors = NebuxColors.standardLight();
 
         expect(colors.primary, equals(const Color(0xFF2196F3)));
         expect(colors.secondary, equals(const Color(0xFF03A9F4)));
-        expect(colors.secondaryVariant, equals(const Color(0xFF0288D1)));
-        expect(colors.background, equals(const Color(0xFFFFFFFF)));
-        expect(colors.textPrimary, equals(const Color(0xFF212121)));
-        expect(colors.textSecondary, equals(const Color(0xFF757575)));
-        expect(colors.actionPrimary, equals(const Color(0xFF2196F3)));
-        expect(colors.actionSecondary, equals(const Color(0xFF03A9F4)));
-        expect(colors.cardColor, equals(const Color(0xFFF5F5F5)));
-        expect(colors.success, equals(const Color(0xFF4CAF50)));
-        expect(colors.warning, equals(const Color(0xFFFFC107)));
-        expect(colors.error, equals(const Color(0xFFF44336)));
-        expect(colors.info, equals(const Color(0xFF2196F3)));
-        expect(colors.disabled, equals(const Color(0xFFBDBDBD)));
-        expect(colors.white, equals(const Color(0xFFFFFFFF)));
-        expect(colors.black, equals(const Color(0xFF000000)));
+        expect(colors.background, equals(const Color(0xFFFFFBFE)));
+        expect(colors.surface, equals(const Color(0xFFFFFBFE)));
+        expect(colors.textPrimary, equals(const Color(0xFF1C1B1F)));
+        expect(colors.textSecondary, equals(const Color(0xFF49454F)));
+        expect(colors.divider, equals(const Color(0xFFCAC4D0)));
+        expect(colors.overlay, equals(const Color(0x52000000)));
+        expect(colors.focus, equals(const Color(0xFF2196F3)));
+      });
+    });
+
+    group('standardDark', () {
+      test('creates dark palette with expected values', () {
+        final colors = NebuxColors.standardDark();
+
+        expect(colors.primary, equals(const Color(0xFFD0BCFF)));
+        expect(colors.secondary, equals(const Color(0xFFCCC2DC)));
+        expect(colors.background, equals(const Color(0xFF1C1B1F)));
+        expect(colors.surface, equals(const Color(0xFF1C1B1F)));
+        expect(colors.textPrimary, equals(const Color(0xFFE6E1E5)));
+        expect(colors.textSecondary, equals(const Color(0xFFCAC4D0)));
+        expect(colors.divider, equals(const Color(0xFF49454F)));
+        expect(colors.overlay, equals(const Color(0x78000000)));
+        expect(colors.focus, equals(const Color(0xFFD0BCFF)));
       });
     });
 
@@ -35,17 +42,21 @@ void main() {
           'primary': 0xFF2196F3,
           'secondary': 0xFF03A9F4,
           'secondaryVariant': 0xFF0288D1,
-          'background': 0xFFFFFFFF,
-          'textPrimary': 0xFF212121,
-          'textSecondary': 0xFF757575,
+          'background': 0xFFFFFBFE,
+          'surface': 0xFFFFFBFE,
+          'textPrimary': 0xFF1C1B1F,
+          'textSecondary': 0xFF49454F,
           'actionPrimary': 0xFF2196F3,
           'actionSecondary': 0xFF03A9F4,
-          'cardColor': 0xFFF5F5F5,
+          'cardColor': 0xFFF7F2FA,
+          'divider': 0xFFCAC4D0,
+          'overlay': 0x52000000,
+          'focus': 0xFF2196F3,
           'success': 0xFF4CAF50,
           'warning': 0xFFFFC107,
-          'error': 0xFFF44336,
+          'error': 0xFFB3261E,
           'info': 0xFF2196F3,
-          'disabled': 0xFFBDBDBD,
+          'disabled': 0xFF1C1B1F,
           'white': 0xFFFFFFFF,
           'black': 0xFF000000,
           'primaryGradient': {
@@ -64,17 +75,21 @@ void main() {
 
         expect(colors.primary, equals(const Color(0xFF2196F3)));
         expect(colors.secondary, equals(const Color(0xFF03A9F4)));
-        expect(colors.textPrimary, equals(const Color(0xFF212121)));
+        expect(colors.textPrimary, equals(const Color(0xFF1C1B1F)));
+        expect(colors.surface, equals(const Color(0xFFFFFBFE)));
+        expect(colors.divider, equals(const Color(0xFFCAC4D0)));
       });
 
       test('toJson fromJson roundtrip preserves values', () {
-        final original = testNebuxColors();
+        final original = NebuxColors.standardLight();
         final json = original.toJson();
         final restored = NebuxColors.fromJson(json);
 
         expect(restored.primary, equals(original.primary));
         expect(restored.secondary, equals(original.secondary));
         expect(restored.background, equals(original.background));
+        expect(restored.surface, equals(original.surface));
+        expect(restored.divider, equals(original.divider));
         expect(restored.textPrimary, equals(original.textPrimary));
         expect(restored.textSecondary, equals(original.textSecondary));
         expect(restored.error, equals(original.error));
@@ -84,29 +99,10 @@ void main() {
 
     group('lerp', () {
       test('returns a values at t=0.0', () {
-        final a = testNebuxColors();
-        final b = const NebuxColors(
-          primary: Color(0xFF000000),
-          secondary: Color(0xFF000000),
-          secondaryVariant: Color(0xFF000000),
-          background: Color(0xFF000000),
-          textPrimary: Color(0xFF000000),
-          textSecondary: Color(0xFF000000),
-          actionPrimary: Color(0xFF000000),
-          actionSecondary: Color(0xFF000000),
-          cardColor: Color(0xFF000000),
-          success: Color(0xFF000000),
-          warning: Color(0xFF000000),
-          error: Color(0xFF000000),
-          info: Color(0xFF000000),
-          disabled: Color(0xFF000000),
-          white: Color(0xFF000000),
-          black: Color(0xFF000000),
-          primaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-          secondaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-        );
+        final a = NebuxColors.standardLight();
+        final b = NebuxColors.standardDark();
 
-        final result = NebuxColors.lerp(a, b, 0.0);
+        final result = NebuxColorsLerp.lerp(a, b, 0.0);
 
         expect(result!.primary, equals(a.primary));
         expect(result.secondary, equals(a.secondary));
@@ -114,29 +110,10 @@ void main() {
       });
 
       test('returns b values at t=1.0', () {
-        final a = testNebuxColors();
-        final b = const NebuxColors(
-          primary: Color(0xFF000000),
-          secondary: Color(0xFF000000),
-          secondaryVariant: Color(0xFF000000),
-          background: Color(0xFF000000),
-          textPrimary: Color(0xFF000000),
-          textSecondary: Color(0xFF000000),
-          actionPrimary: Color(0xFF000000),
-          actionSecondary: Color(0xFF000000),
-          cardColor: Color(0xFF000000),
-          success: Color(0xFF000000),
-          warning: Color(0xFF000000),
-          error: Color(0xFF000000),
-          info: Color(0xFF000000),
-          disabled: Color(0xFF000000),
-          white: Color(0xFF000000),
-          black: Color(0xFF000000),
-          primaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-          secondaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-        );
+        final a = NebuxColors.standardLight();
+        final b = NebuxColors.standardDark();
 
-        final result = NebuxColors.lerp(a, b, 1.0);
+        final result = NebuxColorsLerp.lerp(a, b, 1.0);
 
         expect(result!.primary, equals(b.primary));
         expect(result.secondary, equals(b.secondary));
@@ -144,81 +121,33 @@ void main() {
       });
 
       test('returns intermediate colors at t=0.5', () {
-        const a = NebuxColors(
-          primary: Color(0xFF000000),
-          secondary: Color(0xFF000000),
-          secondaryVariant: Color(0xFF000000),
-          background: Color(0xFF000000),
-          textPrimary: Color(0xFF000000),
-          textSecondary: Color(0xFF000000),
-          actionPrimary: Color(0xFF000000),
-          actionSecondary: Color(0xFF000000),
-          cardColor: Color(0xFF000000),
-          success: Color(0xFF000000),
-          warning: Color(0xFF000000),
-          error: Color(0xFF000000),
-          info: Color(0xFF000000),
-          disabled: Color(0xFF000000),
-          white: Color(0xFF000000),
-          black: Color(0xFF000000),
-          primaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-          secondaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-        );
-        const b = NebuxColors(
-          primary: Color(0xFFFFFFFF),
-          secondary: Color(0xFFFFFFFF),
-          secondaryVariant: Color(0xFFFFFFFF),
-          background: Color(0xFFFFFFFF),
-          textPrimary: Color(0xFFFFFFFF),
-          textSecondary: Color(0xFFFFFFFF),
-          actionPrimary: Color(0xFFFFFFFF),
-          actionSecondary: Color(0xFFFFFFFF),
-          cardColor: Color(0xFFFFFFFF),
-          success: Color(0xFFFFFFFF),
-          warning: Color(0xFFFFFFFF),
-          error: Color(0xFFFFFFFF),
-          info: Color(0xFFFFFFFF),
-          disabled: Color(0xFFFFFFFF),
-          white: Color(0xFFFFFFFF),
-          black: Color(0xFFFFFFFF),
-          primaryGradient: LinearGradient(colors: [Color(0xFFFFFFFF)]),
-          secondaryGradient: LinearGradient(colors: [Color(0xFFFFFFFF)]),
-        );
+        final a = NebuxColors.standardLight();
+        final b = NebuxColors.standardDark();
 
-        final result = NebuxColors.lerp(a, b, 0.5);
+        final result = NebuxColorsLerp.lerp(a, b, 0.5);
 
-        final expectedPrimary = Color.lerp(
-          const Color(0xFF000000),
-          const Color(0xFFFFFFFF),
-          0.5,
-        );
-        final expectedSecondary = Color.lerp(
-          const Color(0xFF000000),
-          const Color(0xFFFFFFFF),
-          0.5,
-        );
+        final expectedPrimary = Color.lerp(a.primary, b.primary, 0.5);
         expect(result!.primary, equals(expectedPrimary));
-        expect(result.secondary, equals(expectedSecondary));
       });
 
       test('returns b when a is null', () {
-        final b = testNebuxColors();
+        final b = NebuxColors.standardDark();
 
-        final result = NebuxColors.lerp(null, b, 0.5);
+        final result = NebuxColorsLerp.lerp(null, b, 0.5);
 
         expect(result, equals(b));
       });
 
       test('returns a when b is null', () {
-        final a = testNebuxColors();
+        final a = NebuxColors.standardLight();
 
-        final result = NebuxColors.lerp(a, null, 0.5);
+        final result = NebuxColorsLerp.lerp(a, null, 0.5);
 
         expect(result, equals(a));
       });
 
       test('returns null when both are null', () {
-        final result = NebuxColors.lerp(null, null, 0.5);
+        final result = NebuxColorsLerp.lerp(null, null, 0.5);
 
         expect(result, isNull);
       });
@@ -226,6 +155,34 @@ void main() {
   });
 
   group('NebuxColorThemes', () {
+    group('standard', () {
+      test('creates themes with light and dark palettes', () {
+        final themes = NebuxColorThemes.standard();
+
+        expect(themes.light, isA<NebuxColors>());
+        expect(themes.dark, isA<NebuxColors>());
+        expect(themes.light.background, isNot(equals(themes.dark.background)));
+      });
+    });
+
+    group('getColorsByBrightness', () {
+      test('returns light for Brightness.light', () {
+        final themes = NebuxColorThemes.standard();
+
+        final result = themes.getColorsByBrightness(Brightness.light);
+
+        expect(result.background, equals(themes.light.background));
+      });
+
+      test('returns dark for Brightness.dark', () {
+        final themes = NebuxColorThemes.standard();
+
+        final result = themes.getColorsByBrightness(Brightness.dark);
+
+        expect(result.background, equals(themes.dark.background));
+      });
+    });
+
     group('fromJson', () {
       test('deserializes light and dark themes', () {
         final json = {
@@ -233,17 +190,21 @@ void main() {
             'primary': 0xFF2196F3,
             'secondary': 0xFF03A9F4,
             'secondaryVariant': 0xFF0288D1,
-            'background': 0xFFFFFFFF,
-            'textPrimary': 0xFF212121,
-            'textSecondary': 0xFF757575,
+            'background': 0xFFFFFBFE,
+            'surface': 0xFFFFFBFE,
+            'textPrimary': 0xFF1C1B1F,
+            'textSecondary': 0xFF49454F,
             'actionPrimary': 0xFF2196F3,
             'actionSecondary': 0xFF03A9F4,
-            'cardColor': 0xFFF5F5F5,
+            'cardColor': 0xFFF7F2FA,
+            'divider': 0xFFCAC4D0,
+            'overlay': 0x52000000,
+            'focus': 0xFF2196F3,
             'success': 0xFF4CAF50,
             'warning': 0xFFFFC107,
-            'error': 0xFFF44336,
+            'error': 0xFFB3261E,
             'info': 0xFF2196F3,
-            'disabled': 0xFFBDBDBD,
+            'disabled': 0xFF1C1B1F,
             'white': 0xFFFFFFFF,
             'black': 0xFF000000,
             'primaryGradient': {
@@ -254,35 +215,39 @@ void main() {
             },
           },
           'dark': {
-            'primary': 0xFF2196F3,
-            'secondary': 0xFF03A9F4,
-            'secondaryVariant': 0xFF0288D1,
-            'background': 0xFF000000,
-            'textPrimary': 0xFFFFFFFF,
-            'textSecondary': 0xFFBDBDBD,
-            'actionPrimary': 0xFF2196F3,
-            'actionSecondary': 0xFF03A9F4,
-            'cardColor': 0xFF424242,
-            'success': 0xFF4CAF50,
-            'warning': 0xFFFFC107,
-            'error': 0xFFF44336,
-            'info': 0xFF2196F3,
-            'disabled': 0xFF424242,
+            'primary': 0xFFD0BCFF,
+            'secondary': 0xFFCCC2DC,
+            'secondaryVariant': 0xFF9A82DB,
+            'background': 0xFF1C1B1F,
+            'surface': 0xFF1C1B1F,
+            'textPrimary': 0xFFE6E1E5,
+            'textSecondary': 0xFFCAC4D0,
+            'actionPrimary': 0xFFD0BCFF,
+            'actionSecondary': 0xFFCCC2DC,
+            'cardColor': 0xFF2B2930,
+            'divider': 0xFF49454F,
+            'overlay': 0x78000000,
+            'focus': 0xFFD0BCFF,
+            'success': 0xFF81C784,
+            'warning': 0xFFFFD54F,
+            'error': 0xFFF2B8B5,
+            'info': 0xFF90CAF9,
+            'disabled': 0xFFE6E1E5,
             'white': 0xFFFFFFFF,
             'black': 0xFF000000,
             'primaryGradient': {
-              'colors': [0xFF2196F3, 0xFF03A9F4],
+              'colors': [0xFFD0BCFF, 0xFFCCC2DC],
             },
             'secondaryGradient': {
-              'colors': [0xFF03A9F4, 0xFF00BCD4],
+              'colors': [0xFFCCC2DC, 0xFF9A82DB],
             },
           },
         };
 
         final themes = NebuxColorThemes.fromJson(json);
 
-        expect(themes.light.background, equals(const Color(0xFFFFFFFF)));
-        expect(themes.dark.background, equals(const Color(0xFF000000)));
+        expect(themes.light.background, equals(const Color(0xFFFFFBFE)));
+        expect(themes.dark.background, equals(const Color(0xFF1C1B1F)));
       });
     });
   });

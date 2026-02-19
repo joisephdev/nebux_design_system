@@ -56,28 +56,32 @@ void main() {
 
     group('fromJson', () {
       test('creates theme from JSON map', () {
-        final json = {
+        final json = <String, dynamic>{
           'primary': 0xFF2196F3,
           'secondary': 0xFF03A9F4,
           'secondaryVariant': 0xFF0288D1,
-          'background': 0xFFFFFFFF,
-          'textPrimary': 0xFF212121,
-          'textSecondary': 0xFF757575,
+          'background': 0xFFFFFBFE,
+          'surface': 0xFFFFFBFE,
+          'textPrimary': 0xFF1C1B1F,
+          'textSecondary': 0xFF49454F,
           'actionPrimary': 0xFF2196F3,
           'actionSecondary': 0xFF03A9F4,
-          'cardColor': 0xFFF5F5F5,
+          'cardColor': 0xFFF7F2FA,
+          'divider': 0xFFCAC4D0,
+          'overlay': 0x52000000,
+          'focus': 0xFF2196F3,
           'success': 0xFF4CAF50,
           'warning': 0xFFFFC107,
-          'error': 0xFFF44336,
+          'error': 0xFFB3261E,
           'info': 0xFF2196F3,
-          'disabled': 0xFFBDBDBD,
+          'disabled': 0xFF1C1B1F,
           'white': 0xFFFFFFFF,
           'black': 0xFF000000,
-          'primaryGradient': {
-            'colors': [0xFF2196F3, 0xFF03A9F4],
+          'primaryGradient': <String, dynamic>{
+            'colors': <int>[0xFF2196F3, 0xFF03A9F4],
           },
-          'secondaryGradient': {
-            'colors': [0xFF03A9F4, 0xFF00BCD4],
+          'secondaryGradient': <String, dynamic>{
+            'colors': <int>[0xFF03A9F4, 0xFF00BCD4],
           },
         };
 
@@ -94,30 +98,11 @@ void main() {
     group('copyWith', () {
       test('updates colors only', () {
         final original = testNebuxTheme();
-        final newColors = const NebuxColors(
-          primary: Color(0xFFFF0000),
-          secondary: Color(0xFFFF0000),
-          secondaryVariant: Color(0xFFFF0000),
-          background: Color(0xFFFFFFFF),
-          textPrimary: Color(0xFF000000),
-          textSecondary: Color(0xFF888888),
-          actionPrimary: Color(0xFFFF0000),
-          actionSecondary: Color(0xFFFF0000),
-          cardColor: Color(0xFFFFFFFF),
-          success: Color(0xFF00FF00),
-          warning: Color(0xFFFFFF00),
-          error: Color(0xFFFF0000),
-          info: Color(0xFF0000FF),
-          disabled: Color(0xFF888888),
-          white: Color(0xFFFFFFFF),
-          black: Color(0xFF000000),
-          primaryGradient: LinearGradient(colors: [Color(0xFFFF0000)]),
-          secondaryGradient: LinearGradient(colors: [Color(0xFFFF0000)]),
-        );
+        final newColors = NebuxColors.standardDark();
 
         final updated = original.copyWith(colors: newColors);
 
-        expect(updated.colors.primary, equals(const Color(0xFFFF0000)));
+        expect(updated.colors.primary, equals(newColors.primary));
         expect(updated.fontSize, equals(original.fontSize));
       });
 
@@ -134,26 +119,7 @@ void main() {
       test('returns original at t=0.0', () {
         final a = testNebuxTheme();
         final b = NebuxTheme.custom(
-          colors: const NebuxColors(
-            primary: Color(0xFF000000),
-            secondary: Color(0xFF000000),
-            secondaryVariant: Color(0xFF000000),
-            background: Color(0xFF000000),
-            textPrimary: Color(0xFF000000),
-            textSecondary: Color(0xFF000000),
-            actionPrimary: Color(0xFF000000),
-            actionSecondary: Color(0xFF000000),
-            cardColor: Color(0xFF000000),
-            success: Color(0xFF000000),
-            warning: Color(0xFF000000),
-            error: Color(0xFF000000),
-            info: Color(0xFF000000),
-            disabled: Color(0xFF000000),
-            white: Color(0xFF000000),
-            black: Color(0xFF000000),
-            primaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-            secondaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
-          ),
+          colors: NebuxColors.standardDark(),
           typography: NebuxTypography.custom('Roboto', null),
         );
 

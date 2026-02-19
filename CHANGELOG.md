@@ -1,3 +1,29 @@
+## 0.2.0-dev.2 (2026-02-19)
+
+- **NEW**: Default color palettes via static factories
+  - `NebuxColors.standardLight()` — light theme default palette
+  - `NebuxColors.standardDark()` — dark theme default palette
+  - `NebuxColorThemes.standard()` — bundled light + dark theme
+
+- **NEW**: Color tokens added to `NebuxColors`
+  - `surface` — for card backgrounds, input fills
+  - `divider` — for separator lines
+  - `overlay` — for modal scrim/overlay
+  - `focus` — for input focus rings
+
+- **NEW**: Full `NebuxTheme.createThemeData()` implementation
+  - Complete ColorScheme mapping from NebuxColors
+  - AppBarTheme, CardTheme, DividerTheme, InputDecorationTheme
+  - Button themes: Elevated, Outlined, Text, Filled
+  - FloatingActionButtonTheme, IconTheme
+  - TextTheme mapped from NebuxTypography roles
+
+- **NEW**: `NebuxColorsLerp.lerp()` extension for proper color interpolation
+
+- **FIX**: Removed duplicate method definitions in `NebuxTheme`
+
+- **FIX**: `example/example.dart` updated to use new APIs (suffixIconType, standardLight)
+
 ## 0.2.0-dev.1 (2026-02-19)
 
 - **BREAKING**: Validation architecture consolidated
