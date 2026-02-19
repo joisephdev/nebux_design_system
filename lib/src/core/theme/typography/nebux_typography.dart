@@ -174,6 +174,9 @@ abstract class NebuxTypography with _$NebuxTypography {
 
   /// Creates a custom [NebuxTypography] with individual TextStyle parameters.
   /// All parameters are optional and will use standard values if not provided.
+  ///
+  /// Use [base] to provide a custom base typography instead of [standard()].
+  /// This is useful in tests to avoid Google Fonts network calls.
   factory NebuxTypography.withOverrides({
     TextStyle? content,
     TextStyle? paragraph,
@@ -185,8 +188,9 @@ abstract class NebuxTypography with _$NebuxTypography {
     TextStyle? secondaryAction,
     TextStyle? formInput,
     TextStyle? placeholder,
+    NebuxTypography? base,
   }) {
-    final standard = NebuxTypography.standard();
+    final standard = base ?? NebuxTypography.standard();
     return NebuxTypography(
       content: content ?? standard.content,
       paragraph: paragraph ?? standard.paragraph,

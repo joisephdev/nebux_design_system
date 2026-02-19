@@ -1,3 +1,48 @@
+## 0.2.0-dev.1 (2026-02-19)
+
+- **BREAKING**: Validation architecture consolidated
+  - `singleLineFormatter` now only applies when `maxLines == 1` (or null)
+  - Multi-line inputs no longer have `FilteringTextInputFormatter.singleLineFormatter` applied
+
+- **NEW**: All `*ValidationRules` classes now exported
+  - `TextValidationRules`, `EmailValidationRules`, `PasswordValidationRules`, `NumberValidationRules`, `PhoneValidationRules` accessible from public API
+
+- **NEW**: Added `base` parameter to `NebuxTypography.withOverrides()` for test customization
+
+- **NEW**: Added optional `typography` parameter to `NebuxTheme.fromJson()` to avoid google_fonts network calls
+
+- **DOCS**: Comprehensive dartdoc for `NbxTextFieldWidget` and `NbxTextFormFieldWidget`
+  - Clear guidance: use `NbxTextFieldWidget` for standalone inputs, `NbxTextFormFieldWidget` for Form integration
+
+- **TESTS**: Added widget tests for `NbxTextFieldWidget` and `NbxTextFormFieldWidget`
+
+- **FIX**: Resolved google_fonts async errors in tests by using `NebuxTypography.custom('Roboto', null)` consistently
+
+## 0.1.20 (2026-02-19)
+
+- **DEAD CODE CLEANUP**: Removed ~203 lines of commented-out code from `NebuxTheme.createThemeData()`
+- **SEMVER GOVERNANCE**: Established formal versioning policy in `CONTRIBUTING.md`
+  - Versioning policy: patch = bug fixes; minor = new features + deprecations; major = removals
+  - Deprecation runway: symbols must be `@Deprecated` for ≥ 1 minor version before removal
+  - API stability tiers: `stable`, `experimental`, `internal`
+
+- **MIGRATION GUIDE**: Documented 0.1.17 → 0.1.18 breaking change in CHANGELOG
+  - `customValidator` → `validator` + `onValidationResult`
+  - `showEyeIcon` → `suffixIconType: NbxSuffixIconType.eye`
+  - `showCancelIcon` → `suffixIconType: NbxSuffixIconType.cancel`
+  - `showSuffixIcon` / `forceShowSuffixIcon` → `suffixIconType`
+
+- **API LEAK FIX**: Removed direct `app_shimmer` re-export
+  - Created `lib/src/components/shimmers/export.dart` barrel file
+  - Created `NbxShimmer` wrapper widget with Nebux theming
+  - Existing shimmer components now properly exported through new barrel
+  - Fixed shimmer documentation: "BB Center" → "Nebux Design System"
+
+- **RESIDUAL FIXES**:
+  - `NebuxUtils.isWeb` now uses `kIsWeb` from `flutter/foundation.dart`
+  - Deleted unused `NebuxAppBar` widget (zero references in codebase)
+  - Fixed `NbxButton` loading spinner color to be theme-aware
+
 ## 0.1.19 (2026-02-19)
 
 - **TEST FOUNDATION**: Established test infrastructure with ≥42% coverage on non-vendored code
@@ -37,6 +82,37 @@
   - Updated `NbxCountryPickerInput` to expose `validator` and `onValidationResult` (replacing `customValidator`)
   - Updated `NbxPhoneFieldWidget` internal validator to use the new contract (removed `Future.delayed`)
   - Fixed `buildSuffixIcon` to always respect a custom `suffixIcon` widget before applying the read-only guard
+
+### Migration Guide (0.1.17 → 0.1.18)
+
+| Old API | New API | Notes |
+|---------|---------|-------|
+| `customValidator: (value) => ...` | `validator: (value) => ...` | Returns error string or null |
+| `showEyeIcon: true` | `suffixIconType: NbxSuffixIconType.eye` | For password fields |
+| `showCancelIcon: true` | `suffixIconType: NbxSuffixIconType.cancel` | Clear button |
+| `showSuffixIcon: true` | `suffixIconType: NbxSuffixIconType.eye` or `.cancel` | Choose specific type |
+| `forceShowSuffixIcon: true` | N/A | Suffix icon now always visible when type is set |
+
+**Example migration:**
+
+```dart
+// Before (0.1.17)
+NbxTextFieldWidget(
+  parameters: NbxInputParameters(
+    customValidator: (value) => value?.isEmpty == true ? 'Required' : null,
+    showEyeIcon: true,
+  ),
+);
+
+// After (0.1.18)
+NbxTextFieldWidget(
+  parameters: NbxInputParameters(
+    validator: (value) => value?.isEmpty == true ? 'Required' : null,
+    onValidationResult: (error) => print(error ?? 'Valid'),
+    suffixIconType: NbxSuffixIconType.eye,
+  ),
+);
+```
 
 ## 0.1.17 (2026-02-16)
 

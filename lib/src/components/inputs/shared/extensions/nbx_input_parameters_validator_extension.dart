@@ -13,7 +13,12 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
         inputFormatter = FilteringTextInputFormatter.digitsOnly;
         break;
       default:
-        inputFormatter = FilteringTextInputFormatter.singleLineFormatter;
+        final isSingleLine = maxLines == null || maxLines == 1;
+        if (isSingleLine) {
+          inputFormatter = FilteringTextInputFormatter.singleLineFormatter;
+        } else {
+          inputFormatter = FilteringTextInputFormatter.allow(RegExp(r'.*'));
+        }
         break;
     }
 
@@ -30,8 +35,6 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
       error = validator?.call(data);
     }
 
-    // Always notify the final validation state so consumers (e.g. ShadowInputWrapper,
-    // onValidationChanged) can react without needing Future.delayed workarounds.
     onValidationResult?.call(error);
     return error;
   }

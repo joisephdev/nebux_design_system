@@ -1,6 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
+/// A text input widget with Form integration.
+///
+/// Use [NbxTextFormFieldWidget] when you need a text input that:
+/// - Participates in Form validation via `Form.of(context).validate()`
+/// - Supports [autovalidateMode] for automatic validation
+/// - Integrates with FormState for save/reset operations
+///
+/// For standalone inputs without Form, use [NbxTextFieldWidget] instead.
+///
+/// ## Example
+///
+/// ```dart
+/// final formKey = GlobalKey<FormState>();
+///
+/// Form(
+///   key: formKey,
+///   child: Column(
+///     children: [
+///       NbxTextFormFieldWidget(
+///         NbxInputParameters(
+///           context: context,
+///           controller: myController,
+///           isRequired: true,
+///           inputType: NbxInputType.email,
+///           labelText: 'Email',
+///           hintText: 'Enter your email',
+///           requiredErrorMessage: 'Email is required',
+///         ),
+///       ),
+///       ElevatedButton(
+///         onPressed: () {
+///           if (formKey.currentState!.validate()) {
+///             // Form is valid
+///           }
+///         },
+///         child: Text('Submit'),
+///       ),
+///     ],
+///   ),
+/// )
+/// ```
+///
+/// See also:
+/// - [NbxTextFieldWidget] for standalone inputs
+/// - [TextFormField] the underlying Flutter widget
 class NbxTextFormFieldWidget extends StatelessWidget {
   final NbxInputParameters inputParameters;
   final TextAlign? textFormAlign;

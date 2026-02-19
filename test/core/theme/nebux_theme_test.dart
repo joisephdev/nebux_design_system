@@ -11,7 +11,10 @@ void main() {
     group('custom', () {
       test('creates instance with expected fields', () {
         final colors = testNebuxColors();
-        final theme = NebuxTheme.custom(colors: colors);
+        final theme = NebuxTheme.custom(
+          colors: colors,
+          typography: NebuxTypography.custom('Roboto', null),
+        );
 
         expect(theme.colors, equals(colors));
         expect(theme.fontSize, isNotNull);
@@ -21,7 +24,11 @@ void main() {
       test('uses provided fontSize', () {
         final colors = testNebuxColors();
         final fontSize = NebuxFontSize.custom(large: 16.0);
-        final theme = NebuxTheme.custom(colors: colors, fontSize: fontSize);
+        final theme = NebuxTheme.custom(
+          colors: colors,
+          fontSize: fontSize,
+          typography: NebuxTypography.custom('Roboto', null),
+        );
 
         expect(theme.fontSize.large, equals(16.0));
       });
@@ -36,7 +43,10 @@ void main() {
 
       test('defaults fontSize to standard when not provided', () {
         final colors = testNebuxColors();
-        final theme = NebuxTheme.custom(colors: colors);
+        final theme = NebuxTheme.custom(
+          colors: colors,
+          typography: NebuxTypography.custom('Roboto', null),
+        );
 
         final standard = NebuxFontSize.standard();
         expect(theme.fontSize.large, equals(standard.large));
@@ -71,7 +81,10 @@ void main() {
           },
         };
 
-        final theme = NebuxTheme.fromJson(json);
+        final theme = NebuxTheme.fromJson(
+          json,
+          typography: NebuxTypography.custom('Roboto', null),
+        );
 
         expect(theme.colors.primary, equals(const Color(0xFF2196F3)));
         expect(theme.colors.secondary, equals(const Color(0xFF03A9F4)));
@@ -141,6 +154,7 @@ void main() {
             primaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
             secondaryGradient: LinearGradient(colors: [Color(0xFF000000)]),
           ),
+          typography: NebuxTypography.custom('Roboto', null),
         );
 
         final result = a.lerp(b, 0.0);

@@ -64,6 +64,7 @@ void main() {
       test('overrides only specified values', () {
         final base = testTypography();
         final typography = NebuxTypography.withOverrides(
+          base: base,
           heading: TextStyle(
             fontSize: base.heading.fontSize,
             fontWeight: FontWeight.w700,
