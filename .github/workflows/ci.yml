@@ -21,5 +21,10 @@ jobs:
       - name: Analyze
         run: flutter analyze --fatal-infos
 
-      - name: Run tests
-        run: flutter test
+      - name: Run tests with coverage
+        run: flutter test --coverage
+
+      - name: Report coverage summary
+        run: |
+          echo "Coverage report generated at coverage/lcov.info"
+          echo "Run 'genhtml coverage/lcov.info -o coverage/html' locally for detailed report"

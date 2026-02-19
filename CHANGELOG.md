@@ -1,3 +1,29 @@
+## 0.1.19 (2026-02-19)
+
+- **TEST FOUNDATION**: Established test infrastructure with ≥42% coverage on non-vendored code
+  - Created `test/helpers/nebux_test_helpers.dart` with theme wrapper utilities for widget tests
+  - Added comprehensive test directory structure mirroring `lib/src/`
+  - Replaced placeholder `country_picker_pro_test.dart` with real test suite
+
+- **CORE TESTS**:
+  - `ColorConverter`: parsing (hex, int, Color), toJson, error handling
+  - `NebuxColors`: constructor, fromJson/toJson roundtrip, lerp edge cases
+  - `NebuxFontSize`: standard, custom, merge, copyWith
+  - `NebuxTypography`: custom factory, withOverrides, fromThemeData, merge
+  - `NebuxTheme`: custom, fromJson, copyWith, lerp, createThemeData
+
+- **VALIDATION TESTS**:
+  - `ValidationRule`: validate, condition-based skipping, CustomValidationRules
+  - `TextValidationRules`: minLength, maxLength, onlyLetters, noNumbers
+  - `EmailValidationRules`: validFormat, minLength, yahooOnly, domainOnly
+  - `PasswordValidationRules`: minLength, hasNumbers, hasLetters, hasUppercase, hasLowercase, hasSpecialChars, hasNumbersAndLetters
+  - `NbxInputValidator`: validate for all NbxInputType values, validateWithRules, validateWithRulesAndCustomError, static validators
+
+- **WIDGET TESTS**:
+  - `NbxButton`: 4 variants (filled, outline, text, danger), loading state, disabled state, expanded layout, leading/trailing icons
+
+- **CI**: Added `--coverage` flag to test step for coverage reporting
+
 ## 0.1.18 (2026-02-18)
 
 - **BREAKING CHANGE**: Refactored `NbxInputParameters` validation API for a clean separation of concerns
