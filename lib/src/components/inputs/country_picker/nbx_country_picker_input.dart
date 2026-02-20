@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
+/// A read-only input widget that opens a country picker on tap.
+///
+/// Wraps [NbxTextFormFieldWidget] and delegates country selection
+/// to the [countrySelector] dialog.
 class NbxCountryPickerInput extends StatelessWidget {
   /// @param inputParameters: The input parameters [NbxCountryPickerParameters].
   final NbxCountryPickerParameters inputParameters;
@@ -49,7 +53,6 @@ class NbxCountryPickerInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return NbxTextFormFieldWidget(
       NbxInputParameters(
-        context: context,
         isReadOnly: true,
         autoDisposeController: false,
         maxLines: inputParameters.maxLines,

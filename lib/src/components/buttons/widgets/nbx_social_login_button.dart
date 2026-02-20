@@ -2,16 +2,33 @@ import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
-/// Social login button widget
+/// A full-width social login button (e.g., Google, Apple, Facebook).
+///
+/// Renders an icon and label side-by-side with configurable styling
+/// for both filled and outlined appearances.
 class NbxSocialLoginButton extends StatelessWidget {
+  /// The button label text.
   final String text;
+
+  /// The social provider icon widget.
   final Widget icon;
+
+  /// Callback invoked when the button is pressed.
   final VoidCallback? onPressed;
+
+  /// Whether to render as an outlined (border-only) button.
   final bool isOutlined;
+
+  /// Custom background color override.
   final Color? backgroundColor;
+
+  /// Custom text color override.
   final Color? textColor;
+
+  /// Custom border color override for outlined style.
   final Color? borderColor;
 
+  /// Creates a social login button.
   const NbxSocialLoginButton({
     super.key,
     required this.text,

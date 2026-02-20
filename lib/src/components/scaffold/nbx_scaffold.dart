@@ -66,7 +66,7 @@ class NbxScaffold extends StatelessWidget {
     final safeArea = safeAreaConfig ?? const SafeAreaConfig();
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: bodyConfig?.extendBodyBehindAppBar ?? true,
       backgroundColor: backgroundColor ?? context.nebuxColors.background,
       appBar:
           appBar ??
@@ -86,7 +86,7 @@ class NbxScaffold extends StatelessWidget {
           child: Column(
             children: [
               if (_hasAppBar && appBarConfig?.showDivider == true)
-                Divider(height: 0, color: Colors.grey.shade500, thickness: .2),
+                Divider(height: 0, color: context.nebuxColors.divider, thickness: appBarConfig!.dividerThickness),
               Expanded(child: _buildScaffoldBody()),
             ],
           ),

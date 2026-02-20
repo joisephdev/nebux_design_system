@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
+import '../config/country_picker_app_bar_config.dart';
+import '../config/country_picker_search_config.dart';
+import '../config/country_picker_style_config.dart';
 import 'country_list_view.dart';
 
 class CountryThemeData {
@@ -63,7 +66,54 @@ void showCountryListView({
   EdgeInsetsGeometry? searchBoxPadding,
   bool alphabetScrollEnabledWidget =
       true, //This feature currently not support for grid list.
+  CountryPickerSearchConfig? searchConfig,
+  CountryPickerAppBarConfig? appBarConfig,
+  CountryPickerStyleConfig? styleConfig,
 }) {
+  // Resolve config values with fallback to individual params
+  final resolvedSearchBarBgColor =
+      searchConfig?.backgroundColor ?? searchBarBackgroundColor;
+  final resolvedSearchBarTextColor =
+      searchConfig?.textColor ?? searchBarTextColor;
+  final resolvedSearchBarBorderColor =
+      searchConfig?.borderColor ?? searchBarBorderColor;
+  final resolvedSearchBarBorderWidth =
+      searchConfig?.borderWidth ?? searchBarBorderWidth;
+  final resolvedSearchBarHintColor =
+      searchConfig?.hintColor ?? searchBarHintColor;
+  final resolvedSearchBarOuterBgColor =
+      searchConfig?.outerBackgroundColor ?? searchBarOuterBackgroundColor;
+  final resolvedSearchBarIcon = searchConfig?.icon != null
+      ? searchConfig!.icon!.icon
+      : searchBarIcon;
+
+  final resolvedAppBarBgColour =
+      appBarConfig?.backgroundColor ?? appBarBackgroundColour;
+  final resolvedAppBarTextColour =
+      appBarConfig?.textColor ?? appBarTextColour;
+  final resolvedAppBarFontSize =
+      appBarConfig?.fontSize ?? appBarFontSize;
+  final resolvedAppBarFontWeight =
+      appBarConfig?.fontWeight ?? appBarFontWeight;
+  final resolvedAppBarFontStyle =
+      appBarConfig?.fontStyle ?? appBarFontStyle;
+  final resolvedAppBarCenterAlign =
+      appBarConfig != null ? appBarConfig.centerAlign : appBarTextCenterAlign;
+  final resolvedBackIcon = appBarConfig?.backIcon != null
+      ? appBarConfig!.backIcon!.icon
+      : backIcon;
+  final resolvedBackIconColour =
+      appBarConfig?.backIconColor ?? backIconColour;
+  final resolvedAppBarTitle =
+      appBarConfig?.title ?? appBarTitle;
+
+  final resolvedCountryTextColour =
+      styleConfig?.countryFontColor ?? countryTextColour;
+  final resolvedCountryTitleSize =
+      styleConfig?.countryFontSize ?? countryTitleSize;
+  final resolvedCountryFontWeight =
+      styleConfig?.countryFontWeight ?? countryFontWeight;
+
   if (viewType == ViewType.bottomsheet) {
     showModalBottomSheet<void>(
       context: context,
@@ -112,23 +162,26 @@ void showCountryListView({
                       showWorldWide,
                       showSearchBox,
                       customFlagBuilder,
-                      countryTextColour,
-                      countryTitleSize,
-                      countryFontWeight,
+                      resolvedCountryTextColour,
+                      resolvedCountryTitleSize,
+                      resolvedCountryFontWeight,
                       countryFontStyle,
                       backgroundColour,
-                      appBarBackgroundColour,
+                      resolvedAppBarBgColour,
                       dividerColour,
                       listType,
-                      searchBarBackgroundColor,
-                      searchBarTextColor,
-                      searchBarBorderColor,
-                      searchBarOuterBackgroundColor,
-                      searchBarBorderWidth,
-                      searchBarIcon,
+                      resolvedSearchBarBgColor,
+                      resolvedSearchBarTextColor,
+                      resolvedSearchBarBorderColor,
+                      resolvedSearchBarOuterBgColor,
+                      resolvedSearchBarBorderWidth,
+                      resolvedSearchBarIcon,
                       searchBoxPadding,
-                      searchBarHintColor,
+                      resolvedSearchBarHintColor,
                       alphabetScrollEnabledWidget,
+                      searchConfig,
+                      appBarConfig,
+                      styleConfig,
                     ),
                   ),
                 ),
@@ -146,23 +199,23 @@ void showCountryListView({
           fullscreenDialog: true,
           builder: (BuildContext context) {
             return Scaffold(
-              backgroundColor: backIconColour ?? Colors.transparent,
+              backgroundColor: resolvedBackIconColour ?? Colors.transparent,
               appBar: AppBar(
-                centerTitle: appBarTextCenterAlign ?? true,
-                backgroundColor: appBarBackgroundColour ?? Colors.black,
+                centerTitle: resolvedAppBarCenterAlign ?? true,
+                backgroundColor: resolvedAppBarBgColour ?? Colors.black,
                 title: Text(
-                  appBarTitle ?? 'Select Country',
+                  resolvedAppBarTitle ?? 'Select Country',
                   style: TextStyle(
-                    color: appBarTextColour ?? Colors.white,
-                    fontSize: appBarFontSize ?? 20,
-                    fontWeight: appBarFontWeight ?? FontWeight.bold,
-                    fontStyle: appBarFontStyle ?? FontStyle.normal,
+                    color: resolvedAppBarTextColour ?? Colors.white,
+                    fontSize: resolvedAppBarFontSize ?? 20,
+                    fontWeight: resolvedAppBarFontWeight ?? FontWeight.bold,
+                    fontStyle: resolvedAppBarFontStyle ?? FontStyle.normal,
                   ),
                 ),
                 leading: IconButton(
                   icon: Icon(
-                    backIcon ?? Icons.arrow_back,
-                    color: backIconColour ?? Colors.white,
+                    resolvedBackIcon ?? Icons.arrow_back,
+                    color: resolvedBackIconColour ?? Colors.white,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -181,23 +234,26 @@ void showCountryListView({
                 showWorldWide,
                 showSearchBox,
                 customFlagBuilder,
-                countryTextColour,
-                countryTitleSize,
-                countryFontWeight,
+                resolvedCountryTextColour,
+                resolvedCountryTitleSize,
+                resolvedCountryFontWeight,
                 countryFontStyle,
                 backgroundColour,
-                appBarBackgroundColour,
+                resolvedAppBarBgColour,
                 dividerColour,
                 listType,
-                searchBarBackgroundColor,
-                searchBarTextColor,
-                searchBarBorderColor,
-                searchBarOuterBackgroundColor,
-                searchBarBorderWidth,
-                searchBarIcon,
+                resolvedSearchBarBgColor,
+                resolvedSearchBarTextColor,
+                resolvedSearchBarBorderColor,
+                resolvedSearchBarOuterBgColor,
+                resolvedSearchBarBorderWidth,
+                resolvedSearchBarIcon,
                 searchBoxPadding,
-                searchBarHintColor,
+                resolvedSearchBarHintColor,
                 alphabetScrollEnabledWidget,
+                searchConfig,
+                appBarConfig,
+                styleConfig,
               ),
             );
           },
@@ -237,6 +293,9 @@ Widget _viewData(
   EdgeInsetsGeometry? searchBoxPadding,
   Color? searchBarHintColor,
   bool alphabetScrollEnabledWidget,
+  CountryPickerSearchConfig? searchConfig,
+  CountryPickerAppBarConfig? appBarConfig,
+  CountryPickerStyleConfig? styleConfig,
 ) {
   final BorderRadius borderRadius = BorderRadius.only(
     topLeft: Radius.circular(countryTheme?.appBarBorderRadius ?? 10.0),
@@ -276,6 +335,9 @@ Widget _viewData(
       searchBarIcon: searchBarIcon,
       searchBoxPadding: searchBoxPadding,
       alphabetScrollEnabledWidget: alphabetScrollEnabledWidget,
+      searchConfig: searchConfig,
+      appBarConfig: appBarConfig,
+      styleConfig: styleConfig,
     ),
   );
 }

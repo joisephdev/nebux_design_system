@@ -1,6 +1,8 @@
 part of 'export.dart';
 
+/// Extension that derives keyboard type and suffix icon from [NbxInputParameters].
 extension NbxInputParametersExtension on NbxInputParameters {
+  /// Returns the appropriate [TextInputType] based on [inputType].
   TextInputType get keyboardType {
     switch (inputType) {
       case NbxInputType.number:
@@ -18,6 +20,7 @@ extension NbxInputParametersExtension on NbxInputParameters {
     }
   }
 
+  /// Builds the automatic suffix icon (eye toggle or cancel) if configured.
   Widget? buildSuffixIcon({required bool obscureText, void Function()? onTap}) {
     // Custom suffix widget always takes priority, even in read-only/disabled state.
     if (suffixIcon != null) return suffixIcon;

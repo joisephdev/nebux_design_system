@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+/// Default padding size used across the design system (16 logical pixels).
 const double defaultPaddingSize = 16;
 
+/// Pre-built vertical spacing [SizedBox] constants.
 const SizedBox heightSpaceDefault = SizedBox(height: defaultPaddingSize);
+
+/// Vertical spacing of 2 logical pixels.
 const SizedBox heightSpace2 = SizedBox(height: 2);
 const SizedBox heightSpace4 = SizedBox(height: 4);
 const SizedBox heightSpace6 = SizedBox(height: 6);
@@ -25,7 +29,10 @@ const SizedBox heightSpace80 = SizedBox(height: 80);
 const SizedBox heightSpace100 = SizedBox(height: 100);
 const SizedBox heightSpace200 = SizedBox(height: 200);
 
+/// Pre-built horizontal spacing [SizedBox] constants.
 const SizedBox widthSpaceDefault = SizedBox(width: defaultPaddingSize);
+
+/// Horizontal spacing of 2 logical pixels.
 const SizedBox widthSpace2 = SizedBox(width: 2);
 const SizedBox widthSpace4 = SizedBox(width: 4);
 const SizedBox widthSpace6 = SizedBox(width: 6);

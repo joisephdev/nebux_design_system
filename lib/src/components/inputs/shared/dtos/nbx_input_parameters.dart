@@ -5,6 +5,10 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 
 part 'nbx_input_parameters.freezed.dart';
 
+/// Immutable configuration for text input widgets.
+///
+/// Groups all parameters needed by [NbxTextFieldWidget] and
+/// [NbxTextFormFieldWidget] into a single Freezed class.
 @Freezed()
 abstract class NbxInputParameters with _$NbxInputParameters {
   @Assert(
@@ -24,7 +28,6 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     String? labelText,
     required bool isRequired,
     required NbxInputType inputType,
-    required BuildContext context,
     FloatingLabelBehavior? floatingLabelBehavior,
     @Default(false) bool obscureText,
     @Default(false) bool isReadOnly,
@@ -56,6 +59,12 @@ abstract class NbxInputParameters with _$NbxInputParameters {
     NbxInputDecorationStyle decorationStyle,
     // Automatic suffix icon type. Ignored when suffixIcon is provided.
     @Default(NbxSuffixIconType.none) NbxSuffixIconType suffixIconType,
+    // Visual state of the input field (neutral, success, error).
+    @Default(NbxInputState.neutral) NbxInputState inputState,
+    // Supporting text displayed below the input field.
+    String? helperText,
+    // Whether to show a character counter when maxLength is set.
+    @Default(false) bool showCharacterCounter,
     InputBorder? border,
     InputBorder? enabledBorder,
     InputBorder? focusedBorder,

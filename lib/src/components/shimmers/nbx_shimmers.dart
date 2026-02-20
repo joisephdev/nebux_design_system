@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use, directives_ordering
 
-/// BB Center App Design System  Shimmer Components
+/// Nebux Design System Shimmer Components
 ///
 /// This library provides a comprehensive set of shimmer/skeleton loading components
 /// for creating professional loading states in Flutter applications.
@@ -14,11 +14,11 @@
 ///
 /// ## Usage
 /// ```dart
-/// import 'package:bb_center_app_design_system/src/components/shimmers/nbx_shimmers.dart';
+/// import 'package:nebux_design_system/nebux_design_system.dart';
 ///
 /// // Basic shimmer container
 /// NbxShimmerContainer(
-///   style: ShimmerContainerStyle(
+///   style: ShimmerSkeletonStyle(
 ///     width: 200,
 ///     height: 100,
 ///   ),
@@ -26,8 +26,8 @@
 ///
 /// // Shimmer list tile
 /// NbxShimmerListTile(
-///   titleStyle: ShimmerContainerStyle(width: 150, height: 20),
-///   subtitleStyle: ShimmerContainerStyle(width: 100, height: 16),
+///   titleStyle: ShimmerSkeletonStyle(width: 150, height: 20),
+///   subtitleStyle: ShimmerSkeletonStyle(width: 100, height: 16),
 /// )
 /// ```
 library;

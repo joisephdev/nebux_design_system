@@ -1,14 +1,37 @@
+/// Defines the logical type of an input field, used to determine keyboard
+/// type, input formatters, and validation behavior.
 enum NbxInputType {
+  /// General text input.
   text,
+
+  /// Free-form input with no validation.
   free,
+
+  /// Alphabetic characters only.
   onlyText,
+
+  /// Alphanumeric characters.
   textAndNumbers,
+
+  /// Read-only dropdown-style input.
   dropdownMenu,
+
+  /// Alphabetic characters with spaces.
   alphabet,
+
+  /// Numeric input.
   number,
+
+  /// Phone number input.
   phone,
+
+  /// Password input (obscured by default).
   password,
+
+  /// Decimal number input.
   decimalNumber,
+
+  /// Email address input.
   email,
 }
 
@@ -57,3 +80,10 @@ enum NbxInputDecorationStyle {
 /// - [eye]: Toggles password visibility (use with obscureText inputs).
 /// - [cancel]: Clears the input field content.
 enum NbxSuffixIconType { none, eye, cancel }
+
+/// Defines the visual state of an input field.
+///
+/// - [neutral]: Default state — no success/error indicators.
+/// - [success]: Field is valid — shows success border and optional check icon.
+/// - [error]: Field has errors — handled automatically by Flutter's validation.
+enum NbxInputState { neutral, success, error }

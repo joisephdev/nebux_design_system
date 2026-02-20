@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 /// Configuration class for button state management.
 ///
 /// This class encapsulates all state-related properties for the [NbxButton] widget,
@@ -12,32 +14,30 @@ class ButtonStateConfig {
   /// Whether the button is selected.
   final bool isSelected;
 
+  /// Custom color for the loading spinner.
+  /// When null, the spinner color is derived from the button variant.
+  final Color? loadingColor;
+
   /// Creates a [ButtonStateConfig] with the specified state properties.
-  ///
-  /// @param isLoading: Whether to show a loading indicator instead of text [bool]
-  /// @param enabled: Whether the button is enabled [bool]
-  /// @param isSelected: Whether the button is selected [bool]
   const ButtonStateConfig({
     this.isLoading = false,
     this.enabled = true,
     this.isSelected = false,
+    this.loadingColor,
   });
 
   /// Creates a copy of this [ButtonStateConfig] with the given fields replaced with new values.
-  ///
-  /// @param isLoading: Whether to show a loading indicator instead of text [bool]
-  /// @param enabled: Whether the button is enabled [bool]
-  /// @param isSelected: Whether the button is selected [bool]
-  /// @returns: A new [ButtonStateConfig] instance with updated values [ButtonStateConfig]
   ButtonStateConfig copyWith({
     bool? isLoading,
     bool? enabled,
     bool? isSelected,
+    Color? loadingColor,
   }) {
     return ButtonStateConfig(
       isLoading: isLoading ?? this.isLoading,
       enabled: enabled ?? this.enabled,
       isSelected: isSelected ?? this.isSelected,
+      loadingColor: loadingColor ?? this.loadingColor,
     );
   }
 
@@ -47,11 +47,15 @@ class ButtonStateConfig {
     return other is ButtonStateConfig &&
         other.isLoading == isLoading &&
         other.enabled == enabled &&
-        other.isSelected == isSelected;
+        other.isSelected == isSelected &&
+        other.loadingColor == loadingColor;
   }
 
   @override
   int get hashCode {
-    return isLoading.hashCode ^ enabled.hashCode ^ isSelected.hashCode;
+    return isLoading.hashCode ^
+        enabled.hashCode ^
+        isSelected.hashCode ^
+        loadingColor.hashCode;
   }
 }

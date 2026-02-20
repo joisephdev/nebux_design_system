@@ -20,33 +20,79 @@ class Country {
     minLength: 10,
   );
 
+  /// Capital city of the country.
   final String? capital;
+
+  /// Primary language spoken in the country.
   final String? language;
+
+  /// Currency information map.
   final Map? currency;
+
+  /// Popular sports in the country.
   final List? popularSports;
+
+  /// International calling code with plus sign (e.g., "+1").
   final String? callingCode;
+
+  /// Primary time zone of the country.
   final String? timeZone;
+
+  /// Geographic region (e.g., "Americas", "Europe").
   final String? region;
+
+  /// Full phone example with plus sign prefix.
   final String? fullExampleWithPlusSign;
+
+  /// Geographic subregion (e.g., "Northern America").
   final String? subregion;
+
+  /// Demonym for residents of the country.
   final String? resident;
+
+  /// Internet top-level domain (e.g., ".us").
   final String? internetTld;
+
+  /// Flag emoji text representation.
   final String? flagEmojiText;
+
+  /// Phone code without plus sign (e.g., "1" for US).
   final String phoneCode;
+
+  /// ISO 3166-1 alpha-2 country code (e.g., "US").
   final String countryCode;
+
+  /// E.164 standard country code.
   final int e164Sc;
+
+  /// Whether this is a geographic entity.
   final bool geographic;
+
+  /// Hierarchy level in the E.164 numbering plan.
   final int level;
 
+  /// English name of the country.
   final String name;
+
+  /// Localized name of the country (set after translation lookup).
   late String? nameLocalized;
 
+  /// Example phone number for this country.
   final String example;
+
+  /// Display name including country code (e.g., "United States (US) [+1]").
   final String displayName;
 
+  /// Display name without E.164 country code.
   final String displayNameNoCountryCode;
+
+  /// E.164 key for this country.
   final String e164Key;
+
+  /// Maximum valid phone number length for this country.
   final int maxLength;
+
+  /// Minimum valid phone number length for this country.
   final int minLength;
 
   /// Constructs a [Country] object.
