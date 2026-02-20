@@ -1,6 +1,8 @@
 part of 'export.dart';
 
+/// Extension that derives keyboard type and suffix icon from [NbxInputParameters].
 extension NbxInputParametersExtension on NbxInputParameters {
+  /// Returns the appropriate [TextInputType] based on [inputType].
   TextInputType get keyboardType {
     switch (inputType) {
       case NbxInputType.number:
@@ -18,45 +20,33 @@ extension NbxInputParametersExtension on NbxInputParameters {
     }
   }
 
-  Widget? buildSuffixIcon({
-    required bool showCancelIcon,
-    required bool obscureText,
-    void Function()? onTap,
-  }) {
-    if (!showSuffixIcon ||
-        ((isReadOnly || !isEnabled) && !forceShowSuffixIcon)) {
-      return null;
-    }
+  /// Builds the automatic suffix icon (eye toggle or cancel) if configured.
+  Widget? buildSuffixIcon({required bool obscureText, void Function()? onTap}) {
+    // Custom suffix widget always takes priority, even in read-only/disabled state.
+    if (suffixIcon != null) return suffixIcon;
 
-    if (suffixIcon != null) {
-      return suffixIcon;
-    }
+    // Automatic icons are not shown in read-only or disabled state.
+    if (isReadOnly || !isEnabled) return null;
 
-    if (showCancelIcon) {
-      return GestureDetector(
-        onTap: () => controller?.clear(),
-        child: Container(
-          color: Colors.transparent,
-          child: const Icon(Icons.cancel, size: 18, color: Colors.grey),
+    return switch (suffixIconType) {
+      NbxSuffixIconType.cancel => GestureDetector(
+          onTap: () => controller?.clear(),
+          child: Container(
+            color: Colors.transparent,
+            child: const Icon(Icons.cancel, size: 18, color: Colors.grey),
+          ),
         ),
-      );
-    }
-
-    if (showEyeIcon) {
-      IconData icon = Icons.visibility_off;
-      if (obscureText) {
-        icon = Icons.visibility;
-      }
-
-      return GestureDetector(
-        onTap: onTap,
-        child: Container(
-          color: Colors.transparent,
-          child: Icon(icon, color: Colors.grey),
+      NbxSuffixIconType.eye => GestureDetector(
+          onTap: onTap,
+          child: Container(
+            color: Colors.transparent,
+            child: Icon(
+              obscureText ? Icons.visibility : Icons.visibility_off,
+              color: Colors.grey,
+            ),
+          ),
         ),
-      );
-    }
-
-    return suffixIcon;
+      NbxSuffixIconType.none => null,
+    };
   }
 }

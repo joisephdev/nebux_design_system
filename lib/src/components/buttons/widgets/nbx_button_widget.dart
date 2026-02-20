@@ -114,12 +114,13 @@ class NbxButton extends StatelessWidget {
   /// Otherwise, arranges leading icon, text, and trailing icon horizontally.
   Widget _buildButtonContent(BuildContext context) {
     if (stateConfig.isLoading) {
-      return const SizedBox(
+      final Color spinnerColor = _getSpinnerColor(context);
+      return SizedBox(
         width: 20,
         height: 20,
         child: CircularProgressIndicator(
           strokeWidth: 2.0,
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          valueColor: AlwaysStoppedAnimation<Color>(spinnerColor),
         ),
       );
     }
@@ -348,5 +349,23 @@ class NbxButton extends StatelessWidget {
     }
 
     return stateConfig.isSelected ? Colors.white : colors.actionPrimary;
+  }
+
+  /// Gets the appropriate spinner color based on button variant.
+  ///
+  /// Uses [ButtonStateConfig.loadingColor] if provided, otherwise derives
+  /// the color from the button variant for proper contrast.
+  Color _getSpinnerColor(BuildContext context) {
+    if (stateConfig.loadingColor != null) return stateConfig.loadingColor!;
+
+    final colors = context.nebuxColors;
+
+    return switch (styleConfig.variant) {
+      ButtonVariant.filled => colors.white,
+      ButtonVariant.danger => colors.white,
+      ButtonVariant.outline =>
+        stateConfig.isSelected ? colors.white : colors.actionPrimary,
+      ButtonVariant.text => colors.actionPrimary,
+    };
   }
 }

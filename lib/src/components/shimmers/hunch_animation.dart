@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+/// A pulsing fade animation that repeatedly fades a child widget in and out.
 class HunchAnimation extends StatefulWidget {
+  /// Creates a hunch (pulsing) animation.
   const HunchAnimation({super.key, required this.child});
 
   @override
   State<HunchAnimation> createState() => _HunchAnimationState();
+
+  /// The child widget to animate.
   final Widget child;
 }
 

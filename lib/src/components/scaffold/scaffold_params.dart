@@ -17,6 +17,9 @@ class AppBarConfig {
   /// Whether to show a divider below the app bar.
   final bool showDivider;
 
+  /// Thickness of the divider below the app bar.
+  final double dividerThickness;
+
   /// Background color for the app bar.
   final Color? backgroundColor;
 
@@ -26,6 +29,7 @@ class AppBarConfig {
     this.leadingButton,
     this.centerTitle = false,
     this.showDivider = false,
+    this.dividerThickness = 0.2,
     this.backgroundColor,
   });
 }
@@ -58,10 +62,14 @@ class BodyConfig {
   /// Message to display when double back to exit is triggered.
   final String? exitMessage;
 
+  /// Whether the body should extend behind the app bar.
+  final bool extendBodyBehindAppBar;
+
   const BodyConfig({
     this.wrapInContainer = true,
     this.decoration,
     this.resizeToAvoidBottomInset = false,
+    this.extendBodyBehindAppBar = true,
     this.exitMessage,
   });
 }

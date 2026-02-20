@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Mixin providing a convenience method for displaying modal bottom sheets.
 mixin NebuxBottomSheet {
+  /// Shows a modal bottom sheet with a rounded top border.
   static Future<T?> showBottomSheet<T>(
     BuildContext context, {
     required Widget body,

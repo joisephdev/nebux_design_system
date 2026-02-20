@@ -21,7 +21,7 @@ Basic shimmer container with customizable styling.
 
 ```dart
 NbxShimmerContainer(
-  style: ShimmerContainerStyle(
+  style: ShimmerSkeletonStyle(
     width: 200,
     height: 100,
     borderRadiusDouble: 12,
@@ -37,7 +37,7 @@ Container that expands to fill available vertical space.
 
 ```dart
 NbxShimmerContainerExpanded(
-  style: ShimmerContainerStyle(
+  style: ShimmerSkeletonStyle(
     width: double.infinity,
     borderRadiusDouble: 8,
   ),
@@ -50,7 +50,7 @@ Horizontal or vertical list of shimmer containers.
 
 ```dart
 NbxShimmerContainerList(
-  style: ShimmerContainerStyle(
+  style: ShimmerSkeletonStyle(
     width: 120,
     height: 80,
     borderRadiusDouble: 12,
@@ -68,13 +68,13 @@ Two separate lists of containers in one layout.
 NbxShimmerTwiceContainerList(
   heightFull: 200,
   axis: Axis.vertical,
-  skeletonListOneStyle: ShimmerContainerStyle(
+  skeletonListOneStyle: ShimmerSkeletonStyle(
     width: double.infinity,
     height: 30,
   ),
   itemCountListOne: 3,
   isColumnListOne: true,
-  skeletonListTwoStyle: ShimmerContainerStyle(
+  skeletonListTwoStyle: ShimmerSkeletonStyle(
     width: 100,
     height: 50,
   ),
@@ -89,20 +89,20 @@ List tile with customizable elements (leading, title, subtitle, paragraph, trail
 
 ```dart
 NbxShimmerListTile(
-  leadingStyle: ShimmerContainerStyle(
+  leadingStyle: ShimmerSkeletonStyle(
     width: 50,
     height: 50,
     boxShape: BoxShape.circle,
   ),
-  titleStyle: ShimmerContainerStyle(
+  titleStyle: ShimmerSkeletonStyle(
     width: 200,
     height: 20,
   ),
-  subtitleStyle: ShimmerContainerStyle(
+  subtitleStyle: ShimmerSkeletonStyle(
     width: 150,
     height: 16,
   ),
-  trailingStyle: ShimmerContainerStyle(
+  trailingStyle: ShimmerSkeletonStyle(
     width: 30,
     height: 30,
   ),
@@ -119,15 +119,15 @@ Scrollable list of shimmer list tiles with separators.
 ```dart
 NbxShimmerListTileListView(
   itemCount: 5,
-  titleStyle: ShimmerContainerStyle(
+  titleStyle: ShimmerSkeletonStyle(
     width: 180,
     height: 18,
   ),
-  subtitleStyle: ShimmerContainerStyle(
+  subtitleStyle: ShimmerSkeletonStyle(
     width: 120,
     height: 14,
   ),
-  leadingStyle: ShimmerContainerStyle(
+  leadingStyle: ShimmerSkeletonStyle(
     width: 40,
     height: 40,
     boxShape: BoxShape.circle,

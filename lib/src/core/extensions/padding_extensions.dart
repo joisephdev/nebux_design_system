@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Convenience extensions on [Widget] for adding padding.
 extension PaddingExtensions on Widget {
   /// Add padding to all sides of the widget
   /* Widget nbxPaddingAll(double padding) {

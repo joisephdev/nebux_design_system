@@ -18,17 +18,17 @@ mixin _$NebuxColors {
 /// Primary brand color - used for main actions and branding
 @ColorConverter() Color get primary;/// Secondary color - used for secondary actions
 @ColorConverter() Color get secondary;/// Secondary variant color - darker shade of secondary
-@ColorConverter() Color get secondaryVariant;/// Accent color - used for highlights and emphasis
-// @ColorConverter() required Color accent,
-/// Background color
-@ColorConverter() Color get background;/// Surface color
-// @ColorConverter() required Color surface,
-/// Text primary color
+@ColorConverter() Color get secondaryVariant;/// Background color
+@ColorConverter() Color get background;/// Surface color - for cards and elevated surfaces
+@ColorConverter() Color get surface;/// Text primary color
 @ColorConverter() Color get textPrimary;/// Text secondary color
 @ColorConverter() Color get textSecondary;/// Action primary color
 @ColorConverter() Color get actionPrimary;/// Action secondary color
 @ColorConverter() Color get actionSecondary;/// Card color
-@ColorConverter() Color get cardColor;/// Success color - for positive actions and states
+@ColorConverter() Color get cardColor;/// Divider color
+@ColorConverter() Color get divider;/// Overlay color - for scrim and modal backdrop
+@ColorConverter() Color get overlay;/// Focus color - for focus rings and accessibility
+@ColorConverter() Color get focus;/// Success color - for positive actions and states
 @ColorConverter() Color get success;/// Warning color - for caution states
 @ColorConverter() Color get warning;/// Error color - for error states
 @ColorConverter() Color get error;/// Info color - for informational states
@@ -50,16 +50,16 @@ $NebuxColorsCopyWith<NebuxColors> get copyWith => _$NebuxColorsCopyWithImpl<Nebu
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NebuxColors&&(identical(other.primary, primary) || other.primary == primary)&&(identical(other.secondary, secondary) || other.secondary == secondary)&&(identical(other.secondaryVariant, secondaryVariant) || other.secondaryVariant == secondaryVariant)&&(identical(other.background, background) || other.background == background)&&(identical(other.textPrimary, textPrimary) || other.textPrimary == textPrimary)&&(identical(other.textSecondary, textSecondary) || other.textSecondary == textSecondary)&&(identical(other.actionPrimary, actionPrimary) || other.actionPrimary == actionPrimary)&&(identical(other.actionSecondary, actionSecondary) || other.actionSecondary == actionSecondary)&&(identical(other.cardColor, cardColor) || other.cardColor == cardColor)&&(identical(other.success, success) || other.success == success)&&(identical(other.warning, warning) || other.warning == warning)&&(identical(other.error, error) || other.error == error)&&(identical(other.info, info) || other.info == info)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.white, white) || other.white == white)&&(identical(other.black, black) || other.black == black)&&(identical(other.primaryGradient, primaryGradient) || other.primaryGradient == primaryGradient)&&(identical(other.secondaryGradient, secondaryGradient) || other.secondaryGradient == secondaryGradient));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NebuxColors&&(identical(other.primary, primary) || other.primary == primary)&&(identical(other.secondary, secondary) || other.secondary == secondary)&&(identical(other.secondaryVariant, secondaryVariant) || other.secondaryVariant == secondaryVariant)&&(identical(other.background, background) || other.background == background)&&(identical(other.surface, surface) || other.surface == surface)&&(identical(other.textPrimary, textPrimary) || other.textPrimary == textPrimary)&&(identical(other.textSecondary, textSecondary) || other.textSecondary == textSecondary)&&(identical(other.actionPrimary, actionPrimary) || other.actionPrimary == actionPrimary)&&(identical(other.actionSecondary, actionSecondary) || other.actionSecondary == actionSecondary)&&(identical(other.cardColor, cardColor) || other.cardColor == cardColor)&&(identical(other.divider, divider) || other.divider == divider)&&(identical(other.overlay, overlay) || other.overlay == overlay)&&(identical(other.focus, focus) || other.focus == focus)&&(identical(other.success, success) || other.success == success)&&(identical(other.warning, warning) || other.warning == warning)&&(identical(other.error, error) || other.error == error)&&(identical(other.info, info) || other.info == info)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.white, white) || other.white == white)&&(identical(other.black, black) || other.black == black)&&(identical(other.primaryGradient, primaryGradient) || other.primaryGradient == primaryGradient)&&(identical(other.secondaryGradient, secondaryGradient) || other.secondaryGradient == secondaryGradient));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,primary,secondary,secondaryVariant,background,textPrimary,textSecondary,actionPrimary,actionSecondary,cardColor,success,warning,error,info,disabled,white,black,primaryGradient,secondaryGradient);
+int get hashCode => Object.hashAll([runtimeType,primary,secondary,secondaryVariant,background,surface,textPrimary,textSecondary,actionPrimary,actionSecondary,cardColor,divider,overlay,focus,success,warning,error,info,disabled,white,black,primaryGradient,secondaryGradient]);
 
 @override
 String toString() {
-  return 'NebuxColors(primary: $primary, secondary: $secondary, secondaryVariant: $secondaryVariant, background: $background, textPrimary: $textPrimary, textSecondary: $textSecondary, actionPrimary: $actionPrimary, actionSecondary: $actionSecondary, cardColor: $cardColor, success: $success, warning: $warning, error: $error, info: $info, disabled: $disabled, white: $white, black: $black, primaryGradient: $primaryGradient, secondaryGradient: $secondaryGradient)';
+  return 'NebuxColors(primary: $primary, secondary: $secondary, secondaryVariant: $secondaryVariant, background: $background, surface: $surface, textPrimary: $textPrimary, textSecondary: $textSecondary, actionPrimary: $actionPrimary, actionSecondary: $actionSecondary, cardColor: $cardColor, divider: $divider, overlay: $overlay, focus: $focus, success: $success, warning: $warning, error: $error, info: $info, disabled: $disabled, white: $white, black: $black, primaryGradient: $primaryGradient, secondaryGradient: $secondaryGradient)';
 }
 
 
@@ -70,7 +70,7 @@ abstract mixin class $NebuxColorsCopyWith<$Res>  {
   factory $NebuxColorsCopyWith(NebuxColors value, $Res Function(NebuxColors) _then) = _$NebuxColorsCopyWithImpl;
 @useResult
 $Res call({
-@ColorConverter() Color primary,@ColorConverter() Color secondary,@ColorConverter() Color secondaryVariant,@ColorConverter() Color background,@ColorConverter() Color textPrimary,@ColorConverter() Color textSecondary,@ColorConverter() Color actionPrimary,@ColorConverter() Color actionSecondary,@ColorConverter() Color cardColor,@ColorConverter() Color success,@ColorConverter() Color warning,@ColorConverter() Color error,@ColorConverter() Color info,@ColorConverter() Color disabled,@ColorConverter() Color white,@ColorConverter() Color black,@LinearGradientConverter() LinearGradient primaryGradient,@LinearGradientConverter() LinearGradient secondaryGradient
+@ColorConverter() Color primary,@ColorConverter() Color secondary,@ColorConverter() Color secondaryVariant,@ColorConverter() Color background,@ColorConverter() Color surface,@ColorConverter() Color textPrimary,@ColorConverter() Color textSecondary,@ColorConverter() Color actionPrimary,@ColorConverter() Color actionSecondary,@ColorConverter() Color cardColor,@ColorConverter() Color divider,@ColorConverter() Color overlay,@ColorConverter() Color focus,@ColorConverter() Color success,@ColorConverter() Color warning,@ColorConverter() Color error,@ColorConverter() Color info,@ColorConverter() Color disabled,@ColorConverter() Color white,@ColorConverter() Color black,@LinearGradientConverter() LinearGradient primaryGradient,@LinearGradientConverter() LinearGradient secondaryGradient
 });
 
 
@@ -87,17 +87,21 @@ class _$NebuxColorsCopyWithImpl<$Res>
 
 /// Create a copy of NebuxColors
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? primary = null,Object? secondary = null,Object? secondaryVariant = null,Object? background = null,Object? textPrimary = null,Object? textSecondary = null,Object? actionPrimary = null,Object? actionSecondary = null,Object? cardColor = null,Object? success = null,Object? warning = null,Object? error = null,Object? info = null,Object? disabled = null,Object? white = null,Object? black = null,Object? primaryGradient = null,Object? secondaryGradient = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? primary = null,Object? secondary = null,Object? secondaryVariant = null,Object? background = null,Object? surface = null,Object? textPrimary = null,Object? textSecondary = null,Object? actionPrimary = null,Object? actionSecondary = null,Object? cardColor = null,Object? divider = null,Object? overlay = null,Object? focus = null,Object? success = null,Object? warning = null,Object? error = null,Object? info = null,Object? disabled = null,Object? white = null,Object? black = null,Object? primaryGradient = null,Object? secondaryGradient = null,}) {
   return _then(_self.copyWith(
 primary: null == primary ? _self.primary : primary // ignore: cast_nullable_to_non_nullable
 as Color,secondary: null == secondary ? _self.secondary : secondary // ignore: cast_nullable_to_non_nullable
 as Color,secondaryVariant: null == secondaryVariant ? _self.secondaryVariant : secondaryVariant // ignore: cast_nullable_to_non_nullable
 as Color,background: null == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as Color,surface: null == surface ? _self.surface : surface // ignore: cast_nullable_to_non_nullable
 as Color,textPrimary: null == textPrimary ? _self.textPrimary : textPrimary // ignore: cast_nullable_to_non_nullable
 as Color,textSecondary: null == textSecondary ? _self.textSecondary : textSecondary // ignore: cast_nullable_to_non_nullable
 as Color,actionPrimary: null == actionPrimary ? _self.actionPrimary : actionPrimary // ignore: cast_nullable_to_non_nullable
 as Color,actionSecondary: null == actionSecondary ? _self.actionSecondary : actionSecondary // ignore: cast_nullable_to_non_nullable
 as Color,cardColor: null == cardColor ? _self.cardColor : cardColor // ignore: cast_nullable_to_non_nullable
+as Color,divider: null == divider ? _self.divider : divider // ignore: cast_nullable_to_non_nullable
+as Color,overlay: null == overlay ? _self.overlay : overlay // ignore: cast_nullable_to_non_nullable
+as Color,focus: null == focus ? _self.focus : focus // ignore: cast_nullable_to_non_nullable
 as Color,success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
 as Color,warning: null == warning ? _self.warning : warning // ignore: cast_nullable_to_non_nullable
 as Color,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
@@ -192,10 +196,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ColorConverter()  Color primary, @ColorConverter()  Color secondary, @ColorConverter()  Color secondaryVariant, @ColorConverter()  Color background, @ColorConverter()  Color textPrimary, @ColorConverter()  Color textSecondary, @ColorConverter()  Color actionPrimary, @ColorConverter()  Color actionSecondary, @ColorConverter()  Color cardColor, @ColorConverter()  Color success, @ColorConverter()  Color warning, @ColorConverter()  Color error, @ColorConverter()  Color info, @ColorConverter()  Color disabled, @ColorConverter()  Color white, @ColorConverter()  Color black, @LinearGradientConverter()  LinearGradient primaryGradient, @LinearGradientConverter()  LinearGradient secondaryGradient)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ColorConverter()  Color primary, @ColorConverter()  Color secondary, @ColorConverter()  Color secondaryVariant, @ColorConverter()  Color background, @ColorConverter()  Color surface, @ColorConverter()  Color textPrimary, @ColorConverter()  Color textSecondary, @ColorConverter()  Color actionPrimary, @ColorConverter()  Color actionSecondary, @ColorConverter()  Color cardColor, @ColorConverter()  Color divider, @ColorConverter()  Color overlay, @ColorConverter()  Color focus, @ColorConverter()  Color success, @ColorConverter()  Color warning, @ColorConverter()  Color error, @ColorConverter()  Color info, @ColorConverter()  Color disabled, @ColorConverter()  Color white, @ColorConverter()  Color black, @LinearGradientConverter()  LinearGradient primaryGradient, @LinearGradientConverter()  LinearGradient secondaryGradient)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NebuxColors() when $default != null:
-return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.background,_that.textPrimary,_that.textSecondary,_that.actionPrimary,_that.actionSecondary,_that.cardColor,_that.success,_that.warning,_that.error,_that.info,_that.disabled,_that.white,_that.black,_that.primaryGradient,_that.secondaryGradient);case _:
+return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.background,_that.surface,_that.textPrimary,_that.textSecondary,_that.actionPrimary,_that.actionSecondary,_that.cardColor,_that.divider,_that.overlay,_that.focus,_that.success,_that.warning,_that.error,_that.info,_that.disabled,_that.white,_that.black,_that.primaryGradient,_that.secondaryGradient);case _:
   return orElse();
 
 }
@@ -213,10 +217,10 @@ return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.backg
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ColorConverter()  Color primary, @ColorConverter()  Color secondary, @ColorConverter()  Color secondaryVariant, @ColorConverter()  Color background, @ColorConverter()  Color textPrimary, @ColorConverter()  Color textSecondary, @ColorConverter()  Color actionPrimary, @ColorConverter()  Color actionSecondary, @ColorConverter()  Color cardColor, @ColorConverter()  Color success, @ColorConverter()  Color warning, @ColorConverter()  Color error, @ColorConverter()  Color info, @ColorConverter()  Color disabled, @ColorConverter()  Color white, @ColorConverter()  Color black, @LinearGradientConverter()  LinearGradient primaryGradient, @LinearGradientConverter()  LinearGradient secondaryGradient)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ColorConverter()  Color primary, @ColorConverter()  Color secondary, @ColorConverter()  Color secondaryVariant, @ColorConverter()  Color background, @ColorConverter()  Color surface, @ColorConverter()  Color textPrimary, @ColorConverter()  Color textSecondary, @ColorConverter()  Color actionPrimary, @ColorConverter()  Color actionSecondary, @ColorConverter()  Color cardColor, @ColorConverter()  Color divider, @ColorConverter()  Color overlay, @ColorConverter()  Color focus, @ColorConverter()  Color success, @ColorConverter()  Color warning, @ColorConverter()  Color error, @ColorConverter()  Color info, @ColorConverter()  Color disabled, @ColorConverter()  Color white, @ColorConverter()  Color black, @LinearGradientConverter()  LinearGradient primaryGradient, @LinearGradientConverter()  LinearGradient secondaryGradient)  $default,) {final _that = this;
 switch (_that) {
 case _NebuxColors():
-return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.background,_that.textPrimary,_that.textSecondary,_that.actionPrimary,_that.actionSecondary,_that.cardColor,_that.success,_that.warning,_that.error,_that.info,_that.disabled,_that.white,_that.black,_that.primaryGradient,_that.secondaryGradient);case _:
+return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.background,_that.surface,_that.textPrimary,_that.textSecondary,_that.actionPrimary,_that.actionSecondary,_that.cardColor,_that.divider,_that.overlay,_that.focus,_that.success,_that.warning,_that.error,_that.info,_that.disabled,_that.white,_that.black,_that.primaryGradient,_that.secondaryGradient);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -233,10 +237,10 @@ return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.backg
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ColorConverter()  Color primary, @ColorConverter()  Color secondary, @ColorConverter()  Color secondaryVariant, @ColorConverter()  Color background, @ColorConverter()  Color textPrimary, @ColorConverter()  Color textSecondary, @ColorConverter()  Color actionPrimary, @ColorConverter()  Color actionSecondary, @ColorConverter()  Color cardColor, @ColorConverter()  Color success, @ColorConverter()  Color warning, @ColorConverter()  Color error, @ColorConverter()  Color info, @ColorConverter()  Color disabled, @ColorConverter()  Color white, @ColorConverter()  Color black, @LinearGradientConverter()  LinearGradient primaryGradient, @LinearGradientConverter()  LinearGradient secondaryGradient)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ColorConverter()  Color primary, @ColorConverter()  Color secondary, @ColorConverter()  Color secondaryVariant, @ColorConverter()  Color background, @ColorConverter()  Color surface, @ColorConverter()  Color textPrimary, @ColorConverter()  Color textSecondary, @ColorConverter()  Color actionPrimary, @ColorConverter()  Color actionSecondary, @ColorConverter()  Color cardColor, @ColorConverter()  Color divider, @ColorConverter()  Color overlay, @ColorConverter()  Color focus, @ColorConverter()  Color success, @ColorConverter()  Color warning, @ColorConverter()  Color error, @ColorConverter()  Color info, @ColorConverter()  Color disabled, @ColorConverter()  Color white, @ColorConverter()  Color black, @LinearGradientConverter()  LinearGradient primaryGradient, @LinearGradientConverter()  LinearGradient secondaryGradient)?  $default,) {final _that = this;
 switch (_that) {
 case _NebuxColors() when $default != null:
-return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.background,_that.textPrimary,_that.textSecondary,_that.actionPrimary,_that.actionSecondary,_that.cardColor,_that.success,_that.warning,_that.error,_that.info,_that.disabled,_that.white,_that.black,_that.primaryGradient,_that.secondaryGradient);case _:
+return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.background,_that.surface,_that.textPrimary,_that.textSecondary,_that.actionPrimary,_that.actionSecondary,_that.cardColor,_that.divider,_that.overlay,_that.focus,_that.success,_that.warning,_that.error,_that.info,_that.disabled,_that.white,_that.black,_that.primaryGradient,_that.secondaryGradient);case _:
   return null;
 
 }
@@ -247,8 +251,8 @@ return $default(_that.primary,_that.secondary,_that.secondaryVariant,_that.backg
 /// @nodoc
 @JsonSerializable()
 
-class _NebuxColors implements NebuxColors {
-  const _NebuxColors({@ColorConverter() required this.primary, @ColorConverter() required this.secondary, @ColorConverter() required this.secondaryVariant, @ColorConverter() required this.background, @ColorConverter() required this.textPrimary, @ColorConverter() required this.textSecondary, @ColorConverter() required this.actionPrimary, @ColorConverter() required this.actionSecondary, @ColorConverter() required this.cardColor, @ColorConverter() required this.success, @ColorConverter() required this.warning, @ColorConverter() required this.error, @ColorConverter() required this.info, @ColorConverter() required this.disabled, @ColorConverter() required this.white, @ColorConverter() required this.black, @LinearGradientConverter() required this.primaryGradient, @LinearGradientConverter() required this.secondaryGradient});
+class _NebuxColors extends NebuxColors {
+  const _NebuxColors({@ColorConverter() required this.primary, @ColorConverter() required this.secondary, @ColorConverter() required this.secondaryVariant, @ColorConverter() required this.background, @ColorConverter() required this.surface, @ColorConverter() required this.textPrimary, @ColorConverter() required this.textSecondary, @ColorConverter() required this.actionPrimary, @ColorConverter() required this.actionSecondary, @ColorConverter() required this.cardColor, @ColorConverter() required this.divider, @ColorConverter() required this.overlay, @ColorConverter() required this.focus, @ColorConverter() required this.success, @ColorConverter() required this.warning, @ColorConverter() required this.error, @ColorConverter() required this.info, @ColorConverter() required this.disabled, @ColorConverter() required this.white, @ColorConverter() required this.black, @LinearGradientConverter() required this.primaryGradient, @LinearGradientConverter() required this.secondaryGradient}): super._();
   factory _NebuxColors.fromJson(Map<String, dynamic> json) => _$NebuxColorsFromJson(json);
 
 /// Primary brand color - used for main actions and branding
@@ -257,12 +261,10 @@ class _NebuxColors implements NebuxColors {
 @override@ColorConverter() final  Color secondary;
 /// Secondary variant color - darker shade of secondary
 @override@ColorConverter() final  Color secondaryVariant;
-/// Accent color - used for highlights and emphasis
-// @ColorConverter() required Color accent,
 /// Background color
 @override@ColorConverter() final  Color background;
-/// Surface color
-// @ColorConverter() required Color surface,
+/// Surface color - for cards and elevated surfaces
+@override@ColorConverter() final  Color surface;
 /// Text primary color
 @override@ColorConverter() final  Color textPrimary;
 /// Text secondary color
@@ -273,6 +275,12 @@ class _NebuxColors implements NebuxColors {
 @override@ColorConverter() final  Color actionSecondary;
 /// Card color
 @override@ColorConverter() final  Color cardColor;
+/// Divider color
+@override@ColorConverter() final  Color divider;
+/// Overlay color - for scrim and modal backdrop
+@override@ColorConverter() final  Color overlay;
+/// Focus color - for focus rings and accessibility
+@override@ColorConverter() final  Color focus;
 /// Success color - for positive actions and states
 @override@ColorConverter() final  Color success;
 /// Warning color - for caution states
@@ -305,16 +313,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NebuxColors&&(identical(other.primary, primary) || other.primary == primary)&&(identical(other.secondary, secondary) || other.secondary == secondary)&&(identical(other.secondaryVariant, secondaryVariant) || other.secondaryVariant == secondaryVariant)&&(identical(other.background, background) || other.background == background)&&(identical(other.textPrimary, textPrimary) || other.textPrimary == textPrimary)&&(identical(other.textSecondary, textSecondary) || other.textSecondary == textSecondary)&&(identical(other.actionPrimary, actionPrimary) || other.actionPrimary == actionPrimary)&&(identical(other.actionSecondary, actionSecondary) || other.actionSecondary == actionSecondary)&&(identical(other.cardColor, cardColor) || other.cardColor == cardColor)&&(identical(other.success, success) || other.success == success)&&(identical(other.warning, warning) || other.warning == warning)&&(identical(other.error, error) || other.error == error)&&(identical(other.info, info) || other.info == info)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.white, white) || other.white == white)&&(identical(other.black, black) || other.black == black)&&(identical(other.primaryGradient, primaryGradient) || other.primaryGradient == primaryGradient)&&(identical(other.secondaryGradient, secondaryGradient) || other.secondaryGradient == secondaryGradient));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NebuxColors&&(identical(other.primary, primary) || other.primary == primary)&&(identical(other.secondary, secondary) || other.secondary == secondary)&&(identical(other.secondaryVariant, secondaryVariant) || other.secondaryVariant == secondaryVariant)&&(identical(other.background, background) || other.background == background)&&(identical(other.surface, surface) || other.surface == surface)&&(identical(other.textPrimary, textPrimary) || other.textPrimary == textPrimary)&&(identical(other.textSecondary, textSecondary) || other.textSecondary == textSecondary)&&(identical(other.actionPrimary, actionPrimary) || other.actionPrimary == actionPrimary)&&(identical(other.actionSecondary, actionSecondary) || other.actionSecondary == actionSecondary)&&(identical(other.cardColor, cardColor) || other.cardColor == cardColor)&&(identical(other.divider, divider) || other.divider == divider)&&(identical(other.overlay, overlay) || other.overlay == overlay)&&(identical(other.focus, focus) || other.focus == focus)&&(identical(other.success, success) || other.success == success)&&(identical(other.warning, warning) || other.warning == warning)&&(identical(other.error, error) || other.error == error)&&(identical(other.info, info) || other.info == info)&&(identical(other.disabled, disabled) || other.disabled == disabled)&&(identical(other.white, white) || other.white == white)&&(identical(other.black, black) || other.black == black)&&(identical(other.primaryGradient, primaryGradient) || other.primaryGradient == primaryGradient)&&(identical(other.secondaryGradient, secondaryGradient) || other.secondaryGradient == secondaryGradient));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,primary,secondary,secondaryVariant,background,textPrimary,textSecondary,actionPrimary,actionSecondary,cardColor,success,warning,error,info,disabled,white,black,primaryGradient,secondaryGradient);
+int get hashCode => Object.hashAll([runtimeType,primary,secondary,secondaryVariant,background,surface,textPrimary,textSecondary,actionPrimary,actionSecondary,cardColor,divider,overlay,focus,success,warning,error,info,disabled,white,black,primaryGradient,secondaryGradient]);
 
 @override
 String toString() {
-  return 'NebuxColors(primary: $primary, secondary: $secondary, secondaryVariant: $secondaryVariant, background: $background, textPrimary: $textPrimary, textSecondary: $textSecondary, actionPrimary: $actionPrimary, actionSecondary: $actionSecondary, cardColor: $cardColor, success: $success, warning: $warning, error: $error, info: $info, disabled: $disabled, white: $white, black: $black, primaryGradient: $primaryGradient, secondaryGradient: $secondaryGradient)';
+  return 'NebuxColors(primary: $primary, secondary: $secondary, secondaryVariant: $secondaryVariant, background: $background, surface: $surface, textPrimary: $textPrimary, textSecondary: $textSecondary, actionPrimary: $actionPrimary, actionSecondary: $actionSecondary, cardColor: $cardColor, divider: $divider, overlay: $overlay, focus: $focus, success: $success, warning: $warning, error: $error, info: $info, disabled: $disabled, white: $white, black: $black, primaryGradient: $primaryGradient, secondaryGradient: $secondaryGradient)';
 }
 
 
@@ -325,7 +333,7 @@ abstract mixin class _$NebuxColorsCopyWith<$Res> implements $NebuxColorsCopyWith
   factory _$NebuxColorsCopyWith(_NebuxColors value, $Res Function(_NebuxColors) _then) = __$NebuxColorsCopyWithImpl;
 @override @useResult
 $Res call({
-@ColorConverter() Color primary,@ColorConverter() Color secondary,@ColorConverter() Color secondaryVariant,@ColorConverter() Color background,@ColorConverter() Color textPrimary,@ColorConverter() Color textSecondary,@ColorConverter() Color actionPrimary,@ColorConverter() Color actionSecondary,@ColorConverter() Color cardColor,@ColorConverter() Color success,@ColorConverter() Color warning,@ColorConverter() Color error,@ColorConverter() Color info,@ColorConverter() Color disabled,@ColorConverter() Color white,@ColorConverter() Color black,@LinearGradientConverter() LinearGradient primaryGradient,@LinearGradientConverter() LinearGradient secondaryGradient
+@ColorConverter() Color primary,@ColorConverter() Color secondary,@ColorConverter() Color secondaryVariant,@ColorConverter() Color background,@ColorConverter() Color surface,@ColorConverter() Color textPrimary,@ColorConverter() Color textSecondary,@ColorConverter() Color actionPrimary,@ColorConverter() Color actionSecondary,@ColorConverter() Color cardColor,@ColorConverter() Color divider,@ColorConverter() Color overlay,@ColorConverter() Color focus,@ColorConverter() Color success,@ColorConverter() Color warning,@ColorConverter() Color error,@ColorConverter() Color info,@ColorConverter() Color disabled,@ColorConverter() Color white,@ColorConverter() Color black,@LinearGradientConverter() LinearGradient primaryGradient,@LinearGradientConverter() LinearGradient secondaryGradient
 });
 
 
@@ -342,17 +350,21 @@ class __$NebuxColorsCopyWithImpl<$Res>
 
 /// Create a copy of NebuxColors
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? primary = null,Object? secondary = null,Object? secondaryVariant = null,Object? background = null,Object? textPrimary = null,Object? textSecondary = null,Object? actionPrimary = null,Object? actionSecondary = null,Object? cardColor = null,Object? success = null,Object? warning = null,Object? error = null,Object? info = null,Object? disabled = null,Object? white = null,Object? black = null,Object? primaryGradient = null,Object? secondaryGradient = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? primary = null,Object? secondary = null,Object? secondaryVariant = null,Object? background = null,Object? surface = null,Object? textPrimary = null,Object? textSecondary = null,Object? actionPrimary = null,Object? actionSecondary = null,Object? cardColor = null,Object? divider = null,Object? overlay = null,Object? focus = null,Object? success = null,Object? warning = null,Object? error = null,Object? info = null,Object? disabled = null,Object? white = null,Object? black = null,Object? primaryGradient = null,Object? secondaryGradient = null,}) {
   return _then(_NebuxColors(
 primary: null == primary ? _self.primary : primary // ignore: cast_nullable_to_non_nullable
 as Color,secondary: null == secondary ? _self.secondary : secondary // ignore: cast_nullable_to_non_nullable
 as Color,secondaryVariant: null == secondaryVariant ? _self.secondaryVariant : secondaryVariant // ignore: cast_nullable_to_non_nullable
 as Color,background: null == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as Color,surface: null == surface ? _self.surface : surface // ignore: cast_nullable_to_non_nullable
 as Color,textPrimary: null == textPrimary ? _self.textPrimary : textPrimary // ignore: cast_nullable_to_non_nullable
 as Color,textSecondary: null == textSecondary ? _self.textSecondary : textSecondary // ignore: cast_nullable_to_non_nullable
 as Color,actionPrimary: null == actionPrimary ? _self.actionPrimary : actionPrimary // ignore: cast_nullable_to_non_nullable
 as Color,actionSecondary: null == actionSecondary ? _self.actionSecondary : actionSecondary // ignore: cast_nullable_to_non_nullable
 as Color,cardColor: null == cardColor ? _self.cardColor : cardColor // ignore: cast_nullable_to_non_nullable
+as Color,divider: null == divider ? _self.divider : divider // ignore: cast_nullable_to_non_nullable
+as Color,overlay: null == overlay ? _self.overlay : overlay // ignore: cast_nullable_to_non_nullable
+as Color,focus: null == focus ? _self.focus : focus // ignore: cast_nullable_to_non_nullable
 as Color,success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
 as Color,warning: null == warning ? _self.warning : warning // ignore: cast_nullable_to_non_nullable
 as Color,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
@@ -585,8 +597,8 @@ return $default(_that.light,_that.dark);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _NebuxColorThemes implements NebuxColorThemes {
-  const _NebuxColorThemes({required this.light, required this.dark});
+class _NebuxColorThemes extends NebuxColorThemes {
+  const _NebuxColorThemes({required this.light, required this.dark}): super._();
   factory _NebuxColorThemes.fromJson(Map<String, dynamic> json) => _$NebuxColorThemesFromJson(json);
 
 @override final  NebuxColors light;

@@ -41,7 +41,7 @@ class ColorConverter implements JsonConverter<Color, dynamic> {
   }
 }
 
-/// JsonConverter for LinearGradient
+/// JSON converter for [LinearGradient] that serializes colors and alignment.
 class LinearGradientConverter
     implements JsonConverter<LinearGradient, Map<String, dynamic>> {
   const LinearGradientConverter();
