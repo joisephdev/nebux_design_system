@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'configs/export.dart';
+
 /// A robust network image widget that provides comprehensive image loading,
 /// caching, error handling, and customization options.
 ///
@@ -27,86 +29,20 @@ class NbxNetworkImage extends StatelessWidget {
   /// If null, a default error widget is shown.
   final Widget? errorWidget;
 
-  /// The width to use for the in-memory cache.
-  final int? memCacheWidth;
-
-  /// The height to use for the in-memory cache.
-  final int? memCacheHeight;
-
-  /// The maximum width to use for the disk cache.
-  final int? maxWidthDiskCache;
-
-  /// The maximum height to use for the disk cache.
-  final int? maxHeightDiskCache;
-
-  /// The key to use for the cache.
-  final String? cacheKey;
-
-  /// Whether to use the old image when the URL changes.
-  final bool useOldImageOnUrlChange;
-
-  /// The duration of the fade-in animation.
-  final Duration fadeInDuration;
-
-  /// The duration of the fade-out animation.
-  final Duration fadeOutDuration;
-
-  /// The curve of the fade-in animation.
-  final Curve fadeInCurve;
-
-  /// The curve of the fade-out animation.
-  final Curve fadeOutCurve;
-
-  /// The quality of the image filter.
-  final FilterQuality filterQuality;
-
-  /// How to repeat the image if it doesn't fill the space.
-  final ImageRepeat repeat;
-
-  /// Whether to match the text direction.
-  final bool matchTextDirection;
-
-  /// The color to blend with the image.
-  final Color? color;
-
-  /// The blend mode to use when blending the color.
-  final BlendMode? colorBlendMode;
-
-  /// The cache manager to use.
-  final dynamic cacheManager;
-
   /// The HTTP headers to use when loading the image.
   final Map<String, String>? httpHeaders;
 
-  /// Builder for the progress indicator.
-  final ProgressIndicatorBuilder? progressIndicatorBuilder;
+  /// Cache configuration options.
+  final NbxImageCacheConfig cacheConfig;
 
-  /// The size of the progress indicator.
-  final Size progressIndicatorSize;
+  /// Animation configuration options.
+  final NbxImageAnimationConfig animationConfig;
 
-  /// The color of the progress indicator.
-  final Color? progressIndicatorColor;
+  /// Progress indicator configuration options.
+  final NbxImageProgressConfig progressConfig;
 
-  /// The stroke width of the progress indicator.
-  final double progressIndicatorStrokeWidth;
-
-  /// The background color of the progress indicator.
-  final Color? progressIndicatorBackgroundColor;
-
-  /// Whether to use a circular progress indicator.
-  final bool progressIndicatorCircular;
-
-  /// The border radius of the image container.
-  final BorderRadius? borderRadius;
-
-  /// The border of the image container.
-  final BoxBorder? border;
-
-  /// The shadow of the image container.
-  final List<BoxShadow>? shadow;
-
-  /// The clip behavior of the image container.
-  final Clip clipBehavior;
+  /// Style configuration options.
+  final NbxImageStyleConfig styleConfig;
 
   /// Creates a network image widget.
   ///
@@ -120,33 +56,11 @@ class NbxNetworkImage extends StatelessWidget {
     this.fit = BoxFit.cover,
     this.placeholder,
     this.errorWidget,
-    this.memCacheWidth,
-    this.memCacheHeight,
-    this.maxWidthDiskCache,
-    this.maxHeightDiskCache,
-    this.cacheKey,
-    this.useOldImageOnUrlChange = false,
-    this.fadeInDuration = const Duration(milliseconds: 300),
-    this.fadeOutDuration = const Duration(milliseconds: 300),
-    this.fadeInCurve = Curves.easeOut,
-    this.fadeOutCurve = Curves.easeIn,
-    this.filterQuality = FilterQuality.low,
-    this.repeat = ImageRepeat.noRepeat,
-    this.matchTextDirection = false,
-    this.color,
-    this.colorBlendMode,
-    this.cacheManager,
     this.httpHeaders,
-    this.progressIndicatorBuilder,
-    this.progressIndicatorSize = const Size(20, 20),
-    this.progressIndicatorColor,
-    this.progressIndicatorStrokeWidth = 2.0,
-    this.progressIndicatorBackgroundColor,
-    this.progressIndicatorCircular = true,
-    this.borderRadius,
-    this.border,
-    this.shadow,
-    this.clipBehavior = Clip.antiAlias,
+    this.cacheConfig = const NbxImageCacheConfig(),
+    this.animationConfig = const NbxImageAnimationConfig(),
+    this.progressConfig = const NbxImageProgressConfig(),
+    this.styleConfig = const NbxImageStyleConfig(),
   });
 
   @override
@@ -155,11 +69,11 @@ class NbxNetworkImage extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        border: border,
-        boxShadow: shadow,
+        borderRadius: styleConfig.borderRadius,
+        border: styleConfig.border,
+        boxShadow: styleConfig.shadow,
       ),
-      clipBehavior: clipBehavior,
+      clipBehavior: styleConfig.clipBehavior,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         width: width,
@@ -171,25 +85,26 @@ class NbxNetworkImage extends StatelessWidget {
         errorWidget: errorWidget != null
             ? (context, url, error) => errorWidget!
             : null,
-        memCacheWidth: memCacheWidth,
-        memCacheHeight: memCacheHeight,
-        maxWidthDiskCache: maxWidthDiskCache,
-        maxHeightDiskCache: maxHeightDiskCache,
-        cacheKey: cacheKey,
-        useOldImageOnUrlChange: useOldImageOnUrlChange,
-        fadeInDuration: fadeInDuration,
-        fadeOutDuration: fadeOutDuration,
-        fadeInCurve: fadeInCurve,
-        fadeOutCurve: fadeOutCurve,
-        filterQuality: filterQuality,
-        repeat: repeat,
-        matchTextDirection: matchTextDirection,
-        color: color,
-        colorBlendMode: colorBlendMode,
-        cacheManager: cacheManager,
+        memCacheWidth: cacheConfig.memCacheWidth,
+        memCacheHeight: cacheConfig.memCacheHeight,
+        maxWidthDiskCache: cacheConfig.maxWidthDiskCache,
+        maxHeightDiskCache: cacheConfig.maxHeightDiskCache,
+        cacheKey: cacheConfig.cacheKey,
+        useOldImageOnUrlChange: cacheConfig.useOldImageOnUrlChange,
+        fadeInDuration: animationConfig.fadeInDuration,
+        fadeOutDuration: animationConfig.fadeOutDuration,
+        fadeInCurve: animationConfig.fadeInCurve,
+        fadeOutCurve: animationConfig.fadeOutCurve,
+        filterQuality: styleConfig.filterQuality,
+        repeat: styleConfig.repeat,
+        matchTextDirection: styleConfig.matchTextDirection,
+        color: styleConfig.color,
+        colorBlendMode: styleConfig.colorBlendMode,
+        cacheManager: cacheConfig.cacheManager,
         httpHeaders: httpHeaders,
         progressIndicatorBuilder:
-            progressIndicatorBuilder ?? _buildDefaultProgressIndicator,
+            progressConfig.progressIndicatorBuilder ??
+            _buildDefaultProgressIndicator,
       ),
     );
   }
@@ -239,18 +154,19 @@ class NbxNetworkImage extends StatelessWidget {
     String url,
     DownloadProgress progress,
   ) {
-    if (progressIndicatorCircular) {
+    if (progressConfig.progressIndicatorCircular) {
       return Center(
         child: SizedBox(
-          width: progressIndicatorSize.width,
-          height: progressIndicatorSize.height,
+          width: progressConfig.progressIndicatorSize.width,
+          height: progressConfig.progressIndicatorSize.height,
           child: CircularProgressIndicator(
             value: progress.progress,
-            strokeWidth: progressIndicatorStrokeWidth,
+            strokeWidth: progressConfig.progressIndicatorStrokeWidth,
             backgroundColor:
-                progressIndicatorBackgroundColor ?? Colors.grey[300],
+                progressConfig.progressIndicatorBackgroundColor ??
+                Colors.grey[300],
             valueColor: AlwaysStoppedAnimation<Color>(
-              progressIndicatorColor ?? Colors.blue,
+              progressConfig.progressIndicatorColor ?? Colors.blue,
             ),
           ),
         ),
@@ -258,14 +174,15 @@ class NbxNetworkImage extends StatelessWidget {
     } else {
       return Center(
         child: SizedBox(
-          width: progressIndicatorSize.width,
-          height: progressIndicatorSize.height,
+          width: progressConfig.progressIndicatorSize.width,
+          height: progressConfig.progressIndicatorSize.height,
           child: LinearProgressIndicator(
             value: progress.progress,
             backgroundColor:
-                progressIndicatorBackgroundColor ?? Colors.grey[300],
+                progressConfig.progressIndicatorBackgroundColor ??
+                Colors.grey[300],
             valueColor: AlwaysStoppedAnimation<Color>(
-              progressIndicatorColor ?? Colors.blue,
+              progressConfig.progressIndicatorColor ?? Colors.blue,
             ),
           ),
         ),
@@ -306,9 +223,11 @@ extension NbxNetworkImageExtensions on NbxNetworkImage {
       fit: fit,
       placeholder: placeholder,
       errorWidget: errorWidget,
-      borderRadius: borderRadius ?? BorderRadius.circular(radius),
-      border: border,
-      shadow: shadow,
+      styleConfig: NbxImageStyleConfig(
+        borderRadius: borderRadius ?? BorderRadius.circular(radius),
+        border: border,
+        shadow: shadow,
+      ),
     );
   }
 
@@ -330,9 +249,11 @@ extension NbxNetworkImageExtensions on NbxNetworkImage {
       fit: fit,
       placeholder: placeholder,
       errorWidget: errorWidget,
-      borderRadius: borderRadius,
-      border: border,
-      shadow: shadow,
+      styleConfig: NbxImageStyleConfig(
+        borderRadius: borderRadius,
+        border: border,
+        shadow: shadow,
+      ),
     );
   }
 
@@ -355,9 +276,11 @@ extension NbxNetworkImageExtensions on NbxNetworkImage {
       fit: fit,
       placeholder: placeholder,
       errorWidget: errorWidget,
-      borderRadius: BorderRadius.circular(borderRadius),
-      border: border,
-      shadow: shadow,
+      styleConfig: NbxImageStyleConfig(
+        borderRadius: BorderRadius.circular(borderRadius),
+        border: border,
+        shadow: shadow,
+      ),
     );
   }
 }

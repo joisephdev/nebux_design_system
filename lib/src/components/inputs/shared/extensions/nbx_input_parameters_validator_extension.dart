@@ -1,6 +1,8 @@
 part of 'export.dart';
 
+/// Extension that provides input formatting and validation from [NbxInputParameters].
 extension NbxInputParametersValidationExtension on NbxInputParameters {
+  /// Returns the list of [TextInputFormatter]s derived from [inputType].
   List<TextInputFormatter> get textInputFormatter {
     late final TextInputFormatter inputFormatter;
     switch (inputType) {
@@ -13,13 +15,19 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
         inputFormatter = FilteringTextInputFormatter.digitsOnly;
         break;
       default:
-        inputFormatter = FilteringTextInputFormatter.singleLineFormatter;
+        final isSingleLine = maxLines == null || maxLines == 1;
+        if (isSingleLine) {
+          inputFormatter = FilteringTextInputFormatter.singleLineFormatter;
+        } else {
+          inputFormatter = FilteringTextInputFormatter.allow(RegExp(r'.*'));
+        }
         break;
     }
 
     return [...?inputFormatters, inputFormatter];
   }
 
+  /// Validates the input and notifies via [onValidationResult].
   String? inputValidator(String? data) {
     final value = data ?? '';
     String? error;
@@ -30,8 +38,6 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
       error = validator?.call(data);
     }
 
-    // Always notify the final validation state so consumers (e.g. ShadowInputWrapper,
-    // onValidationChanged) can react without needing Future.delayed workarounds.
     onValidationResult?.call(error);
     return error;
   }

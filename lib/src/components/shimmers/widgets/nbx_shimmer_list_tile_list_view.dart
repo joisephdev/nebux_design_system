@@ -49,10 +49,10 @@ class NbxShimmerListTileListView extends StatelessWidget {
   /// @param heightFull: Total height of the list [double?].
   /// @param itemCount: Number of tiles to display [int].
   /// @param titleStyle: Style for title elements [ShimmerSkeletonStyle].
-  /// @param leadingStyle: Style for leading elements [ShimmerContainerStyle?].
-  /// @param subtitleStyle: Style for subtitle elements [ShimmerContainerStyle?].
-  /// @param paragraphStyle: Style for paragraph elements [ShimmerContainerStyle?].
-  /// @param trailingStyle: Style for trailing elements [ShimmerContainerStyle?].
+  /// @param leadingStyle: Style for leading elements [ShimmerSkeletonStyle].
+  /// @param subtitleStyle: Style for subtitle elements [ShimmerSkeletonStyle].
+  /// @param paragraphStyle: Style for paragraph elements [ShimmerSkeletonStyle].
+  /// @param trailingStyle: Style for trailing elements [ShimmerSkeletonStyle].
   /// @param padding: Padding around each tile [EdgeInsetsGeometry?].
   /// @param contentSpacing: Spacing between content elements [double?].
   /// @param verticalSpacing: Vertical spacing between elements [double?].

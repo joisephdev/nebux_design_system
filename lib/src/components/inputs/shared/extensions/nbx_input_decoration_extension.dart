@@ -1,9 +1,7 @@
 part of 'export.dart';
 
+/// Extension that builds [InputDecoration] from [NbxInputParameters].
 extension NbxInputDecorationExtension on NbxInputParameters {
-  NebuxTheme get _nbxTheme => context.nebuxTheme;
-
-  /// Default border
   OutlineInputBorder _defaultBorder({Color? sideColor, double? width}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
@@ -14,65 +12,96 @@ extension NbxInputDecorationExtension on NbxInputParameters {
     );
   }
 
-  /// Default focused border
-  OutlineInputBorder _focusedDefaultBorder([Color? sideColor]) {
+  OutlineInputBorder _focusedDefaultBorder(Color sideColor) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(color: sideColor ?? Colors.black, width: 1),
+      borderSide: BorderSide(color: sideColor, width: 1),
     );
   }
 
-  InputDecoration get inputDecoration {
-    // final decoration = this.decoration ?? const InputDecoration();
+  /// Builds the [InputDecoration] for text input widgets based on theme and parameters.
+  InputDecoration inputDecoration(BuildContext context) {
+    final nbxTheme = context.nebuxTheme;
+
+    // Resolve enabled border based on input state
+    final InputBorder resolvedEnabledBorder = _resolveEnabledBorder(nbxTheme);
+
+    // Resolve suffix icon: success state adds a check icon if no custom suffix
+    final Widget? resolvedSuffixIcon = _resolveSuffixIcon(nbxTheme);
+
     return const InputDecoration().copyWith(
       hintText: hintText,
-      counterText: '',
+      counterText: showCharacterCounter ? null : '',
       labelText: decorationStyle.isOutlined ? null : labelText,
+      helperText: helperText,
+      helperMaxLines: 2,
+      helperStyle: nbxTheme.typography.caption.copyWith(
+        color: nbxTheme.colors.textSecondary.withValues(alpha: 0.7),
+      ),
       errorMaxLines: 3,
       floatingLabelBehavior: decorationStyle.isFilled
           ? FloatingLabelBehavior.never
           : (floatingLabelBehavior ?? FloatingLabelBehavior.auto),
 
-      labelStyle: _nbxTheme.typography.label.copyWith(
-        // color: _nbxTheme.colors.textSecondary,
-        color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
+      labelStyle: nbxTheme.typography.label.copyWith(
+        color: nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
       ),
-      floatingLabelStyle: _nbxTheme.typography.label.copyWith(
-        color: _nbxTheme.colors.textSecondary,
+      floatingLabelStyle: nbxTheme.typography.label.copyWith(
+        color: nbxTheme.colors.textSecondary,
       ),
-      hintStyle: _nbxTheme.typography.content.copyWith(
-        color: _nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
+      hintStyle: nbxTheme.typography.content.copyWith(
+        color: nbxTheme.colors.textSecondary.withValues(alpha: 0.5),
       ),
       errorStyle: showErrorText
-          ? _nbxTheme.typography.caption.copyWith(color: _nbxTheme.colors.error)
-          // fontSize: 0.01 is a standard Flutter pattern to hide the error text visually
-          // while preserving the reserved space below the field (avoids layout jumps).
+          ? nbxTheme.typography.caption.copyWith(color: nbxTheme.colors.error)
           : const TextStyle(fontSize: 0.01, height: 0),
       filled: true,
-      fillColor: fillColor ?? _nbxTheme.colors.background,
-      suffixIcon: suffixIcon,
+      fillColor: fillColor ?? nbxTheme.colors.background,
+      suffixIcon: resolvedSuffixIcon,
       prefixIcon: prefixIcon,
       prefixIconConstraints: const BoxConstraints(),
       enabledBorder:
-          enabledBorder ??
-          OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(
-              color: (_nbxTheme.colors.textSecondary).withValues(alpha: 0.2),
-            ),
-          ),
+          enabledBorder ?? resolvedEnabledBorder,
       border:
           border ??
           const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
       errorBorder:
-          errorBorder ?? _defaultBorder(sideColor: _nbxTheme.colors.error),
+          errorBorder ?? _defaultBorder(sideColor: nbxTheme.colors.error),
       focusedBorder:
-          focusedBorder ?? _focusedDefaultBorder(_nbxTheme.colors.black),
+          focusedBorder ?? _focusedDefaultBorder(nbxTheme.colors.focus),
       focusedErrorBorder:
           focusedErrorBorder ??
-          _defaultBorder(sideColor: _nbxTheme.colors.error, width: 1),
+          _defaultBorder(sideColor: nbxTheme.colors.error, width: 1),
     );
+  }
+
+  /// Resolves the enabled border based on input state.
+  InputBorder _resolveEnabledBorder(NebuxTheme nbxTheme) {
+    if (inputState == NbxInputState.success) {
+      return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: nbxTheme.colors.success),
+      );
+    }
+
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide(
+        color: (nbxTheme.colors.textSecondary).withValues(alpha: 0.2),
+      ),
+    );
+  }
+
+  /// Resolves the suffix icon, adding a success check icon when appropriate.
+  Widget? _resolveSuffixIcon(NebuxTheme nbxTheme) {
+    if (suffixIcon != null) return suffixIcon;
+
+    if (inputState == NbxInputState.success) {
+      return Icon(Icons.check_circle_outline, color: nbxTheme.colors.success);
+    }
+
+    return null;
   }
 }

@@ -1,8 +1,6 @@
 // APP BAR
 // ignore_for_file: directives_ordering
 
-export 'app_bars/nebux_app_bar.dart';
-
 // BUTTONS
 export 'buttons/export.dart';
 
@@ -11,6 +9,7 @@ export 'country_picker_pro2/country_picker_pro.dart';
 
 // IMAGES
 export 'images/nbx_network_image.dart';
+export 'images/configs/export.dart';
 
 // INPUTS
 export 'inputs/export.dart';
@@ -22,4 +21,4 @@ export 'scaffold/export.dart';
 export 'shared/export.dart';
 
 // SHIMMERS
-export 'package:app_shimmer/app_shimmer.dart';
+export 'shimmers/export.dart';

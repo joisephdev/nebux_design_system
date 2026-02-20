@@ -38,11 +38,11 @@ class NbxShimmerListTile extends StatelessWidget {
 
   /// Creates a new shimmer list tile widget.
   ///
-  /// @param leadingStyle: Style for leading element [ShimmerContainerStyle?].
+  /// @param leadingStyle: Style for leading element [ShimmerSkeletonStyle].
   /// @param titleStyle: Style for title element [ShimmerSkeletonStyle].
-  /// @param subtitleStyle: Style for subtitle element [ShimmerContainerStyle?].
-  /// @param paragraphStyle: Style for paragraph element [ShimmerContainerStyle?].
-  /// @param trailingStyle: Style for trailing element [ShimmerContainerStyle?].
+  /// @param subtitleStyle: Style for subtitle element [ShimmerSkeletonStyle].
+  /// @param paragraphStyle: Style for paragraph element [ShimmerSkeletonStyle].
+  /// @param trailingStyle: Style for trailing element [ShimmerSkeletonStyle].
   /// @param padding: Padding around the tile [EdgeInsetsGeometry?].
   /// @param contentSpacing: Spacing between content elements [double?].
   /// @param verticalSpacing: Vertical spacing between elements [double?].
