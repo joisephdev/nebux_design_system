@@ -4,6 +4,7 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 
 part 'nbx_country_picker_parameters.freezed.dart';
 
+/// Immutable configuration for the country picker input widget.
 @Freezed()
 abstract class NbxCountryPickerParameters with _$NbxCountryPickerParameters {
   @Assert(

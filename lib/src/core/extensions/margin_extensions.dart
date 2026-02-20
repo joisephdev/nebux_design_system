@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Convenience extensions on [Widget] for adding margin.
 extension MarginExtensions on Widget {
   /// Add margin to all sides of the widget
   Widget marginAll(double margin) {

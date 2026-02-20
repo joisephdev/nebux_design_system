@@ -1,3 +1,371 @@
+## 1.0.0
+
+This is the first stable release of Nebux Design System, marking the completion of a 9-sprint governance-driven stabilization effort from v0.1.18 to v1.0.0.
+
+### Highlights
+
+- **81%+ test coverage** with 633 tests (up from 0 tests at project start)
+- **Full typography system**: all 10 typography roles now include `height` and `letterSpacing` values aligned with Material Design 3
+- **Accurate theme mapping**: `NebuxTypography.fromThemeData()` correctly maps heading→headlineMedium, section→titleLarge, label→labelLarge
+- **Frozen public API surface**: documented in `doc/API-SURFACE.md`
+- **CI enforcement**: coverage threshold at 60%, publish dry-run gate, analysis with `--fatal-infos`
+
+### Fixed (since v0.3.1)
+
+- `NebuxTypography` TextStyles now include `height` and `letterSpacing` for all 10 roles (heading, section, content, paragraph, caption, label, primaryAction, secondaryAction, formInput, placeholder) — resolves typography rendering inconsistencies across platforms
+- `NebuxTypography.fromThemeData()` mapping corrected: heading now maps to `headlineMedium` (was `labelLarge`), section to `titleLarge` (was `labelMedium`), label to `labelLarge` (was `labelSmall`)
+
+### Added
+
+- 391 new tests across core, components, and country picker modules
+- `doc/API-SURFACE.md` updated to v1.0.0 with complete symbol catalog
+
+### Changed
+
+- CI coverage threshold raised from 30% to 60%
+
+### Migration from v0.3.1
+
+Typography height/letterSpacing values are now baked into `NebuxTypography.standard()` and `.custom()` factories. If you were manually setting these on overrides, the defaults may now conflict — review your `NebuxTypography.withOverrides()` calls. See `doc/MIGRATION.md` for details.
+
+---
+
+## 0.3.1
+
+### Fixed
+- `NbxTextFormFieldWidget` text style now uses `textPrimary` semantic token instead of `black` (dark mode fix)
+- `flutter_cache_manager` added as explicit dependency (was transitive-only)
+
+### Added
+- `AppBarConfig.dividerThickness` — configurable divider thickness for `NbxScaffold` (default: 0.2)
+- ADR-003: Vendored Country Picker architectural decision documented
+- Package-level dartdoc on `lib/nebux_design_system.dart`
+- Comprehensive dartdoc across 140+ public symbols
+- `doc/MIGRATION.md` — consolidated migration guide for all breaking versions
+- CI coverage threshold enforcement (60% minimum)
+- Publish workflow validation gate (`dart pub publish --dry-run`)
+
+### Documentation
+- v0.3.0 migration guide completed with before/after examples
+- Country picker parameter deprecation roadmap documented
+
+## 0.3.0
+
+### Breaking Changes
+- Translation loading is now async — `CountryLocalizations.load()` calls `TranslationLoader.instance.load()` internally. No consumer action needed if using the standard `LocalizationsDelegate` pattern.
+
+**Migration note:** The public API is unchanged. If you use the standard delegate pattern, no code changes are needed:
+
+```dart
+// Before (v0.2.x) and After (v0.3.0) — identical usage
+MaterialApp(
+  localizationsDelegates: [
+    CountryLocalizations.delegate,
+    // ...other delegates
+  ],
+)
+```
+
+The delegate now loads translations from JSON assets asynchronously under the hood, but `CountryLocalizations.delegate` works the same way. If you previously used `CountryProvider` directly, it has been removed — use `CountryDecoder` instead (available since v0.2.x).
+
+### Added
+- `TranslationLoader` — singleton utility for loading country name translations from JSON assets with in-memory caching
+- `CountryPickerSearchConfig` — immutable config class for search bar styling
+- `CountryPickerAppBarConfig` — immutable config class for app bar styling
+- `CountryPickerStyleConfig` — immutable config class for flag/text styling
+- `NbxPhoneFieldWidget.noCountryHelperText` — configurable helper text when no country selected (default: 'Select a country first')
+- `TranslationLoader.isLanguageCodeSupported()` — check if a language code is supported
+- `TranslationLoader.supportedLocalesWithVariants` — complete list of supported locales including script variants
+
+### Fixed
+- `NbxTextFieldWithStateWidget` dispose ordering — `super.dispose()` now called after controller disposal (was before, risking use-after-dispose)
+
+### Removed
+- `countries.dart` — 7,575 LOC of dead code (never imported)
+- `AlphaScroller` widget — 258 LOC orphaned widget (never imported)
+- 33 Dart translation files (~8,248 LOC) — replaced by 33 JSON assets
+- `CountryProvider` class — unused duplicate of `CountryDecoder`
+- Duplicate `Locale('lv')` entry in country decoder
+
+### Optimized
+- Grid scroll animation: 77 hardcoded if-else width breakpoints → mathematical formula (140 lines removed)
+- Locale mapping: deduplicated from 2 switch statements to single `TranslationLoader` source of truth
+- Country picker component: 65.8% LOC reduction (24,745 → 8,453 LOC), 72.3% file reduction (47 → 13 files)
+
+## 0.2.1 (2026-02-19)
+
+### New Features
+
+- **Input field states**: Added `NbxInputState` enum (`neutral`, `success`, `error`) to `NbxInputParameters`
+  - `helperText` — supporting text displayed below the input field
+  - `inputState` — visual state with automatic border color and suffix icon changes
+  - `showCharacterCounter` — shows built-in character counter when `maxLength` is set
+  - Success state automatically adds green border and check icon
+
+- **`NbxScaffold` configuration**:
+  - `BodyConfig.extendBodyBehindAppBar` — now configurable (was hardcoded to `true`)
+
+- **`NbxButton` spinner color**:
+  - `ButtonStateConfig.loadingColor` — custom color for the loading spinner
+  - When not set, spinner color is derived from button variant for proper contrast
+
+- **`NbxPhoneFieldWidget` visual indicator**:
+  - Shows "Select a country first" helper text when phone input is read-only due to missing country selection
+
+### Improvements
+
+- **Semantic token migration**:
+  - `NbxDividerWidget` now uses `divider` semantic token instead of hardcoded `black`
+  - `NbxScaffold` divider uses `divider` token instead of `Colors.grey.shade500`
+  - Text field cursor color uses `textPrimary` instead of `Colors.black`
+  - Focused input border uses `focus` token instead of hardcoded `Colors.black`
+
+### Tests
+
+- Added tests for input states, scaffold configuration, button spinner, and semantic tokens
+
+## 0.2.0 (2026-02-20)
+
+This release stabilizes the public API surface before v1.0.0. **Breaking changes** are introduced to improve API ergonomics and type safety.
+
+### Breaking Changes
+
+#### 1. `NbxInputParameters` no longer accepts `BuildContext`
+
+The `context` parameter has been removed from `NbxInputParameters`. Context is now passed to the `inputDecoration()` method when needed.
+
+**Before (v0.2.0-dev.2):**
+```dart
+NbxTextFieldWidget(
+  NbxInputParameters(
+    context: context,  // ❌ No longer accepted
+    isRequired: false,
+    inputType: NbxInputType.text,
+    labelText: 'Search',
+  ),
+)
+```
+
+**After (v0.2.0):**
+```dart
+NbxTextFieldWidget(
+  NbxInputParameters(
+    isRequired: false,
+    inputType: NbxInputType.text,
+    labelText: 'Search',
+  ),
+)
+// context is passed internally by the widget
+```
+
+#### 2. `NbxNetworkImage` constructor restructured
+
+The widget now uses config classes instead of 33 individual parameters. This improves readability and makes the API more discoverable.
+
+**Before (v0.2.0-dev.2):**
+```dart
+NbxNetworkImage(
+  imageUrl: 'https://example.com/image.png',
+  memCacheWidth: 100,
+  memCacheHeight: 100,
+  fadeInDuration: Duration(milliseconds: 500),
+  borderRadius: BorderRadius.circular(8),
+  // ... 29 more parameters
+)
+```
+
+**After (v0.2.0):**
+```dart
+NbxNetworkImage(
+  imageUrl: 'https://example.com/image.png',
+  cacheConfig: NbxImageCacheConfig(
+    memCacheWidth: 100,
+    memCacheHeight: 100,
+  ),
+  animationConfig: NbxImageAnimationConfig(
+    fadeInDuration: Duration(milliseconds: 500),
+  ),
+  styleConfig: NbxImageStyleConfig(
+    borderRadius: BorderRadius.circular(8),
+  ),
+)
+```
+
+#### 3. `NbxNetworkImage.cacheManager` is now properly typed
+
+**Before:** `dynamic cacheManager`  
+**After:** `BaseCacheManager? cacheManager` (in `NbxImageCacheConfig`)
+
+### New Features
+
+- **Config classes for `NbxNetworkImage`**:
+  - `NbxImageCacheConfig` — cache settings (memCache, diskCache, cacheKey, cacheManager)
+  - `NbxImageAnimationConfig` — fade animation settings
+  - `NbxImageProgressConfig` — progress indicator settings
+  - `NbxImageStyleConfig` — visual styling (border, shadow, color, etc.)
+
+- **Architecture Decision Records (ADRs)**:
+  - `doc/adr/001-naming-convention.md` — formal `Nebux` vs `Nbx` prefix rules
+  - `doc/adr/002-config-class-policy.md` — when to use `@freezed` vs plain classes
+
+- **API Surface Documentation**: `doc/API-SURFACE.md` catalogs the stable v0.2.0 public API
+
+- **Factory extensions for `NbxNetworkImage`**:
+  - `NbxNetworkImageExtensions.circular()` — circular profile images
+  - `NbxNetworkImageExtensions.square()` — square thumbnails
+  - `NbxNetworkImageExtensions.rounded()` — rounded corner images
+
+### Fixes
+
+- Removed `debugPrint` from `NbxTextFieldWithStateWidget.dispose()` that polluted test output
+
+### Tests
+
+- Added 14 new tests for config classes and `NbxNetworkImage` extensions
+- All 182 tests pass
+
+## 0.2.0-dev.2 (2026-02-19)
+
+- **NEW**: Default color palettes via static factories
+  - `NebuxColors.standardLight()` — light theme default palette
+  - `NebuxColors.standardDark()` — dark theme default palette
+  - `NebuxColorThemes.standard()` — bundled light + dark theme
+
+- **NEW**: Color tokens added to `NebuxColors`
+  - `surface` — for card backgrounds, input fills
+  - `divider` — for separator lines
+  - `overlay` — for modal scrim/overlay
+  - `focus` — for input focus rings
+
+- **NEW**: Full `NebuxTheme.createThemeData()` implementation
+  - Complete ColorScheme mapping from NebuxColors
+  - AppBarTheme, CardTheme, DividerTheme, InputDecorationTheme
+  - Button themes: Elevated, Outlined, Text, Filled
+  - FloatingActionButtonTheme, IconTheme
+  - TextTheme mapped from NebuxTypography roles
+
+- **NEW**: `NebuxColorsLerp.lerp()` extension for proper color interpolation
+
+- **FIX**: Removed duplicate method definitions in `NebuxTheme`
+
+- **FIX**: `example/example.dart` updated to use new APIs (suffixIconType, standardLight)
+
+## 0.2.0-dev.1 (2026-02-19)
+
+- **BREAKING**: Validation architecture consolidated
+  - `singleLineFormatter` now only applies when `maxLines == 1` (or null)
+  - Multi-line inputs no longer have `FilteringTextInputFormatter.singleLineFormatter` applied
+
+- **NEW**: All `*ValidationRules` classes now exported
+  - `TextValidationRules`, `EmailValidationRules`, `PasswordValidationRules`, `NumberValidationRules`, `PhoneValidationRules` accessible from public API
+
+- **NEW**: Added `base` parameter to `NebuxTypography.withOverrides()` for test customization
+
+- **NEW**: Added optional `typography` parameter to `NebuxTheme.fromJson()` to avoid google_fonts network calls
+
+- **DOCS**: Comprehensive dartdoc for `NbxTextFieldWidget` and `NbxTextFormFieldWidget`
+  - Clear guidance: use `NbxTextFieldWidget` for standalone inputs, `NbxTextFormFieldWidget` for Form integration
+
+- **TESTS**: Added widget tests for `NbxTextFieldWidget` and `NbxTextFormFieldWidget`
+
+- **FIX**: Resolved google_fonts async errors in tests by using `NebuxTypography.custom('Roboto', null)` consistently
+
+## 0.1.20 (2026-02-19)
+
+- **DEAD CODE CLEANUP**: Removed ~203 lines of commented-out code from `NebuxTheme.createThemeData()`
+- **SEMVER GOVERNANCE**: Established formal versioning policy in `CONTRIBUTING.md`
+  - Versioning policy: patch = bug fixes; minor = new features + deprecations; major = removals
+  - Deprecation runway: symbols must be `@Deprecated` for ≥ 1 minor version before removal
+  - API stability tiers: `stable`, `experimental`, `internal`
+
+- **MIGRATION GUIDE**: Documented 0.1.17 → 0.1.18 breaking change in CHANGELOG
+  - `customValidator` → `validator` + `onValidationResult`
+  - `showEyeIcon` → `suffixIconType: NbxSuffixIconType.eye`
+  - `showCancelIcon` → `suffixIconType: NbxSuffixIconType.cancel`
+  - `showSuffixIcon` / `forceShowSuffixIcon` → `suffixIconType`
+
+- **API LEAK FIX**: Removed direct `app_shimmer` re-export
+  - Created `lib/src/components/shimmers/export.dart` barrel file
+  - Created `NbxShimmer` wrapper widget with Nebux theming
+  - Existing shimmer components now properly exported through new barrel
+  - Fixed shimmer documentation: "BB Center" → "Nebux Design System"
+
+- **RESIDUAL FIXES**:
+  - `NebuxUtils.isWeb` now uses `kIsWeb` from `flutter/foundation.dart`
+  - Deleted unused `NebuxAppBar` widget (zero references in codebase)
+  - Fixed `NbxButton` loading spinner color to be theme-aware
+
+## 0.1.19 (2026-02-19)
+
+- **TEST FOUNDATION**: Established test infrastructure with ≥42% coverage on non-vendored code
+  - Created `test/helpers/nebux_test_helpers.dart` with theme wrapper utilities for widget tests
+  - Added comprehensive test directory structure mirroring `lib/src/`
+  - Replaced placeholder `country_picker_pro_test.dart` with real test suite
+
+- **CORE TESTS**:
+  - `ColorConverter`: parsing (hex, int, Color), toJson, error handling
+  - `NebuxColors`: constructor, fromJson/toJson roundtrip, lerp edge cases
+  - `NebuxFontSize`: standard, custom, merge, copyWith
+  - `NebuxTypography`: custom factory, withOverrides, fromThemeData, merge
+  - `NebuxTheme`: custom, fromJson, copyWith, lerp, createThemeData
+
+- **VALIDATION TESTS**:
+  - `ValidationRule`: validate, condition-based skipping, CustomValidationRules
+  - `TextValidationRules`: minLength, maxLength, onlyLetters, noNumbers
+  - `EmailValidationRules`: validFormat, minLength, yahooOnly, domainOnly
+  - `PasswordValidationRules`: minLength, hasNumbers, hasLetters, hasUppercase, hasLowercase, hasSpecialChars, hasNumbersAndLetters
+  - `NbxInputValidator`: validate for all NbxInputType values, validateWithRules, validateWithRulesAndCustomError, static validators
+
+- **WIDGET TESTS**:
+  - `NbxButton`: 4 variants (filled, outline, text, danger), loading state, disabled state, expanded layout, leading/trailing icons
+
+- **CI**: Added `--coverage` flag to test step for coverage reporting
+
+## 0.1.18 (2026-02-18)
+
+- **BREAKING CHANGE**: Refactored `NbxInputParameters` validation API for a clean separation of concerns
+
+  - **Removed** `customValidator` — replaced by `validator` + `onValidationResult`
+  - **Removed** `showEyeIcon`, `showCancelIcon`, `showSuffixIcon`, `forceShowSuffixIcon` — replaced by `suffixIconType`
+  - **Added** `validator: String? Function(String? value)?` — pure validator following the native Flutter `FormField.validator` contract (returns error string or null)
+  - **Added** `onValidationResult: void Function(String? errorMessage)?` — notification callback invoked synchronously with the final validation result after every validation cycle (null = valid). Eliminates the need for `Future.delayed` workarounds in consumers
+  - **Added** `suffixIconType: NbxSuffixIconType` — enum (`none`, `eye`, `cancel`) to declare the automatic suffix icon; ignored when a custom `suffixIcon` widget is provided
+  - **Added** `NbxSuffixIconType` enum to `nbx_inputs_enum.dart`
+  - Updated `NbxCountryPickerInput` to expose `validator` and `onValidationResult` (replacing `customValidator`)
+  - Updated `NbxPhoneFieldWidget` internal validator to use the new contract (removed `Future.delayed`)
+  - Fixed `buildSuffixIcon` to always respect a custom `suffixIcon` widget before applying the read-only guard
+
+### Migration Guide (0.1.17 → 0.1.18)
+
+| Old API | New API | Notes |
+|---------|---------|-------|
+| `customValidator: (value) => ...` | `validator: (value) => ...` | Returns error string or null |
+| `showEyeIcon: true` | `suffixIconType: NbxSuffixIconType.eye` | For password fields |
+| `showCancelIcon: true` | `suffixIconType: NbxSuffixIconType.cancel` | Clear button |
+| `showSuffixIcon: true` | `suffixIconType: NbxSuffixIconType.eye` or `.cancel` | Choose specific type |
+| `forceShowSuffixIcon: true` | N/A | Suffix icon now always visible when type is set |
+
+**Example migration:**
+
+```dart
+// Before (0.1.17)
+NbxTextFieldWidget(
+  parameters: NbxInputParameters(
+    customValidator: (value) => value?.isEmpty == true ? 'Required' : null,
+    showEyeIcon: true,
+  ),
+);
+
+// After (0.1.18)
+NbxTextFieldWidget(
+  parameters: NbxInputParameters(
+    validator: (value) => value?.isEmpty == true ? 'Required' : null,
+    onValidationResult: (error) => print(error ?? 'Valid'),
+    suffixIconType: NbxSuffixIconType.eye,
+  ),
+);
+```
+
 ## 0.1.17 (2026-02-16)
 
 - **FIX**: Forward `requiredErrorMessage` to `customValidator` when field is empty and required

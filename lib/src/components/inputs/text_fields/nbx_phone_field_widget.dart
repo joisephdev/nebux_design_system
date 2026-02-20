@@ -18,18 +18,23 @@ class NbxPhoneFieldWidget extends StatefulWidget {
   /// The modal/list configuration parameters [NbxCountryPickerModalParameters].
   final NbxCountryPickerModalParameters modal;
 
+  /// The helper text shown when no country is selected.
+  final String? noCountryHelperText;
+
   /// Constructor for the [NbxPhoneFieldWidget] widget.
   ///
   /// @param countrySelected: The currently selected country [Country?].
   /// @param countryCodeInputParameters: Configuration for the country picker input [NbxCountryPickerParameters].
   /// @param numberPhoneInputParameters: Configuration for the phone number input [NbxInputParameters].
   /// @param modal: Configuration for the country picker modal [NbxCountryPickerModalParameters].
+  /// @param noCountryHelperText: Helper text when no country is selected [String?].
   const NbxPhoneFieldWidget({
     super.key,
     required this.countrySelected,
     required this.countryCodeInputParameters,
     required this.phoneNumberInputParameters,
     required this.modal,
+    this.noCountryHelperText,
   });
 
   @override
@@ -113,7 +118,8 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
 
   /// Builds the phone number input widget.
   ///
-  /// @returns: The phone number input widget [Widget].
+  /// Shows a helper text when no country is selected to indicate
+  /// why the input is read-only.
   Widget _buildPhoneNumberInput() {
     return Flexible(
       flex: 2,
@@ -122,21 +128,20 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
           maxLength: _currentCountrySelected?.maxLength,
           isReadOnly: _isPhoneInputReadOnly,
           controller: _numberPhoneController,
-          customValidator: (value) {
-            final result = NbxInputValidator.validateWithRules(value, [
-              TextValidationRules.minLength(
-                minLength: _currentCountrySelected?.minLength ?? 0,
-              ),
-              TextValidationRules.maxLength(
-                maxLength: _currentCountrySelected?.maxLength ?? 0,
-              ),
-            ]);
-
-            Future.delayed(const Duration(milliseconds: 100), () {
-              widget.phoneNumberInputParameters.customValidator?.call(result);
-            });
-
-            return result;
+          helperText:
+              _isPhoneInputReadOnly
+                  ? (widget.noCountryHelperText ?? 'Select a country first')
+                  : null,
+          validator: (value) => NbxInputValidator.validateWithRules(value, [
+            TextValidationRules.minLength(
+              minLength: _currentCountrySelected?.minLength ?? 0,
+            ),
+            TextValidationRules.maxLength(
+              maxLength: _currentCountrySelected?.maxLength ?? 0,
+            ),
+          ]),
+          onValidationResult: (error) {
+            widget.phoneNumberInputParameters.onValidationResult?.call(error);
           },
         ),
       ),

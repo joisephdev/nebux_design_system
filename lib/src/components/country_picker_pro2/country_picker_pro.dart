@@ -61,5 +61,10 @@
 /// It provides a simple and customizable way to integrate country selection functionality into Flutter applications.
 library;
 
+export 'src/config/country_picker_app_bar_config.dart';
+export 'src/config/country_picker_search_config.dart';
+export 'src/config/country_picker_style_config.dart';
+export 'src/controllers/country_provider.dart';
 export 'src/controllers/country_selector.dart';
+export 'src/translation_loader.dart';
 export 'src/view/country_view.dart';

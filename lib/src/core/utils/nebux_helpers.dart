@@ -3,13 +3,16 @@ import 'dart:ui';
 
 /// A generic class to hold a pair of values of potentially different types.
 class NebuxDynamicPair<A, B> {
+  /// The first value in the pair.
   final A aValue;
+
+  /// The second value in the pair.
   final B bValue;
 
-  /// Constructor for [DynamicPair].
+  /// Constructor for [NebuxDynamicPair].
   NebuxDynamicPair({required this.aValue, required this.bValue});
 
-  /// Creates a copy of this [DynamicPair] but with the given fields replaced with the new values.
+  /// Creates a copy of this [NebuxDynamicPair] but with the given fields replaced with the new values.
   NebuxDynamicPair<A, B> copyWith({A? aValue, B? bValue}) {
     return NebuxDynamicPair<A, B>(
       aValue: aValue ?? this.aValue,
@@ -34,6 +37,7 @@ class NebuxDynamicPair<A, B> {
 
 /// A debouncer utility that delays the execution of a function until a specified duration has passed since the last call.
 class NebuxDebouncer {
+  /// The delay duration in milliseconds before the action fires.
   final int milliseconds;
   Timer? _timer;
   VoidCallback? _onDebounce;
@@ -41,6 +45,7 @@ class NebuxDebouncer {
   /// Optional callback that is called when the debounced action fires.
   set onDebounce(VoidCallback? callback) => _onDebounce = callback;
 
+  /// Creates a debouncer with the given delay in [milliseconds].
   NebuxDebouncer({required this.milliseconds});
 
   /// Runs the provided [action] after [milliseconds] have passed since the last call.

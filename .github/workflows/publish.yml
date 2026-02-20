@@ -16,4 +16,9 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
-      - run: flutter pub publish --force
+
+      - name: Validate package (dry-run)
+        run: dart pub publish --dry-run
+
+      - name: Publish to pub.dev
+        run: flutter pub publish --force

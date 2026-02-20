@@ -1,6 +1,10 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
+/// General-purpose utility methods for the Nebux Design System.
 class NebuxUtils {
+  /// Generates a random 6-digit tag, optionally suffixed with [value].
   static String generateRandomTag([String? value]) {
     final random = 100000 + Random().nextInt(900000);
     return '$random-${value ?? ''}';
@@ -35,7 +39,7 @@ class NebuxUtils {
   }
 
   /// Checks if the current platform is web
-  static bool get isWeb => identical(0, 0.0);
+  static bool get isWeb => kIsWeb;
 
   /// Checks if the current platform is mobile
   static bool get isMobile => !isWeb;

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
+/// Internal stateful wrapper that manages password visibility toggle
+/// and controller lifecycle for text input widgets.
 class NbxTextFieldWithStateWidget extends StatefulWidget {
+  /// The input configuration parameters.
   final NbxInputParameters parameters;
+
+  /// Builder that receives resolved parameters and returns the input widget.
   final Widget Function(NbxInputParameters) childBuilder;
 
+  /// Creates a stateful text field wrapper.
   const NbxTextFieldWithStateWidget({
     required this.parameters,
     required this.childBuilder,
@@ -19,51 +25,33 @@ class NbxTextFieldWithStateWidget extends StatefulWidget {
 class _NbxTextFieldWithStateWidgetState
     extends State<NbxTextFieldWithStateWidget> {
   bool _obscureText = false;
-  bool _showCancelIcon = false;
 
   @override
   void initState() {
     super.initState();
     _obscureText = widget.parameters.obscureText;
-    widget.parameters.controller?.addListener(_handleHideCancelIcon);
   }
 
   @override
   void dispose() {
-    super.dispose();
     if (_parameters.autoDisposeController) {
       _parameters.controller?.dispose();
-      debugPrint('[${_parameters.labelText}] - Has be deleted');
     }
+    super.dispose();
   }
 
   NbxInputParameters get _parameters {
     return widget.parameters.copyWith(
       obscureText: _obscureText,
-      // controller: widget.parameters.controller,
       suffixIcon: widget.parameters.buildSuffixIcon(
-        showCancelIcon: _showCancelIcon,
         obscureText: _obscureText,
         onTap: _handleHidePassword,
       ),
     );
   }
 
-  void _handleHideCancelIcon() {
-    if (widget.parameters.controller != null) {
-      final inputValue = _parameters.controller!.text;
-      if (inputValue.isEmpty && _parameters.showCancelIcon) {
-        if (_showCancelIcon) {
-          setState(() => _showCancelIcon = false);
-        }
-      } else if (!_showCancelIcon && _parameters.showCancelIcon) {
-        setState(() => _showCancelIcon = true);
-      }
-    }
-  }
-
   void _handleHidePassword() {
-    if (_parameters.showEyeIcon) {
+    if (_parameters.suffixIconType == NbxSuffixIconType.eye) {
       setState(() => _obscureText = !_obscureText);
     }
   }
