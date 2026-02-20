@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../config/country_picker_app_bar_config.dart';
+import '../config/country_picker_search_config.dart';
+import '../config/country_picker_style_config.dart';
 import '../country.dart';
 import '../view/country_list_view.dart';
 import '../view/country_view.dart';
@@ -8,8 +11,6 @@ export '../country.dart';
 export '../country_decoder.dart';
 export '../country_localizations.dart';
 export '../view/country_list_view.dart' show CustomFlagBuilder;
-export 'country_provider.dart';
-
 /// Enum representing the type of list to display.
 enum ListType {
   list, // Display as a list.
@@ -82,6 +83,9 @@ void countrySelector({
   bool showDragBar = true,
   Widget? customDragBar,
   double? borderRadius,
+  CountryPickerSearchConfig? searchConfig,
+  CountryPickerAppBarConfig? appBarConfig,
+  CountryPickerStyleConfig? styleConfig,
 }) {
   // Assert that either remove or countrySorter is provided, not both.
   assert(
@@ -133,5 +137,8 @@ void countrySelector({
     alphabetScrollEnabledWidget: alphabetScrollEnabledWidget,
     searchBoxPadding: searchBoxPadding,
     listType: listType,
+    searchConfig: searchConfig,
+    appBarConfig: appBarConfig,
+    styleConfig: styleConfig,
   );
 }

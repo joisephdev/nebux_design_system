@@ -1,6 +1,6 @@
-# Nebux Design System — Public API Surface (v0.2.1)
+# Nebux Design System — Public API Surface (v0.3.0)
 
-This document catalogs the public API surface for v0.2.0. All symbols listed below are considered stable and will follow semantic versioning.
+This document catalogs the public API surface for v0.3.0. All symbols listed below are considered stable and will follow semantic versioning.
 
 ## Core Layer (`Nebux` prefix)
 
@@ -57,7 +57,7 @@ This document catalogs the public API surface for v0.2.0. All symbols listed bel
 | `NbxTextFieldWidget` | widget | Standalone text input (no Form) |
 | `NbxTextFormFieldWidget` | widget | Form-integrated text input |
 | `NbxTextFieldWithStateWidget` | widget | Stateful text input wrapper |
-| `NbxPhoneFieldWidget` | widget | Phone number input with country picker |
+| `NbxPhoneFieldWidget` | widget | Phone number input with country picker (includes `noCountryHelperText`) |
 | `NbxCountryPickerInput` | widget | Country picker input |
 | `NbxInputParameters` | @freezed class | Input configuration DTO |
 | `NbxCountryPickerParameters` | @freezed class | Country picker configuration DTO |
@@ -79,6 +79,22 @@ This document catalogs the public API surface for v0.2.0. All symbols listed bel
 | `PasswordValidationRules` | class | Password validation rules (minLength, hasUppercase, etc.) |
 | `NumberValidationRules` | class | Number validation rules (min, max, range, etc.) |
 | `PhoneValidationRules` | class | Phone validation rules |
+
+### Country Picker
+
+| Symbol | Type | Description |
+|--------|------|-------------|
+| `TranslationLoader` | singleton class | Loads country name translations from JSON assets with in-memory caching |
+| `TranslationLoader.load()` | method | Loads translations for a given locale |
+| `TranslationLoader.translate()` | method | Returns translated country name |
+| `TranslationLoader.getTranslation()` | method | Returns translation map for a locale |
+| `TranslationLoader.supportedLanguageCodes` | getter | List of supported language codes |
+| `TranslationLoader.supportedLocales` | getter | List of supported locales |
+| `TranslationLoader.isLanguageCodeSupported()` | method | Check if a language code is supported |
+| `TranslationLoader.supportedLocalesWithVariants` | getter | Complete list of supported locales including script variants |
+| `CountryPickerSearchConfig` | class | Immutable config for search bar styling |
+| `CountryPickerAppBarConfig` | class | Immutable config for app bar styling |
+| `CountryPickerStyleConfig` | class | Immutable config for flag/text styling |
 
 ### Images
 
@@ -126,6 +142,15 @@ The following symbols are marked `@experimental` and may change without a major 
 The following symbols are deprecated and will be removed in a future version:
 
 - `NebuxAppBar` — removed in Sprint 2 (v0.1.20)
+
+## Removed in v0.3.0
+
+The following symbols were removed in v0.3.0:
+
+- `countries.dart` — 7,575 LOC of dead code (never imported)
+- `AlphaScroller` — 258 LOC orphaned widget (never imported)
+- `CountryProvider` — unused duplicate of `CountryDecoder`
+- 33 Dart translation files — replaced by 33 JSON assets via `TranslationLoader`
 
 ## Migration Notes
 

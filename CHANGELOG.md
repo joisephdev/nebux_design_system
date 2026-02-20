@@ -1,3 +1,32 @@
+## 0.3.0
+
+### Breaking Changes
+- Translation loading is now async — `CountryLocalizations.load()` calls `TranslationLoader.instance.load()` internally. No consumer action needed if using the standard `LocalizationsDelegate` pattern.
+
+### Added
+- `TranslationLoader` — singleton utility for loading country name translations from JSON assets with in-memory caching
+- `CountryPickerSearchConfig` — immutable config class for search bar styling
+- `CountryPickerAppBarConfig` — immutable config class for app bar styling
+- `CountryPickerStyleConfig` — immutable config class for flag/text styling
+- `NbxPhoneFieldWidget.noCountryHelperText` — configurable helper text when no country selected (default: 'Select a country first')
+- `TranslationLoader.isLanguageCodeSupported()` — check if a language code is supported
+- `TranslationLoader.supportedLocalesWithVariants` — complete list of supported locales including script variants
+
+### Fixed
+- `NbxTextFieldWithStateWidget` dispose ordering — `super.dispose()` now called after controller disposal (was before, risking use-after-dispose)
+
+### Removed
+- `countries.dart` — 7,575 LOC of dead code (never imported)
+- `AlphaScroller` widget — 258 LOC orphaned widget (never imported)
+- 33 Dart translation files (~8,248 LOC) — replaced by 33 JSON assets
+- `CountryProvider` class — unused duplicate of `CountryDecoder`
+- Duplicate `Locale('lv')` entry in country decoder
+
+### Optimized
+- Grid scroll animation: 77 hardcoded if-else width breakpoints → mathematical formula (140 lines removed)
+- Locale mapping: deduplicated from 2 switch statements to single `TranslationLoader` source of truth
+- Country picker component: 65.8% LOC reduction (24,745 → 8,453 LOC), 72.3% file reduction (47 → 13 files)
+
 ## 0.2.1 (2026-02-19)
 
 ### New Features

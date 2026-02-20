@@ -28,10 +28,10 @@ class _NbxTextFieldWithStateWidgetState
 
   @override
   void dispose() {
-    super.dispose();
     if (_parameters.autoDisposeController) {
       _parameters.controller?.dispose();
     }
+    super.dispose();
   }
 
   NbxInputParameters get _parameters {

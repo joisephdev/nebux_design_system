@@ -18,18 +18,23 @@ class NbxPhoneFieldWidget extends StatefulWidget {
   /// The modal/list configuration parameters [NbxCountryPickerModalParameters].
   final NbxCountryPickerModalParameters modal;
 
+  /// The helper text shown when no country is selected.
+  final String? noCountryHelperText;
+
   /// Constructor for the [NbxPhoneFieldWidget] widget.
   ///
   /// @param countrySelected: The currently selected country [Country?].
   /// @param countryCodeInputParameters: Configuration for the country picker input [NbxCountryPickerParameters].
   /// @param numberPhoneInputParameters: Configuration for the phone number input [NbxInputParameters].
   /// @param modal: Configuration for the country picker modal [NbxCountryPickerModalParameters].
+  /// @param noCountryHelperText: Helper text when no country is selected [String?].
   const NbxPhoneFieldWidget({
     super.key,
     required this.countrySelected,
     required this.countryCodeInputParameters,
     required this.phoneNumberInputParameters,
     required this.modal,
+    this.noCountryHelperText,
   });
 
   @override
@@ -124,7 +129,9 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
           isReadOnly: _isPhoneInputReadOnly,
           controller: _numberPhoneController,
           helperText:
-              _isPhoneInputReadOnly ? 'Select a country first' : null,
+              _isPhoneInputReadOnly
+                  ? (widget.noCountryHelperText ?? 'Select a country first')
+                  : null,
           validator: (value) => NbxInputValidator.validateWithRules(value, [
             TextValidationRules.minLength(
               minLength: _currentCountrySelected?.minLength ?? 0,
