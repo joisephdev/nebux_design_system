@@ -1,3 +1,6 @@
+/// Extensions on [NbxInputParameters] for decoration, keyboard, and validation.
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';

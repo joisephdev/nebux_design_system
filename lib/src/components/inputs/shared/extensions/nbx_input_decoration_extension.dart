@@ -1,5 +1,6 @@
 part of 'export.dart';
 
+/// Extension that builds [InputDecoration] from [NbxInputParameters].
 extension NbxInputDecorationExtension on NbxInputParameters {
   OutlineInputBorder _defaultBorder({Color? sideColor, double? width}) {
     return OutlineInputBorder(
@@ -18,6 +19,7 @@ extension NbxInputDecorationExtension on NbxInputParameters {
     );
   }
 
+  /// Builds the [InputDecoration] for text input widgets based on theme and parameters.
   InputDecoration inputDecoration(BuildContext context) {
     final nbxTheme = context.nebuxTheme;
 

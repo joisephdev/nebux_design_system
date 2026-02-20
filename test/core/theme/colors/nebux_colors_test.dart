@@ -152,6 +152,88 @@ void main() {
         expect(result, isNull);
       });
     });
+
+    group('forBrightness', () {
+      test('returns standardLight for Brightness.light', () {
+        final colors = NebuxColors.standardLight();
+        final result = colors.forBrightness(Brightness.light);
+
+        expect(result.primary, equals(NebuxColors.standardLight().primary));
+        expect(
+          result.background,
+          equals(NebuxColors.standardLight().background),
+        );
+      });
+
+      test('returns standardDark for Brightness.dark', () {
+        final colors = NebuxColors.standardLight();
+        final result = colors.forBrightness(Brightness.dark);
+
+        expect(result.primary, equals(NebuxColors.standardDark().primary));
+        expect(
+          result.background,
+          equals(NebuxColors.standardDark().background),
+        );
+      });
+    });
+
+    group('copyWith', () {
+      test('overrides only primary when specified', () {
+        final original = NebuxColors.standardLight();
+        final updated = original.copyWith(primary: const Color(0xFFFF0000));
+
+        expect(updated.primary, equals(const Color(0xFFFF0000)));
+        expect(updated.secondary, equals(original.secondary));
+        expect(updated.background, equals(original.background));
+      });
+
+      test('returns equivalent when no args', () {
+        final original = NebuxColors.standardLight();
+        final copy = original.copyWith();
+
+        expect(copy.primary, equals(original.primary));
+        expect(copy.secondary, equals(original.secondary));
+        expect(copy.background, equals(original.background));
+        expect(copy.surface, equals(original.surface));
+        expect(copy.error, equals(original.error));
+      });
+    });
+
+    group('standardLight all properties', () {
+      test('has all semantic colors set', () {
+        final colors = NebuxColors.standardLight();
+
+        expect(colors.secondaryVariant, equals(const Color(0xFF0288D1)));
+        expect(colors.actionPrimary, equals(const Color(0xFF2196F3)));
+        expect(colors.actionSecondary, equals(const Color(0xFF03A9F4)));
+        expect(colors.cardColor, equals(const Color(0xFFF7F2FA)));
+        expect(colors.success, equals(const Color(0xFF4CAF50)));
+        expect(colors.warning, equals(const Color(0xFFFFC107)));
+        expect(colors.error, equals(const Color(0xFFB3261E)));
+        expect(colors.info, equals(const Color(0xFF2196F3)));
+        expect(colors.disabled, equals(const Color(0xFF1C1B1F)));
+        expect(colors.white, equals(const Color(0xFFFFFFFF)));
+        expect(colors.black, equals(const Color(0xFF000000)));
+      });
+    });
+
+    group('standardDark all properties', () {
+      test('has all semantic colors set', () {
+        final colors = NebuxColors.standardDark();
+
+        expect(colors.secondaryVariant, equals(const Color(0xFF9A82DB)));
+        expect(colors.actionPrimary, equals(const Color(0xFFD0BCFF)));
+        expect(colors.actionSecondary, equals(const Color(0xFFCCC2DC)));
+        expect(colors.cardColor, equals(const Color(0xFF2B2930)));
+        expect(colors.success, equals(const Color(0xFF81C784)));
+        expect(colors.warning, equals(const Color(0xFFFFD54F)));
+        expect(colors.error, equals(const Color(0xFFF2B8B5)));
+        expect(colors.info, equals(const Color(0xFF90CAF9)));
+        expect(colors.disabled, equals(const Color(0xFFE6E1E5)));
+        expect(colors.white, equals(const Color(0xFFFFFFFF)));
+        expect(colors.black, equals(const Color(0xFF000000)));
+      });
+    });
   });
 
   group('NebuxColorThemes', () {

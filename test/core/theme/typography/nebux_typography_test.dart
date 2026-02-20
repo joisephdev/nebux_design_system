@@ -58,6 +58,49 @@ void main() {
 
         expect(typography.placeholder.fontStyle, equals(FontStyle.italic));
       });
+
+      test('all styles have explicit height', () {
+        final typography = testTypography();
+
+        expect(typography.heading.height, isNotNull);
+        expect(typography.section.height, isNotNull);
+        expect(typography.content.height, isNotNull);
+        expect(typography.paragraph.height, isNotNull);
+        expect(typography.caption.height, isNotNull);
+        expect(typography.label.height, isNotNull);
+        expect(typography.primaryAction.height, isNotNull);
+        expect(typography.secondaryAction.height, isNotNull);
+        expect(typography.formInput.height, isNotNull);
+        expect(typography.placeholder.height, isNotNull);
+      });
+
+      test('all styles have explicit letterSpacing', () {
+        final typography = testTypography();
+
+        expect(typography.heading.letterSpacing, isNotNull);
+        expect(typography.section.letterSpacing, isNotNull);
+        expect(typography.content.letterSpacing, isNotNull);
+        expect(typography.paragraph.letterSpacing, isNotNull);
+        expect(typography.caption.letterSpacing, isNotNull);
+        expect(typography.label.letterSpacing, isNotNull);
+        expect(typography.primaryAction.letterSpacing, isNotNull);
+        expect(typography.secondaryAction.letterSpacing, isNotNull);
+        expect(typography.formInput.letterSpacing, isNotNull);
+        expect(typography.placeholder.letterSpacing, isNotNull);
+      });
+
+      test('heading has tighter letterSpacing for display use', () {
+        final typography = testTypography();
+
+        expect(typography.heading.letterSpacing, lessThan(0));
+      });
+
+      test('action styles have wider letterSpacing for readability', () {
+        final typography = testTypography();
+
+        expect(typography.primaryAction.letterSpacing, greaterThan(0));
+        expect(typography.secondaryAction.letterSpacing, greaterThan(0));
+      });
     });
 
     group('withOverrides', () {
@@ -79,12 +122,12 @@ void main() {
       test('returns all fields non-null', () {
         final themeData = ThemeData(
           textTheme: const TextTheme(
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
             bodyLarge: TextStyle(fontSize: 16),
             bodyMedium: TextStyle(fontSize: 14),
             bodySmall: TextStyle(fontSize: 12),
             labelLarge: TextStyle(fontSize: 14),
-            labelMedium: TextStyle(fontSize: 12),
-            labelSmall: TextStyle(fontSize: 10),
           ),
         );
 
@@ -96,17 +139,55 @@ void main() {
         expect(typography.heading, isNotNull);
         expect(typography.section, isNotNull);
         expect(typography.label, isNotNull);
+        expect(typography.primaryAction, isNotNull);
+        expect(typography.secondaryAction, isNotNull);
+        expect(typography.formInput, isNotNull);
+        expect(typography.placeholder, isNotNull);
       });
 
-      test('extracts values from ThemeData', () {
+      test('maps heading to headlineMedium', () {
         final themeData = ThemeData(
           textTheme: const TextTheme(
-            bodyLarge: TextStyle(fontSize: 16, color: Color(0xFF000000)),
-            bodyMedium: TextStyle(fontSize: 14, color: Color(0xFF111111)),
-            bodySmall: TextStyle(fontSize: 12, color: Color(0xFF222222)),
-            labelLarge: TextStyle(fontSize: 14, color: Color(0xFF333333)),
-            labelMedium: TextStyle(fontSize: 12, color: Color(0xFF444444)),
-            labelSmall: TextStyle(fontSize: 10, color: Color(0xFF555555)),
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
+            bodyLarge: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 14),
+            bodySmall: TextStyle(fontSize: 12),
+            labelLarge: TextStyle(fontSize: 14),
+          ),
+        );
+
+        final typography = NebuxTypography.fromThemeData(themeData);
+
+        expect(typography.heading.fontSize, equals(28.0));
+      });
+
+      test('maps section to titleLarge', () {
+        final themeData = ThemeData(
+          textTheme: const TextTheme(
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
+            bodyLarge: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 14),
+            bodySmall: TextStyle(fontSize: 12),
+            labelLarge: TextStyle(fontSize: 14),
+          ),
+        );
+
+        final typography = NebuxTypography.fromThemeData(themeData);
+
+        expect(typography.section.fontSize, equals(22.0));
+      });
+
+      test('maps body roles to body text theme styles', () {
+        final themeData = ThemeData(
+          textTheme: const TextTheme(
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
+            bodyLarge: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 14),
+            bodySmall: TextStyle(fontSize: 12),
+            labelLarge: TextStyle(fontSize: 14),
           ),
         );
 
@@ -115,6 +196,58 @@ void main() {
         expect(typography.content.fontSize, equals(16.0));
         expect(typography.paragraph.fontSize, equals(14.0));
         expect(typography.caption.fontSize, equals(12.0));
+      });
+
+      test('maps label to labelLarge', () {
+        final themeData = ThemeData(
+          textTheme: const TextTheme(
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
+            bodyLarge: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 14),
+            bodySmall: TextStyle(fontSize: 12),
+            labelLarge: TextStyle(fontSize: 14),
+          ),
+        );
+
+        final typography = NebuxTypography.fromThemeData(themeData);
+
+        expect(typography.label.fontSize, equals(14.0));
+      });
+
+      test('primaryAction derives from labelLarge with w700', () {
+        final themeData = ThemeData(
+          textTheme: const TextTheme(
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
+            bodyLarge: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 14),
+            bodySmall: TextStyle(fontSize: 12),
+            labelLarge: TextStyle(fontSize: 14),
+          ),
+        );
+
+        final typography = NebuxTypography.fromThemeData(themeData);
+
+        expect(typography.primaryAction.fontWeight, equals(FontWeight.w700));
+      });
+
+      test('placeholder derives from bodyMedium with italic', () {
+        final themeData = ThemeData(
+          textTheme: const TextTheme(
+            headlineMedium: TextStyle(fontSize: 28),
+            titleLarge: TextStyle(fontSize: 22),
+            bodyLarge: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 14),
+            bodySmall: TextStyle(fontSize: 12),
+            labelLarge: TextStyle(fontSize: 14),
+          ),
+        );
+
+        final typography = NebuxTypography.fromThemeData(themeData);
+
+        expect(typography.placeholder.fontStyle, equals(FontStyle.italic));
+        expect(typography.placeholder.fontSize, equals(14.0));
       });
     });
 

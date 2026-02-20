@@ -5,7 +5,7 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 ///
 /// Use [NbxTextFormFieldWidget] when you need a text input that:
 /// - Participates in Form validation via `Form.of(context).validate()`
-/// - Supports [autovalidateMode] for automatic validation
+/// - Supports `autovalidateMode` for automatic validation
 /// - Integrates with FormState for save/reset operations
 ///
 /// For standalone inputs without Form, use [NbxTextFieldWidget] instead.
@@ -46,9 +46,13 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 /// - [NbxTextFieldWidget] for standalone inputs
 /// - [TextFormField] the underlying Flutter widget
 class NbxTextFormFieldWidget extends StatelessWidget {
+  /// The configuration parameters for this form field.
   final NbxInputParameters inputParameters;
+
+  /// Text alignment within the form field.
   final TextAlign? textFormAlign;
 
+  /// Creates an [NbxTextFormFieldWidget] with the given [inputParameters].
   const NbxTextFormFieldWidget(
     this.inputParameters, {
     super.key,
@@ -101,7 +105,7 @@ class NbxTextFormFieldWidget extends StatelessWidget {
           minLines: parameters.minLines,
           maxLines: parameters.maxLines ?? 1,
           style: context.nebuxTheme.typography.formInput.copyWith(
-            color: context.nebuxColors.black,
+            color: context.nebuxColors.textPrimary,
           ),
           onTapOutside: (event) {
             final FocusScopeNode currentFocus = FocusScope.of(context);

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'translation_loader.dart';
 
-// Class for handling country localizations
+/// Provides localized country names based on the current [Locale].
 class CountryLocalizations {
+  /// The locale used for translation lookups.
   final Locale locale;
 
-  // Constructor
+  /// Creates a [CountryLocalizations] for the given [locale].
   CountryLocalizations(this.locale);
 
-  // Static method for getting localized resources
+  /// Returns the [CountryLocalizations] from the nearest [Localizations] ancestor.
   static CountryLocalizations? of(BuildContext context) {
     return Localizations.of<CountryLocalizations>(
       context,
@@ -17,11 +18,11 @@ class CountryLocalizations {
     );
   }
 
-  // LocalizationsDelegate for CountryLocalizations
+  /// [LocalizationsDelegate] for registering [CountryLocalizations].
   static const LocalizationsDelegate<CountryLocalizations> delegate =
       _CountryLocalizationsDelegate();
 
-  // Method for retrieving country name based on country code
+  /// Returns the localized country name for the given [countryCode].
   String? countryName({required String countryCode}) {
     return TranslationLoader.instance.translate(
           locale.languageCode,

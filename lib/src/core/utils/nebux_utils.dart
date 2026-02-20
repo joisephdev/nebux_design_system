@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
+/// General-purpose utility methods for the Nebux Design System.
 class NebuxUtils {
+  /// Generates a random 6-digit tag, optionally suffixed with [value].
   static String generateRandomTag([String? value]) {
     final random = 100000 + Random().nextInt(900000);
     return '$random-${value ?? ''}';

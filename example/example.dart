@@ -5,12 +5,27 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode =
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: _themeMode,
       theme: NebuxTheme.createThemeData(
         isDark: false,
         colors: NebuxColors.standardLight(),
@@ -23,62 +38,107 @@ class MyApp extends StatelessWidget {
         fontSize: NebuxFontSize.standard(),
         typography: NebuxTypography.custom('Roboto', null),
       ),
-      home: const ExampleScreen(),
+      home: ExampleScreen(onToggleTheme: _toggleTheme),
     );
   }
 }
 
 class ExampleScreen extends StatelessWidget {
-  const ExampleScreen({super.key});
+  final VoidCallback onToggleTheme;
+
+  const ExampleScreen({super.key, required this.onToggleTheme});
 
   @override
   Widget build(BuildContext context) {
     return NbxScaffold(
       widgetName: 'ExampleScreen',
-      appBarConfig: AppBarConfig(title: 'Nebux Design System'),
-      body: Padding(
+      appBarConfig: AppBarConfig(
+        title: 'Nebux Design System',
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: onToggleTheme,
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Welcome', style: context.nebuxTypography.heading),
-            heightSpace16,
+            // -- Typography roles --
+            Text('Typography Roles', style: context.nebuxTypography.heading),
+            heightSpace8,
+            Text('Section header', style: context.nebuxTypography.section),
+            heightSpace4,
+            Text(
+              'Content text for articles and descriptions.',
+              style: context.nebuxTypography.content,
+            ),
+            heightSpace4,
+            Text(
+              'Paragraph text for default body content.',
+              style: context.nebuxTypography.paragraph,
+            ),
+            heightSpace4,
+            Text('Caption / metadata', style: context.nebuxTypography.caption),
+            heightSpace4,
+            Text('Label text', style: context.nebuxTypography.label),
+            heightSpace24,
+
+            // -- Button variants --
+            Text('Button Variants', style: context.nebuxTypography.heading),
+            heightSpace12,
             NbxButton(
               text: 'Filled Button',
               onPressed: () {},
-              styleConfig: ButtonStyleConfig(variant: ButtonVariant.filled),
+              styleConfig:
+                  const ButtonStyleConfig(variant: ButtonVariant.filled),
             ),
-            heightSpace12,
+            heightSpace8,
             NbxButton(
               text: 'Outline Button',
               onPressed: () {},
-              styleConfig: ButtonStyleConfig(variant: ButtonVariant.outline),
+              styleConfig:
+                  const ButtonStyleConfig(variant: ButtonVariant.outline),
             ),
-            heightSpace16,
-            Builder(
-              builder: (ctx) => NbxTextFieldWidget(
-                NbxInputParameters(
-                  context: ctx,
-                  hintText: 'Enter your email',
-                  labelText: 'Email',
-                  inputType: NbxInputType.email,
-                  isRequired: true,
-                  requiredErrorMessage: 'Email is required',
-                ),
+            heightSpace8,
+            NbxButton(
+              text: 'Text Button',
+              onPressed: () {},
+              styleConfig:
+                  const ButtonStyleConfig(variant: ButtonVariant.text),
+            ),
+            heightSpace8,
+            NbxButton(
+              text: 'Danger Button',
+              onPressed: () {},
+              styleConfig:
+                  const ButtonStyleConfig(variant: ButtonVariant.danger),
+            ),
+            heightSpace24,
+
+            // -- Text fields with validation --
+            Text('Text Fields', style: context.nebuxTypography.heading),
+            heightSpace12,
+            NbxTextFieldWidget(
+              NbxInputParameters(
+                hintText: 'Enter your email',
+                labelText: 'Email',
+                inputType: NbxInputType.email,
+                isRequired: true,
+                requiredErrorMessage: 'Email is required',
               ),
             ),
             heightSpace12,
-            Builder(
-              builder: (ctx) => NbxTextFieldWidget(
-                NbxInputParameters(
-                  context: ctx,
-                  hintText: 'Enter your password',
-                  labelText: 'Password',
-                  inputType: NbxInputType.password,
-                  suffixIconType: NbxSuffixIconType.eye,
-                  isRequired: true,
-                  requiredErrorMessage: 'Password is required',
-                ),
+            NbxTextFieldWidget(
+              NbxInputParameters(
+                hintText: 'Enter your password',
+                labelText: 'Password',
+                inputType: NbxInputType.password,
+                suffixIconType: NbxSuffixIconType.eye,
+                isRequired: true,
+                requiredErrorMessage: 'Password is required',
               ),
             ),
           ],

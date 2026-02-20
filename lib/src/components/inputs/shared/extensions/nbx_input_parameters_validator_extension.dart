@@ -1,6 +1,8 @@
 part of 'export.dart';
 
+/// Extension that provides input formatting and validation from [NbxInputParameters].
 extension NbxInputParametersValidationExtension on NbxInputParameters {
+  /// Returns the list of [TextInputFormatter]s derived from [inputType].
   List<TextInputFormatter> get textInputFormatter {
     late final TextInputFormatter inputFormatter;
     switch (inputType) {
@@ -25,6 +27,7 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
     return [...?inputFormatters, inputFormatter];
   }
 
+  /// Validates the input and notifies via [onValidationResult].
   String? inputValidator(String? data) {
     final value = data ?? '';
     String? error;

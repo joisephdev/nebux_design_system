@@ -1,7 +1,72 @@
+## 1.0.0
+
+This is the first stable release of Nebux Design System, marking the completion of a 9-sprint governance-driven stabilization effort from v0.1.18 to v1.0.0.
+
+### Highlights
+
+- **81%+ test coverage** with 633 tests (up from 0 tests at project start)
+- **Full typography system**: all 10 typography roles now include `height` and `letterSpacing` values aligned with Material Design 3
+- **Accurate theme mapping**: `NebuxTypography.fromThemeData()` correctly maps heading→headlineMedium, section→titleLarge, label→labelLarge
+- **Frozen public API surface**: documented in `doc/API-SURFACE.md`
+- **CI enforcement**: coverage threshold at 60%, publish dry-run gate, analysis with `--fatal-infos`
+
+### Fixed (since v0.3.1)
+
+- `NebuxTypography` TextStyles now include `height` and `letterSpacing` for all 10 roles (heading, section, content, paragraph, caption, label, primaryAction, secondaryAction, formInput, placeholder) — resolves typography rendering inconsistencies across platforms
+- `NebuxTypography.fromThemeData()` mapping corrected: heading now maps to `headlineMedium` (was `labelLarge`), section to `titleLarge` (was `labelMedium`), label to `labelLarge` (was `labelSmall`)
+
+### Added
+
+- 391 new tests across core, components, and country picker modules
+- `doc/API-SURFACE.md` updated to v1.0.0 with complete symbol catalog
+
+### Changed
+
+- CI coverage threshold raised from 30% to 60%
+
+### Migration from v0.3.1
+
+Typography height/letterSpacing values are now baked into `NebuxTypography.standard()` and `.custom()` factories. If you were manually setting these on overrides, the defaults may now conflict — review your `NebuxTypography.withOverrides()` calls. See `doc/MIGRATION.md` for details.
+
+---
+
+## 0.3.1
+
+### Fixed
+- `NbxTextFormFieldWidget` text style now uses `textPrimary` semantic token instead of `black` (dark mode fix)
+- `flutter_cache_manager` added as explicit dependency (was transitive-only)
+
+### Added
+- `AppBarConfig.dividerThickness` — configurable divider thickness for `NbxScaffold` (default: 0.2)
+- ADR-003: Vendored Country Picker architectural decision documented
+- Package-level dartdoc on `lib/nebux_design_system.dart`
+- Comprehensive dartdoc across 140+ public symbols
+- `doc/MIGRATION.md` — consolidated migration guide for all breaking versions
+- CI coverage threshold enforcement (60% minimum)
+- Publish workflow validation gate (`dart pub publish --dry-run`)
+
+### Documentation
+- v0.3.0 migration guide completed with before/after examples
+- Country picker parameter deprecation roadmap documented
+
 ## 0.3.0
 
 ### Breaking Changes
 - Translation loading is now async — `CountryLocalizations.load()` calls `TranslationLoader.instance.load()` internally. No consumer action needed if using the standard `LocalizationsDelegate` pattern.
+
+**Migration note:** The public API is unchanged. If you use the standard delegate pattern, no code changes are needed:
+
+```dart
+// Before (v0.2.x) and After (v0.3.0) — identical usage
+MaterialApp(
+  localizationsDelegates: [
+    CountryLocalizations.delegate,
+    // ...other delegates
+  ],
+)
+```
+
+The delegate now loads translations from JSON assets asynchronously under the hood, but `CountryLocalizations.delegate` works the same way. If you previously used `CountryProvider` directly, it has been removed — use `CountryDecoder` instead (available since v0.2.x).
 
 ### Added
 - `TranslationLoader` — singleton utility for loading country name translations from JSON assets with in-memory caching

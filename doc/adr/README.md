@@ -17,6 +17,7 @@ An ADR is a document that captures an important architectural decision made alon
 |--------|-------|--------|------|
 | 001 | [Naming Convention](./001-naming-convention.md) | Accepted | 2026-02-19 |
 | 002 | [Config Class Policy](./002-config-class-policy.md) | Accepted | 2026-02-19 |
+| 003 | [Vendored Country Picker](./003-vendored-country-picker.md) | Accepted | 2026-02-20 |
 
 ## PR Review — Naming Convention Check
 

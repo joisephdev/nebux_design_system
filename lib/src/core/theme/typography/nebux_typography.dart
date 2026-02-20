@@ -56,54 +56,79 @@ abstract class NebuxTypography with _$NebuxTypography {
   const NebuxTypography._();
 
   /// Creates a standard set of text styles using Google Fonts Montserrat.
+  ///
+  /// Each [TextStyle] includes explicit `height` (line-height multiplier)
+  /// and `letterSpacing` values aligned with Material Design 3 type scale.
   factory NebuxTypography.standard() {
     final fontSizes = NebuxFontSize.standard();
     return NebuxTypography(
       label: GoogleFonts.montserrat(
         fontSize: fontSizes.small,
         fontWeight: FontWeight.w500,
+        height: 1.3,
+        letterSpacing: 0.1,
       ),
       section: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w500,
+        height: 1.25,
+        letterSpacing: -0.25,
       ),
       content: GoogleFonts.montserrat(
         fontSize: fontSizes.medium,
         fontWeight: FontWeight.w400,
+        height: 1.4,
+        letterSpacing: 0.0,
       ),
       paragraph: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
+        height: 1.5,
+        letterSpacing: 0.15,
       ),
       caption: GoogleFonts.montserrat(
         fontSize: fontSizes.small,
         fontWeight: FontWeight.w400,
+        height: 1.3,
+        letterSpacing: 0.1,
       ),
       heading: GoogleFonts.montserrat(
         fontSize: fontSizes.heading4,
         fontWeight: FontWeight.w600,
+        height: 1.2,
+        letterSpacing: -0.5,
       ),
       primaryAction: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w700,
+        height: 1.2,
+        letterSpacing: 0.5,
       ),
       secondaryAction: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w600,
+        height: 1.2,
+        letterSpacing: 0.5,
       ),
       formInput: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
+        height: 1.4,
+        letterSpacing: 0.15,
       ),
       placeholder: GoogleFonts.montserrat(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.italic,
+        height: 1.4,
+        letterSpacing: 0.15,
       ),
     );
   }
 
   /// Creates a [NebuxTypography] instance with custom overrides for each text style.
+  ///
+  /// Each [TextStyle] includes explicit `height` and `letterSpacing` values.
   factory NebuxTypography.custom(String fontFamily, String? package) {
     final fontSizes = NebuxFontSize.standard();
     final defaultStyle = TextStyle(fontFamily: fontFamily, package: package);
@@ -111,59 +136,89 @@ abstract class NebuxTypography with _$NebuxTypography {
       label: defaultStyle.copyWith(
         fontSize: fontSizes.small,
         fontWeight: FontWeight.w500,
+        height: 1.3,
+        letterSpacing: 0.1,
       ),
       section: defaultStyle.copyWith(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w500,
+        height: 1.25,
+        letterSpacing: -0.25,
       ),
       content: defaultStyle.copyWith(
         fontSize: fontSizes.medium,
         fontWeight: FontWeight.w400,
+        height: 1.4,
+        letterSpacing: 0.0,
       ),
       paragraph: defaultStyle.copyWith(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
+        height: 1.5,
+        letterSpacing: 0.15,
       ),
       caption: defaultStyle.copyWith(
         fontSize: fontSizes.small,
         fontWeight: FontWeight.w400,
+        height: 1.3,
+        letterSpacing: 0.1,
       ),
       heading: defaultStyle.copyWith(
         fontSize: fontSizes.heading4,
         fontWeight: FontWeight.w600,
+        height: 1.2,
+        letterSpacing: -0.5,
       ),
       primaryAction: defaultStyle.copyWith(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w700,
+        height: 1.2,
+        letterSpacing: 0.5,
       ),
       secondaryAction: defaultStyle.copyWith(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w600,
+        height: 1.2,
+        letterSpacing: 0.5,
       ),
       formInput: defaultStyle.copyWith(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
+        height: 1.4,
+        letterSpacing: 0.15,
       ),
       placeholder: defaultStyle.copyWith(
         fontSize: fontSizes.large,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.italic,
+        height: 1.4,
+        letterSpacing: 0.15,
       ),
     );
   }
 
   /// Creates [NebuxTypography] from a Material [ThemeData].
+  ///
+  /// Material TextTheme → Nebux typography role mapping:
+  ///   heading     → headlineMedium  (page titles, primary headers)
+  ///   section     → titleLarge      (section headers)
+  ///   content     → bodyLarge       (articles, descriptions)
+  ///   paragraph   → bodyMedium      (default body text)
+  ///   caption     → bodySmall       (captions, metadata)
+  ///   label       → labelLarge      (small labels, status)
+  ///   actions     → labelLarge      (button text, with weight overrides)
+  ///   formInput   → bodyMedium      (input text)
   factory NebuxTypography.fromThemeData(ThemeData themeData) => NebuxTypography(
+    heading: themeData.textTheme.headlineMedium!,
+    section: themeData.textTheme.titleLarge!,
     content: themeData.textTheme.bodyLarge!,
     paragraph: themeData.textTheme.bodyMedium!,
     caption: themeData.textTheme.bodySmall!,
-    heading: themeData.textTheme.labelLarge!,
-    section: themeData.textTheme.labelMedium!,
-    label: themeData.textTheme.labelSmall!,
+    label: themeData.textTheme.labelLarge!,
     primaryAction: themeData.textTheme.labelLarge!.copyWith(
       fontWeight: FontWeight.w700,
     ),
-    secondaryAction: themeData.textTheme.labelMedium!.copyWith(
+    secondaryAction: themeData.textTheme.labelLarge!.copyWith(
       fontWeight: FontWeight.w600,
     ),
     formInput: themeData.textTheme.bodyMedium!,

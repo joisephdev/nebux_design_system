@@ -3,12 +3,15 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+/// Singleton that loads and caches country name translations from JSON assets.
 class TranslationLoader {
   TranslationLoader._();
+  /// The singleton instance.
   static final TranslationLoader instance = TranslationLoader._();
 
   final Map<String, Map<String, String>> _cache = {};
 
+  /// Language codes for which translation files are available.
   static const List<String> supportedLanguageCodes = [
     'ar', 'bg', 'ca', 'cn', 'cs', 'de', 'en', 'es', 'et', 'fr',
     'gr', 'he', 'hr', 'ht', 'id', 'it', 'ja', 'ko', 'ku', 'lt',
@@ -26,6 +29,7 @@ class TranslationLoader {
     return languageCode;
   }
 
+  /// Loads translation data for the given [languageCode] from assets.
   Future<void> load(String languageCode, {String? scriptCode}) async {
     final resolved = _resolveLanguageCode(languageCode, scriptCode: scriptCode);
     if (_cache.containsKey(resolved)) return;
@@ -42,6 +46,7 @@ class TranslationLoader {
     }
   }
 
+  /// Returns the cached translation map for the given [languageCode].
   Map<String, String> getTranslation(
     String languageCode, {
     String? scriptCode,
@@ -50,6 +55,7 @@ class TranslationLoader {
     return _cache[resolved] ?? _cache['en'] ?? {};
   }
 
+  /// Returns the translated country name for [countryCode] in [languageCode].
   String? translate(
     String languageCode,
     String countryCode, {
@@ -71,6 +77,7 @@ class TranslationLoader {
         _mappedLanguageCodes.contains(languageCode);
   }
 
+  /// Returns a [Locale] for each supported language code.
   static List<Locale> get supportedLocales =>
       supportedLanguageCodes.map((code) => Locale(code)).toList();
 

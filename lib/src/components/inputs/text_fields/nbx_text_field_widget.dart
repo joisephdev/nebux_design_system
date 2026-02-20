@@ -29,7 +29,10 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 /// - [NbxTextFormFieldWidget] for Form-integrated inputs
 /// - [TextField] the underlying Flutter widget
 class NbxTextFieldWidget extends StatelessWidget {
+  /// The configuration parameters for this text field.
   final NbxInputParameters inputParameters;
+
+  /// Creates an [NbxTextFieldWidget] with the given [inputParameters].
   const NbxTextFieldWidget(this.inputParameters, {super.key});
 
   @override

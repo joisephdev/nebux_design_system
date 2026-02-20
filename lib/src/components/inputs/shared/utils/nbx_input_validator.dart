@@ -99,16 +99,19 @@ class NbxInputValidator {
     return error != null ? errorFormatter(error) : null;
   }
 
+  /// Returns true if [value] meets the minimum password length.
   static bool password(String value, [int maxLengthPassword = 6]) {
     final regExp1 = RegExp(r'^.{6,}$');
     return regExp1.hasMatch(value);
   }
 
+  /// Returns true if [value] matches a valid phone number pattern.
   static bool numberPhone(String value) {
     final regExp1 = RegExp(r'^(?:[+0]9)?[0-9]{10}$');
     return regExp1.hasMatch(value);
   }
 
+  /// Returns true if [value] is a valid email address format.
   static bool emailAddress(String value) {
     // final RegExp regex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     final regExp1 = RegExp(
@@ -118,6 +121,7 @@ class NbxInputValidator {
     return regExp1.hasMatch(value);
   }
 
+  /// Returns true if [value] contains only alphabetic characters.
   static bool onlyText(String value) {
     final regex = RegExp(r'^[a-zA-Z]+$');
     // RegExp regex = RegExp(r'^[a-zA-Z\s]+$');

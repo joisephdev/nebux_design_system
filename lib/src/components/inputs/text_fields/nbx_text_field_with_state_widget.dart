@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
+/// Internal stateful wrapper that manages password visibility toggle
+/// and controller lifecycle for text input widgets.
 class NbxTextFieldWithStateWidget extends StatefulWidget {
+  /// The input configuration parameters.
   final NbxInputParameters parameters;
+
+  /// Builder that receives resolved parameters and returns the input widget.
   final Widget Function(NbxInputParameters) childBuilder;
 
+  /// Creates a stateful text field wrapper.
   const NbxTextFieldWithStateWidget({
     required this.parameters,
     required this.childBuilder,

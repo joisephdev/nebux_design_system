@@ -137,6 +137,44 @@ void main() {
       });
     });
 
+    group('fromColorThemes', () {
+      test('selects light colors for Brightness.light', () {
+        final themes = NebuxColorThemes.standard();
+        final theme = NebuxTheme.fromColorThemes(
+          colorThemes: themes,
+          brightness: Brightness.light,
+          typography: NebuxTypography.custom('Roboto', null),
+        );
+
+        expect(theme.colors.primary, equals(themes.light.primary));
+        expect(theme.colors.background, equals(themes.light.background));
+      });
+
+      test('selects dark colors for Brightness.dark', () {
+        final themes = NebuxColorThemes.standard();
+        final theme = NebuxTheme.fromColorThemes(
+          colorThemes: themes,
+          brightness: Brightness.dark,
+          typography: NebuxTypography.custom('Roboto', null),
+        );
+
+        expect(theme.colors.primary, equals(themes.dark.primary));
+        expect(theme.colors.background, equals(themes.dark.background));
+      });
+
+      test('uses custom typography when provided', () {
+        final themes = NebuxColorThemes.standard();
+        final typography = NebuxTypography.custom('Arial', null);
+        final theme = NebuxTheme.fromColorThemes(
+          colorThemes: themes,
+          brightness: Brightness.light,
+          typography: typography,
+        );
+
+        expect(theme.typography.heading.fontFamily, equals('Arial'));
+      });
+    });
+
     group('createThemeData', () {
       test('creates ThemeData with correct brightness for light mode', () {
         final colors = testNebuxColors();

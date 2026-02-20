@@ -17,6 +17,9 @@ class AppBarConfig {
   /// Whether to show a divider below the app bar.
   final bool showDivider;
 
+  /// Thickness of the divider below the app bar.
+  final double dividerThickness;
+
   /// Background color for the app bar.
   final Color? backgroundColor;
 
@@ -26,6 +29,7 @@ class AppBarConfig {
     this.leadingButton,
     this.centerTitle = false,
     this.showDivider = false,
+    this.dividerThickness = 0.2,
     this.backgroundColor,
   });
 }

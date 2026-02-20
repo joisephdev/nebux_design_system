@@ -4,8 +4,13 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 /// Main theme class that integrates colors, typography, and spacing.
 /// Provides a comprehensive design system for the NebuX Core application.
 class NebuxTheme extends ThemeExtension<NebuxTheme> {
+  /// The color palette for this theme.
   final NebuxColors colors;
+
+  /// The font size scale for this theme.
   final NebuxFontSize fontSize;
+
+  /// The typography styles for this theme.
   final NebuxTypography typography;
 
   const NebuxTheme._({
@@ -29,7 +34,7 @@ class NebuxTheme extends ThemeExtension<NebuxTheme> {
 
   /// This allows users to load their theme from JSON data
   ///
-  /// Use [typography] to provide a custom typography instead of [standard()].
+  /// Use [typography] to provide a custom typography instead of [NebuxTypography.standard].
   static NebuxTheme fromJson(
     Map<String, dynamic> json, {
     NebuxTypography? typography,

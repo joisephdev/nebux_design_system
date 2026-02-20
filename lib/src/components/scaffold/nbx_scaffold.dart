@@ -86,7 +86,7 @@ class NbxScaffold extends StatelessWidget {
           child: Column(
             children: [
               if (_hasAppBar && appBarConfig?.showDivider == true)
-                Divider(height: 0, color: context.nebuxColors.divider, thickness: .2),
+                Divider(height: 0, color: context.nebuxColors.divider, thickness: appBarConfig!.dividerThickness),
               Expanded(child: _buildScaffoldBody()),
             ],
           ),

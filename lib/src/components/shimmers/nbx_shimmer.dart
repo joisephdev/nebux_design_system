@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_skeleton_ui/flutter_skeleton_ui.dart';
 import 'package:nebux_design_system/nebux_design_system.dart';
 
+/// A shimmer animation widget that wraps its [child] with a skeleton theme.
+///
+/// Uses the current [NebuxColors] to derive shimmer gradient colors,
+/// providing theme-consistent loading placeholders.
 class NbxShimmer extends StatelessWidget {
+  /// The child widget to wrap with shimmer animation.
   final Widget child;
+
+  /// Custom base color for the shimmer gradient.
   final Color? baseColor;
+
+  /// Custom highlight color for the shimmer gradient.
   final Color? highlightColor;
 
+  /// Creates a shimmer widget.
   const NbxShimmer({
     super.key,
     required this.child,

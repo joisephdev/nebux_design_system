@@ -24,7 +24,52 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: Report coverage summary
+      - name: Check coverage threshold
         run: |
-          echo "Coverage report generated at coverage/lcov.info"
-          echo "Run 'genhtml coverage/lcov.info -o coverage/html' locally for detailed report"
+          if [ ! -f coverage/lcov.info ]; then
+            echo "::error::coverage/lcov.info not found"
+            exit 1
+          fi
+          LINES_FOUND=$(awk -F: '/^LF:/{total+=$2} END{print total+0}' coverage/lcov.info)
+          LINES_HIT=$(awk -F: '/^LH:/{total+=$2} END{print total+0}' coverage/lcov.info)
+          if [ "$LINES_FOUND" -eq 0 ]; then
+            echo "::error::No lines found in coverage report"
+            exit 1
+          fi
+          COVERAGE=$(awk "BEGIN{printf \"%.2f\", ($LINES_HIT/$LINES_FOUND)*100}")
+          echo "Total coverage: ${COVERAGE}% ($LINES_HIT/$LINES_FOUND lines)"
+          THRESHOLD=60
+          if [ "$(awk "BEGIN{print ($COVERAGE < $THRESHOLD) ? 1 : 0}")" -eq 1 ]; then
+            echo "::error::Coverage ${COVERAGE}% is below the ${THRESHOLD}% threshold"
+            exit 1
+          fi
+          echo "Coverage ${COVERAGE}% meets the ${THRESHOLD}% threshold"
+
+      - name: Coverage summary
+        if: always()
+        run: |
+          if [ ! -f coverage/lcov.info ]; then
+            echo "No coverage data available." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "## Coverage Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| File | Lines Found | Lines Hit | Coverage |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|------|-------------|-----------|----------|" >> "$GITHUB_STEP_SUMMARY"
+          awk -F: '
+            /^SF:/ { file=$2 }
+            /^LF:/ { found=$2 }
+            /^LH:/ { hit=$2 }
+            /^end_of_record/ {
+              pct = (found > 0) ? (hit/found)*100 : 0
+              printf "| %s | %d | %d | %.1f%% |\n", file, found, hit, pct
+              total_found += found
+              total_hit += hit
+            }
+            END {
+              pct = (total_found > 0) ? (total_hit/total_found)*100 : 0
+              printf "| **Total** | **%d** | **%d** | **%.1f%%** |\n", total_found, total_hit, pct
+            }
+          ' coverage/lcov.info >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Threshold: **60%**" >> "$GITHUB_STEP_SUMMARY"

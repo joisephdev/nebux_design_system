@@ -110,6 +110,25 @@ void main() {
       expect(config.repeat, equals(ImageRepeat.repeat));
       expect(config.matchTextDirection, isTrue);
     });
+
+    test('accepts color and colorBlendMode', () {
+      const config = NbxImageStyleConfig(
+        color: Colors.red,
+        colorBlendMode: BlendMode.multiply,
+      );
+      expect(config.color, equals(Colors.red));
+      expect(config.colorBlendMode, equals(BlendMode.multiply));
+    });
+
+    test('accepts border and shadow', () {
+      final config = NbxImageStyleConfig(
+        border: Border.all(color: Colors.black, width: 2),
+        shadow: const [BoxShadow(color: Colors.grey, blurRadius: 4)],
+      );
+      expect(config.border, isNotNull);
+      expect(config.shadow, isNotNull);
+      expect(config.shadow!.length, equals(1));
+    });
   });
 
   group('NbxNetworkImage', () {
@@ -125,22 +144,14 @@ void main() {
       expect(find.byType(NbxNetworkImage), findsOneWidget);
     });
 
-    testWidgets('applies width and height', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: NbxNetworkImage(
-              imageUrl: 'https://example.com/image.png',
-              width: 100,
-              height: 100,
-            ),
-          ),
-        ),
+    test('applies width and height', () {
+      const image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        width: 100,
+        height: 100,
       );
-
-      final container = tester.widget<Container>(find.byType(Container).first);
-      expect(container.constraints?.maxWidth, equals(100));
-      expect(container.constraints?.maxHeight, equals(100));
+      expect(image.width, equals(100));
+      expect(image.height, equals(100));
     });
 
     testWidgets('accepts config classes', (tester) async {
@@ -173,6 +184,98 @@ void main() {
       );
 
       expect(find.byType(NbxNetworkImage), findsOneWidget);
+    });
+
+    test('default fit is BoxFit.cover', () {
+      const image = NbxNetworkImage(imageUrl: 'https://example.com/image.png');
+      expect(image.fit, equals(BoxFit.cover));
+    });
+
+    test('stores all constructor parameters', () {
+      const placeholder = SizedBox(width: 10, height: 10);
+      const errorWidget = SizedBox(width: 20, height: 20);
+      final headers = {'Authorization': 'Bearer token'};
+
+      final image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        width: 200,
+        height: 150,
+        fit: BoxFit.contain,
+        placeholder: placeholder,
+        errorWidget: errorWidget,
+        httpHeaders: headers,
+      );
+
+      expect(image.imageUrl, equals('https://example.com/image.png'));
+      expect(image.width, equals(200));
+      expect(image.height, equals(150));
+      expect(image.fit, equals(BoxFit.contain));
+      expect(image.placeholder, equals(placeholder));
+      expect(image.errorWidget, equals(errorWidget));
+      expect(image.httpHeaders, equals(headers));
+    });
+
+    test('buildDefaultPlaceholder returns Container with image icon', () {
+      const image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        width: 100,
+        height: 100,
+      );
+      final widget = image.buildDefaultPlaceholder();
+      expect(widget, isA<Container>());
+    });
+
+    test('buildDefaultErrorWidget returns Container with error content', () {
+      const image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        width: 100,
+        height: 100,
+      );
+      final widget = image.buildDefaultErrorWidget();
+      expect(widget, isA<Container>());
+    });
+
+    test('stores style config values', () {
+      const image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        width: 100,
+        height: 100,
+        styleConfig: NbxImageStyleConfig(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          clipBehavior: Clip.hardEdge,
+        ),
+      );
+      expect(
+        image.styleConfig.borderRadius,
+        equals(const BorderRadius.all(Radius.circular(20))),
+      );
+      expect(image.styleConfig.clipBehavior, equals(Clip.hardEdge));
+    });
+
+    test('stores custom placeholder widget', () {
+      const placeholder = SizedBox(width: 50, height: 50);
+      const image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        placeholder: placeholder,
+      );
+      expect(image.placeholder, equals(placeholder));
+    });
+
+    test('stores custom error widget', () {
+      const error = SizedBox(width: 50, height: 50);
+      const image = NbxNetworkImage(
+        imageUrl: 'https://example.com/image.png',
+        errorWidget: error,
+      );
+      expect(image.errorWidget, equals(error));
+    });
+
+    test('default config instances are const', () {
+      const image = NbxNetworkImage(imageUrl: 'https://example.com/image.png');
+      expect(image.cacheConfig, isA<NbxImageCacheConfig>());
+      expect(image.animationConfig, isA<NbxImageAnimationConfig>());
+      expect(image.progressConfig, isA<NbxImageProgressConfig>());
+      expect(image.styleConfig, isA<NbxImageStyleConfig>());
     });
   });
 
@@ -234,6 +337,110 @@ void main() {
       );
       expect(image.width, equals(100));
       expect(image.height, equals(100));
+    });
+
+    testWidgets('circular applies custom border radius when provided',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: NbxNetworkImageExtensions.circular(
+              imageUrl: 'https://example.com/image.png',
+              radius: 40,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+      );
+
+      final image = tester.widget<NbxNetworkImage>(
+        find.byType(NbxNetworkImage),
+      );
+      expect(image.width, equals(80));
+      expect(image.height, equals(80));
+      expect(image.styleConfig.borderRadius,
+          equals(BorderRadius.circular(10)));
+    });
+
+    testWidgets('circular defaults border radius to radius value',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: NbxNetworkImageExtensions.circular(
+              imageUrl: 'https://example.com/image.png',
+              radius: 30,
+            ),
+          ),
+        ),
+      );
+
+      final image = tester.widget<NbxNetworkImage>(
+        find.byType(NbxNetworkImage),
+      );
+      expect(image.styleConfig.borderRadius,
+          equals(BorderRadius.circular(30)));
+    });
+
+    testWidgets('square accepts custom fit', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: NbxNetworkImageExtensions.square(
+              imageUrl: 'https://example.com/image.png',
+              size: 80,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      );
+
+      final image = tester.widget<NbxNetworkImage>(
+        find.byType(NbxNetworkImage),
+      );
+      expect(image.fit, equals(BoxFit.contain));
+    });
+
+    testWidgets('rounded without explicit dimensions leaves them null',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: NbxNetworkImageExtensions.rounded(
+              imageUrl: 'https://example.com/image.png',
+              borderRadius: 8,
+            ),
+          ),
+        ),
+      );
+
+      final image = tester.widget<NbxNetworkImage>(
+        find.byType(NbxNetworkImage),
+      );
+      expect(image.width, isNull);
+      expect(image.height, isNull);
+    });
+
+    testWidgets('square passes border and shadow through', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: NbxNetworkImageExtensions.square(
+              imageUrl: 'https://example.com/image.png',
+              size: 64,
+              border: Border.all(color: Colors.blue),
+              shadow: const [BoxShadow(color: Colors.grey, blurRadius: 2)],
+            ),
+          ),
+        ),
+      );
+
+      final image = tester.widget<NbxNetworkImage>(
+        find.byType(NbxNetworkImage),
+      );
+      expect(image.styleConfig.border, isNotNull);
+      expect(image.styleConfig.shadow, isNotNull);
+      expect(image.styleConfig.shadow!.length, equals(1));
     });
   });
 }

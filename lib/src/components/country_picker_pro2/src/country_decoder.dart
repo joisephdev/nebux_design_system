@@ -5,23 +5,29 @@ import 'country_localizations.dart';
 import 'res/country_json.dart';
 import 'translation_loader.dart';
 
+/// Decodes country information from country codes, phone codes, or names.
 class CountryDecoder {
+  /// Parses a [Country] from a country code or name. Throws if not found.
   static Country parse(String country) {
     return tryParseCountryCode(country) ?? parseCountryName(country);
   }
 
+  /// Tries to parse a [Country] from a country code or name. Returns null if not found.
   static Country? tryParse(String country) {
     return tryParseCountryCode(country) ?? tryParseCountryName(country);
   }
 
+  /// Parses a [Country] from an ISO 3166-1 alpha-2 country code.
   static Country parseCountryCode(String countryCode) {
     return _getFromCode(countryCode.toUpperCase());
   }
 
+  /// Parses a [Country] from a phone/dial code.
   static Country parsePhoneCode(String phoneCode) {
     return _getFromPhoneCode(phoneCode);
   }
 
+  /// Tries to parse a [Country] from a country code. Returns null on failure.
   static Country? tryParseCountryCode(String countryCode) {
     try {
       return parseCountryCode(countryCode);
@@ -30,6 +36,7 @@ class CountryDecoder {
     }
   }
 
+  /// Tries to parse a [Country] from a phone code. Returns null on failure.
   static Country? tryParsePhoneCode(String phoneCode) {
     try {
       return parsePhoneCode(phoneCode);
@@ -38,6 +45,7 @@ class CountryDecoder {
     }
   }
 
+  /// Parses a [Country] from a localized or English country name.
   static Country parseCountryName(
     String countryName, {
     BuildContext? context,
@@ -58,6 +66,7 @@ class CountryDecoder {
     return _getFromCode(languageCode);
   }
 
+  /// Tries to parse a [Country] from a country name. Returns null on failure.
   static Country? tryParseCountryName(
     String countryName, {
     BuildContext? context,

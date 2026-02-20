@@ -171,7 +171,7 @@ abstract class NebuxColorThemes with _$NebuxColorThemes {
 
   const NebuxColorThemes._();
 
-  /// Standard color themes with Material 3 inspired palettes
+  /// Creates standard color themes with Material 3 inspired palettes.
   factory NebuxColorThemes.standard() {
     return NebuxColorThemes(
       light: NebuxColors.standardLight(),

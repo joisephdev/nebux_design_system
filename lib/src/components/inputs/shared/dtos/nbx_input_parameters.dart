@@ -5,6 +5,10 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 
 part 'nbx_input_parameters.freezed.dart';
 
+/// Immutable configuration for text input widgets.
+///
+/// Groups all parameters needed by [NbxTextFieldWidget] and
+/// [NbxTextFormFieldWidget] into a single Freezed class.
 @Freezed()
 abstract class NbxInputParameters with _$NbxInputParameters {
   @Assert(
