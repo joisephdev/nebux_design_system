@@ -1,3 +1,13 @@
+## 1.0.1
+
+### Fixed
+
+- Fixed `issue_tracker` URL in `pubspec.yaml` (removed `.git` suffix that made it unreachable)
+- Fixed `homepage` and `repository` URLs in `pubspec.yaml` (removed `.git` suffix)
+- Removed 7 unnecessary imports in `country_picker_pro2` flagged by pub.dev static analysis (`lints_core`)
+
+---
+
 ## 1.0.0
 
 This is the first stable release of Nebux Design System, marking the completion of a 9-sprint governance-driven stabilization effort from v0.1.18 to v1.0.0.
