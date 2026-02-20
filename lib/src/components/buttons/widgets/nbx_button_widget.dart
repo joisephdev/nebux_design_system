@@ -352,20 +352,20 @@ class NbxButton extends StatelessWidget {
   }
 
   /// Gets the appropriate spinner color based on button variant.
+  ///
+  /// Uses [ButtonStateConfig.loadingColor] if provided, otherwise derives
+  /// the color from the button variant for proper contrast.
   Color _getSpinnerColor(BuildContext context) {
+    if (stateConfig.loadingColor != null) return stateConfig.loadingColor!;
+
     final colors = context.nebuxColors;
-    final isFilledOrDanger =
-        styleConfig.variant == ButtonVariant.filled ||
-        styleConfig.variant == ButtonVariant.danger;
 
-    if (styleConfig.variant == ButtonVariant.outline) {
-      return stateConfig.isSelected ? Colors.white : colors.actionPrimary;
-    }
-
-    if (styleConfig.variant == ButtonVariant.text) {
-      return colors.actionPrimary;
-    }
-
-    return isFilledOrDanger ? Colors.white : colors.actionPrimary;
+    return switch (styleConfig.variant) {
+      ButtonVariant.filled => colors.white,
+      ButtonVariant.danger => colors.white,
+      ButtonVariant.outline =>
+        stateConfig.isSelected ? colors.white : colors.actionPrimary,
+      ButtonVariant.text => colors.actionPrimary,
+    };
   }
 }

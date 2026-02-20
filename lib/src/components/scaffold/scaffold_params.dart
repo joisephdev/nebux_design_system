@@ -58,10 +58,14 @@ class BodyConfig {
   /// Message to display when double back to exit is triggered.
   final String? exitMessage;
 
+  /// Whether the body should extend behind the app bar.
+  final bool extendBodyBehindAppBar;
+
   const BodyConfig({
     this.wrapInContainer = true,
     this.decoration,
     this.resizeToAvoidBottomInset = false,
+    this.extendBodyBehindAppBar = true,
     this.exitMessage,
   });
 }

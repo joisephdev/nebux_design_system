@@ -31,7 +31,6 @@ class _NbxTextFieldWithStateWidgetState
     super.dispose();
     if (_parameters.autoDisposeController) {
       _parameters.controller?.dispose();
-      debugPrint('[${_parameters.labelText}] - Has be deleted');
     }
   }
 

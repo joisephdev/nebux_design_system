@@ -15,7 +15,6 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 /// ```dart
 /// NbxTextFieldWidget(
 ///   NbxInputParameters(
-///     context: context,
 ///     controller: myController,
 ///     isRequired: false,
 ///     inputType: NbxInputType.text,
@@ -39,7 +38,7 @@ class NbxTextFieldWidget extends StatelessWidget {
       parameters: inputParameters,
       childBuilder: (NbxInputParameters parameters) {
         final InputDecoration decorationWithReducedPadding = parameters
-            .inputDecoration
+            .inputDecoration(context)
             .copyWith(
               isDense: true,
               contentPadding: const EdgeInsets.symmetric(
@@ -52,14 +51,12 @@ class NbxTextFieldWidget extends StatelessWidget {
           obscureText: parameters.obscureText,
           readOnly: parameters.isReadOnly,
           enabled: parameters.isEnabled,
-          // style: TextStyle(color: AppTheme.colors.textContent),
-          cursorColor: Colors.black,
+          cursorColor: context.nebuxColors.textPrimary,
           onChanged: parameters.onChanged,
           maxLength: parameters.maxLength,
           textInputAction: parameters.textInputAction,
           controller: parameters.controller,
           inputFormatters: parameters.textInputFormatter,
-          // validator: parameters.inputValidator,
           keyboardType: parameters.keyboardType,
           minLines: parameters.minLines,
           maxLines: parameters.maxLines ?? 1,

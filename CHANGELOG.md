@@ -1,3 +1,135 @@
+## 0.2.1 (2026-02-19)
+
+### New Features
+
+- **Input field states**: Added `NbxInputState` enum (`neutral`, `success`, `error`) to `NbxInputParameters`
+  - `helperText` — supporting text displayed below the input field
+  - `inputState` — visual state with automatic border color and suffix icon changes
+  - `showCharacterCounter` — shows built-in character counter when `maxLength` is set
+  - Success state automatically adds green border and check icon
+
+- **`NbxScaffold` configuration**:
+  - `BodyConfig.extendBodyBehindAppBar` — now configurable (was hardcoded to `true`)
+
+- **`NbxButton` spinner color**:
+  - `ButtonStateConfig.loadingColor` — custom color for the loading spinner
+  - When not set, spinner color is derived from button variant for proper contrast
+
+- **`NbxPhoneFieldWidget` visual indicator**:
+  - Shows "Select a country first" helper text when phone input is read-only due to missing country selection
+
+### Improvements
+
+- **Semantic token migration**:
+  - `NbxDividerWidget` now uses `divider` semantic token instead of hardcoded `black`
+  - `NbxScaffold` divider uses `divider` token instead of `Colors.grey.shade500`
+  - Text field cursor color uses `textPrimary` instead of `Colors.black`
+  - Focused input border uses `focus` token instead of hardcoded `Colors.black`
+
+### Tests
+
+- Added tests for input states, scaffold configuration, button spinner, and semantic tokens
+
+## 0.2.0 (2026-02-20)
+
+This release stabilizes the public API surface before v1.0.0. **Breaking changes** are introduced to improve API ergonomics and type safety.
+
+### Breaking Changes
+
+#### 1. `NbxInputParameters` no longer accepts `BuildContext`
+
+The `context` parameter has been removed from `NbxInputParameters`. Context is now passed to the `inputDecoration()` method when needed.
+
+**Before (v0.2.0-dev.2):**
+```dart
+NbxTextFieldWidget(
+  NbxInputParameters(
+    context: context,  // ❌ No longer accepted
+    isRequired: false,
+    inputType: NbxInputType.text,
+    labelText: 'Search',
+  ),
+)
+```
+
+**After (v0.2.0):**
+```dart
+NbxTextFieldWidget(
+  NbxInputParameters(
+    isRequired: false,
+    inputType: NbxInputType.text,
+    labelText: 'Search',
+  ),
+)
+// context is passed internally by the widget
+```
+
+#### 2. `NbxNetworkImage` constructor restructured
+
+The widget now uses config classes instead of 33 individual parameters. This improves readability and makes the API more discoverable.
+
+**Before (v0.2.0-dev.2):**
+```dart
+NbxNetworkImage(
+  imageUrl: 'https://example.com/image.png',
+  memCacheWidth: 100,
+  memCacheHeight: 100,
+  fadeInDuration: Duration(milliseconds: 500),
+  borderRadius: BorderRadius.circular(8),
+  // ... 29 more parameters
+)
+```
+
+**After (v0.2.0):**
+```dart
+NbxNetworkImage(
+  imageUrl: 'https://example.com/image.png',
+  cacheConfig: NbxImageCacheConfig(
+    memCacheWidth: 100,
+    memCacheHeight: 100,
+  ),
+  animationConfig: NbxImageAnimationConfig(
+    fadeInDuration: Duration(milliseconds: 500),
+  ),
+  styleConfig: NbxImageStyleConfig(
+    borderRadius: BorderRadius.circular(8),
+  ),
+)
+```
+
+#### 3. `NbxNetworkImage.cacheManager` is now properly typed
+
+**Before:** `dynamic cacheManager`  
+**After:** `BaseCacheManager? cacheManager` (in `NbxImageCacheConfig`)
+
+### New Features
+
+- **Config classes for `NbxNetworkImage`**:
+  - `NbxImageCacheConfig` — cache settings (memCache, diskCache, cacheKey, cacheManager)
+  - `NbxImageAnimationConfig` — fade animation settings
+  - `NbxImageProgressConfig` — progress indicator settings
+  - `NbxImageStyleConfig` — visual styling (border, shadow, color, etc.)
+
+- **Architecture Decision Records (ADRs)**:
+  - `doc/adr/001-naming-convention.md` — formal `Nebux` vs `Nbx` prefix rules
+  - `doc/adr/002-config-class-policy.md` — when to use `@freezed` vs plain classes
+
+- **API Surface Documentation**: `doc/API-SURFACE.md` catalogs the stable v0.2.0 public API
+
+- **Factory extensions for `NbxNetworkImage`**:
+  - `NbxNetworkImageExtensions.circular()` — circular profile images
+  - `NbxNetworkImageExtensions.square()` — square thumbnails
+  - `NbxNetworkImageExtensions.rounded()` — rounded corner images
+
+### Fixes
+
+- Removed `debugPrint` from `NbxTextFieldWithStateWidget.dispose()` that polluted test output
+
+### Tests
+
+- Added 14 new tests for config classes and `NbxNetworkImage` extensions
+- All 182 tests pass
+
 ## 0.2.0-dev.2 (2026-02-19)
 
 - **NEW**: Default color palettes via static factories

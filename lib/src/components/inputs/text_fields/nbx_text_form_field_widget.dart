@@ -21,7 +21,6 @@ import 'package:nebux_design_system/nebux_design_system.dart';
 ///     children: [
 ///       NbxTextFormFieldWidget(
 ///         NbxInputParameters(
-///           context: context,
 ///           controller: myController,
 ///           isRequired: true,
 ///           inputType: NbxInputType.email,
@@ -89,21 +88,18 @@ class NbxTextFormFieldWidget extends StatelessWidget {
           obscureText: parameters.obscureText,
           readOnly: parameters.isReadOnly,
           enabled: parameters.isEnabled,
-          // style: TextStyle(color: AppTheme.colors.textContent),
-          cursorColor: Colors.black,
+          cursorColor: context.nebuxColors.textPrimary,
           onChanged: parameters.onChanged,
           maxLength: parameters.maxLength,
           autovalidateMode: parameters.autovalidateMode,
           textInputAction: parameters.textInputAction,
           controller: parameters.controller,
-          // decoration: parameters.decoration,
-          decoration: parameters.inputDecoration,
+          decoration: parameters.inputDecoration(context),
           inputFormatters: parameters.textInputFormatter,
           validator: parameters.inputValidator,
           keyboardType: parameters.keyboardType,
           minLines: parameters.minLines,
           maxLines: parameters.maxLines ?? 1,
-          // textAlign: TextAlign.center,
           style: context.nebuxTheme.typography.formInput.copyWith(
             color: context.nebuxColors.black,
           ),

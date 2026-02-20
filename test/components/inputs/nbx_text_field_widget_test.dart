@@ -19,19 +19,14 @@ void main() {
                 fontSize: NebuxFontSize.standard(),
                 typography: NebuxTypography.custom('Roboto', null),
               ),
-              child: Builder(
-                builder: (context) {
-                  return NbxTextFieldWidget(
-                    NbxInputParameters(
-                      context: context,
-                      controller: controller,
-                      isRequired: false,
-                      inputType: NbxInputType.text,
-                      labelText: 'Test Label',
-                      hintText: 'Test Hint',
-                    ),
-                  );
-                },
+              child: NbxTextFieldWidget(
+                NbxInputParameters(
+                  controller: controller,
+                  isRequired: false,
+                  inputType: NbxInputType.text,
+                  labelText: 'Test Label',
+                  hintText: 'Test Hint',
+                ),
               ),
             ),
           ),
@@ -55,20 +50,15 @@ void main() {
                 fontSize: NebuxFontSize.standard(),
                 typography: NebuxTypography.custom('Roboto', null),
               ),
-              child: Builder(
-                builder: (context) {
-                  return NbxTextFieldWidget(
-                    NbxInputParameters(
-                      context: context,
-                      controller: controller,
-                      isRequired: false,
-                      inputType: NbxInputType.password,
-                      obscureText: true,
-                      labelText: 'Password',
-                      hintText: 'Enter password',
-                    ),
-                  );
-                },
+              child: NbxTextFieldWidget(
+                NbxInputParameters(
+                  controller: controller,
+                  isRequired: false,
+                  inputType: NbxInputType.password,
+                  obscureText: true,
+                  labelText: 'Password',
+                  hintText: 'Enter password',
+                ),
               ),
             ),
           ),
@@ -93,20 +83,15 @@ void main() {
                 fontSize: NebuxFontSize.standard(),
                 typography: NebuxTypography.custom('Roboto', null),
               ),
-              child: Builder(
-                builder: (context) {
-                  return NbxTextFieldWidget(
-                    NbxInputParameters(
-                      context: context,
-                      controller: controller,
-                      isRequired: false,
-                      inputType: NbxInputType.text,
-                      onChanged: (value) => changedValue = value,
-                      labelText: 'Test',
-                      hintText: 'Enter text',
-                    ),
-                  );
-                },
+              child: NbxTextFieldWidget(
+                NbxInputParameters(
+                  controller: controller,
+                  isRequired: false,
+                  inputType: NbxInputType.text,
+                  onChanged: (value) => changedValue = value,
+                  labelText: 'Test',
+                  hintText: 'Enter text',
+                ),
               ),
             ),
           ),
@@ -130,20 +115,15 @@ void main() {
                 fontSize: NebuxFontSize.standard(),
                 typography: NebuxTypography.custom('Roboto', null),
               ),
-              child: Builder(
-                builder: (context) {
-                  return NbxTextFieldWidget(
-                    NbxInputParameters(
-                      context: context,
-                      controller: controller,
-                      isRequired: false,
-                      inputType: NbxInputType.text,
-                      isReadOnly: true,
-                      labelText: 'Test',
-                      hintText: 'Readonly field',
-                    ),
-                  );
-                },
+              child: NbxTextFieldWidget(
+                NbxInputParameters(
+                  controller: controller,
+                  isRequired: false,
+                  inputType: NbxInputType.text,
+                  isReadOnly: true,
+                  labelText: 'Test',
+                  hintText: 'Readonly field',
+                ),
               ),
             ),
           ),
@@ -167,20 +147,15 @@ void main() {
                 fontSize: NebuxFontSize.standard(),
                 typography: NebuxTypography.custom('Roboto', null),
               ),
-              child: Builder(
-                builder: (context) {
-                  return NbxTextFieldWidget(
-                    NbxInputParameters(
-                      context: context,
-                      controller: controller,
-                      isRequired: false,
-                      inputType: NbxInputType.text,
-                      maxLines: 5,
-                      labelText: 'Test',
-                      hintText: 'Multiline',
-                    ),
-                  );
-                },
+              child: NbxTextFieldWidget(
+                NbxInputParameters(
+                  controller: controller,
+                  isRequired: false,
+                  inputType: NbxInputType.text,
+                  maxLines: 5,
+                  labelText: 'Test',
+                  hintText: 'Multiline',
+                ),
               ),
             ),
           ),

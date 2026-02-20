@@ -49,7 +49,6 @@ class NbxCountryPickerInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return NbxTextFormFieldWidget(
       NbxInputParameters(
-        context: context,
         isReadOnly: true,
         autoDisposeController: false,
         maxLines: inputParameters.maxLines,

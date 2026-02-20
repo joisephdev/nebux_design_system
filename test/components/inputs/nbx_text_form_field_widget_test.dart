@@ -22,19 +22,14 @@ void main() {
               ),
               child: Form(
                 key: formKey,
-                child: Builder(
-                  builder: (context) {
-                    return NbxTextFormFieldWidget(
-                      NbxInputParameters(
-                        context: context,
-                        controller: controller,
-                        isRequired: false,
-                        inputType: NbxInputType.text,
-                        labelText: 'Test Label',
-                        hintText: 'Test Hint',
-                      ),
-                    );
-                  },
+                child: NbxTextFormFieldWidget(
+                  NbxInputParameters(
+                    controller: controller,
+                    isRequired: false,
+                    inputType: NbxInputType.text,
+                    labelText: 'Test Label',
+                    hintText: 'Test Hint',
+                  ),
                 ),
               ),
             ),
@@ -63,24 +58,19 @@ void main() {
               ),
               child: Form(
                 key: formKey,
-                child: Builder(
-                  builder: (context) {
-                    return NbxTextFormFieldWidget(
-                      NbxInputParameters(
-                        context: context,
-                        controller: controller,
-                        isRequired: true,
-                        inputType: NbxInputType.text,
-                        requiredErrorMessage: 'Field is required',
-                        labelText: 'Test',
-                        hintText: 'Enter value',
-                        validator: (value) {
-                          validationResult = value;
-                          return null;
-                        },
-                      ),
-                    );
-                  },
+                child: NbxTextFormFieldWidget(
+                  NbxInputParameters(
+                    controller: controller,
+                    isRequired: true,
+                    inputType: NbxInputType.text,
+                    requiredErrorMessage: 'Field is required',
+                    labelText: 'Test',
+                    hintText: 'Enter value',
+                    validator: (value) {
+                      validationResult = value;
+                      return null;
+                    },
+                  ),
                 ),
               ),
             ),
@@ -108,21 +98,16 @@ void main() {
               ),
               child: Form(
                 key: formKey,
-                child: Builder(
-                  builder: (context) {
-                    return NbxTextFormFieldWidget(
-                      NbxInputParameters(
-                        context: context,
-                        controller: controller,
-                        isRequired: true,
-                        inputType: NbxInputType.text,
-                        requiredErrorMessage: 'Field is required',
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        labelText: 'Test',
-                        hintText: 'Enter value',
-                      ),
-                    );
-                  },
+                child: NbxTextFormFieldWidget(
+                  NbxInputParameters(
+                    controller: controller,
+                    isRequired: true,
+                    inputType: NbxInputType.text,
+                    requiredErrorMessage: 'Field is required',
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    labelText: 'Test',
+                    hintText: 'Enter value',
+                  ),
                 ),
               ),
             ),
@@ -156,23 +141,18 @@ void main() {
               ),
               child: Form(
                 key: formKey,
-                child: Builder(
-                  builder: (context) {
-                    return NbxTextFormFieldWidget(
-                      NbxInputParameters(
-                        context: context,
-                        controller: controller,
-                        isRequired: true,
-                        inputType: NbxInputType.text,
-                        requiredErrorMessage: 'Field is required',
-                        labelText: 'Test',
-                        hintText: 'Enter value',
-                        onValidationResult: (error) {
-                          validationTriggered = true;
-                        },
-                      ),
-                    );
-                  },
+                child: NbxTextFormFieldWidget(
+                  NbxInputParameters(
+                    controller: controller,
+                    isRequired: true,
+                    inputType: NbxInputType.text,
+                    requiredErrorMessage: 'Field is required',
+                    labelText: 'Test',
+                    hintText: 'Enter value',
+                    onValidationResult: (error) {
+                      validationTriggered = true;
+                    },
+                  ),
                 ),
               ),
             ),
@@ -202,20 +182,15 @@ void main() {
               ),
               child: Form(
                 key: formKey,
-                child: Builder(
-                  builder: (context) {
-                    return NbxTextFormFieldWidget(
-                      NbxInputParameters(
-                        context: context,
-                        controller: controller,
-                        isRequired: false,
-                        inputType: NbxInputType.password,
-                        obscureText: true,
-                        labelText: 'Password',
-                        hintText: 'Enter password',
-                      ),
-                    );
-                  },
+                child: NbxTextFormFieldWidget(
+                  NbxInputParameters(
+                    controller: controller,
+                    isRequired: false,
+                    inputType: NbxInputType.password,
+                    obscureText: true,
+                    labelText: 'Password',
+                    hintText: 'Enter password',
+                  ),
                 ),
               ),
             ),

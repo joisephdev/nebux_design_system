@@ -20,7 +20,7 @@ class NbxDividerWidget extends StatelessWidget {
       child: Divider(
         thickness: .5,
         height: height,
-        color: color ?? context.nebuxTheme.colors.black,
+        color: color ?? context.nebuxColors.divider,
       ),
     );
   }

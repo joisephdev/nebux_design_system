@@ -113,7 +113,8 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
 
   /// Builds the phone number input widget.
   ///
-  /// @returns: The phone number input widget [Widget].
+  /// Shows a helper text when no country is selected to indicate
+  /// why the input is read-only.
   Widget _buildPhoneNumberInput() {
     return Flexible(
       flex: 2,
@@ -122,6 +123,8 @@ class _NbxPhoneFieldWidgetState extends State<NbxPhoneFieldWidget> {
           maxLength: _currentCountrySelected?.maxLength,
           isReadOnly: _isPhoneInputReadOnly,
           controller: _numberPhoneController,
+          helperText:
+              _isPhoneInputReadOnly ? 'Select a country first' : null,
           validator: (value) => NbxInputValidator.validateWithRules(value, [
             TextValidationRules.minLength(
               minLength: _currentCountrySelected?.minLength ?? 0,

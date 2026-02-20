@@ -57,3 +57,10 @@ enum NbxInputDecorationStyle {
 /// - [eye]: Toggles password visibility (use with obscureText inputs).
 /// - [cancel]: Clears the input field content.
 enum NbxSuffixIconType { none, eye, cancel }
+
+/// Defines the visual state of an input field.
+///
+/// - [neutral]: Default state — no success/error indicators.
+/// - [success]: Field is valid — shows success border and optional check icon.
+/// - [error]: Field has errors — handled automatically by Flutter's validation.
+enum NbxInputState { neutral, success, error }
