@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'controllers/country_selector.dart';
-import 'country_localizations.dart';
 import 'res/country_json.dart';
 import 'translation_loader.dart';
 
