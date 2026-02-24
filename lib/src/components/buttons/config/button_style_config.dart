@@ -18,6 +18,8 @@ class ButtonStyleConfig {
   /// Custom text style for the button.
   final TextStyle? textStyle;
 
+  final BorderSide? customBorderSide;
+
   /// Creates a [ButtonStyleConfig] with the specified style properties.
   ///
   /// @param variant: The visual variant of the button [ButtonVariant]
@@ -29,6 +31,7 @@ class ButtonStyleConfig {
     this.customBackgroundColor,
     this.borderRadius,
     this.textStyle,
+    this.customBorderSide,
   });
 
   /// Creates a copy of this [ButtonStyleConfig] with the given fields replaced with new values.
