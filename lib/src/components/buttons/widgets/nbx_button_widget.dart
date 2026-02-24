@@ -274,7 +274,11 @@ class NbxButton extends StatelessWidget {
       shape: _getButtonShape(),
       backgroundColor: stateConfig.isSelected ? colors.primary : Colors.white,
       foregroundColor: _getOutlineForegroundColor(colors, isDisabled),
-      side: BorderSide(color: borderColor, width: 0.1),
+       side: styleConfig.customBorderSide ??
+        BorderSide(
+          color: borderColor,
+          width: 0.1,
+        ),
     );
   }
 
