@@ -1,3 +1,11 @@
+## 1.0.2
+
+### Added
+
+- Added `customBorderSide` parameter to `ButtonStyleConfig`, allowing full control over the button's border style
+
+---
+
 ## 1.0.1
 
 ### Fixed
