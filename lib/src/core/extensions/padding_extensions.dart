@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 /// Convenience extensions on [Widget] for adding padding.
 extension PaddingExtensions on Widget {
   /// Add padding to all sides of the widget
-  /* Widget nbxPaddingAll(double padding) {
+  Widget nbxPaddingAll(double padding) {
     return Padding(padding: EdgeInsets.all(padding), child: this);
-  } */
+  }
 
   /// Add padding to the left side of the widget
   Widget nbxPaddingLeft(double padding) {
@@ -76,6 +76,16 @@ extension PaddingExtensions on Widget {
       right: right,
       bottom: bottom,
     ),
+    child: this,
+  );
+
+  Widget nbxPaddingFromLTRB({
+    double left = 0.0,
+    double top = 0.0,
+    double right = 0.0,
+    double bottom = 0.0,
+  }) => Padding(
+    padding: EdgeInsets.fromLTRB(left, top, right, bottom),
     child: this,
   );
 
