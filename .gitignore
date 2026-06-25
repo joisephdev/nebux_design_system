@@ -87,3 +87,14 @@ coverage/
 # Test outputs
 test_driver/
 **/test_driver/
+
+# AI TOOLS
+.claude/
+.agents/
+.atl/
+.cursor/
+.copilot/
+.codex/
+.codeium/
+.qwen/
+.kiro/
