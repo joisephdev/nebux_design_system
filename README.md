@@ -11,7 +11,7 @@ A production-ready Flutter design system that provides consistent theming, typog
 
 ```yaml
 dependencies:
-  nebux_design_system: ^1.0.3
+  nebux_design_system: ^1.0.5
 ```
 
 ```bash
