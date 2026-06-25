@@ -276,7 +276,7 @@ void main() {
       );
 
       final icon = tester.widget<Icon>(find.byIcon(Icons.add));
-      expect(icon.color, testNebuxColors().disabled);
+      expect(icon.color, testNebuxColors().textSecondary);
     });
 
     testWidgets('trailing icon uses disabled color when disabled', (
@@ -296,7 +296,7 @@ void main() {
       );
 
       final icon = tester.widget<Icon>(find.byIcon(Icons.arrow_forward));
-      expect(icon.color, testNebuxColors().disabled);
+      expect(icon.color, testNebuxColors().textSecondary);
     });
 
     testWidgets('leading icon uses custom color when enabled', (
