@@ -1,3 +1,12 @@
+## 1.0.5
+
+### Added
+
+- `customDisabledBackgroundColor` and `customDisabledForegroundColor` on `ButtonStyleConfig` for `NbxButton` disabled-state styling
+- Disabled foreground color now resolves consistently across label, icons, and Material button foreground for all variants
+
+---
+
 ## 1.0.4
 
 ### Added
