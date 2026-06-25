@@ -4,6 +4,10 @@
 
 - `NbxButton` now passes custom disabled colors through `disabledBackgroundColor` and `disabledForegroundColor` so Material `WidgetState.disabled` styling works correctly
 
+### Changed
+
+- README installation example updated to `^1.0.6`
+
 ---
 
 ## 1.0.5
