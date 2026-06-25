@@ -162,7 +162,9 @@ void main() {
       final button = tester.widget<FilledButton>(
         find.byType(FilledButton),
       );
-      final bgColor = button.style!.backgroundColor?.resolve({});
+      final bgColor = button.style!.backgroundColor?.resolve(
+        const {WidgetState.disabled},
+      );
       expect(bgColor, testNebuxColors().disabled);
     });
 
@@ -190,8 +192,12 @@ void main() {
       final button = tester.widget<FilledButton>(
         find.byType(FilledButton),
       );
-      final bgColor = button.style!.backgroundColor?.resolve({});
-      final fgColor = button.style!.foregroundColor?.resolve({});
+      final bgColor = button.style!.backgroundColor?.resolve(
+        const {WidgetState.disabled},
+      );
+      final fgColor = button.style!.foregroundColor?.resolve(
+        const {WidgetState.disabled},
+      );
 
       expect(bgColor, disabledBackground);
       expect(fgColor, disabledForeground);
@@ -233,7 +239,9 @@ void main() {
       final button = tester.widget<FilledButton>(
         find.byType(FilledButton),
       );
-      final bgColor = button.style!.backgroundColor?.resolve({});
+      final bgColor = button.style!.backgroundColor?.resolve(
+        const {WidgetState.disabled},
+      );
       final expectedColor = testNebuxColors().textSecondary.withValues(
         alpha: .3,
       );

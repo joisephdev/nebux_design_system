@@ -240,12 +240,11 @@ class NbxButton extends StatelessWidget {
     return FilledButton.styleFrom(
       shape: _getButtonShape(),
       elevation: 0,
-      backgroundColor: isDisabled
-          ? _resolveDisabledBackgroundColor(colors)
-          : styleConfig.customBackgroundColor ?? colors.actionPrimary,
-      foregroundColor: isDisabled
-          ? _resolveDisabledForegroundColor(colors)
-          : Colors.white,
+      backgroundColor:
+          styleConfig.customBackgroundColor ?? colors.actionPrimary,
+      disabledBackgroundColor: _resolveDisabledBackgroundColor(colors),
+      foregroundColor: Colors.white,
+      disabledForegroundColor: _resolveDisabledForegroundColor(colors),
     );
   }
 
@@ -257,9 +256,8 @@ class NbxButton extends StatelessWidget {
   ) {
     return TextButton.styleFrom(
       shape: _getButtonShape(),
-      foregroundColor: isDisabled
-          ? _resolveDisabledForegroundColor(colors)
-          : colors.actionPrimary,
+      foregroundColor: colors.actionPrimary,
+      disabledForegroundColor: _resolveDisabledForegroundColor(colors),
       textStyle: context.nebuxTheme.typography.caption.copyWith(
         decoration: TextDecoration.underline,
       ),
@@ -276,7 +274,10 @@ class NbxButton extends StatelessWidget {
     return OutlinedButton.styleFrom(
       shape: _getButtonShape(),
       backgroundColor: stateConfig.isSelected ? colors.primary : Colors.white,
-      foregroundColor: _getOutlineForegroundColor(colors, isDisabled),
+      foregroundColor: stateConfig.isSelected
+          ? Colors.white
+          : colors.actionPrimary,
+      disabledForegroundColor: _resolveDisabledForegroundColor(colors),
        side: styleConfig.customBorderSide ??
         BorderSide(
           color: borderColor,
@@ -290,12 +291,10 @@ class NbxButton extends StatelessWidget {
     return FilledButton.styleFrom(
       shape: _getButtonShape(),
       elevation: 0,
-      backgroundColor: isDisabled
-          ? _resolveDisabledBackgroundColor(colors)
-          : colors.error,
-      foregroundColor: isDisabled
-          ? _resolveDisabledForegroundColor(colors)
-          : Colors.white,
+      backgroundColor: colors.error,
+      disabledBackgroundColor: _resolveDisabledBackgroundColor(colors),
+      foregroundColor: Colors.white,
+      disabledForegroundColor: _resolveDisabledForegroundColor(colors),
     );
   }
 
@@ -347,17 +346,6 @@ class NbxButton extends StatelessWidget {
     return RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(borderRadiusValue),
     );
-  }
-
-  /// Gets the foreground color for outline button variant.
-  ///
-  /// Considers disabled state and selected state.
-  Color _getOutlineForegroundColor(NebuxColors colors, bool isDisabled) {
-    if (isDisabled) {
-      return _resolveDisabledForegroundColor(colors);
-    }
-
-    return stateConfig.isSelected ? Colors.white : colors.actionPrimary;
   }
 
   /// Resolves the disabled background color for filled and danger variants.
