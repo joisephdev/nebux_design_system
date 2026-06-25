@@ -10,8 +10,8 @@
 /// - **Typography**: [NebuxTypography] provides role-based text styles
 ///   (heading, section, content, caption, label, actions).
 /// - **Components**: Ready-to-use widgets such as [NbxButton],
-///   [NbxTextFormFieldWidget], [NbxScaffold], [NbxNetworkImage], and
-///   shimmer loading skeletons.
+///   [NbxTextFormFieldWidget], [NbxAnimatedSegment], [NbxScaffold],
+///   [NbxNetworkImage], and shimmer loading skeletons.
 ///
 /// ```dart
 /// import 'package:nebux_design_system/nebux_design_system.dart';
