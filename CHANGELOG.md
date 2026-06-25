@@ -1,3 +1,22 @@
+## 1.0.4
+
+### Added
+
+- New `NbxAnimatedSegment` component with configurable style (`NbxAnimatedSegmentStyle`), defaults (`NbxAnimatedSegmentDefaults`), and theme integration (`NbxAnimatedSegmentTheme`)
+- Exported animated segment component in the public API barrel (`nebux_design_system.dart`)
+- AI tools entries added to `.gitignore`
+
+---
+
+## 1.0.3
+
+### Changed
+
+- Removed `AGENTS.md` and related configuration files (`.agents/`, `.cursor/rules/`)
+- Improved `padding_extensions.dart` with additional helpers
+
+---
+
 ## 1.0.2
 
 ### Added
