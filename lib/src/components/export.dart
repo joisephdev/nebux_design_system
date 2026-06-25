@@ -1,6 +1,9 @@
 // APP BAR
 // ignore_for_file: directives_ordering
 
+// ANIMATED SEGMENT
+export 'animated_segment/export.dart';
+
 // BUTTONS
 export 'buttons/export.dart';
 
