@@ -166,6 +166,37 @@ void main() {
       expect(bgColor, testNebuxColors().disabled);
     });
 
+    testWidgets('disabled filled variant uses custom disabled colors', (
+      tester,
+    ) async {
+      const disabledBackground = Color(0xFFB3D4FC);
+      const disabledForeground = Color(0xFF0D47A1);
+
+      await pumpNbxWidget(
+        tester,
+        NbxButton(
+          text: 'Disabled Custom',
+          onPressed: () {},
+          styleConfig: const ButtonStyleConfig(
+            variant: ButtonVariant.filled,
+            customBackgroundColor: Color(0xFF2196F3),
+            customDisabledBackgroundColor: disabledBackground,
+            customDisabledForegroundColor: disabledForeground,
+          ),
+          stateConfig: const ButtonStateConfig(enabled: false),
+        ),
+      );
+
+      final button = tester.widget<FilledButton>(
+        find.byType(FilledButton),
+      );
+      final bgColor = button.style!.backgroundColor?.resolve({});
+      final fgColor = button.style!.foregroundColor?.resolve({});
+
+      expect(bgColor, disabledBackground);
+      expect(fgColor, disabledForeground);
+    });
+
     testWidgets('disabled outline variant shows reduced opacity border', (
       tester,
     ) async {

@@ -136,17 +136,18 @@ class NbxButton extends StatelessWidget {
   /// 3. Trailing icon (if configured)
   Widget _buildButtonContentRow(BuildContext context) {
     final bool isButtonDisabled = _shouldDisableButton();
-    final Color disabledColor = context.nebuxColors.disabled;
+    final NebuxColors colors = context.nebuxColors;
+    final Color disabledForegroundColor = _resolveDisabledForegroundColor(colors);
 
     final List<Widget> contentChildren = <Widget>[
       if (iconConfig.icon != null) ...[
-        _buildLeadingIcon(isButtonDisabled, disabledColor),
+        _buildLeadingIcon(isButtonDisabled, disabledForegroundColor),
         widthSpace8,
       ],
-      _buildTextWidget(context, isButtonDisabled, disabledColor),
+      _buildTextWidget(context, isButtonDisabled, disabledForegroundColor),
       if (iconConfig.trailingIcon != null) ...[
         widthSpace8,
-        _buildTrailingIcon(isButtonDisabled, disabledColor),
+        _buildTrailingIcon(isButtonDisabled, disabledForegroundColor),
       ],
     ];
 
@@ -159,20 +160,20 @@ class NbxButton extends StatelessWidget {
   }
 
   /// Builds the leading icon widget.
-  Widget _buildLeadingIcon(bool isDisabled, Color disabledColor) {
+  Widget _buildLeadingIcon(bool isDisabled, Color disabledForegroundColor) {
     return Icon(
       iconConfig.icon,
       size: 18.0,
-      color: isDisabled ? disabledColor : iconConfig.iconColor,
+      color: isDisabled ? disabledForegroundColor : iconConfig.iconColor,
     );
   }
 
   /// Builds the trailing icon widget.
-  Widget _buildTrailingIcon(bool isDisabled, Color disabledColor) {
+  Widget _buildTrailingIcon(bool isDisabled, Color disabledForegroundColor) {
     return Icon(
       iconConfig.trailingIcon,
       size: 18.0,
-      color: isDisabled ? disabledColor : iconConfig.trailingIconColor,
+      color: isDisabled ? disabledForegroundColor : iconConfig.trailingIconColor,
     );
   }
 
@@ -184,16 +185,16 @@ class NbxButton extends StatelessWidget {
   /// Parameters:
   /// * [context] - Build context for accessing theme
   /// * [isDisabled] - Whether the button is in disabled state
-  /// * [disabledColor] - Color to use when disabled
+  /// * [disabledForegroundColor] - Color to use when disabled
   Widget _buildTextWidget(
     BuildContext context,
     bool isDisabled,
-    Color disabledColor,
+    Color disabledForegroundColor,
   ) {
     final TextStyle textStyle = _getTextStyleForVariant(
       context,
       isDisabled,
-      disabledColor,
+      disabledForegroundColor,
     );
 
     return Flexible(
@@ -240,9 +241,11 @@ class NbxButton extends StatelessWidget {
       shape: _getButtonShape(),
       elevation: 0,
       backgroundColor: isDisabled
-          ? colors.disabled
+          ? _resolveDisabledBackgroundColor(colors)
           : styleConfig.customBackgroundColor ?? colors.actionPrimary,
-      foregroundColor: isDisabled ? colors.textSecondary : Colors.white,
+      foregroundColor: isDisabled
+          ? _resolveDisabledForegroundColor(colors)
+          : Colors.white,
     );
   }
 
@@ -255,7 +258,7 @@ class NbxButton extends StatelessWidget {
     return TextButton.styleFrom(
       shape: _getButtonShape(),
       foregroundColor: isDisabled
-          ? colors.textSecondary.withValues(alpha: .5)
+          ? _resolveDisabledForegroundColor(colors)
           : colors.actionPrimary,
       textStyle: context.nebuxTheme.typography.caption.copyWith(
         decoration: TextDecoration.underline,
@@ -288,9 +291,11 @@ class NbxButton extends StatelessWidget {
       shape: _getButtonShape(),
       elevation: 0,
       backgroundColor: isDisabled
-          ? colors.textSecondary.withValues(alpha: .3)
+          ? _resolveDisabledBackgroundColor(colors)
           : colors.error,
-      foregroundColor: isDisabled ? colors.textSecondary : Colors.white,
+      foregroundColor: isDisabled
+          ? _resolveDisabledForegroundColor(colors)
+          : Colors.white,
     );
   }
 
@@ -312,12 +317,12 @@ class NbxButton extends StatelessWidget {
   TextStyle _getTextStyleForVariant(
     BuildContext context,
     bool isDisabled,
-    Color disabledColor,
+    Color disabledForegroundColor,
   ) {
     final TextStyle baseStyle = _getBaseTextStyleForVariant(context);
 
     return baseStyle.copyWith(
-      color: isDisabled ? disabledColor : baseStyle.color,
+      color: isDisabled ? disabledForegroundColor : baseStyle.color,
     );
   }
 
@@ -349,10 +354,44 @@ class NbxButton extends StatelessWidget {
   /// Considers disabled state and selected state.
   Color _getOutlineForegroundColor(NebuxColors colors, bool isDisabled) {
     if (isDisabled) {
-      return colors.textSecondary.withValues(alpha: .5);
+      return _resolveDisabledForegroundColor(colors);
     }
 
     return stateConfig.isSelected ? Colors.white : colors.actionPrimary;
+  }
+
+  /// Resolves the disabled background color for filled and danger variants.
+  ///
+  /// @param colors: Nebux color tokens [NebuxColors].
+  ///
+  /// @returns: Disabled background color [Color].
+  Color _resolveDisabledBackgroundColor(NebuxColors colors) {
+    if (styleConfig.customDisabledBackgroundColor != null) {
+      return styleConfig.customDisabledBackgroundColor!;
+    }
+
+    return switch (styleConfig.variant) {
+      ButtonVariant.danger => colors.textSecondary.withValues(alpha: .3),
+      ButtonVariant.filled => colors.disabled,
+      _ => colors.disabled,
+    };
+  }
+
+  /// Resolves the disabled foreground color for label, icons, and button style.
+  ///
+  /// @param colors: Nebux color tokens [NebuxColors].
+  ///
+  /// @returns: Disabled foreground color [Color].
+  Color _resolveDisabledForegroundColor(NebuxColors colors) {
+    if (styleConfig.customDisabledForegroundColor != null) {
+      return styleConfig.customDisabledForegroundColor!;
+    }
+
+    return switch (styleConfig.variant) {
+      ButtonVariant.filled || ButtonVariant.danger => colors.textSecondary,
+      ButtonVariant.text || ButtonVariant.outline =>
+        colors.textSecondary.withValues(alpha: .5),
+    };
   }
 
   /// Gets the appropriate spinner color based on button variant.
