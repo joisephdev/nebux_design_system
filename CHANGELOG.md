@@ -1,3 +1,11 @@
+## 1.0.7
+
+### Fixed
+
+- Disabled `filled` button variant now uses semi-transparent white foreground (`white.withValues(alpha: 0.7)`) for proper contrast on solid disabled backgrounds
+
+---
+
 ## 1.0.6
 
 ### Fixed
