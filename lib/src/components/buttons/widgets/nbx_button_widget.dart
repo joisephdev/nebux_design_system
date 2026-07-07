@@ -367,6 +367,9 @@ class NbxButton extends StatelessWidget {
 
   /// Resolves the disabled foreground color for label, icons, and button style.
   ///
+  /// Filled variants use semi-transparent white for contrast on solid disabled
+  /// backgrounds. Outline and text variants keep muted secondary text colors.
+  ///
   /// @param colors: Nebux color tokens [NebuxColors].
   ///
   /// @returns: Disabled foreground color [Color].
@@ -376,7 +379,8 @@ class NbxButton extends StatelessWidget {
     }
 
     return switch (styleConfig.variant) {
-      ButtonVariant.filled || ButtonVariant.danger => colors.textSecondary,
+      ButtonVariant.filled => colors.white.withValues(alpha: 0.7),
+      ButtonVariant.danger => colors.textSecondary,
       ButtonVariant.text || ButtonVariant.outline =>
         colors.textSecondary.withValues(alpha: .5),
     };
