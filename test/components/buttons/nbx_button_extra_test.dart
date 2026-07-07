@@ -168,6 +168,27 @@ void main() {
       expect(bgColor, testNebuxColors().disabled);
     });
 
+    testWidgets('disabled filled variant shows semi-transparent white foreground', (
+      tester,
+    ) async {
+      await pumpNbxWidget(
+        tester,
+        NbxButton(
+          text: 'Disabled',
+          onPressed: () {},
+          stateConfig: const ButtonStateConfig(enabled: false),
+        ),
+      );
+
+      final button = tester.widget<FilledButton>(
+        find.byType(FilledButton),
+      );
+      final fgColor = button.style!.foregroundColor?.resolve(
+        const {WidgetState.disabled},
+      );
+      expect(fgColor, testNebuxColors().white.withValues(alpha: 0.7));
+    });
+
     testWidgets('disabled filled variant uses custom disabled colors', (
       tester,
     ) async {
@@ -284,7 +305,10 @@ void main() {
       );
 
       final icon = tester.widget<Icon>(find.byIcon(Icons.add));
-      expect(icon.color, testNebuxColors().textSecondary);
+      expect(
+        icon.color,
+        testNebuxColors().white.withValues(alpha: 0.7),
+      );
     });
 
     testWidgets('trailing icon uses disabled color when disabled', (
@@ -304,7 +328,10 @@ void main() {
       );
 
       final icon = tester.widget<Icon>(find.byIcon(Icons.arrow_forward));
-      expect(icon.color, testNebuxColors().textSecondary);
+      expect(
+        icon.color,
+        testNebuxColors().white.withValues(alpha: 0.7),
+      );
     });
 
     testWidgets('leading icon uses custom color when enabled', (
