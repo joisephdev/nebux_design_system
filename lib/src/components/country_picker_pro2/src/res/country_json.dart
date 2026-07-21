@@ -248,7 +248,7 @@ final List<Map<String, dynamic>> countryCodes = [
     'geographic': true,
     'level': 1,
     'name': 'Argentina',
-    'example': '91123456789',
+    'example': '1123456789',
     'display_name': 'Argentina (AR) [+54]',
     'full_example_with_plus_sign': '+5491123456789',
     'display_name_no_e164_cc': 'Argentina (AR)',
@@ -264,7 +264,7 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Argentine',
     'internet_tld': '.ar',
     'flag_emoji': '🇦🇷',
-    'min_length': 11,
+    'min_length': 9,
     'max_length': 11,
   },
   {
