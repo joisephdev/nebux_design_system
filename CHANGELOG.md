@@ -1,3 +1,11 @@
+## 1.0.8
+
+### Fixed
+
+- Argentina phone number validation: changed `min_length` from 11 to 9 and `max_length` from 11 to 11 to accept 9-11 digit numbers (handles missing `0`, correct 10-digit format, and international `9` prefix)
+
+---
+
 ## 1.0.7
 
 ### Fixed
