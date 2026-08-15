@@ -17,10 +17,10 @@ jobs:
           cache: true
       - run: flutter pub get
 
-      # Flutter 3.47+ may rewrite analysis_options.yaml during `flutter pub get`
-      # if analyzer.exclude is missing the exact build/platform patterns.
-      # Restore a clean tree before validation; flutter pub publish also runs
-      # the migrator, so analysis_options.yaml must already be a no-op.
+      # Flutter 3.47+ AnalysisOptionsMigration rewrites analysis_options.yaml
+      # during any `flutter` command (it injects android/ios/web/… excludes
+      # this package does not need). Restore a clean tree, then publish with
+      # `dart pub` so the migrator does not run again inside the publish step.
       - name: Restore analysis_options.yaml if tooling rewrote it
         run: git checkout -- analysis_options.yaml
 
@@ -28,4 +28,4 @@ jobs:
         run: dart pub publish --dry-run
 
       - name: Publish to pub.dev
-        run: flutter pub publish --force
+        run: dart pub publish --force
