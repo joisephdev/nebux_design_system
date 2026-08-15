@@ -1,3 +1,11 @@
+## 1.0.9
+
+### Fixed
+
+- `NbxInputParametersExtension.keyboardType` now returns `TextInputType.multiline` for multiline fields (`maxLines != 1`) instead of always falling back to `TextInputType.text` for the default input types. This matches `TextField`'s own default behavior and lets consumers pass `TextInputAction.newline` on multiline fields without triggering Flutter's `keyboardType`/`textInputAction` assertion, and shows the platform's return/newline key instead of "done".
+
+---
+
 ## 1.0.8
 
 ### Fixed

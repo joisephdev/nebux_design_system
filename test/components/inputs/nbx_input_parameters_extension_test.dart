@@ -9,6 +9,7 @@ NbxInputParameters _params({
   Widget? suffixIcon,
   NbxSuffixIconType suffixIconType = NbxSuffixIconType.none,
   TextEditingController? controller,
+  int? maxLines,
 }) {
   return NbxInputParameters(
     isRequired: false,
@@ -20,6 +21,7 @@ NbxInputParameters _params({
     suffixIcon: suffixIcon,
     suffixIconType: suffixIconType,
     controller: controller,
+    maxLines: maxLines,
   );
 }
 
@@ -102,6 +104,34 @@ void main() {
       expect(
         _params(inputType: NbxInputType.textAndNumbers).keyboardType,
         TextInputType.text,
+      );
+    });
+
+    test('returns TextInputType.text when maxLines is 1', () {
+      expect(
+        _params(inputType: NbxInputType.text, maxLines: 1).keyboardType,
+        TextInputType.text,
+      );
+    });
+
+    test('returns TextInputType.multiline when maxLines is greater than 1', () {
+      expect(
+        _params(inputType: NbxInputType.text, maxLines: 5).keyboardType,
+        TextInputType.multiline,
+      );
+    });
+
+    test('returns TextInputType.text when maxLines is null (defaults to single line)', () {
+      expect(
+        _params(inputType: NbxInputType.text, maxLines: null).keyboardType,
+        TextInputType.text,
+      );
+    });
+
+    test('does not affect non-default input types when multiline', () {
+      expect(
+        _params(inputType: NbxInputType.email, maxLines: 5).keyboardType,
+        TextInputType.emailAddress,
       );
     });
   });
