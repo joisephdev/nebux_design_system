@@ -13,6 +13,7 @@ analyzer:
     - lib/src/components/country_picker_pro2/**
     - example/**
     - build/**
+    - platform/**
   errors:
     implementation_imports: error
     library_prefixes: error
