@@ -3,6 +3,10 @@ part of 'export.dart';
 /// Extension that derives keyboard type and suffix icon from [NbxInputParameters].
 extension NbxInputParametersExtension on NbxInputParameters {
   /// Returns the appropriate [TextInputType] based on [inputType].
+  ///
+  /// Multiline fields (`maxLines != 1`) fall back to
+  /// [TextInputType.multiline] so the platform keyboard shows a
+  /// return/newline key, matching [TextField]'s own default behavior.
   TextInputType get keyboardType {
     switch (inputType) {
       case NbxInputType.number:
@@ -16,7 +20,9 @@ extension NbxInputParametersExtension on NbxInputParameters {
       case NbxInputType.decimalNumber:
         return const TextInputType.numberWithOptions(decimal: true);
       default:
-        return TextInputType.text;
+        return (maxLines ?? 1) != 1
+            ? TextInputType.multiline
+            : TextInputType.text;
     }
   }
 
