@@ -59,6 +59,17 @@ void main() {
       expect(formatters, isNotEmpty);
     });
 
+    test('text type with multiline preserves newlines when typed', () {
+      final formatter =
+          _params(inputType: NbxInputType.text, maxLines: 5)
+              .textInputFormatter
+              .last;
+      const oldValue = TextEditingValue(text: 'Line one');
+      const newValue = TextEditingValue(text: 'Line one\nLine two');
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+      expect(result.text, equals('Line one\nLine two'));
+    });
+
     test('prepends custom inputFormatters if provided', () {
       final customFormatter = LengthLimitingTextInputFormatter(10);
       final formatters = _params(
