@@ -20,5 +20,11 @@ jobs:
       - name: Validate package (dry-run)
         run: dart pub publish --dry-run
 
+      - name: Reset auto-generated analysis_options.yaml changes
+        # flutter/dart tooling may auto-migrate analysis_options.yaml
+        # (e.g. adding build/platform excludes) as a side effect of the
+        # analysis pass above. Discard that so pub's git-clean check passes.
+        run: git checkout -- analysis_options.yaml
+
       - name: Publish to pub.dev
         run: flutter pub publish --force

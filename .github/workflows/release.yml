@@ -48,6 +48,10 @@ jobs:
         run: |
           flutter pub get
           flutter analyze --fatal-infos
+          # flutter/dart tooling may auto-migrate analysis_options.yaml
+          # (e.g. adding build/platform excludes) as a side effect of
+          # analysis. Discard that so pub's git-clean check passes.
+          git checkout -- analysis_options.yaml
           dart pub publish --dry-run
 
       - name: Extract changelog for this version
