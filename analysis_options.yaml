@@ -12,16 +12,7 @@ analyzer:
   exclude:
     - lib/src/components/country_picker_pro2/**
     - example/**
-    # Flutter 3.47+ AnalysisOptionsMigration rewrites this file unless these
-    # seven patterns appear verbatim. Keep them exact so `flutter pub get` /
-    # `dart pub publish` stay a no-op and pub.dev validation sees a clean git tree.
     - build/**
-    - android/**
-    - ios/**
-    - web/**
-    - windows/**
-    - macos/**
-    - linux/**
   errors:
     implementation_imports: error
     library_prefixes: error
