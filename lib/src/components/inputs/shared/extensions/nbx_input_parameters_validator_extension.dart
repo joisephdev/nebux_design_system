@@ -19,7 +19,11 @@ extension NbxInputParametersValidationExtension on NbxInputParameters {
         if (isSingleLine) {
           inputFormatter = FilteringTextInputFormatter.singleLineFormatter;
         } else {
-          inputFormatter = FilteringTextInputFormatter.allow(RegExp(r'.*'));
+          // `dotAll: true` is required so `.` also matches `\n`; otherwise
+          // this formatter silently strips newlines from multiline fields.
+          inputFormatter = FilteringTextInputFormatter.allow(
+            RegExp(r'.*', dotAll: true),
+          );
         }
         break;
     }

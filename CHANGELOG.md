@@ -1,3 +1,11 @@
+## 1.0.11
+
+### Fixed
+
+- `NbxInputParametersValidationExtension.textInputFormatter` no longer strips newlines from multiline fields. The allow-all formatter used `RegExp(r'.*')` without `dotAll: true`, so `.` never matched `\n` and every line break typed or pasted into a multiline field was silently discarded by `FilteringTextInputFormatter.allow`, even though `keyboardType`/`textInputAction` correctly showed the return key (fixed in 1.0.9).
+
+---
+
 ## 1.0.9
 
 ### Fixed
