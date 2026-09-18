@@ -6400,8 +6400,8 @@ final List<Map<String, dynamic>> countryCodes = [
     'demonym': 'Uruguayan',
     'internet_tld': '.uy',
     'flag_emoji': '🇺🇾',
-    'min_length': 9,
-    'max_length': 9,
+    'min_length': 8,
+    'max_length': 8,
   },
   {
     'e164_cc': '998',
