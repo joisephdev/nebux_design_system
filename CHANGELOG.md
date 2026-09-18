@@ -1,3 +1,11 @@
+## 1.0.12
+
+### Fixed
+
+- Uruguay phone number validation: changed `min_length` from 9 to 8 and `max_length` from 9 to 8 to accept 8-digit national numbers (matches the `example` '94231234' and official URSEC/ITU 8-digit numbering)
+
+---
+
 ## 1.0.11
 
 ### Fixed
